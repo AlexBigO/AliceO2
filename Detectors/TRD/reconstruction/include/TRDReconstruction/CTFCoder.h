@@ -221,7 +221,7 @@ o2::ctf::CTFIOSize CTFCoder::decode(const CTF::base& ec, VTRG& trigVec, VTRK& tr
     orbitPrev = orbit;
     o2::InteractionRecord ir{bc, orbit};
     if (triggerOK && (checkIROK || ir.differenceInBC({0, mFirstTFOrbit}) >= mBCShift)) { // correction will be ok
-      checkIROK = true;                                                   // don't check anymore since the following checks will yield same
+      checkIROK = true;                                                                  // don't check anymore since the following checks will yield same
       orbitPrevGood = orbit;
       uint32_t firstEntryTrk = trkVec.size();
       uint16_t hcid = 0;

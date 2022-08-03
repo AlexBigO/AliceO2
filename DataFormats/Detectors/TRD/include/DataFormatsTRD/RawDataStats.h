@@ -36,7 +36,7 @@ enum ParsingErrors { TRDParsingNoError,
                      TRDParsingBadDigt,
                      TRDParsingBadTracklet,
                      TRDParsingDigitEndMarkerWrongState,                // read a end marker but we were expecting something else due to
-                     TRDParsingDigitMCMHeaderSanityCheckFailure,        //essentially we did not see an MCM header see RawData.h for requirement
+                     TRDParsingDigitMCMHeaderSanityCheckFailure,        // essentially we did not see an MCM header see RawData.h for requirement
                      TRDParsingDigitROBDecreasing,                      // sequential headers must have the same or increasing rob number
                      TRDParsingDigitMCMNotIncreasing,                   // sequential headers must have increasing mcm number
                      TRDParsingDigitADCMaskMismatch,                    // mask adc count does not match # of 1s in bitpattern
@@ -58,7 +58,7 @@ enum ParsingErrors { TRDParsingNoError,
                      TRDParsingTrackletMCMHeaderSanityCheckFailure,     // MCMHeader sanity check failure, see RawData.cxx for reasons.
                      TRDParsingTrackletMCMHeaderButParsingMCMData,      // state is still MCMHeader but we are parsing MCMData
                      TRDParsingTrackletStateMCMHeaderButParsingMCMData,
-                     TRDParsingTrackletTrackletCountGTThatDeclaredInMCMHeader, //mcmheader tracklet count does not match that in we have parsed.
+                     TRDParsingTrackletTrackletCountGTThatDeclaredInMCMHeader, // mcmheader tracklet count does not match that in we have parsed.
                      TRDParsingTrackletInvalidTrackletCount,                   // invalid tracklet count in header vs data
                      TRDParsingTrackletPadRowIncreaseError,                    // subsequent padrow can not be less than previous one.
                      TRDParsingTrackletColIncreaseError,                       // subsequent col can not be less than previous one
@@ -113,10 +113,10 @@ enum OptionBits {
   TRDM1Debug
 };
 
-//Data to be stored and accumulated on an event basis.
-//events are spread out with in the data coming in with a halfcruheader per event, per ... half cru.
-//this is looked up via the interaction record (orbit and bunchcrossing).
-//this permits averaging in the data that gets senton per timeframe
+// Data to be stored and accumulated on an event basis.
+// events are spread out with in the data coming in with a halfcruheader per event, per ... half cru.
+// this is looked up via the interaction record (orbit and bunchcrossing).
+// this permits averaging in the data that gets senton per timeframe
 class TRDDataCountersPerEvent
 {
  public:
@@ -130,8 +130,8 @@ class TRDDataCountersPerEvent
   uint16_t mDigitsFound;         // digits found in the event
 };
 
-//Data to be stored on a timeframe basis to then be sent as a message to be ultimately picked up by qc.
-//Some countes include a average over the numbers stored on a per event basis, e.g. digits per event.
+// Data to be stored on a timeframe basis to then be sent as a message to be ultimately picked up by qc.
+// Some countes include a average over the numbers stored on a per event basis, e.g. digits per event.
 class TRDDataCountersPerTimeFrame
 {
  public:

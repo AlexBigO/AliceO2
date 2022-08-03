@@ -65,7 +65,7 @@ class RawReaderBase
       refDataBlock.decodeBlock(binaryPayload, srcPos);
       srcPos += refDataBlock.mSize;
       if (refDataBlock.mSize == 16) {
-        //exclude data block in case of single header(no data, total size == 16 bytes)
+        // exclude data block in case of single header(no data, total size == 16 bytes)
         vecDataBlocks.pop_back();
         continue;
       }

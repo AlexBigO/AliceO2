@@ -126,9 +126,9 @@ class CTFWriterSpec : public o2::framework::Task
   bool mRejectCurrentTF = false;
   int mReportInterval = -1;
   int mVerbosity = 0;
-  int mSaveDictAfter = 0;          // if positive and mWriteCTF==true, save dictionary after each mSaveDictAfter TFs processed
-  uint32_t mPrevDictTimeStamp = 0; // timestamp of the previously stored dictionary
-  uint32_t mDictTimeStamp = 0;     // timestamp of the currently stored dictionary
+  int mSaveDictAfter = 0;            // if positive and mWriteCTF==true, save dictionary after each mSaveDictAfter TFs processed
+  uint32_t mPrevDictTimeStamp = 0;   // timestamp of the previously stored dictionary
+  uint32_t mDictTimeStamp = 0;       // timestamp of the currently stored dictionary
   size_t mMinSize = 0;               // if > 0, accumulate CTFs in the same tree until the total size exceeds this minimum
   size_t mMaxSize = 0;               // if > MinSize, and accumulated size will exceed this value, stop accumulation (even if mMinSize is not reached)
   size_t mChkSize = 0;               // if > 0 and fallback storage provided, reserve this size per CTF file in production on primary storage

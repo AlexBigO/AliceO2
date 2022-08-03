@@ -263,7 +263,7 @@ void Digitizer::storeBC(BCCache& bc,
     if (!cfd.particle) {
       continue;
     }
-    //miscalibrate CFD with cahnnel offsets
+    // miscalibrate CFD with cahnnel offsets
     int miscalib = 0;
     if (mCalibOffset) {
       miscalib = mCalibOffset->mTimeOffsets[ipmt];

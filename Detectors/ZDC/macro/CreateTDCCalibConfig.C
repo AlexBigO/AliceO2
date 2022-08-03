@@ -46,7 +46,7 @@ void CreateTDCCalibConfig(long tmin = 0, long tmax = -1, std::string ccdbHost = 
 
   conf.setDescription("Simulated data");
 
-  //conf.setMinEntries(100); //To be decided the number of minimum entries
+  // conf.setMinEntries(100); //To be decided the number of minimum entries
 
   conf.print();
 

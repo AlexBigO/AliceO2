@@ -215,7 +215,7 @@ GBTLink::CollectedDataStatus GBTLink::collectROFCableData(const Mapping& chmap)
         RDHUtils::printRDH(rdh);
       }
       GBTLINK_DECODE_ERRORCHECK(errRes, checkErrorsRDH(*rdh)); // make sure we are dealing with RDH
-      hbfEntry = hbfEntrySav; // critical check of RDH passed
+      hbfEntry = hbfEntrySav;                                  // critical check of RDH passed
       lastRDH = rdh;
       statistics.nPackets++;
       if (RDHUtils::getPageCounter(*rdh) == 0 || irHBF.isDummy()) { // for the threshold scan data it is not guaranteed that the page0 is found)

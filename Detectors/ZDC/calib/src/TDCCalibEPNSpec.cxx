@@ -65,7 +65,7 @@ void TDCCalibEPNSpec::init(o2::framework::InitContext& ic)
 void TDCCalibEPNSpec::updateTimeDependentParams(ProcessingContext& pc)
 {
   // we call these methods just to trigger finaliseCCDB callback
-  pc.inputs().get<o2::zdc::TDCCalibConfig*>("tdccalibconfig"); //added by me
+  pc.inputs().get<o2::zdc::TDCCalibConfig*>("tdccalibconfig"); // added by me
 }
 
 void TDCCalibEPNSpec::finaliseCCDB(o2::framework::ConcreteDataMatcher& matcher, void* obj)
@@ -89,13 +89,13 @@ void TDCCalibEPNSpec::run(ProcessingContext& pc)
     mTimer.Reset();
     mTimer.Start(false);
   }
-  //auto config = pc.inputs().get<o2::zdc::TDCCalibConfig*>("tdccalibconfig");
+  // auto config = pc.inputs().get<o2::zdc::TDCCalibConfig*>("tdccalibconfig");
   const auto ref = pc.inputs().getFirstValid(true);
   auto creationTime = DataRefUtils::getHeader<DataProcessingHeader*>(ref)->creation; // approximate time in ms
   mWorker.getData().setCreationTime(creationTime);
 
   auto bcrec = pc.inputs().get<gsl::span<o2::zdc::BCRecData>>("bcrec");
-  auto energy = pc.inputs().get<gsl::span<o2::zdc::ZDCEnergy>>("energy"); //maybe not needed for TDC configuration
+  auto energy = pc.inputs().get<gsl::span<o2::zdc::ZDCEnergy>>("energy"); // maybe not needed for TDC configuration
   auto tdc = pc.inputs().get<gsl::span<o2::zdc::ZDCTDCData>>("tdc");
   auto info = pc.inputs().get<gsl::span<uint16_t>>("info");
 
@@ -117,7 +117,7 @@ void TDCCalibEPNSpec::endOfStream(EndOfStreamContext& ec)
 {
   mWorker.endOfRun();
   mTimer.Stop();
-  LOGF(info, "ZDC EPN TDC calibration total timing: Cpu: %.3e Real: %.3e s in %d slots", mTimer.CpuTime(), mTimer.RealTime(), mTimer.Counter() - 1); //added by me
+  LOGF(info, "ZDC EPN TDC calibration total timing: Cpu: %.3e Real: %.3e s in %d slots", mTimer.CpuTime(), mTimer.RealTime(), mTimer.Counter() - 1); // added by me
 }
 
 framework::DataProcessorSpec getTDCCalibEPNSpec()
@@ -130,7 +130,7 @@ framework::DataProcessorSpec getTDCCalibEPNSpec()
   inputs.emplace_back("tdccalibconfig", "ZDC", "TDCCALIBCONFIG", 0, Lifetime::Condition, o2::framework::ccdbParamSpec(o2::zdc::CCDBPathTDCCalibConfig.data()));
 
   std::vector<OutputSpec> outputs;
-  outputs.emplace_back("ZDC", "TDCCALIBDATA", 0, Lifetime::Timeframe); //added by me
+  outputs.emplace_back("ZDC", "TDCCALIBDATA", 0, Lifetime::Timeframe); // added by me
   char outputd[o2::header::gSizeDataDescriptionString];
 
   for (int ih = 0; ih < TDCCalibData::NTDC; ih++) {

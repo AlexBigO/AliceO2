@@ -47,7 +47,7 @@ std::ostream& operator<<(std::ostream& stream, const EMCALChannelData& emcdata)
 //_____________________________________________
 void EMCALChannelData::fill(const gsl::span<const o2::emcal::Cell> data)
 {
-  //the fill function is called once per event
+  // the fill function is called once per event
   mEvents++;
   for (auto cell : data) {
     Double_t cellEnergy = cell.getEnergy();

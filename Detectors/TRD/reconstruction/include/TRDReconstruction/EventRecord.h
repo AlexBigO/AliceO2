@@ -161,7 +161,7 @@ class EventStorage
       mTFStats.mParsingErrors[error]++;
       if (sm >= 0) { // sm=-1 is reserved for those errors where we dont know or cant know the underlying source.
         if ((sm * 2 + side) * 30 * TRDLastParsingError + TRDLastParsingError * stacklayer + error < o2::trd::constants::NSECTOR * 60 * TRDLastParsingError) {
-          //prevent bounding errors
+          // prevent bounding errors
           mTFStats.mParsingErrorsByLink[(sm * 2 + side) * 30 * TRDLastParsingError + TRDLastParsingError * stacklayer + error]++;
         }
       }
@@ -172,7 +172,7 @@ class EventStorage
 
  private:
   std::vector<EventRecord> mEventRecords;
-  //these 2 are hacks to be able to send back a blank vector if interaction record is not found.
+  // these 2 are hacks to be able to send back a blank vector if interaction record is not found.
   std::vector<Tracklet64> mDummyTracklets;
   std::vector<Digit> mDummyDigits;
 

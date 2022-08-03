@@ -16,8 +16,8 @@
 
 namespace o2::mch::calibration
 {
-/** 
- * @class PedestalChannel 
+/**
+ * @class PedestalChannel
  * @brief Pedestal mean and sigma for one channel
  *
  * A PedestalChannel stores the mean and sigma of the pedestal of one MCH channel,

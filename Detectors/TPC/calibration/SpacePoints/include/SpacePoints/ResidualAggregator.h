@@ -56,9 +56,9 @@ struct ResidualsContainer {
   std::array<std::vector<TrackResiduals::LocalResid>*, SECTORSPERSIDE * SIDES> residualsPtr{};
   std::array<std::vector<TrackResiduals::VoxStats>, SECTORSPERSIDE * SIDES> stats{}; ///< voxel statistics sent to the aggregator
   std::array<std::vector<TrackResiduals::VoxStats>*, SECTORSPERSIDE * SIDES> statsPtr{};
-  uint32_t runNumber;                                                        ///< run number (required for meta data file)
-  std::vector<uint32_t> tfOrbits, *tfOrbitsPtr{&tfOrbits};                   ///< first TF orbit
-  std::vector<uint32_t> sumOfResiduals, *sumOfResidualsPtr{&sumOfResiduals}; ///< sum of residuals for each TF
+  uint32_t runNumber;                                                                    ///< run number (required for meta data file)
+  std::vector<uint32_t> tfOrbits, *tfOrbitsPtr{&tfOrbits};                               ///< first TF orbit
+  std::vector<uint32_t> sumOfResiduals, *sumOfResidualsPtr{&sumOfResiduals};             ///< sum of residuals for each TF
   std::vector<TrackResiduals::UnbinnedResid> unbinnedRes, *unbinnedResPtr{&unbinnedRes}; // unbinned residuals
   std::vector<TrackData> trkData, *trkDataPtr{&trkData};                                 // track data and cluster ranges
 
@@ -115,11 +115,11 @@ class ResidualAggregator final : public o2::calibration::TimeSlotCalibration<Tra
   o2::framework::DataTakingContext mDataTakingContext{};
   TrackResiduals mTrackResiduals; ///< providing the functionality for voxel binning of the residuals
   std::string mOutputDir{"./"};   ///< the directory where the output of residuals is stored
-  std::string mMetaOutputDir{"none"}; ///< the directory where the meta data file is stored
-  std::string mLHCPeriod{""};         ///< the LHC period to be put into the meta file
-  bool mStoreMetaData{false};         ///< flag, whether meta file is supposed to be stored
-  bool mWriteOutput{true};            ///< if false, no output files will be written
-  bool mWriteBinnedResiduals{false};  ///< flag, whether to write binned residuals to output file
+  std::string mMetaOutputDir{"none"};  ///< the directory where the meta data file is stored
+  std::string mLHCPeriod{""};          ///< the LHC period to be put into the meta file
+  bool mStoreMetaData{false};          ///< flag, whether meta file is supposed to be stored
+  bool mWriteOutput{true};             ///< if false, no output files will be written
+  bool mWriteBinnedResiduals{false};   ///< flag, whether to write binned residuals to output file
   bool mWriteUnbinnedResiduals{false}; ///< flag, whether to write unbinned residuals to output file
   bool mWriteTrackData{false};         ///< flag, whether to write track data to output file
   int mAutosaveInterval{0};            ///< if >0 then the output is written to a file for every n-th TF

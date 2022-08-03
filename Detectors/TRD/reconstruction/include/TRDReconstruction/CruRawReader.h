@@ -140,7 +140,7 @@ class CruRawReader
   }
   void OutputHalfCruRawData();
   // void setStats(o2::trd::TRDDataCountersPerTimeFrame* trdstats){mTimeFrameStats=trdstats;}
-  //void setHistos(std::array<TH2F*, 10> hist, std::array<TH2F*, constants::MAXPARSEERRORHISTOGRAMS> parsingerrors2d)
+  // void setHistos(std::array<TH2F*, 10> hist, std::array<TH2F*, constants::MAXPARSEERRORHISTOGRAMS> parsingerrors2d)
 
  protected:
   bool processHBFs(int datasizealreadyread = 0, bool verbose = false);
@@ -277,7 +277,7 @@ class CruRawReader
   uint32_t mTotalTrackletWordsRead = 0;
   uint32_t mWordsRejected = 0; // those words rejected before tracklet and digit parsing together with the digit and tracklet rejected words;
   uint32_t mWordsAccepted = 0; // those words before before tracklet and digit parsing together with the digit and tracklet rejected words;
-  //pointers to the data as we read them in, again no point in copying.
+  // pointers to the data as we read them in, again no point in copying.
   HalfCRUHeader* mhalfcruheader;
 
   bool checkerCheck();

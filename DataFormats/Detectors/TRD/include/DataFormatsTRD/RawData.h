@@ -138,11 +138,11 @@ struct TrackletHCHeader {
     //             --------------------------------- 28-31 tracklet data format number
     uint32_t word;
     struct {
-      uint32_t side : 1;  // side of chamber
+      uint32_t side : 1; // side of chamber
       uint32_t layer : 3;
       uint32_t stack : 3;
       uint32_t supermodule : 5;
-      uint32_t one : 1;   //always 1
+      uint32_t one : 1;   // always 1
       uint32_t MCLK : 15; // MCM clock counter 120MHz ... for simulation -- incrementing, and uniform across an event
       uint32_t format : 4;
       //  0 baseline PID 3 time slices, 7 bit each
@@ -444,8 +444,8 @@ void printDigitMCMHeader(o2::trd::DigitMCMHeader& header);
 int getDigitHCHeaderWordType(uint32_t word);
 void printDigitHCHeader(o2::trd::DigitHCHeader& header, uint32_t headers[3]);
 
-//functions updated/checked/new for new raw reader.
-//above methods left for cross checking what changes have occured.
+// functions updated/checked/new for new raw reader.
+// above methods left for cross checking what changes have occured.
 void constructTrackletHCHeader(TrackletHCHeader& header, int hcid, int chipclock, int format);
 uint16_t constructTRDFeeID(int supermodule, int side, int endpoint);
 uint32_t setHalfCRUHeaderFirstWord(HalfCRUHeader& cruhead, int crurdhversion, int bunchcrossing, int stopbits, int endpoint, int eventtype, int feeid, int cruid);

@@ -80,12 +80,12 @@ int TDCCalibEPN::process(const gsl::span<const o2::zdc::BCRecData>& RecBC,
       continue;
     }
 
-    //Fill 1d histograms with tdc values. Check if channel is acquired or not
-    for (int itdc = 0; itdc < NTDC; itdc++) { //loop over all TDCs
+    // Fill 1d histograms with tdc values. Check if channel is acquired or not
+    for (int itdc = 0; itdc < NTDC; itdc++) { // loop over all TDCs
       int nhits = ev.NtdcV(itdc);
 
       if (nhits > 0) {
-        //call fill function to fill histo
+        // call fill function to fill histo
         fill1D(itdc, nhits, ev);
       }
     }
@@ -128,13 +128,13 @@ void TDCCalibEPN::clear(int ih)
 
 void TDCCalibEPN::fill1D(int iTDC, int nHits, o2::zdc::RecEventFlat ev)
 {
-  //Get TDC values
+  // Get TDC values
   float tdcVal[nHits];
   for (int i = 0; i < nHits; i++) {
     tdcVal[i] = ev.tdcV(iTDC, i);
   }
 
-  //Fill histo
+  // Fill histo
   for (int hit = 0; hit < nHits; hit++) {
     mTDC[iTDC]->fill(tdcVal[hit]);
   }

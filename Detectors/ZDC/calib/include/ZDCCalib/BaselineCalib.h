@@ -31,7 +31,7 @@ class BaselineCalib
   BaselineCalib() = default;
   int init();
   void clear();
-  //int process(const o2::zdc::BaselineCalibSummaryData& data);
+  // int process(const o2::zdc::BaselineCalibSummaryData& data);
   int process(const o2::zdc::BaselineCalibSummaryData* data);
   int endOfRun();
   int saveDebugHistos(const std::string fn = "ZDCBaselineCalib.root");

@@ -337,7 +337,7 @@ void TOFDCSProcessor::updateDPsCCDB()
     const auto& type = it.first.get_type();
     if (type == o2::dcs::DPVAL_DOUBLE) {
       auto& tofdcs = mTOFDCS[it.first];
-      if (it.second) {     // we processed the DP at least 1x
+      if (it.second) { // we processed the DP at least 1x
         if (mVerboseDP) {
           LOG(info) << "Processing DP " << it.first.get_alias();
         }

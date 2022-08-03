@@ -38,7 +38,7 @@ void checkTrackletCharges(int sector = -1)
   chain.SetBranchAddress("TrackTrg", &trigInPtr);
   chain.SetBranchAddress("Tracklet", &trackletsInPtr);
 
-  //auto fOut = new TFile("trackletsOutput.root", "recreate");
+  // auto fOut = new TFile("trackletsOutput.root", "recreate");
   auto hDet = new TH1F("det", "Detector number for tracklet;detector;counts", 540, -0.5, 539.5);
   auto hTrigger = new TH1F("trigger", "Number of TRD triggers per TF;# trigger;counts", 200, 0, 200);
   auto hPosition = new TH1F("position", "Tracklet position uncalibrated;position;counts", 120, -60, 60);
@@ -87,7 +87,7 @@ void checkTrackletCharges(int sector = -1)
     }
   }
 
-  //printf("Found in total %i collisions with digits\n", nTriggerWithDigits);
+  // printf("Found in total %i collisions with digits\n", nTriggerWithDigits);
   auto c = new TCanvas("c", "c", 1400, 1000);
   auto line = new TLine();
   c->Divide(3, 3);
@@ -108,7 +108,7 @@ void checkTrackletCharges(int sector = -1)
     auto pad = c->cd(charge + 7);
     pad->SetRightMargin(0.15);
     hCharges[charge]->Draw();
-    //pad->SetLogz();
+    // pad->SetLogz();
   }
   c->Update();
   c->SaveAs("tracklet-charges.png");

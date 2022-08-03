@@ -286,9 +286,9 @@ float CalibTOFapi::getTimeCalibration(int ich, float tot, float phase) const
   // LHCphase
   corr += phase; // timestamp that we use in LHCPhase is in seconds
   // time slewing + channel offset
-  //printf("eval time sleweing calibration: ch=%d   tot=%f (lhc phase = %f)\n",ich,tot,corr);
+  // printf("eval time sleweing calibration: ch=%d   tot=%f (lhc phase = %f)\n",ich,tot,corr);
   corr += mSlewParam->evalTimeSlewing(ich, tot);
-  //printf("corr = %f\n",corr);
+  // printf("corr = %f\n",corr);
   return corr;
 }
 

@@ -58,7 +58,7 @@ void PHOSBadMapCalibDevice::run(o2::framework::ProcessingContext& ctx)
 {
   if (mRunStartTime == 0) {
     mRunStartTime = ctx.services().get<o2::framework::TimingInfo>().creation;
-    mValidityTime = mRunStartTime + 31622400000;                                   // one year validity range
+    mValidityTime = mRunStartTime + 31622400000; // one year validity range
   }
 
   // Read previous bad map if not read yet

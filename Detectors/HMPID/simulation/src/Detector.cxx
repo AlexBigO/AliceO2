@@ -110,7 +110,7 @@ bool Detector::ProcessHits(FairVolume* v)
       stack->addHit(GetDetId());
     } //photon hit PC and DE >0
     return kTRUE;
-  } //photon hit PC
+  } // photon hit PC
 
   //Treat charged particles
   static Float_t eloss; //need to store mip parameters between different steps
@@ -169,7 +169,7 @@ bool Detector::ProcessHits(FairVolume* v)
       eloss += fMC->Edep(); //collect this step eloss
     }
     return kTRUE;
-  } //MIP in GAP
+  } // MIP in GAP
 
   // later on return true if there was a hit!
   return false;

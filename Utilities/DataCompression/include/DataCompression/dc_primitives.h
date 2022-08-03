@@ -145,7 +145,6 @@ class ExampleAlphabet
   /// get the range of indices aka number of indices
   constexpr unsigned getIndexRange();
 
-
   /// a forward iterator to access the list of elements
   template <typename ValueT>
   class Iterator

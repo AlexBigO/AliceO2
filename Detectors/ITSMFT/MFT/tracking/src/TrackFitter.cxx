@@ -156,11 +156,11 @@ bool TrackFitter<T>::initTrack(T& track, bool outward)
     SMatrix55Sym lastParamCov;
     double qptsigma = TMath::Range(1., 10., std::abs(track.getInvQPt()));
 
-    lastParamCov(0, 0) = 1.;                              // <X,X>
-    lastParamCov(1, 1) = 1.;                              // <Y,Y>
-    lastParamCov(2, 2) = 1.;                              // <PHI,PHI>
-    lastParamCov(3, 3) = 1.;                              // <TANL,TANL>
-    lastParamCov(4, 4) = qptsigma;                        // <INVQPT,INVQPT>
+    lastParamCov(0, 0) = 1.;       // <X,X>
+    lastParamCov(1, 1) = 1.;       // <Y,Y>
+    lastParamCov(2, 2) = 1.;       // <PHI,PHI>
+    lastParamCov(3, 3) = 1.;       // <TANL,TANL>
+    lastParamCov(4, 4) = qptsigma; // <INVQPT,INVQPT>
 
     track.setCovariances(lastParamCov);
     track.setTrackChi2(0.);

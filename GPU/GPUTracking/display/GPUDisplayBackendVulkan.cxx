@@ -1066,10 +1066,10 @@ void GPUDisplayBackendVulkan::createPipeline()
   vk::PipelineMultisampleStateCreateInfo multisampling{};
   multisampling.sampleShadingEnable = false;
   // multisampling.rasterizationSamples // below
-  multisampling.minSampleShading = 1.0f;          // Optional
-  multisampling.pSampleMask = nullptr;            // Optional
-  multisampling.alphaToCoverageEnable = false;    // Optional
-  multisampling.alphaToOneEnable = false;         // Optional
+  multisampling.minSampleShading = 1.0f;       // Optional
+  multisampling.pSampleMask = nullptr;         // Optional
+  multisampling.alphaToCoverageEnable = false; // Optional
+  multisampling.alphaToOneEnable = false;      // Optional
 
   vk::PipelineColorBlendAttachmentState colorBlendAttachment{};
   colorBlendAttachment.colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;

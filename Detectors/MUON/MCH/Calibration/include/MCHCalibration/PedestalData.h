@@ -32,7 +32,7 @@ class PedestalDataIterator;
 }
 
 /**
- * @class PedestalData 
+ * @class PedestalData
  * @brief Compute and store the mean and RMS of the pedestal digit amplitudes
  *
  * To extract the values from PedestalData, use the provided iterator(s).
@@ -70,14 +70,14 @@ class PedestalData
   /** a map from solarIds to PedestalMatrix */
   using PedestalsMap = std::unordered_map<int, PedestalMatrix>;
 
-  /** function to update the pedestal values from the data 
+  /** function to update the pedestal values from the data
    * @param digits a span of pedestal digits for a single TimeFrame
-  */
+   */
   void fill(const gsl::span<const PedestalDigit> digits);
 
   /** merge this object with other
-  * FIXME: not yet implemented.
-  */
+   * FIXME: not yet implemented.
+   */
   void merge(const PedestalData* other);
 
   /** dump this object. */

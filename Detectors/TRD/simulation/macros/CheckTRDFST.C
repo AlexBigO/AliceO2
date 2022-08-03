@@ -138,7 +138,7 @@ void CheckTRDFST(std::string fstbasedir = "./",
       }
     }
   }
-  //post simulation
+  // post simulation
   TCanvas* c = new TCanvas("c", "trd digits distribution", 800, 800);
   c->Divide(3, 2, 0.05, 0.05);
   for (int layer = 0; layer < 6; ++layer) {
@@ -153,7 +153,7 @@ void CheckTRDFST(std::string fstbasedir = "./",
     hTrackletsPerLayer[layer]->Draw("COLZ");
   }
   c1->SaveAs("TrackletsPerLayerAfterSim.pdf");
-  //post simulation
+  // post simulation
   TCanvas* c2 = new TCanvas("c2", "trd digits distribution reconstruction", 800, 800);
   c2->Divide(3, 2, 0.05, 0.05);
   for (int layer = 0; layer < 6; ++layer) {

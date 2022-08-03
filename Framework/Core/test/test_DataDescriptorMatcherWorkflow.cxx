@@ -21,7 +21,7 @@
 #include "Framework/DataAllocator.h"
 
 // we need to add workflow options before including Framework/runDataProcessing
-//void customize(std::vector<ConfigParamSpec>& workflowOptions)
+// void customize(std::vector<ConfigParamSpec>& workflowOptions)
 //{
 //}
 

@@ -137,7 +137,7 @@ void EMCALChannelCalibrator<DataInput, DataOutput, HistContainer>::finalizeSlot(
     auto clName = o2::utils::MemFileHelper::getClassName(slot);
     auto flName = o2::ccdb::CcdbApi::generateFileName(clName);
 
-    //prepareCCDBobjectInfo
+    // prepareCCDBobjectInfo
     mInfoVector.emplace_back(CalibDB::getCDBPathTimeCalibrationParams(), clName, flName, md, slot.getStartTimeMS(), o2::ccdb::CcdbObjectInfo::INFINITE_TIMESTAMP);
     mCalibObjectVector.push_back(tcd);
 

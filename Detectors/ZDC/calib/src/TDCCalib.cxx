@@ -60,11 +60,11 @@ int TDCCalib::endOfRun()
       assign(ih, false);
     }
 
-    else if (mData.entries[ih] >= mTDCCalibConfig->min_e[ih]) { //if number of events > minimum value accpeted -> process
+    else if (mData.entries[ih] >= mTDCCalibConfig->min_e[ih]) { // if number of events > minimum value accpeted -> process
       LOGF(info, "Processed RUN3 data for ih = %d: %s", ih, TDCCalibData::CTDC[ih]);
       assign(ih, true);
     } else {
-      LOGF(info, "FAILED processing RUN3 data for ih = %d: %s: TOO FEW EVENTS: %g", ih, TDCCalibData::CTDC[ih], 5); //instead of 5 put number of events
+      LOGF(info, "FAILED processing RUN3 data for ih = %d: %s: TOO FEW EVENTS: %g", ih, TDCCalibData::CTDC[ih], 5); // instead of 5 put number of events
       assign(ih, false);
     }
   }
@@ -99,13 +99,13 @@ int TDCCalib::endOfRun()
 void TDCCalib::assign(int ih, bool ismod)
 {
   if (ih >= 0 && ih <= 9) {
-    auto oldval = mTDCParam->getShift(ih); //old value from calibration object (TDCCalib)
-    if (ismod == true) {                   //ismod == true
+    auto oldval = mTDCParam->getShift(ih); // old value from calibration object (TDCCalib)
+    if (ismod == true) {                   // ismod == true
       auto val = oldval;
       auto shift = extractShift(ih);
-      //Change wrt previous shift
+      // Change wrt previous shift
       val = val + shift;
-      if (val < 0) { //negative value or = 25ns shift is not acceptable
+      if (val < 0) { // negative value or = 25ns shift is not acceptable
         LOGF(error, "Negative value of shift: %8.6f not acceptable", val);
       }
 
@@ -119,7 +119,7 @@ void TDCCalib::assign(int ih, bool ismod)
       mTDCParamUpd.setShift(ih, val);
     }
 
-    else { //ismod == false
+    else { // ismod == false
       if (mVerbosity > DbgZero) {
         LOGF(info, "%s NOT CHANGED %8.6f", TDCCalibData::CTDC[ih], oldval);
       }
@@ -127,7 +127,7 @@ void TDCCalib::assign(int ih, bool ismod)
     }
   }
 
-  else { //TDC index out of range
+  else { // TDC index out of range
     LOG(fatal) << "TDCCalib::assign accessing not existing ih = " << ih;
   }
 }
@@ -172,10 +172,10 @@ double TDCCalib::extractShift(int ih)
 {
   // Extract the TDC shift
   auto h1 = mCTDC[ih]->createTH1F(TDCCalibData::CTDC[ih]); // createTH1F(histo_name)
-  //h1->Draw("HISTO");
+  // h1->Draw("HISTO");
   int nEntries = h1->GetEntries();
   std::cout << nEntries << std::endl;
-  if ((ih >= 0 && ih <= 9) && (nEntries >= mTDCCalibConfig->min_e[ih])) { //TDC number is ok and more than minimum entries
+  if ((ih >= 0 && ih <= 9) && (nEntries >= mTDCCalibConfig->min_e[ih])) { // TDC number is ok and more than minimum entries
     double avgShift = h1->GetMean();
     return avgShift;
   } else {

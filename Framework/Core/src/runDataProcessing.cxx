@@ -2728,7 +2728,7 @@ int doMain(int argc, char** argv, o2::framework::WorkflowSpec const& workflow,
     // values are not filled into the vector, even if specifying `-b true`
     // need to find out why the boost program options example is not working
     // in our case. Might depend on the parser options
-    //auto value = varmap["batch"].as<std::vector<std::string>>();
+    // auto value = varmap["batch"].as<std::vector<std::string>>();
     return true;
   };
   DriverInfo driverInfo{

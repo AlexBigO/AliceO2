@@ -339,7 +339,7 @@ int Trap2CRU::buildDigitRawData(const int digitstartindex, const int digitendind
     ArrayADC adcdata = d->getADC();
     int channel = d->getChannel();
     //set adcmask for the channel we currently have.
-    incrementADCMask(*adcmaskptr, channel); //adcmaskptr->adcmask |= 1UL << channel;
+    incrementADCMask(*adcmaskptr, channel); // adcmaskptr->adcmask |= 1UL << channel;
     for (int timebin = 0; timebin < constants::TIMEBINS; timebin += 3) {
       data.z = adcdata[timebin];
       data.y = adcdata[timebin + 1];

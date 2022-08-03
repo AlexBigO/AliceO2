@@ -392,7 +392,7 @@ void o2::tpc::IDCCCDBHelper<DataT>::dumpToTree(const char* outFileName) const
   o2::utils::TreeStreamRedirector pcstream(outFileName, "RECREATE");
   pcstream.GetFile()->cd();
 
-  const int integrationInterval = 0; //std::min(mIDCOne->getNIDCs(Side::A), mIDCOne->getNIDCs(Side::C));
+  const int integrationInterval = 0; // std::min(mIDCOne->getNIDCs(Side::A), mIDCOne->getNIDCs(Side::C));
 
   const unsigned int nIDCsSector = Mapper::getPadsInSector() * Mapper::NSECTORS;
   std::vector<int> vRow(nIDCsSector);

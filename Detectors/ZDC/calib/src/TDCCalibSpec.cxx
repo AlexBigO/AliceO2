@@ -115,7 +115,7 @@ void TDCCalibSpec::endOfStream(EndOfStreamContext& ec)
   mWorker.endOfRun();
   mTimer.Stop();
   sendOutput(ec.outputs());
-  LOGF(info, "ZDC TDC calibration total timing: Cpu: %.3e Real: %.3e s in %d slots", mTimer.CpuTime(), mTimer.RealTime(), mTimer.Counter() - 1); //added by me
+  LOGF(info, "ZDC TDC calibration total timing: Cpu: %.3e Real: %.3e s in %d slots", mTimer.CpuTime(), mTimer.RealTime(), mTimer.Counter() - 1); // added by me
 }
 
 //________________________________________________________________
@@ -124,9 +124,9 @@ void TDCCalibSpec::sendOutput(o2::framework::DataAllocator& output)
   // extract CCDB infos and calibration objects, convert it to TMemFile and send them to the output
   // TODO in principle, this routine is generic, can be moved to Utils.h
   using clbUtils = o2::calibration::Utils;
-  const auto& payload = mWorker.getTDCParamUpd(); //new
+  const auto& payload = mWorker.getTDCParamUpd(); // new
   auto& info = mWorker.getCcdbObjectInfo();
-  auto image = o2::ccdb::CcdbApi::createObjectImage<ZDCTDCParam>(&payload, &info); //new
+  auto image = o2::ccdb::CcdbApi::createObjectImage<ZDCTDCParam>(&payload, &info); // new
   LOG(info) << "Sending object " << info.getPath() << "/" << info.getFileName() << " of size " << image->size()
             << " bytes, valid for " << info.getStartValidityTimestamp() << " : " << info.getEndValidityTimestamp();
   if (mVerbosity > DbgMinimal) {

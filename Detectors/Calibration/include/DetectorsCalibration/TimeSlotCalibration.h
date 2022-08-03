@@ -183,7 +183,7 @@ class TimeSlotCalibration
                                                 // after how many TF to check again.
   float mMaxSlotsDelay = 3.0;                   // difference in slot units between the current TF and oldest slot (end TF) to account for the TF
 
-  bool mWasCheckedInfiniteSlot = false;         // flag to know whether the statistics of the infinite slot was already checked
+  bool mWasCheckedInfiniteSlot = false; // flag to know whether the statistics of the infinite slot was already checked
   bool mUpdateAtTheEndOfRunOnly = false;
   bool mFinalizeWhenReady = false; // if true: single bin is filled until ready, then closed and new one is added
   ClassDef(TimeSlotCalibration, 1);

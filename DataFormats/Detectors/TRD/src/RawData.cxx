@@ -69,12 +69,12 @@ void dumpHalfCRUHeader(o2::trd::HalfCRUHeader& halfcru)
   }
 }
 
-//functions updated/checked/new for new raw reader. above methods left for cross checking what changes have occured.
-// construct a tracklet half chamber header according to the tdp and assembler found in
+// functions updated/checked/new for new raw reader. above methods left for cross checking what changes have occured.
+//  construct a tracklet half chamber header according to the tdp and assembler found in
 
-//HalfCRUHeader first :
+// HalfCRUHeader first :
 //
-//this only sets the first 64 bit word of the half cru header.
+// this only sets the first 64 bit word of the half cru header.
 uint32_t setHalfCRUHeaderFirstWord(HalfCRUHeader& cruhead, int crurdhversion, int bunchcrossing, int stopbits, int endpoint, int eventtype, int feeid, int cruid)
 {
   cruhead.word0 = 0;
@@ -83,8 +83,8 @@ uint32_t setHalfCRUHeaderFirstWord(HalfCRUHeader& cruhead, int crurdhversion, in
   cruhead.EndPoint = endpoint;
   cruhead.EventType = eventtype;
   cruhead.HeaderVersion = crurdhversion;
-  //This is undefiend behaviour if the rest of cruhead has not been set to zero ...
-  //TODO check where this is called from
+  // This is undefiend behaviour if the rest of cruhead has not been set to zero ...
+  // TODO check where this is called from
   return 0;
 }
 
@@ -147,7 +147,7 @@ std::ostream& operator<<(std::ostream& stream, const HalfCRUHeader& halfcru)
   return stream;
 }
 
-//Tracklet HC Header
+// Tracklet HC Header
 
 void constructTrackletHCHeader(TrackletHCHeader& header, int hcid, int chipclock, int format)
 {
@@ -178,20 +178,20 @@ uint32_t getChargeFromRawHeaders(const o2::trd::TrackletHCHeader& hcheader, cons
   uint32_t lowPID = 0;  // lowPID holds the 12 bits from mcmdata
   uint32_t datatype = (hcheader.format) >> 2;
   switch (datatype) {
-    case 0: //Cosmic
-            // LOG(warn) << "This is a problem cosmic format tracklets ";
-      //break;
-    case 1: //TPT
-      //LOG(warn) << "This is a problem  TPT format tracklets ";
-      //break;
-    case 2: //DIS
-      //LOG(warn) << "This is a problem  DIS format tracklets ";
-      //break;
+    case 0: // Cosmic
+            //  LOG(warn) << "This is a problem cosmic format tracklets ";
+      // break;
+    case 1: // TPT
+            // LOG(warn) << "This is a problem  TPT format tracklets ";
+            // break;
+    case 2: // DIS
+            // LOG(warn) << "This is a problem  DIS format tracklets ";
+            // break;
     case 3:
-      //PID VERSION 1
-      //PID is 20 bits, 8 bits in mcmheader and 12 bits in mcmdata word
-      //frist part of pid (highPID) is in the TrackletMCMHeader
-      //highPID is 7 bits Q2, 1 bit Q1 OR ... 2 bit offset, 6 bits Q2.
+      // PID VERSION 1
+      // PID is 20 bits, 8 bits in mcmheader and 12 bits in mcmdata word
+      // frist part of pid (highPID) is in the TrackletMCMHeader
+      // highPID is 7 bits Q2, 1 bit Q1 OR ... 2 bit offset, 6 bits Q2.
       switch (trackletindex) {
         case 0:
           highPID = header->pid0;
@@ -207,13 +207,13 @@ uint32_t getChargeFromRawHeaders(const o2::trd::TrackletHCHeader& hcheader, cons
           break;
       }
       lowPID = data[trackletindex].pid;
-      //lowPID is 6 bits Q0 and 6 bits of Q1
+      // lowPID is 6 bits Q0 and 6 bits of Q1
       uint32_t pidword = (highPID << 12) | lowPID;  // the entire original 20 bit pid in the trap chips
       int dynamicq = hcheader.format & 0x1;         // last bit of format (lsb) defines the version of tracklet charge calculation
       uint32_t pidoffset = ((pidword >> 18) & 0x3); //<<6; // used for dynamic ranged charge windows, may or may not be used below.
-      //pidword is here to make this code more readible and less error prone.
+      // pidword is here to make this code more readible and less error prone.
       switch (pidindex) {
-        case 2: //Q2
+        case 2: // Q2
           if (!dynamicq) {
             pid = (pidword >> 14) & 0x3f; // 6 bits at the top of all of pid (MSB)
           } else {
@@ -222,16 +222,16 @@ uint32_t getChargeFromRawHeaders(const o2::trd::TrackletHCHeader& hcheader, cons
             // LOG(info) << "Q2 pid : " << std::hex << pid << " pidoffset: "  << pidoffset;
           }
           break;
-        case 1: //Q1
+        case 1: // Q1
           if (!dynamicq) {
             pid = (pidword >> 7) & 0x7f; // 7 bits Q1 above the 7 bits of Q0
           } else {
             pid = (pidword >> 6) & 0x3f; // 6 bits of Q1 and a shift
             pid |= pidoffset << 6;
-            //LOG(info) << "Q1 pid : " << std::hex << pid << " pidoffset: "  << pidoffset;;
+            // LOG(info) << "Q1 pid : " << std::hex << pid << " pidoffset: "  << pidoffset;;
           }
           break;
-        case 0: //Q0
+        case 0: // Q0
           if (!dynamicq) {
             pid = pidword & 0x7f; // 7 least significant bits
           } else {
@@ -248,7 +248,7 @@ uint32_t getChargeFromRawHeaders(const o2::trd::TrackletHCHeader& hcheader, cons
   return pid;
 }
 
-//Tracklet MCM Header
+// Tracklet MCM Header
 
 uint16_t constructTRDFeeID(int supermodule, int side, int endpoint)
 {
@@ -264,7 +264,7 @@ uint16_t constructTRDFeeID(int supermodule, int side, int endpoint)
 
 DigitMCMADCMask constructBlankADCMask()
 {
-  //set the default values for the mask.
+  // set the default values for the mask.
   DigitMCMADCMask mask;
   mask.word = 0;
   mask.c = 0x1f;
@@ -619,8 +619,8 @@ int getNumberOfTrackletsFromHeader(o2::trd::TrackletMCMHeader* header, bool verb
 
 int getNextMCMADCfromBP(uint32_t& bp, int channel)
 {
-  //given a bitpattern (adcmask) find next channel with in the mask starting from the current channel.
-  //channels are read from right to left, lsb to msb. channel zero is position 0 in the bit pattern.
+  // given a bitpattern (adcmask) find next channel with in the mask starting from the current channel.
+  // channels are read from right to left, lsb to msb. channel zero is position 0 in the bit pattern.
   if (bp == 0) {
     return 22;
   }

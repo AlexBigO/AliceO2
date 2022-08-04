@@ -395,7 +395,7 @@ Int_t Geo::getStripNumberPerSM(Int_t iplate, Int_t istrip)
 void Geo::fromGlobalToSector(Float_t* pos, Int_t isector)
 {
   if (isector == -1) {
-    //LOG(error) << "Sector Index not valid (-1)\n";
+    // LOG(error) << "Sector Index not valid (-1)\n";
     return;
   }
 
@@ -482,7 +482,7 @@ Int_t Geo::fromPlateToStrip(Float_t* pos, Int_t iplate)
       step[0] = -0.5 * NPADX * XPAD;
       step[1] = 0.;
       step[2] = -0.5 * NPADZ * ZPAD;
-      //translate(posLoc2, step);
+      // translate(posLoc2, step);
       translate(posLoc2[0], posLoc2[1], posLoc2[2], step);
 
       for (Int_t jj = 0; jj < 3; ++jj) {
@@ -503,9 +503,9 @@ Int_t Geo::getSector(const Float_t* pos)
 
   Int_t iSect = -1;
 
-  //Float_t x = pos[0];
-  //Float_t y = pos[1];
-  //Float_t z = pos[2];
+  // Float_t x = pos[0];
+  // Float_t y = pos[1];
+  // Float_t z = pos[2];
 
   Float_t rho2 = pos[0] * pos[0] + pos[1] * pos[1];
 

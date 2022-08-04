@@ -80,10 +80,10 @@ class DigitContainer
   size_t size() const { return mTimeBins.size(); }
 
  private:
-  TimeBin mFirstTimeBin = 0;       ///< First time bin to consider
-  TimeBin mEffectiveTimeBin = 0;   ///< Effective time bin of that digit
-  TimeBin mTmaxTriggered = 0;      ///< Maximum time bin in case of triggered mode (hard cut at average drift speed with additional margin)
-  TimeBin mOffset;                 ///< Size of the container for one event
+  TimeBin mFirstTimeBin = 0;        ///< First time bin to consider
+  TimeBin mEffectiveTimeBin = 0;    ///< Effective time bin of that digit
+  TimeBin mTmaxTriggered = 0;       ///< Maximum time bin in case of triggered mode (hard cut at average drift speed with additional margin)
+  TimeBin mOffset;                  ///< Size of the container for one event
   std::deque<DigitTime*> mTimeBins; ///< Time bin Container for the ADC value
 };
 

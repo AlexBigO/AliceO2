@@ -47,16 +47,16 @@ void testDigitDetROBMCM(Digit& test, int det, int rob, int mcm, int channel)
 
 BOOST_AUTO_TEST_CASE(TRDDigit_test)
 {
-  //TPD
-  //pg 14 for rob to chamber
+  // TPD
+  // pg 14 for rob to chamber
   //
-  // 540 read out chambers (detector)
-  // each one is made up of 16 row of 144 pads.
-  // each one is also made up of 8 or 6 read out boards comprising 16 mcm and 21 adc each.
-  // we need to check the pad,row to rob,mcm and back and the inverse holds true.
-  // also the boundaries hold true.ends, of readout boards, ends of mcm.
+  //  540 read out chambers (detector)
+  //  each one is made up of 16 row of 144 pads.
+  //  each one is also made up of 8 or 6 read out boards comprising 16 mcm and 21 adc each.
+  //  we need to check the pad,row to rob,mcm and back and the inverse holds true.
+  //  also the boundaries hold true.ends, of readout boards, ends of mcm.
   //
-  //check digit at bottom of row is correctly assigned.
+  // check digit at bottom of row is correctly assigned.
 
   // a pad row spans 2 read out boards. with 4 mcm in each.
   // i.e. pad row 0 will have read out board 0 and 1 and mcm 0-4 and 0-4 in each making up the 8 mcm in the pad row.
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(TRDDigit_test)
   // channel 20 of MCM n is connected to the preceding MCM's highest number pad. i.e. MCM01 channel 20 is connected to MCM00 pad 17 (18th pad) of row.
 
   // so check various combinations of that, mostly just the boundaries.
-  Digit first(0, 0, 0); //det row pad
+  Digit first(0, 0, 0); // det row pad
   BOOST_CHECK(first.getMCM() == 0);
 
   Digit last(MAXCHAMBER - 1, NROWC1 - 1, NCOLUMN - 1); // last det row and pad
@@ -84,9 +84,9 @@ BOOST_AUTO_TEST_CASE(TRDDigit_test)
   // now to test if we set the rob and mcm do we get the correct pad and row.
   // using the reciprical of the values above for simplicity.
   //
-  //test block 1.
+  // test block 1.
   Digit e(0, 0, 0, 0);
-  //first channel of the first mcm, this is in fact the 19 pad of the first row, and connected to the 18th adc of the second trap ...
+  // first channel of the first mcm, this is in fact the 19 pad of the first row, and connected to the 18th adc of the second trap ...
   Digit f(0, e.getPadRow(), e.getPadCol()); // createa digit based on the above digits pad and row.
   // we *shoulud* end up with a rob:mcm of 0:1 and channel 18
   testDigitDetROBMCM(f, 0, 0, 1, NCOLMCM);
@@ -97,16 +97,16 @@ BOOST_AUTO_TEST_CASE(TRDDigit_test)
   Digit h(0, 0, 0, 2);
   testDigitDetRowPad(h, 0, 0, NCOLMCM - 1);
 
-  //test block2 repeat block1 but at the edge of a rob boundary i.e. going from row0 the 72nd pad to 73rd. Spanning the half of 144(NCOLUMN)
+  // test block2 repeat block1 but at the edge of a rob boundary i.e. going from row0 the 72nd pad to 73rd. Spanning the half of 144(NCOLUMN)
   Digit i(0, 0, (NCOLUMN / 2) - 1);
   testDigitDetROBMCM(i, 0, 0, 3, 2);
-  //check the reverse creation
+  // check the reverse creation
   Digit k(0, 0, 3, 2);
   testDigitDetRowPad(k, 0, 0, (NCOLUMN / 2) - 1);
 
   Digit j(0, 0, NCOLUMN / 2);
   testDigitDetROBMCM(j, 0, 1, 0, 19);
-  //check the reverse creation
+  // check the reverse creation
   Digit l(0, 1, 0, 19);
   testDigitDetRowPad(l, 0, 0, NCOLUMN / 2);
 
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE(TRDDigit_test)
   //
   Digit m(0, 12, (NCOLUMN / 2) - 1);
   testDigitDetROBMCM(m, 0, 6, 3, 2);
-  //check the reverse creation
+  // check the reverse creation
   Digit n(0, 6, 3, 2);
   testDigitDetRowPad(n, 0, 12, (NCOLUMN / 2) - 1);
 
@@ -123,10 +123,10 @@ BOOST_AUTO_TEST_CASE(TRDDigit_test)
   Digit p(0, 6, 0, 2);
   testDigitDetRowPad(p, 0, 12, NCOLMCM - 1);
 
-  //and now for the last row.
+  // and now for the last row.
   Digit q(0, 15, (NCOLUMN / 2) - 1);
   testDigitDetROBMCM(q, 0, 6, 15, 2);
-  //check the reverse creation
+  // check the reverse creation
   Digit r(0, 6, 3, 2);
   testDigitDetRowPad(r, 0, 12, (NCOLUMN / 2) - 1);
 
@@ -139,7 +139,7 @@ BOOST_AUTO_TEST_CASE(TRDDigit_test)
   //
   Digit u(1, 15, (NCOLUMN / 2) - 1);
   testDigitDetROBMCM(u, 1, 6, 15, 2);
-  //check the reverse creation
+  // check the reverse creation
   Digit v(1, 6, 3, 2);
   testDigitDetRowPad(v, 1, 12, (NCOLUMN / 2) - 1);
 
@@ -163,12 +163,12 @@ BOOST_AUTO_TEST_CASE(TRDDigit_test)
   }
   */
 
-  //now check that the timebins get correctly assigned on instantiation
+  // now check that the timebins get correctly assigned on instantiation
   ArrayADC data;
   std::iota(data.begin(), data.end(), 42); // 42 for my personal amusement.
   Digit z(10, 15, NCOLMCM - 1, data);
   testDigitDetROBMCM(z, 10, 6, 12, 2);
-  //test adc values are true.
+  // test adc values are true.
   BOOST_CHECK(z.getADC()[4] == 46); // 4th time bin should be 46;
   BOOST_CHECK(z.getADC()[6] == 48); // 6th time bin should be 48;
 

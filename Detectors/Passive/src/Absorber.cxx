@@ -950,7 +950,7 @@ void Absorber::ConstructGeometry()
     new TGeoVolume("AFassUBFlange", new TGeoBBox(kFassUBFlangeW / 2., kFassUBFlangeH / 2., 3. / 2.), kMedSteel);
   //  voFass->AddNode(voFassUBFlange, 1,
   //                new TGeoTranslation(+1.5 + kFassUBFlangeW / 2., 180. + kFassUBFlangeH / 2., kFassUMFlangeB - 1.5));
-  //voFass->AddNode(voFassUBFlange, 2,
+  // voFass->AddNode(voFassUBFlange, 2,
   //                new TGeoTranslation(-1.5 - kFassUBFlangeW / 2., 180. + kFassUBFlangeH / 2., kFassUMFlangeB - 1.5));
 
   // Lower back   flange

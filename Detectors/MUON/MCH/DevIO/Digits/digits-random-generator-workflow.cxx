@@ -136,20 +136,20 @@ class DigitGenerator : public o2::mch::io::DigitIOBaseTask
   }
 
   /**
- * Populate the digits vector with (Nmch * occupancy) digits
- * where Nmch is the total number of channels in MCH (1064008)
- * 
- * Each member variable of the digit is uniformly distributed within
- * its expected range, as an attempt to maximize the entropy of the
- * generated digits, which can be handy to test the efficiency of the
- * entropy encoder used to create the Compressed Time Frame (CTF) for instance.
- *
- * @param occupancy is a number between 0 and 1.
- * @digits a vector where the generated digits will be appended. 
- * That vector is not cleared by this function, so digits can 
- * be accumulated if need be.
- * @returns the number of digits added to the input digits vector.
- */
+   * Populate the digits vector with (Nmch * occupancy) digits
+   * where Nmch is the total number of channels in MCH (1064008)
+   *
+   * Each member variable of the digit is uniformly distributed within
+   * its expected range, as an attempt to maximize the entropy of the
+   * generated digits, which can be handy to test the efficiency of the
+   * entropy encoder used to create the Compressed Time Frame (CTF) for instance.
+   *
+   * @param occupancy is a number between 0 and 1.
+   * @digits a vector where the generated digits will be appended.
+   * That vector is not cleared by this function, so digits can
+   * be accumulated if need be.
+   * @returns the number of digits added to the input digits vector.
+   */
   int generateRandomDigits(float occupancy,
                            std::vector<Digit>& digits)
   {

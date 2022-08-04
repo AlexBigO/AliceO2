@@ -47,7 +47,7 @@ void MakeNoiseMapFromClusters(std::string input = "o2clus_its.root", bool only1p
     pattBranch->SetAddress(&patternsPtr);
   }
 
-  //RO frames
+  // RO frames
   std::vector<o2::itsmft::ROFRecord>* rofVec = nullptr;
   clusTree->SetBranchAddress("ITSClustersROF", &rofVec);
 

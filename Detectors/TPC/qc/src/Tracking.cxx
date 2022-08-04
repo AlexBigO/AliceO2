@@ -16,7 +16,7 @@
 
 #include <cmath>
 
-//root includes
+// root includes
 #include "TStyle.h"
 #include "TFile.h"
 #include "TCanvas.h"
@@ -24,7 +24,7 @@
 #include "TH2F.h"
 #include "TH1D.h"
 
-//o2 includes
+// o2 includes
 #include "DataFormatsTPC/TrackTPC.h"
 #include "TPCQC/Tracking.h"
 #include "GPUO2InterfaceQA.h"

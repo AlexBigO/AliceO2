@@ -245,8 +245,8 @@ void ComputingQuotaEvaluator::handleExpired(std::function<void(ComputingQuotaOff
     mStats.totalExpiredBytes += offer.sharedMemory;
     mStats.totalExpiredOffers++;
     expirator(offer, mStats);
-    //driverClient.tell("expired shmem {}", offer.sharedMemory);
-    //driverClient.tell("expired cpu {}", offer.cpu);
+    // driverClient.tell("expired shmem {}", offer.sharedMemory);
+    // driverClient.tell("expired cpu {}", offer.cpu);
     offer.sharedMemory = -1;
     offer.valid = false;
     offer.score = OfferScore::Unneeded;

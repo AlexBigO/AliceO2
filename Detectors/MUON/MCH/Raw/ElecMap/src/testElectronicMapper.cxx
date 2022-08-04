@@ -101,7 +101,7 @@ std::set<int> nofDualSampasFromMapper(gsl::span<int> deids)
   return ds;
 }
 
-//BOOST_TEST_DECORATOR(*boost::unit_test::disabled())
+// BOOST_TEST_DECORATOR(*boost::unit_test::disabled())
 BOOST_AUTO_TEST_CASE_TEMPLATE(MustContainAllSampaCH1R, T, testTypes)
 {
   auto check = nofDualSampasFromMapper<T>(o2::mch::raw::deIdsOfCH1R);

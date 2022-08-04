@@ -34,8 +34,8 @@ namespace internal
 class DecoderSymbol
 {
  public:
-  //TODO(milettri): fix once ROOT cling respects the standard http://wg21.link/p1286r2
-  constexpr DecoderSymbol() noexcept {}; //NOLINT
+  // TODO(milettri): fix once ROOT cling respects the standard http://wg21.link/p1286r2
+  constexpr DecoderSymbol() noexcept {}; // NOLINT
   // Initialize a decoder symbol to start "start" and frequency "freq"
   constexpr DecoderSymbol(count_t frequency, count_t cumulative, size_t symbolTablePrecision)
     : mCumulative(cumulative), mFrequency(frequency)

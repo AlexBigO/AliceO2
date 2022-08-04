@@ -33,7 +33,7 @@ ClassImp(o2::mft::PCBSupport)
                              mPhi0(0.),
                              mPhi1(180.),
                              mT_delta(0.01)
-//mOuterCut{15.5,15.5,16.9,20.5,21.9}
+// mOuterCut{15.5,15.5,16.9,20.5,21.9}
 {
 
   initParameters();
@@ -43,20 +43,20 @@ ClassImp(o2::mft::PCBSupport)
 TGeoVolumeAssembly* PCBSupport::create(Int_t half, Int_t disk)
 {
 
-  //Info("Create", Form("Creating PCB_H%d_D%d", half, disk), 0, 0);
+  // Info("Create", Form("Creating PCB_H%d_D%d", half, disk), 0, 0);
   mHalfDisk = new TGeoVolumeAssembly(Form("PCB_H%d_D%d", half, disk));
   //  auto *PCB = new TGeoVolumeAssembly(Form("PCB_VA_H%d_D%d",half,disk));
   auto* PCBCu = new TGeoTubeSeg(Form("PCBCu_H%d_D%d", half, disk), 0, mPCBRad[disk], mCuThickness / 2., mPhi0, mPhi1);
   auto* PCBFR4 = new TGeoTubeSeg(Form("PCBFR4_H%d_D%d", half, disk), 0, mPCBRad[disk], mFR4Thickness / 2., mPhi0, mPhi1);
 
   // Cutting boxes
-  //Info("Create",Form("Cutting Boxes PCB_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting Boxes PCB_H%d_D%d", half,disk),0,0);
   for (auto cut = 0; cut < mNumberOfBoxCuts[disk]; cut++) {
     auto* boxName = Form("PCBBoxCut_%d_H%d_D%d", cut, half, disk);
     auto* boxCSName = Form("PCBBoxCS_%d_H%d_D%d", cut, half, disk);
     mSomeBox = new TGeoBBox(boxName, mBoxCuts[disk][cut][0] / 2. + 2 * mT_delta, mBoxCuts[disk][cut][1] / 2. + 2 * mT_delta, mFR4Thickness + mT_delta);
     mSomeTranslation = new TGeoTranslation(mBoxCuts[disk][cut][2], mBoxCuts[disk][cut][3], 0.);
-    //The first subtraction needs a shape, the base tube
+    // The first subtraction needs a shape, the base tube
     if (cut == 0) {
       mSomeSubtraction = new TGeoSubtraction(PCBCu, mSomeBox, nullptr, mSomeTranslation);
     } else {
@@ -72,7 +72,7 @@ TGeoVolumeAssembly* PCBSupport::create(Int_t half, Int_t disk)
     mPCBFR4 = new TGeoCompositeShape(boxCSName, mSomeSubtraction);
   }
 
-  //Info("Create",Form("Cutting Boxes PCB_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting Boxes PCB_H%d_D%d", half,disk),0,0);
   if (mNumberOfBoxAdd[disk] != 0) {
     for (auto iBox = 0; iBox < mNumberOfBoxAdd[disk]; iBox++) {
       auto* boxName = Form("PCBBoxAdd_%d_H%d_D%d", iBox, half, disk);
@@ -90,7 +90,7 @@ TGeoVolumeAssembly* PCBSupport::create(Int_t half, Int_t disk)
   // =================  Holes ==================
 
   // Digging Holes
-  //Info("Create",Form("Cutting holes PCB_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting holes PCB_H%d_D%d", half,disk),0,0);
   for (auto iHole = 0; iHole < mNumberOfHoles[disk]; iHole++) {
     auto* tubeName = Form("PCBHole_%d_H%d_D%d", iHole, half, disk);
     auto* tubeCSName = Form("PCBHoleCS_%d_H%d_D%d", iHole, half, disk);

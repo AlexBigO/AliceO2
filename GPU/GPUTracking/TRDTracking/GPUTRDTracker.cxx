@@ -282,8 +282,6 @@ void GPUTRDTracker_t<TRDTRK, PROP>::StartDebugging()
   mDebug->CreateStreamer();
 }
 
-
-
 #endif //! GPUCA_GPUCODE
 
 template <>
@@ -347,7 +345,6 @@ GPUd() int GPUTRDTracker_t<TRDTRK, PROP>::LoadTrack(const TRDTRK& trk, unsigned 
   mNTracks++;
   return (0);
 }
-
 
 template <class TRDTRK, class PROP>
 GPUd() void GPUTRDTracker_t<TRDTRK, PROP>::DumpTracks()
@@ -497,14 +494,14 @@ GPUd() bool GPUTRDTracker_t<TRDTRK, PROP>::CalculateSpacePoints(int iCollision)
       xTrkltDet[0] = mGeo->AnodePos() + sRadialOffset;
       xTrkltDet[1] = tracklets[trkltIdx].GetY();
       xTrkltDet[2] = pp->GetRowPos(trkltZbin) - pp->GetRowSize(trkltZbin) / 2.f - pp->GetRowPos(pp->GetNrows() / 2);
-      //GPUInfo("Space point local %i: x=%f, y=%f, z=%f", trkltIdx, xTrkltDet[0], xTrkltDet[1], xTrkltDet[2]);
+      // GPUInfo("Space point local %i: x=%f, y=%f, z=%f", trkltIdx, xTrkltDet[0], xTrkltDet[1], xTrkltDet[2]);
       matrix->LocalToMaster(xTrkltDet, xTrkltSec);
       mSpacePoints[trkltIdx].setX(xTrkltSec[0]);
       mSpacePoints[trkltIdx].setY(xTrkltSec[1]);
       mSpacePoints[trkltIdx].setZ(xTrkltSec[2]);
       mSpacePoints[trkltIdx].setDy(tracklets[trkltIdx].GetdY());
 
-      //GPUInfo("Space point global %i: x=%f, y=%f, z=%f", trkltIdx, mSpacePoints[trkltIdx].getX(), mSpacePoints[trkltIdx].getY(), mSpacePoints[trkltIdx].getZ());
+      // GPUInfo("Space point global %i: x=%f, y=%f, z=%f", trkltIdx, mSpacePoints[trkltIdx].getX(), mSpacePoints[trkltIdx].getY(), mSpacePoints[trkltIdx].getZ());
     }
   }
   return result;
@@ -528,10 +525,10 @@ GPUd() bool GPUTRDTracker_t<TRDTRK, PROP>::FollowProlongation(PROP* prop, TRDTRK
   float zShiftTrk = 0.f;
   if (mProcessPerTimeFrame) {
     zShiftTrk = (mTrackAttribs[iTrk].mTime - GetConstantMem()->ioPtrs.trdTriggerTimes[collisionId]) * mTPCVdrift * mTrackAttribs[iTrk].mSide;
-    //float addZerr = (mTrackAttribs[iTrk].mTimeAddMax + mTrackAttribs[iTrk].mTimeSubMax) * .5f * mTPCVdrift;
-    // increase Z error based on time window
-    // -> this is here since it was done before, but the efficiency seems to be better if the covariance is not updated (more tracklets are attached)
-    //t->updateCovZ2(addZerr * addZerr); // TODO check again once detailed performance study tools are available, maybe this can be tuned
+    // float addZerr = (mTrackAttribs[iTrk].mTimeAddMax + mTrackAttribs[iTrk].mTimeSubMax) * .5f * mTPCVdrift;
+    //  increase Z error based on time window
+    //  -> this is here since it was done before, but the efficiency seems to be better if the covariance is not updated (more tracklets are attached)
+    // t->updateCovZ2(addZerr * addZerr); // TODO check again once detailed performance study tools are available, maybe this can be tuned
   }
   const GPUTRDpadPlane* pad = nullptr;
   const GPUTRDTrackletWord* tracklets = GetConstantMem()->ioPtrs.trdTracklets;
@@ -776,7 +773,7 @@ GPUd() bool GPUTRDTracker_t<TRDTRK, PROP>::FollowProlongation(PROP* prop, TRDTRK
 #ifdef ENABLE_GPUTRDDEBUG
       prop->setTrack(&trackNoUp);
       prop->rotate(GetAlphaOfSector(trkltSec));
-      //prop->propagateToX(spacePoints[mHypothesis[iUpdate + hypothesisIdxOffset].mTrackletId].getX(), .8f, 2.f);
+      // prop->propagateToX(spacePoints[mHypothesis[iUpdate + hypothesisIdxOffset].mTrackletId].getX(), .8f, 2.f);
       prop->propagateToX(mR[tracklets[mHypothesis[iUpdate + hypothesisIdxOffset].mTrackletId].GetDetector()], .8f, 2.f);
       prop->setTrack(trkWork);
 #endif
@@ -1027,7 +1024,6 @@ GPUd() void GPUTRDTracker_t<TRDTRK, PROP>::FindChambersInRoad(const TRDTRK* t, c
 
   int nDets = 0;
 
-
   if (currStack > -1) {
     // chamber unambiguous
     currDet = mGeo->GetDetector(iLayer, currStack, currSec);
@@ -1127,7 +1123,6 @@ GPUd() bool GPUTRDTracker_t<TRDTRK, PROP>::IsGeoFindable(const TRDTRK* t, const 
 
   return true;
 }
-
 
 #ifndef GPUCA_GPUCODE
 namespace GPUCA_NAMESPACE

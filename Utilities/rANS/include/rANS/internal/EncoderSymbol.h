@@ -40,8 +40,8 @@ class EncoderSymbol
   __extension__ using uint128_t = unsigned __int128;
 
  public:
-  //TODO(milettri): fix once ROOT cling respects the standard http://wg21.link/p1286r2
-  constexpr EncoderSymbol() noexcept {}; //NOLINT
+  // TODO(milettri): fix once ROOT cling respects the standard http://wg21.link/p1286r2
+  constexpr EncoderSymbol() noexcept {}; // NOLINT
 
   constexpr EncoderSymbol(count_t frequency, count_t cumulative, size_t symbolTablePrecision)
   {
@@ -139,7 +139,7 @@ class EncoderSymbol
 };
 
 } // namespace internal
-} //namespace rans
-} //namespace o2
+} // namespace rans
+} // namespace o2
 
 #endif /* RANS_INTERNAL_ENCODERSYMBOL_H */

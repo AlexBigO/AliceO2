@@ -53,7 +53,8 @@ void GPUTPCGMMerger::DumpSliceTracks(std::ostream& out)
       std::sort(&trackOrder[mSliceTrackInfoIndex[iSlice + NSLICES * iGlobal]], &trackOrder[mSliceTrackInfoIndex[iSlice + NSLICES * iGlobal + 1]], [this](const int& aa, const int& bb) {
         const GPUTPCGMSliceTrack& a = mSliceTrackInfos[aa];
         const GPUTPCGMSliceTrack& b = mSliceTrackInfos[bb];
-        return (a.X() != b.X()) ? (a.X() < b.X()) : (a.Y() != b.Y()) ? (a.Y() < b.Y()) : (a.Z() < b.Z());
+        return (a.X() != b.X()) ? (a.X() < b.X()) : (a.Y() != b.Y()) ? (a.Y() < b.Y())
+                                                                     : (a.Z() < b.Z());
       });
       out << "  Track type " << iGlobal << "\n";
       for (int j = mSliceTrackInfoIndex[iSlice + NSLICES * iGlobal]; j < mSliceTrackInfoIndex[iSlice + NSLICES * iGlobal + 1]; j++) {
@@ -103,7 +104,9 @@ void GPUTPCGMMerger::DumpCollected(std::ostream& out)
   std::sort(trackOrder.begin(), trackOrder.end(), [this](const int& aa, const int& bb) {
     const GPUTPCGMMergedTrack& a = mOutputTracks[aa];
     const GPUTPCGMMergedTrack& b = mOutputTracks[bb];
-    return (a.GetAlpha() != b.GetAlpha()) ? (a.GetAlpha() < b.GetAlpha()) : (a.GetParam().GetX() != b.GetParam().GetX()) ? (a.GetParam().GetX() < b.GetParam().GetX()) : (a.GetParam().GetY() != b.GetParam().GetY()) ? (a.GetParam().GetY() < b.GetParam().GetY()) : (a.GetParam().GetZ() < b.GetParam().GetZ());
+    return (a.GetAlpha() != b.GetAlpha()) ? (a.GetAlpha() < b.GetAlpha()) : (a.GetParam().GetX() != b.GetParam().GetX()) ? (a.GetParam().GetX() < b.GetParam().GetX())
+                                                                          : (a.GetParam().GetY() != b.GetParam().GetY()) ? (a.GetParam().GetY() < b.GetParam().GetY())
+                                                                                                                         : (a.GetParam().GetZ() < b.GetParam().GetZ());
   });
 
   std::streamsize ss = out.precision();

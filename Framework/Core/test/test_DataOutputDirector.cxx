@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(TestDataOutputDirector)
   std::string keepString("AOD/UNO/0:tr1:c1/c2/c3:fn1,AOD/UNO/0::c4");
   dod.readString(keepString);
   dod.setFilenameBase(mydfn);
-  //dod.printOut(); printf("\n\n");
+  // dod.printOut(); printf("\n\n");
 
   auto ds = dod.getDataOutputDescriptors(dh);
 
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(TestDataOutputDirector)
 
   dod.reset();
   std::tie(dfn, fmode, ntf) = dod.readJsonString(jsonString);
-  //dod.printOut(); printf("\n\n");
+  // dod.printOut(); printf("\n\n");
   ds = dod.getDataOutputDescriptors(dh);
 
   BOOST_CHECK_EQUAL(ds.size(), 1);
@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE(TestDataOutputDirector)
   dod.reset();
   std::tie(dfn, fmode, ntf) = dod.readJson(jsonFile);
   dod.setFilenameBase("AnalysisResults");
-  //dod.printOut(); printf("\n\n");
+  // dod.printOut(); printf("\n\n");
   ds = dod.getDataOutputDescriptors(dh);
 
   BOOST_CHECK_EQUAL(ds.size(), 2);

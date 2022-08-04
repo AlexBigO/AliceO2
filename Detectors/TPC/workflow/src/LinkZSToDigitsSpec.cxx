@@ -196,7 +196,7 @@ o2::framework::DataProcessorSpec getLinkZSToDigitsSpec(int channel, const std::s
                 LOGP(info, "Maximum number of events reached ({}), no more processing will be done", processAttributes->maxEvents);
                 processAttributes->quit = true;
                 pc.services().get<ControlService>().endOfStream();
-                //pc.services().get<ControlService>().readyToQuit(QuitRequest::All);
+                // pc.services().get<ControlService>().readyToQuit(QuitRequest::All);
                 pc.services().get<ControlService>().readyToQuit(QuitRequest::Me);
                 break;
               }

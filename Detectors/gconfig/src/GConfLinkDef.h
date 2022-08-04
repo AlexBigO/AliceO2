@@ -19,7 +19,7 @@
 #pragma link C++ class o2::conf::ConfigurableParam + ;
 #pragma link C++ class o2::GlobalProcessCutSimParam + ;
 #pragma link C++ class o2::conf::ConfigurableParamHelper < o2::GlobalProcessCutSimParam> + ;
-#pragma link C++ class o2::FlukaParam+ ;
+#pragma link C++ class o2::FlukaParam + ;
 #pragma link C++ class o2::conf::ConfigurableParamHelper < o2::FlukaParam> + ;
 #pragma link C++ class o2::MCReplayParam + ;
 #pragma link C++ class o2::conf::ConfigurableParamHelper < o2::MCReplayParam> + ;

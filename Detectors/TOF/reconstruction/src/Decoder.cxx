@@ -78,7 +78,7 @@ bool Decoder::open(const std::string name)
 
   printf("Full input buffer size = %d byte\n", fullsize);
 
-  char* pos = new char[fullsize]; //mBufferLocal.data();
+  char* pos = new char[fullsize]; // mBufferLocal.data();
   for (int i = 0; i < NCRU; i++) {
     if (!mCruIn[i]) {
       continue;
@@ -308,7 +308,7 @@ bool Decoder::decode() // return a vector of digits in a TOF readout window
         mUnion[icru]++;
         mIntegratedBytes[icru] += 4;
 
-        //read Orbit
+        // read Orbit
         int orbit = mUnion[icru]->crateOrbit.orbitID;
         if (mVerbose) {
           printf("%d) orbit ID      = %d -- bunch ID = %d\n", icrate, orbit, bunchid);

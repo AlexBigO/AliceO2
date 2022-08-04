@@ -758,7 +758,7 @@ bool Stack::isPrimary(const MCTrack& part)
 
 bool Stack::isFromPrimaryDecayChain(const MCTrack& part)
 {
-  /** check if the particle is from the 
+  /** check if the particle is from the
       decay chain of a primary particle **/
 
   /** check if from decay **/
@@ -777,7 +777,7 @@ bool Stack::isFromPrimaryDecayChain(const MCTrack& part)
 
 bool Stack::isFromPrimaryPairProduction(const MCTrack& part)
 {
-  /** check if the particle is from 
+  /** check if the particle is from
       pair production from a particle
       belonging to the primary decay chain **/
 

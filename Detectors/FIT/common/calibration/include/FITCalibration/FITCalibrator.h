@@ -35,7 +35,7 @@ FIT_CALIBRATOR_TEMPLATES
 class FITCalibrator final : public o2::calibration::TimeSlotCalibration<InputCalibrationInfoType, TimeSlotStorageType>
 {
 
-  //probably will be set via run parameter
+  // probably will be set via run parameter
   static constexpr unsigned int DEFAULT_MIN_ENTRIES = 1000;
 
   using TFType = o2::calibration::TFType;
@@ -114,4 +114,4 @@ typename FIT_CALIBRATOR_TYPE::Slot& FIT_CALIBRATOR_TYPE::emplaceNewSlot(
 
 } // namespace o2::fit
 
-#endif //O2_FITCALIBRATOR_H
+#endif // O2_FITCALIBRATOR_H

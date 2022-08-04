@@ -122,7 +122,7 @@ auto setEOSCallback(InitContext& ic)
 template <typename O>
 static inline auto extractTypedOriginal(ProcessingContext& pc)
 {
-  ///FIXME: this should be done in invokeProcess() as some of the originals may be compound tables
+  /// FIXME: this should be done in invokeProcess() as some of the originals may be compound tables
   return O{pc.inputs().get<TableConsumer>(aod::MetadataTrait<O>::metadata::tableLabel())->asArrowTable()};
 }
 

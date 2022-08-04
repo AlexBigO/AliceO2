@@ -103,5 +103,5 @@ int16_t FT0ChannelTimeTimeSlotContainer::getMeanGaussianFitValue(std::size_t cha
 
 void FT0ChannelTimeTimeSlotContainer::print() const
 {
-  //QC will do that part
+  // QC will do that part
 }

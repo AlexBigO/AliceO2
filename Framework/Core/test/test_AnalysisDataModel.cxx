@@ -40,8 +40,8 @@ DECLARE_SOA_TABLE(ZD, "AOD", "ZD", col::Z, col::D);
 BOOST_AUTO_TEST_CASE(TestJoinedTables)
 {
   TableBuilder XYBuilder;
-  //FIXME: using full tracks, instead of stored because of unbound dynamic
-  //       column (normalized phi)
+  // FIXME: using full tracks, instead of stored because of unbound dynamic
+  //        column (normalized phi)
   auto xyWriter = XYBuilder.cursor<XY>();
   xyWriter(0, 0, 0);
   auto tXY = XYBuilder.finalize();

@@ -94,7 +94,7 @@ FIT_CALIBRATION_DEVICE_TEMPLATES
 void FIT_CALIBRATION_DEVICE_TYPE::endOfStream(o2::framework::EndOfStreamContext& context)
 {
 
-  //nope, we have to check if we can finalize slot anyway - scenario with one batch
+  // nope, we have to check if we can finalize slot anyway - scenario with one batch
   mCalibrator->checkSlotsToFinalize(o2::calibration::INFINITE_TF);
   _sendCalibrationObjectIfSlotFinalized(context.outputs());
 }
@@ -128,4 +128,4 @@ void FIT_CALIBRATION_DEVICE_TYPE::_sendOutputs(o2::framework::DataAllocator& out
 
 } // namespace o2::fit
 
-#endif //O2_FITCALIBRATIONDEVICE_H
+#endif // O2_FITCALIBRATIONDEVICE_H

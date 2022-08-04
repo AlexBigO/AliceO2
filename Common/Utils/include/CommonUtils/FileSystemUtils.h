@@ -34,4 +34,4 @@ void createDirectoriesIfAbsent(std::string const& path);
 
 } // namespace o2::utils
 
-#endif //O2_FILEITERATOR_H
+#endif // O2_FILEITERATOR_H

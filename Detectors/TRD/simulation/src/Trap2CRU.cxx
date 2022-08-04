@@ -50,8 +50,8 @@ struct TRDCRUMapping {
   int32_t HCID = 0;    // hcid of first link
 };
 
-//this should probably come from ccdb or some authoritive source.
-//I doubt this is going to change very often, but ... famous last words.
+// this should probably come from ccdb or some authoritive source.
+// I doubt this is going to change very often, but ... famous last words.
 //
 const TRDCRUMapping trdHWMap[constants::NHALFCRU / 2] =
   {
@@ -123,8 +123,8 @@ void Trap2CRU::openInputFiles()
 void Trap2CRU::sortDataToLinks()
 {
   auto sortstart = std::chrono::high_resolution_clock::now();
-  //build indexes
-  // digits first
+  // build indexes
+  //  digits first
   mDigitsIndex.resize(mDigits.size());
   std::iota(mDigitsIndex.begin(), mDigitsIndex.end(), 0);
 
@@ -297,12 +297,12 @@ uint32_t Trap2CRU::buildHalfCRUHeader(HalfCRUHeader& header, const uint32_t bc, 
   int crurdhversion = 6;
   int feeid = 0;
   int cruid = 0;
-  uint32_t crudatasize = 0; //link size in units of 256 bits.
+  uint32_t crudatasize = 0; // link size in units of 256 bits.
   int endpoint = halfcru % 2 ? 1 : 0;
   uint32_t padding = 0;
-  //lets first clear it out.
+  // lets first clear it out.
   clearHalfCRUHeader(header);
-  //this bunchcrossing is not the same as the bunchcrossing in the rdh, which is the bc coming in the parameter list to this function. See explanation in rawdata.h
+  // this bunchcrossing is not the same as the bunchcrossing in the rdh, which is the bc coming in the parameter list to this function. See explanation in rawdata.h
   setHalfCRUHeaderFirstWord(header, crurdhversion, bunchcrossing, stopbits, endpoint, eventtype, feeid, cruid);
 
   return 1;
@@ -310,21 +310,21 @@ uint32_t Trap2CRU::buildHalfCRUHeader(HalfCRUHeader& header, const uint32_t bc, 
 
 int Trap2CRU::buildDigitRawData(const int digitstartindex, const int digitendindex, const int mcm, const int rob, const uint32_t triggerrecordcount)
 {
-  //this is not zero suppressed.
+  // this is not zero suppressed.
   int digitwordswritten = 0;
   int digitswritten = 0;
   //    Digit
   DigitMCMHeader header;
   DigitMCMADCMask adcmask;
   DigitMCMData data;
-  header.res = 0xc; //1100
+  header.res = 0xc; // 1100
   header.mcm = mcm;
   header.rob = rob;
   header.yearflag = 1; // >10.2007
   header.eventcount = triggerrecordcount;
   memcpy(mRawDataPtr, (char*)&header, sizeof(DigitMCMHeader)); // uint32 -- 4 bytes.
   DigitMCMHeader* headerptr = (DigitMCMHeader*)mRawDataPtr;
-  //LOG(info) << "Digt Header word: 0x" << std::hex << headerptr->word;
+  // LOG(info) << "Digt Header word: 0x" << std::hex << headerptr->word;
   mRawDataPtr += 4;
   digitwordswritten++;
   // we are writing zero suppressed so we need adcmask
@@ -333,12 +333,12 @@ int Trap2CRU::buildDigitRawData(const int digitstartindex, const int digitendind
   DigitMCMADCMask* adcmaskptr = (DigitMCMADCMask*)mRawDataPtr;
   mRawDataPtr += 4;
   digitwordswritten++;
-  //LOG(info) << "writing data to digit stream of " << std::hex << header.word;
+  // LOG(info) << "writing data to digit stream of " << std::hex << header.word;
   for (int digitindex = digitstartindex; digitindex < digitendindex; ++digitindex) {
     Digit* d = &mDigits[mDigitsIndex[digitindex]];
     ArrayADC adcdata = d->getADC();
     int channel = d->getChannel();
-    //set adcmask for the channel we currently have.
+    // set adcmask for the channel we currently have.
     incrementADCMask(*adcmaskptr, channel); // adcmaskptr->adcmask |= 1UL << channel;
     for (int timebin = 0; timebin < constants::TIMEBINS; timebin += 3) {
       data.z = adcdata[timebin];
@@ -495,11 +495,11 @@ void Trap2CRU::writeDigitHCHeaders(const int eventcount, const uint32_t hcId)
   digitheader.numberHCW = 1; // number of additional words in th header, we are using 2 header words so 1 here.
   digitheader.minor = 42;    // my (shtm) version, not used
   digitheader.major = 0x21;  // zero suppressed and 0x1 to comply with what we see in the raw data
-  digitheader.version = 1;   //new version of the header. we only have 1 version
+  digitheader.version = 1;   // new version of the header. we only have 1 version
   digitheader1.res = 1;
   digitheader1.ptrigcount = 1;
   digitheader1.ptrigphase = 1;
-  digitheader1.bunchcrossing = eventcount; //NB this is not the same as the bunchcrossing the rdh. See RawData.h for explanation
+  digitheader1.bunchcrossing = eventcount; // NB this is not the same as the bunchcrossing the rdh. See RawData.h for explanation
   digitheader1.numtimebins = constants::TIMEBINS;
   memcpy(mRawDataPtr, (char*)&digitheader, sizeof(DigitHCHeader)); // 8 because we are only using the first 2 32bit words of the header, the rest are optional.
   mRawDataPtr += sizeof(DigitHCHeader);
@@ -549,7 +549,7 @@ void Trap2CRU::convertTrapData(o2::trd::TriggerRecord const& triggerrecord, cons
     int halfcruwordswritten = 0;
     int supermodule = halfcru / 4; // 2 cru per supermodule. 72/4, as of writing
     mEndPointID = halfcru % 2;     // 2 pci end points per cru, 15 links each
-    //first cru is A second CRU is C , so an flp will be either ACA or CAC A=0 C=1
+    // first cru is A second CRU is C , so an flp will be either ACA or CAC A=0 C=1
     int cru = halfcru / 2;
     int side = cru % 2; // first cru is A second is B, 3rd is A etc
     mFeeID = constructTRDFeeID(supermodule, side, mEndPointID);
@@ -557,7 +557,7 @@ void Trap2CRU::convertTrapData(o2::trd::TriggerRecord const& triggerrecord, cons
     mEndPointID = halfcru % 2; // just the upper or lower half of the cru, hence %2 of the the halfcru number.
     // 15 links per half cru or cru end point.
     HalfCRUHeader halfcruheader;
-    //now write the cruheader at the head of all the data for this halfcru.
+    // now write the cruheader at the head of all the data for this halfcru.
     buildHalfCRUHeader(halfcruheader, ir.bc, halfcru, isCalibTrigger);
     halfcruheader.EndPoint = mEndPointID;
     mRawDataPtr = rawdatavector.data();
@@ -567,7 +567,7 @@ void Trap2CRU::convertTrapData(o2::trd::TriggerRecord const& triggerrecord, cons
     int totallinklengths = 0;
     rawdataptratstart = mRawDataPtr; // keep track of where we started.
     for (int halfcrulink = 0; halfcrulink < constants::NLINKSPERHALFCRU; halfcrulink++) {
-      //links run from 0 to 14, so linkid offset is halfcru*15;
+      // links run from 0 to 14, so linkid offset is halfcru*15;
       int linkid = halfcrulink + halfcru * constants::NLINKSPERHALFCRU;
       int hcid = HelperMethods::getHCIDFromLinkID(linkid);
       int linkwordswritten = 0; // number of 32 bit words for this link
@@ -598,7 +598,7 @@ void Trap2CRU::convertTrapData(o2::trd::TriggerRecord const& triggerrecord, cons
             writeTrackletHCHeader(hcid, triggercount);
             linkwordswritten += 1;
           }
-          //else do nothing as we dont want/have tracklethcheader
+          // else do nothing as we dont want/have tracklethcheader
         }
         while (mCurrentTracklet < endtrackletindex && mTracklets[mCurrentTracklet].getHCID() == hcid) {
           // still on an mcm on this link
@@ -650,12 +650,12 @@ void Trap2CRU::convertTrapData(o2::trd::TriggerRecord const& triggerrecord, cons
           linkwordswritten++;
         }
         rawwords += linkwordswritten;
-        crudatasize = linkwordswritten / 8; //convert to 256 bit alignment.
+        crudatasize = linkwordswritten / 8; // convert to 256 bit alignment.
         if ((linkwordswritten % 8) != 0) {
           LOG(error) << "linkwordswritten is not 256 bit aligned: " << linkwordswritten << ". Padding size of= " << paddingsize;
         }
-        //set the halfcruheader for the length of this link.
-        //but first a sanity check.
+        // set the halfcruheader for the length of this link.
+        // but first a sanity check.
         if (crudatasize > constants::MAXDATAPERLINK256) {
           LOG(error) << " linksize is huge : " << crudatasize;
         }
@@ -679,7 +679,7 @@ void Trap2CRU::convertTrapData(o2::trd::TriggerRecord const& triggerrecord, cons
     } // end loop over all links for one half CRU
     // write the cruhalfheader now that we know the lengths.
     memcpy((char*)halfcruheaderptr, (char*)&halfcruheader, sizeof(halfcruheader));
-    //write halfcru data here.
+    // write halfcru data here.
     std::vector<char> feeidpayload(halfcruwordswritten * 4);
     memcpy(feeidpayload.data(), &rawdatavector[0], halfcruwordswritten * 4);
     assert(halfcruwordswritten % 8 == 0);

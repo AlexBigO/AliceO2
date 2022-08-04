@@ -43,7 +43,7 @@ std::vector<DataProcessorSpec> defineDataProcessing(ConfigContext const&)
         auto& startTimeLHCphase = outputs.make<long>(OutputRef{"startLHCphase", 0}); // we send also the start validity of the LHC phase
         auto& startTimeChCalib = outputs.make<long>(OutputRef{"startTimeChCal", 0}); // we send also the start validity of the channel calibration
                                                                                      // you should uncomment the lines below if you need that this workflow triggers the end of the subsequent ones (e.g. in the tof reconstruction workflow, but not fot the tof-calib-workflow
-        //control.endOfStream();
-        //control.readyToQuit(QuitRequest::Me);
+        // control.endOfStream();
+        // control.readyToQuit(QuitRequest::Me);
       })}};
 }

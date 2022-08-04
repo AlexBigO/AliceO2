@@ -218,14 +218,14 @@ bool AlignmentPoint::isAfter(const AlignmentPoint& pnt) const
   //                       lower leg - in decreasing X
   double x = getXPoint();
   double xp = pnt.getXPoint();
-  if (!isInvDir()) {        // track propagates from low to large X via this point
-    if (!pnt.isInvDir()) {  // via this one also
+  if (!isInvDir()) {       // track propagates from low to large X via this point
+    if (!pnt.isInvDir()) { // via this one also
       return x > xp ? -1 : 1;
     } else {
-      return true;         // any point on the lower leg has higher priority than on the upper leg
-    }                      // range points of lower leg 1st
-  } else {                 // this point is from upper cosmic leg: track propagates from large to low X
-    if (pnt.isInvDir()) {  // this one also
+      return true;        // any point on the lower leg has higher priority than on the upper leg
+    }                     // range points of lower leg 1st
+  } else {                // this point is from upper cosmic leg: track propagates from large to low X
+    if (pnt.isInvDir()) { // this one also
       return x > xp ? 1 : -1;
     } else {
       return 1;

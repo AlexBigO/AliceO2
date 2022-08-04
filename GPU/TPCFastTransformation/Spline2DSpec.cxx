@@ -62,11 +62,11 @@ void Spline2DContainer<DataT>::setActualBufferAddress(char* actualFlatBufferPtr)
 
   const size_t u2Offset = alignSize(mGridX1.getFlatBufferSize(), mGridX2.getBufferAlignmentBytes());
   int parametersOffset = u2Offset;
-  //int bufferSize = parametersOffset;
+  // int bufferSize = parametersOffset;
   mParameters = nullptr;
 
   parametersOffset = alignSize(u2Offset + mGridX2.getFlatBufferSize(), getParameterAlignmentBytes());
-  //bufferSize = parametersOffset + getSizeOfParameters();
+  // bufferSize = parametersOffset + getSizeOfParameters();
   mParameters = reinterpret_cast<DataT*>(mFlatBufferPtr + parametersOffset);
 
   mGridX1.setActualBufferAddress(mFlatBufferPtr);

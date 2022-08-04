@@ -275,12 +275,12 @@ void CalibTOF::fillOutput(int flag)
 
   if (mFillCCDB) {
     if (flag & kLHCphase) {
-      std::map<std::string, std::string> metadataLHCphase;                                                                                  // can be empty
-      mCalibTOFapi.writeLHCphase(mLHCphaseObj, metadataLHCphase, (uint64_t)mMinTimestamp * 1000, (uint64_t)mMaxTimestamp * 1000);           // we use as validity the timestamps that we got from the input for the calibration; but we need to convert to ms for the CCDB (at least for now that we use an integer for the timestamp)
+      std::map<std::string, std::string> metadataLHCphase;                                                                        // can be empty
+      mCalibTOFapi.writeLHCphase(mLHCphaseObj, metadataLHCphase, (uint64_t)mMinTimestamp * 1000, (uint64_t)mMaxTimestamp * 1000); // we use as validity the timestamps that we got from the input for the calibration; but we need to convert to ms for the CCDB (at least for now that we use an integer for the timestamp)
     }
     if (flag & kChannelOffset || flag & kChannelTimeSlewing) {
-      std::map<std::string, std::string> metadataChannelCalib;                                                        // can be empty
-      mCalibTOFapi.writeTimeSlewingParam(mTimeSlewingObj, metadataChannelCalib, (uint64_t)mMinTimestamp * 1000);      // contains both offset and time slewing; we use as validity the START ONLY timestamp that we got from the input for the calibration; but we need to convert to ms for the CCDB (at least for now that we use an integer for the timestamp), END is default
+      std::map<std::string, std::string> metadataChannelCalib;                                                   // can be empty
+      mCalibTOFapi.writeTimeSlewingParam(mTimeSlewingObj, metadataChannelCalib, (uint64_t)mMinTimestamp * 1000); // contains both offset and time slewing; we use as validity the START ONLY timestamp that we got from the input for the calibration; but we need to convert to ms for the CCDB (at least for now that we use an integer for the timestamp), END is default
     }
   }
 }
@@ -307,10 +307,10 @@ bool CalibTOF::loadTOFCollectedCalibInfo(TTree* localTree, int& currententry, in
 
   currententry += increment;
   while (currententry < localTree->GetEntries()) {
-    //while (currententry < 800000){
-    //    && currententry < o2::tof::Geo::NCHANNELS) {
+    // while (currententry < 800000){
+    //     && currententry < o2::tof::Geo::NCHANNELS) {
     localTree->GetEntry(currententry);
-    //LOG(info) << "Loading TOF calib info entry " << currententry << " -> " << mCalibInfoTOF->size()<< " infos";
+    // LOG(info) << "Loading TOF calib info entry " << currententry << " -> " << mCalibInfoTOF->size()<< " infos";
 
     return true;
   }
@@ -596,7 +596,7 @@ Int_t CalibTOF::FitPeak(TF1* fitFunc, TH1* h, Float_t startSigma, Float_t nSigma
   fitFunc->SetParameter(1, fitCent);
   fitFunc->SetParameter(2, startSigma);
   Int_t fitres = h->Fit(fitFunc, "WWq0", "", fitMin, fitMax);
-  //printf("%s) init: %f %f\n ",h->GetName(),fitMin,fitMax);
+  // printf("%s) init: %f %f\n ",h->GetName(),fitMin,fitMax);
   if (fitres != 0) {
     return fitres;
   }

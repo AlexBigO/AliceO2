@@ -62,7 +62,7 @@ void AlignableDetectorHMPID::defineVolumes()
     int iid = labDet + (1 + iCh) * 10000;
     AlignableSensorHMPID* sens = new AlignableSensorHMPID(symname, vid, iid);
     addVolume(sens);
-  } //iCh loop
+  } // iCh loop
   //
 }
 

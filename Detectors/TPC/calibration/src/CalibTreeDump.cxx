@@ -167,7 +167,7 @@ void CalibTreeDump::addFEEMapping(TTree* tree)
   // ===| loop over readout chambers |==========================================
   for (ROC roc; !roc.looped(); ++roc) {
     int rocNumber = roc;
-    //tree->GetEntry(rocNumber);
+    // tree->GetEntry(rocNumber);
     traceLength = ((roc.rocType() == RocType::IROC) ? &mTraceLengthIROC : &mTraceLengthOROC);
 
     // ===| clear position vectors |============================================

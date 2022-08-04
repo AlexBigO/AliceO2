@@ -63,7 +63,7 @@ TObjArray* drawPulser(TString pulserFile, int mode = 0, std::string_view outDir 
           padRegion = &mapper.getPadRegionInfo(++iregion);
         }
         mapRowPadArea[i] = padRegion->getPadWidth() * padRegion->getPadHeight();
-        //printf("row: %3i, region: %i, size: %.2f\n", i, iregion, mapRowPadArea[i]);
+        // printf("row: %3i, region: %i, size: %.2f\n", i, iregion, mapRowPadArea[i]);
       }
     }
 
@@ -147,7 +147,7 @@ TObjArray* drawPulser(TString pulserFile, int mode = 0, std::string_view outDir 
     const float minWidth = medianWidth - rangeWidth;
     const float maxWidth = medianWidth + rangeWidth;
 
-    //const float rangeQtot = 150;
+    // const float rangeQtot = 150;
     const float minQtot = medianQtot / 2.;
     const float maxQtot = medianQtot * 2.;
 
@@ -252,7 +252,7 @@ TH1* GetBinInfoXY(int& binx, int& biny, float& bincx, float& bincy)
   biny = h->GetYaxis()->FindBin(y);
   bincx = h->GetXaxis()->GetBinCenter(binx);
   bincy = h->GetYaxis()->GetBinCenter(biny);
-  //printf("binx, biny: %d %d\n",binx,biny);
+  // printf("binx, biny: %d %d\n",binx,biny);
 
   return h;
 }
@@ -285,7 +285,7 @@ void addFECInfo()
     return;
   const int nPads = mapper.getNumberOfPadsInRowROC(roc, row);
   const int pad = cpad + nPads / 2;
-  //printf("row %d, cpad %d, pad %d, nPads %d\n", row, cpad, pad, nPads);
+  // printf("row %d, cpad %d, pad %d, nPads %d\n", row, cpad, pad, nPads);
   if (pad < 0 || pad >= (int)nPads) {
     return;
   }

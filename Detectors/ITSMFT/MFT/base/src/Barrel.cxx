@@ -238,9 +238,9 @@ TGeoVolumeAssembly* Barrel::createBarrel()
   TGeoTranslation transbox02(-45.30, -19.85, 104.425);
   TGeoCombiTrans Combibox02(transbox02, rotbox02);
   TGeoHMatrix* pos_box02 = new TGeoHMatrix(Combibox02);
-  //defining SideRails
-  TGeoVolume* SideRail0 = gGeoManager->MakeBox("siderail0", kMeAl, 0.4, 2.5, 23.975); //SideRail H= 50 mm, W = 8 mm, L 479.5 mm
-  TGeoVolume* SideRail1 = gGeoManager->MakeBox("siderail1", kMeAl, 0.4, 2.5, 61.525); //SideRail H= 50 mm, W = 8 mm, L 1230.5 mm
+  // defining SideRails
+  TGeoVolume* SideRail0 = gGeoManager->MakeBox("siderail0", kMeAl, 0.4, 2.5, 23.975); // SideRail H= 50 mm, W = 8 mm, L 479.5 mm
+  TGeoVolume* SideRail1 = gGeoManager->MakeBox("siderail1", kMeAl, 0.4, 2.5, 61.525); // SideRail H= 50 mm, W = 8 mm, L 1230.5 mm
 
   // defining pipes
   TGeoVolume* BarrelPipes4mm = gGeoManager->MakeTube("Barrel_Pipes", mPolyurethane, 0.4, 0.45, 82.375);
@@ -278,8 +278,8 @@ TGeoVolumeAssembly* Barrel::createBarrel()
   TGeoHMatrix* pos_pipe2 = new TGeoHMatrix(Combipipe2);
   TGeoHMatrix* pos_pipe3 = new TGeoHMatrix(Combipipe3);
 
-  //adding nodes
-  //adding nodes
+  // adding nodes
+  // adding nodes
 
   BarrelVolume->AddNode(BarrelJoint0, 1);
   BarrelVolume->AddNode(BarrelJoint1, 1, new TGeoTranslation(0.0, 0.0, -0.525));
@@ -303,10 +303,10 @@ TGeoVolumeAssembly* Barrel::createBarrel()
   BarrelVolume->AddNode(comp_volrail0, 2, pos_rail5);
   BarrelVolume->AddNode(comp_volBox, 2, pos_box0);
   BarrelVolume->AddNode(comp_volBox, 2, new TGeoTranslation(45.30, -19.84, 20.35));
-  //adding siderails
+  // adding siderails
   BarrelVolume->AddNode(SideRail0, 1, new TGeoTranslation(46.200001, -20.0, 17.775));
   BarrelVolume->AddNode(SideRail0, 1, new TGeoTranslation(-46.200001, -20.0, 17.775));
-  //start of the 2nd cyl
+  // start of the 2nd cyl
   BarrelVolume->AddNode(BarrelJoint0, 1, new TGeoTranslation(0.0, 0.0, 42.80));
   BarrelVolume->AddNode(BarrelJoint1, 1, new TGeoTranslation(0.0, 0.0, 42.250));
   BarrelVolume->AddNode(BoxJoint0, 1, new TGeoTranslation(44.537, -20.08, 43.325));
@@ -323,10 +323,10 @@ TGeoVolumeAssembly* Barrel::createBarrel()
   BarrelVolume->AddNode(comp_volrail02, 2, pos_rail52);
   BarrelVolume->AddNode(comp_volBox2, 2, pos_box02);
   BarrelVolume->AddNode(comp_volBox2, 2, new TGeoTranslation(45.30, -19.84, 104.325));
-  //adding side rails
+  // adding side rails
   BarrelVolume->AddNode(SideRail1, 1, new TGeoTranslation(46.200001, -20.0, 103.375));
   BarrelVolume->AddNode(SideRail1, 1, new TGeoTranslation(-46.200001, -20.0, 103.375));
-  //adding pipes R=490.8 and R 490.0 mm
+  // adding pipes R=490.8 and R 490.0 mm
   BarrelVolume->AddNode(BarrelPipes4mm, 1, new TGeoTranslation(-42.67, -24.25113, 82.375));
   BarrelVolume->AddNode(BarrelPipes4mm, 1, new TGeoTranslation(-42.21842, -25.02900, 82.375));
   BarrelVolume->AddNode(BarrelPipes4mm, 1, new TGeoTranslation(-41.752677, -25.798456, 82.375));
@@ -343,7 +343,7 @@ TGeoVolumeAssembly* Barrel::createBarrel()
 
   BarrelVolume->AddNode(PipeBox, 1, pos_pipe0);
   BarrelVolume->AddNode(PipeBox, 1, pos_pipe2);
-  //adding fill to the pipes
+  // adding fill to the pipes
   BarrelVolume->AddNode(WPipes4mm, 1, new TGeoTranslation(-42.67, -24.25113, 82.375));
   BarrelVolume->AddNode(WPipes4mm, 1, new TGeoTranslation(-42.21842, -25.02900, 82.375));
   BarrelVolume->AddNode(WPipes4mm, 1, new TGeoTranslation(-41.752677, -25.798456, 82.375));
@@ -443,8 +443,8 @@ TGeoVolumeAssembly* Barrel::createBarrel()
   TGeoVolume* FixService1 = gGeoManager->MakeTubs("FixService1", mPolypropylene, FSRad,
                                                   FSRad + FSThickness, 2.00, 207.55, 226.18);
   // coloring
-  //FixService0->SetLineColor(kRed - 9);
-  //FixService1->SetLineColor(kRed - 9);
+  // FixService0->SetLineColor(kRed - 9);
+  // FixService1->SetLineColor(kRed - 9);
   // adding nodes
 
   BarrelVolume->AddNode(FixService0, 1, new TGeoTranslation(-2.00, 0.0, 21.2));

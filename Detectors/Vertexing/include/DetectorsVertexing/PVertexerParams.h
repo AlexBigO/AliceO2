@@ -34,13 +34,13 @@ struct PVertexerParams : public o2::conf::ConfigurableParamHelper<PVertexerParam
   float dbscanDeltaT = 10.;    ///< abs. time difference cut, should be >= ITS ROF duration if ITS SA tracks used
   float dbscanAdaptCoef = 0.1; ///< adapt dbscan minPts for each cluster as minPts=max(minPts, currentSize*dbscanAdaptCoef).
 
-  int maxVerticesPerCluster = 10; ///< max vertices per time-z cluster to look for
-  int maxTrialsPerCluster = 100;  ///< max unsucessful trials for vertex search per vertex
+  int maxVerticesPerCluster = 10;   ///< max vertices per time-z cluster to look for
+  int maxTrialsPerCluster = 100;    ///< max unsucessful trials for vertex search per vertex
   long maxTimeMSPerCluster = 10000; ///< max allowed time per TZCluster processing, ms
 
   // track selection
-  float dcaTolerance = 1.3; ///< consider tracks within this abs DCA to mean vertex
-  float pullIniCut = 9;     ///< cut on pull (n^2 sigma) on dca to mean vertex
+  float dcaTolerance = 1.3;     ///< consider tracks within this abs DCA to mean vertex
+  float pullIniCut = 9;         ///< cut on pull (n^2 sigma) on dca to mean vertex
   float maxTimeErrorMUS = 10.0; ///< max time error in ms of the track to account
 
   // histogramming and its weigths params
@@ -52,12 +52,12 @@ struct PVertexerParams : public o2::conf::ConfigurableParamHelper<PVertexerParam
   // fitting parameters
   bool useMeanVertexConstraint = true; ///< use MeanVertex as extra measured point
   float tukey = kDefTukey;             ///< Tukey parameter
-  float iniScale2 = 5.;              ///< initial scale to assign
-  float minScale2 = 1.;              ///< min slaling factor^2
-  float acceptableScale2 = 4.;       ///< if below this factor, try to refit with minScale2
-  float maxScale2 = 50;              ///< max slaling factor^2
-  float upscaleFactor = 9.;          ///< factor for upscaling if not candidate is found
-  float slowConvergenceFactor = 0.5; ///< consider convergence as slow if ratio new/old scale2 exceeds it
+  float iniScale2 = 5.;                ///< initial scale to assign
+  float minScale2 = 1.;                ///< min slaling factor^2
+  float acceptableScale2 = 4.;         ///< if below this factor, try to refit with minScale2
+  float maxScale2 = 50;                ///< max slaling factor^2
+  float upscaleFactor = 9.;            ///< factor for upscaling if not candidate is found
+  float slowConvergenceFactor = 0.5;   ///< consider convergence as slow if ratio new/old scale2 exceeds it
 
   // cleanup
   bool applyDebrisReduction = true;        ///< apply algorithm reducing split vertices
@@ -71,11 +71,11 @@ struct PVertexerParams : public o2::conf::ConfigurableParamHelper<PVertexerParam
   float addZSigma2Debris = 0.005 * 0.005;  ///< increment z error^2 by this amount when calculating vertex-to-vertex chi2
 
   // validation with externally provided InteractionRecords (e.g. from FT0)
-  int minNContributorsForIRcut = 4;     ///< do not apply IR cut to vertices below IR tagging efficiency threshold
-  float maxTError = 0.2;                ///< use min of vertex time error or this for nsigma evaluation
-  float minTError = 0.003;              ///< don't use error smaller than that (~BC/2/minNContributorsForFT0cut)
-  float nSigmaTimeCut = 4.;             ///< eliminate vertex if there is no FT0 or BC signal within this cut
-  float timeBiasMS = 0;                 ///< relative bias in ms to add to TPCITS-based time stamp
+  int minNContributorsForIRcut = 4; ///< do not apply IR cut to vertices below IR tagging efficiency threshold
+  float maxTError = 0.2;            ///< use min of vertex time error or this for nsigma evaluation
+  float minTError = 0.003;          ///< don't use error smaller than that (~BC/2/minNContributorsForFT0cut)
+  float nSigmaTimeCut = 4.;         ///< eliminate vertex if there is no FT0 or BC signal within this cut
+  float timeBiasMS = 0;             ///< relative bias in ms to add to TPCITS-based time stamp
   //
   // stopping condition params
   float maxChi2Mean = 10.;          ///< max mean chi2 of vertex to accept

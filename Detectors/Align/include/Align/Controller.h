@@ -42,8 +42,8 @@
 #include "Align/utils.h"
 
 // can be fwd declared if we don't require root dict.
-//class TTree;
-//class TFile;
+// class TTree;
+// class TFile;
 
 #include <TTree.h>
 #include <TFile.h>
@@ -59,7 +59,7 @@ class RecoContainer;
 namespace align
 {
 
-//class Mille;
+// class Mille;
 
 class EventVertex;
 class AlignableDetector;
@@ -319,7 +319,7 @@ class Controller : public TObject
   void printLabels() const;
   Char_t* getDOFLabelTxt(int idf) const;
   //
-  static Char_t* getDetNameByDetID(int id) { return (Char_t*)sDetectorName[id]; } //RSREM
+  static Char_t* getDetNameByDetID(int id) { return (Char_t*)sDetectorName[id]; } // RSREM
   static void mPRec2Mille(const char* mprecfile, const char* millefile = "mpData.mille", bool bindata = true);
   static void mPRec2Mille(TTree* mprTree, const char* millefile = "mpData.mille", bool bindata = true);
   //
@@ -346,12 +346,12 @@ class Controller : public TObject
   //
   DetID::mask_t mDetMask{};
 
-  int mNDet = 0;                             // number of deectors participating in the alignment
-  int mNDOFs = 0;                            // number of degrees of freedom
-  int mRunNumber = -1;                       // current run number
-  bool mFieldOn = false;                     // field on flag
-  int mTracksType = utils::Coll;             // collision/cosmic event type
-  std::unique_ptr<AlignmentTrack> mAlgTrack; // current alignment track
+  int mNDet = 0;                                                // number of deectors participating in the alignment
+  int mNDOFs = 0;                                               // number of degrees of freedom
+  int mRunNumber = -1;                                          // current run number
+  bool mFieldOn = false;                                        // field on flag
+  int mTracksType = utils::Coll;                                // collision/cosmic event type
+  std::unique_ptr<AlignmentTrack> mAlgTrack;                    // current alignment track
   const o2::globaltracking::RecoContainer* mRecoData = nullptr; // externally set RecoContainer
 
   std::array<AlignableDetector*, DetID::nDetectors> mDetectors{}; // detectors participating in the alignment
@@ -365,8 +365,8 @@ class Controller : public TObject
   std::vector<float> mGloParVal; // parameters for DOFs
   std::vector<float> mGloParErr; // errors for DOFs
   std::vector<int> mGloParLab;   // labels for DOFs
-  std::vector<int> mOrderedLbl;  //ordered labels
-  std::vector<int> mLbl2ID;      //Label order in mOrderedLbl -> parID
+  std::vector<int> mOrderedLbl;  // ordered labels
+  std::vector<int> mLbl2ID;      // Label order in mOrderedLbl -> parID
   //
   std::unique_ptr<AlignmentPoint> mRefPoint; //! reference point for track definition
   //
@@ -382,12 +382,12 @@ class Controller : public TObject
   ResidualsController mCResid;                 //! control residuals
   ResidualsController* mCResidPtr = &mCResid;  //! control residuals
 
-  std::unique_ptr<TTree> mMPRecTree; //! tree to store MP record
-  std::unique_ptr<TTree> mResidTree; //! tree to store control residuals
-  std::unique_ptr<TFile> mMPRecFile; //! file to store MP record tree
-  std::unique_ptr<TFile> mResidFile; //! file to store control residuals tree
-  TArrayF mMilleDBuffer;        //! buffer for Mille Derivatives output
-  TArrayI mMilleIBuffer;        //! buffer for Mille Indecis output
+  std::unique_ptr<TTree> mMPRecTree;               //! tree to store MP record
+  std::unique_ptr<TTree> mResidTree;               //! tree to store control residuals
+  std::unique_ptr<TFile> mMPRecFile;               //! file to store MP record tree
+  std::unique_ptr<TFile> mResidFile;               //! file to store control residuals tree
+  TArrayF mMilleDBuffer;                           //! buffer for Mille Derivatives output
+  TArrayI mMilleIBuffer;                           //! buffer for Mille Indecis output
   std::string mMPDatFileName{"mpData"};            //  file name for records binary data output
   std::string mMPParFileName{"mpParams.txt"};      //  file name for MP params
   std::string mMPConFileName{"mpConstraints.txt"}; //  file name for MP constraints

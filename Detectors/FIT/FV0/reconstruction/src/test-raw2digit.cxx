@@ -47,14 +47,14 @@ int main()
   treeInput->SetBranchAddress(Digit::sDigitBranchName, &ptrVecDigits);
   treeInput->SetBranchAddress(ChannelData::sDigitBranchName, &ptrVecChannelData);
   std::cout << "Tree nEntries:" << treeInput->GetEntries() << std::endl;
-  for (int iEvent = 0; iEvent < treeInput->GetEntries(); iEvent++) { //Iterating TFs in tree
+  for (int iEvent = 0; iEvent < treeInput->GetEntries(); iEvent++) { // Iterating TFs in tree
     treeInput->GetEntry(iEvent);
-    for (const auto& digit : (*ptrVecDigits)) { //Iterating over all digits in given TF
+    for (const auto& digit : (*ptrVecDigits)) { // Iterating over all digits in given TF
       auto itBegin = ptrVecChannelData->begin();
       std::advance(itBegin, digit.ref.getFirstEntry());
       auto itEnd = ptrVecChannelData->begin();
       std::advance(itEnd, digit.ref.getFirstEntry() + digit.ref.getEntries());
-      //Event within given TF
+      // Event within given TF
       auto eventFV0 = EventFV0_t{digit, std::vector<ChannelData>{itBegin, itEnd}};
       vecTotalEvents.push_back(eventFV0);
     }
@@ -76,14 +76,14 @@ int main()
   treeInput2->SetBranchAddress(Digit::sDigitBranchName, &ptrVecDigits);
   treeInput2->SetBranchAddress(ChannelData::sDigitBranchName, &ptrVecChannelData);
   std::cout << "Tree nEntries: " << treeInput2->GetEntries() << std::endl;
-  for (int iEvent = 0; iEvent < treeInput2->GetEntries(); iEvent++) { //Iterating TFs in tree
+  for (int iEvent = 0; iEvent < treeInput2->GetEntries(); iEvent++) { // Iterating TFs in tree
     treeInput2->GetEntry(iEvent);
-    for (const auto& digit : (*ptrVecDigits)) { //Iterating over all digits in given TF
+    for (const auto& digit : (*ptrVecDigits)) { // Iterating over all digits in given TF
       auto itBegin = ptrVecChannelData->begin();
       std::advance(itBegin, digit.ref.getFirstEntry());
       auto itEnd = ptrVecChannelData->begin();
       std::advance(itEnd, digit.ref.getFirstEntry() + digit.ref.getEntries());
-      //Event within given TF
+      // Event within given TF
       auto eventFV0 = EventFV0_t{digit, std::vector<ChannelData>{itBegin, itEnd}};
       vecTotalEvents2.push_back(eventFV0);
     }

@@ -79,7 +79,7 @@ struct Parameters {
 auto measure = [](Measurement m, auto* o, auto* i) -> double {
   switch (m) {
     case Measurement::Size: {
-      const double scale = 1.0; //000000000.0;
+      const double scale = 1.0; // 000000000.0;
       if constexpr (std::is_base_of<TObject, typename std::remove_pointer<decltype(o)>::type>::value) {
         if (o->InheritsFrom(TH1::Class())) {
           // this includes TH1, TH2, TH3
@@ -205,7 +205,7 @@ auto measure = [](Measurement m, auto* o, auto* i) -> double {
       return elapsed_seconds.count();
     }
     case Measurement::SizeAfterSerialisation: {
-      const double scale = 1.0; //1000000000.0;
+      const double scale = 1.0; // 1000000000.0;
       if constexpr (std::is_base_of<TObject, typename std::remove_pointer<decltype(o)>::type>::value) {
         TMessage* tm = new TMessage(kMESS_OBJECT);
         tm->WriteObject(o);

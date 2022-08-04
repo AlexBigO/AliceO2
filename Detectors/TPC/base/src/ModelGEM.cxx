@@ -47,7 +47,7 @@ ModelGEM::ModelGEM() : // We allow a scaling factor of the gain curves for tunin
                        mFitSingleGainQ{{0.03f, 0.03f, 0.03f}}
 {
 
-  //Calculate constant GEM parameters (0 standard, 1 medium, 2 large)
+  // Calculate constant GEM parameters (0 standard, 1 medium, 2 large)
   for (int i = 0; i <= 2; ++i) {
     mParamC1[i] = getParameterC1(i);
     mParamC2[i] = getParameterC2(i);

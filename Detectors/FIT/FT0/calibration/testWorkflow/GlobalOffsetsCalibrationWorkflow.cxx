@@ -13,7 +13,7 @@
 
 void customize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
 {
-  //probably some option will be added
+  // probably some option will be added
 }
 
 #include "Framework/runDataProcessing.h"

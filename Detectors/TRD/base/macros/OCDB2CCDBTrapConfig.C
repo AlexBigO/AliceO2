@@ -100,8 +100,8 @@ void ParseTrapConfigs(TrapConfig* trapconfig, AliTRDtrapConfig* run2config)
   for (int regvalue = 0; regvalue < AliTRDtrapConfig::kLastReg; regvalue++) {
     // cout << "revalue of : " << regvalue << endl;
     //  AliTRDtrapConfig::AliTRDTrapRegister a = fRegisterValue[regvalue];
-    //copy fname, fAddr, fNbits and fResetValue
-    //and inherited from trapvalue : fAllocMode fSize fData fValid
+    // copy fname, fAddr, fNbits and fResetValue
+    // and inherited from trapvalue : fAllocMode fSize fData fValid
     // trapconfig->mRegisterValue[regvalue].mName = run2config->fRegisterValue[regvalue].fName;
     //      cout << "now to init registervalues" << endl;
     //      Some Sanity checks:
@@ -114,9 +114,9 @@ void ParseTrapConfigs(TrapConfig* trapconfig, AliTRDtrapConfig* run2config)
                                                       run2config->fRegisterValue[regvalue].fResetValue);
     // now for the inherited AliTRDtrapValue members;
     trapconfig->mRegisterValue[regvalue].allocatei((int)run2config->fRegisterValue[regvalue].fAllocMode);
-    //cout << "size is : " << run2config->fRegisterValue[regvalue].fSize << endl;
-    //allocate will set the size of the arrays and resize them accordingly.
-    //                cout<< "PROBLEM !! datacount " << datacount<<">="<<trapconfig->mRegisterValue.size() << " and run2 size is : "<< run2config->fRegisterValue[regvalue].fSize << " allocmode : "<< run2config->fRegisterValue[regvalue].fAllocMode << endl;
+    // cout << "size is : " << run2config->fRegisterValue[regvalue].fSize << endl;
+    // allocate will set the size of the arrays and resize them accordingly.
+    //                 cout<< "PROBLEM !! datacount " << datacount<<">="<<trapconfig->mRegisterValue.size() << " and run2 size is : "<< run2config->fRegisterValue[regvalue].fSize << " allocmode : "<< run2config->fRegisterValue[regvalue].fAllocMode << endl;
     for (unsigned int datacount = 0; datacount < run2config->fRegisterValue[regvalue].fSize; datacount++) {
       if (datacount < trapconfig->mRegisterValue[regvalue].getDataSize()) {
         //      cout << " Writing :  " << run2config->fRegisterValue[regvalue].fData[datacount] << " :: with valid of " << run2config->fRegisterValue[regvalue].fValid[datacount] << endl;
@@ -136,11 +136,11 @@ void ParseTrapConfigs(TrapConfig* trapconfig, AliTRDtrapConfig* run2config)
     if (dmemwords > trapconfig->mDmem.size())
       cout << "!!!!!!!!!!!!! dmemwords = " << dmemwords << " while register array in trapconfig is :" << trapconfig->mDmem.size() << endl;
     trapconfig->mDmem[dmemwords].setAddress(run2config->fDmem[dmemwords].fAddr);
-    //TODO WHy did i have to comment this out ! trapconfig->mDmem[dmemwords].setName(run2config->fDmem[dmemwords].fName);
-    // now for the inherited AliTRDtrapValue members;
+    // TODO WHy did i have to comment this out ! trapconfig->mDmem[dmemwords].setName(run2config->fDmem[dmemwords].fName);
+    //  now for the inherited AliTRDtrapValue members;
     trapconfig->mDmem[dmemwords].allocatei((int)run2config->fDmem[dmemwords].fAllocMode);
-    //cout << "size is : " << run2config->fDmem[dmemwords].fSize << endl;
-    //trapconfig->mDmem[dmemwords].mSize = run2config->fDmem[dmemwords].fSize;i// gets set via allocate method in line above
+    // cout << "size is : " << run2config->fDmem[dmemwords].fSize << endl;
+    // trapconfig->mDmem[dmemwords].mSize = run2config->fDmem[dmemwords].fSize;i// gets set via allocate method in line above
     for (unsigned int datacount = 0; datacount < run2config->fDmem[dmemwords].fSize; datacount++) {
       if (datacount < trapconfig->mDmem[dmemwords].getDataSize()) {
         trapconfig->mDmem[dmemwords].setDataFromRun2(run2config->fDmem[dmemwords].fData[datacount], run2config->fDmem[dmemwords].fValid[datacount], datacount);
@@ -168,7 +168,7 @@ void OCDB2CCDBTrapConfig(TString ccdbPath = "http://localhost:8080", Int_t run =
   timeStampStart = 297595;
   timeStampEnd += 1e3 * 60 * 60 * 24 * 365 * 3;
 
-  //std::string outFilename="CalibrationsForRun"+Run;
+  // std::string outFilename="CalibrationsForRun"+Run;
   TTimeStamp jobStartTime;
   // if the storage is on alien than we need to do some extra stuff
   TString storageString(storageURI);
@@ -192,10 +192,10 @@ void OCDB2CCDBTrapConfig(TString ccdbPath = "http://localhost:8080", Int_t run =
   // get calibration information
   // process gains
   ///////////////////////////
-  //Connect to CCDB
+  // Connect to CCDB
   //
   o2::ccdb::CcdbApi ccdb;
-  map<string, string> metadata;               // do we want to store any meta data?
+  map<string, string> metadata; // do we want to store any meta data?
   metadata.emplace(std::make_pair("UploadedBy", "marten"));
   metadata.emplace(std::make_pair("Description", "Default TRAP config for Run 3 simulations in LS2"));
   ccdb.init(ccdbPath.Data());
@@ -281,12 +281,12 @@ its all going here unfortunately ....
     }
   }
 
-  //const AliTRDCalTrapConfig *caltrap = dynamic_cast<const AliTRDCalTrapConfig*> (calibdb->GetCachedCDBObject(12));
+  // const AliTRDCalTrapConfig *caltrap = dynamic_cast<const AliTRDCalTrapConfig*> (calibdb->GetCachedCDBObject(12));
 
-  //cout << "now to print the names of the cal traps" << endl;
-  //if(caltrap) caltrap->Print();
-  //else cout << "caltrap is null" << endl;
-  //RecoParam
+  // cout << "now to print the names of the cal traps" << endl;
+  // if(caltrap) caltrap->Print();
+  // else cout << "caltrap is null" << endl;
+  // RecoParam
 
   /*
 THESE ARE THE ONES NOT CURRENTLY INCLUDED.

@@ -42,7 +42,7 @@ void readTOFDCSentries(long ts = 9999999999000, const char* ccdb = "http://local
   }
 
   std::bitset<o2::tof::Geo::NCHANNELS>* feac = api.retrieveFromTFileAny<std::bitset<o2::tof::Geo::NCHANNELS>>("TOF/Calib/LVStatus", metadata, ts);
-  //std::cout << "LV info (FEAC): " << feac->to_string() << std::endl;
+  // std::cout << "LV info (FEAC): " << feac->to_string() << std::endl;
   std::cout << "LV info (FEAC): number of channels that are ON = " << feac->count() << std::endl;
   for (int ich = 0; ich < o2::tof::Geo::NCHANNELS; ++ich) {
     if (feac->test(ich) != 0) {
@@ -51,7 +51,7 @@ void readTOFDCSentries(long ts = 9999999999000, const char* ccdb = "http://local
   }
 
   std::bitset<o2::tof::Geo::NCHANNELS>* hv = api.retrieveFromTFileAny<std::bitset<o2::tof::Geo::NCHANNELS>>("TOF/Calib/HVStatus", metadata, ts);
-  //std::cout << "HV info       : " << hv->to_string() << std::endl;
+  // std::cout << "HV info       : " << hv->to_string() << std::endl;
   std::cout << "HV info       : number of channels that are ON = " << hv->count() << std::endl;
   for (int ich = 0; ich < o2::tof::Geo::NCHANNELS; ++ich) {
     if (hv->test(ich) != 0) {

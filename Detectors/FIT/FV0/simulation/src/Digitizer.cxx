@@ -38,8 +38,8 @@ void Digitizer::clear()
 void Digitizer::init()
 {
   LOG(info) << "init";
-  mNBins = FV0DigParam::Instance().waveformNbins;      //Will be computed using detector set-up from CDB
-  mBinSize = FV0DigParam::Instance().waveformBinWidth; //Will be set-up from CDB
+  mNBins = FV0DigParam::Instance().waveformNbins;                                  // Will be computed using detector set-up from CDB
+  mBinSize = FV0DigParam::Instance().waveformBinWidth;                             // Will be set-up from CDB
   mNTimeBinsPerBC = std::lround(o2::constants::lhc::LHCBunchSpacingNS / mBinSize); // 1920 bins/BC
 
   for (Int_t detID = 0; detID < Constants::nFv0Channels; detID++) {
@@ -98,7 +98,7 @@ void Digitizer::process(const std::vector<o2::fv0::Hit>& hits,
   for (auto ids : hitIdx) {
     const auto& hit = hits[ids];
     Int_t detId = hit.GetDetectorID();
-    Double_t hitEdep = hit.GetHitValue() * 1e3; //convert to MeV
+    Double_t hitEdep = hit.GetHitValue() * 1e3; // convert to MeV
     Float_t const hitTime = hit.GetTime() * 1e9;
     // TODO: check how big is inaccuracy if more than 1 'below-threshold' particles hit the same detector cell
     if (hitEdep < FV0DigParam::Instance().singleMipThreshold || hitTime > FV0DigParam::Instance().singleHitTimeThreshold) {
@@ -139,11 +139,11 @@ void Digitizer::process(const std::vector<o2::fv0::Hit>& hits,
           continue; // don't go to negative BC/orbit (it will wrap)
         }
         setBCCache(cachedIR[nCachedIR++]); // ensure existence of cached container
-      }                                    //BCCache loop
+      }                                    // BCCache loop
       createPulse(mipFraction, hit.GetTrackID(), hitTime, cachedIR, nCachedIR, detId);
 
-    } //while loop
-  }   //hitloop
+    } // while loop
+  }   // hitloop
 }
 
 void Digitizer::createPulse(float mipFraction, int parID, const double hitTime,
@@ -160,7 +160,7 @@ void Digitizer::createPulse(float mipFraction, int parID, const double hitTime,
     }
   }
 
-  ///Time of flight subtracted from Hit time //TODO have different TOF according to thr ring number
+  /// Time of flight subtracted from Hit time //TODO have different TOF according to thr ring number
   Int_t const NBinShift = std::lround((hitTime - FV0DigParam::Instance().globalTimeOfFlight) / FV0DigParam::Instance().waveformBinWidth);
 
   if (NBinShift >= 0 && NBinShift < FV0DigParam::Instance().waveformNbins) {
@@ -192,7 +192,7 @@ void Digitizer::createPulse(float mipFraction, int parID, const double hitTime,
     }
     added[ir] = true;
   }
-  ///Add MC labels to BCs for those contributed to the PMT signal
+  /// Add MC labels to BCs for those contributed to the PMT signal
   for (int ir = 0; ir < nCachedIR; ir++) {
     if (added[ir]) {
       auto bcCache = getBCCache(cachedIR[ir]);
@@ -292,7 +292,7 @@ void Digitizer::storeBC(const BCCache& bc,
   } else {
     avgTime = o2::fit::Triggers::DEFAULT_TIME;
   }
-  ///Triggers for FV0
+  /// Triggers for FV0
   bool isA, isAIn, isAOut, isCen, isSCen;
   isA = nTrgFiredCells > 0;
   isAIn = nSignalInner > 0;  // ring 1,2 and 3
@@ -334,8 +334,8 @@ Int_t Digitizer::SimulateLightYield(Int_t pmt, Int_t nPhot) const
 //---------------------------------------------------------------------------
 Float_t Digitizer::IntegrateCharge(const ChannelDigitF& pulse) const
 {
-  int const chargeIntMin = FV0DigParam::Instance().isIntegrateFull ? 0 : (FV0DigParam::Instance().avgCfdTimeForMip - 6.0) / mBinSize;                //Charge integration offset (cfd mean time - 6 ns)
-  int const chargeIntMax = FV0DigParam::Instance().isIntegrateFull ? mNTimeBinsPerBC : (FV0DigParam::Instance().avgCfdTimeForMip + 14.0) / mBinSize; //Charge integration offset (cfd mean time + 14 ns)
+  int const chargeIntMin = FV0DigParam::Instance().isIntegrateFull ? 0 : (FV0DigParam::Instance().avgCfdTimeForMip - 6.0) / mBinSize;                // Charge integration offset (cfd mean time - 6 ns)
+  int const chargeIntMax = FV0DigParam::Instance().isIntegrateFull ? mNTimeBinsPerBC : (FV0DigParam::Instance().avgCfdTimeForMip + 14.0) / mBinSize; // Charge integration offset (cfd mean time + 14 ns)
   if (chargeIntMin < 0 || chargeIntMin > mNTimeBinsPerBC || chargeIntMax > mNTimeBinsPerBC) {
     LOG(fatal) << "invalid indicess: chargeInMin=" << chargeIntMin << " chargeIntMax=" << chargeIntMax;
   }
@@ -392,7 +392,7 @@ float Digitizer::getDistFromCellCenter(UInt_t cellId, double hitx, double hity)
   double a = -(y0 - pCell->y) / (x0 - pCell->x);
   double b = 1;
   double c = -(y0 - a * x0);
-  //Return the distance from hit to this line
+  // Return the distance from hit to this line
   return (a * hitx + b * hity + c) / TMath::Sqrt(a * a + b * b);
 }
 

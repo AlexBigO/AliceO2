@@ -122,7 +122,7 @@ int IrregularSpline2D3DTest()
       data0[ind + 1] = Fy(u, v);
       data0[ind + 2] = Fz(u, v);
       // use random values instaad of Fx
-      //data0[ind + 0] = gRandom->Uniform(-.3, .3);
+      // data0[ind + 0] = gRandom->Uniform(-.3, .3);
     }
   }
 

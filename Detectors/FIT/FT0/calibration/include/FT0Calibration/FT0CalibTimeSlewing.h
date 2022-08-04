@@ -66,7 +66,7 @@ class FT0CalibTimeSlewing
   std::array<TGraph, NCHANNELS> mTimeSlewing; ///< array of TGraph wirh time -amplitude for each channel
   std::array<float, NCHANNELS> mSigmaPeak;    ///< array with the sigma of the peak
   TFile* mMergedFile;                         // file  with merged tree
-  TH2F* mTimeAmpHist[NCHANNELS];              //historgams time vs amplitude
+  TH2F* mTimeAmpHist[NCHANNELS];              // historgams time vs amplitude
   int mNfiles;                                // number of files with stored Tree with CalibrationInfoObject
   std::string mSingleFileName;
   std::string mMergedFileName;

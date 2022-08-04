@@ -191,7 +191,7 @@ void CheckClusters(std::string clusfile = "o2clus_its.root", std::string hitfile
       auto z0 = locHsta.Z(), dltz = locH.Z() - z0;
       auto r = (0.5 * (Segmentation::SensorLayerThickness - Segmentation::SensorLayerThicknessEff) - y0) / dlty;
       locH.SetXYZ(x0 + r * dltx, y0 + r * dlty, z0 + r * dltz);
-      //locH.SetXYZ(0.5 * (locH.X() + locHsta.X()), 0.5 * (locH.Y() + locHsta.Y()), 0.5 * (locH.Z() + locHsta.Z()));
+      // locH.SetXYZ(0.5 * (locH.X() + locHsta.X()), 0.5 * (locH.Y() + locHsta.Y()), 0.5 * (locH.Z() + locHsta.Z()));
       std::array<float, 18> data = {(float)lab.getEventID(), (float)trID,
                                     locH.X(), locH.Z(), dltx / dlty, dltz / dlty,
                                     gloC.X(), gloC.Y(), gloC.Z(),

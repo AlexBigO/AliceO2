@@ -25,7 +25,6 @@ struct overloaded : Ts... {
 template <class... Ts>
 overloaded(Ts...) -> overloaded<Ts...>;
 
-
 DPLMonitoringBackend::DPLMonitoringBackend(ServiceRegistry& registry)
   : mRegistry{registry}
 {

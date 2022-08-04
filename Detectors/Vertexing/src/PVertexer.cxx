@@ -180,7 +180,7 @@ int PVertexer::findVertices(const VertexingInput& input, std::vector<PVertex>& v
       finalizeVertex(input, vtx, vertices, v2tRefs, trackIDs, &seedHistoTZ);
       nfound++;
       nTrials = 0;
-    } else {                                                                    // suppress failed seeding bin and its proximities
+    } else { // suppress failed seeding bin and its proximities
       seedHistoTZ.setBinContent(peakBin, -1);
     }
     nTrials++;
@@ -772,7 +772,6 @@ void PVertexer::createMCLabels(gsl::span<const o2::MCCompLabel> lblTracks,
   }
 }
 
-
 //___________________________________________________________________
 void PVertexer::setBunchFilling(const o2::BunchFilling& bf)
 {
@@ -818,7 +817,7 @@ bool PVertexer::setCompatibleIR(PVertex& vtx)
     return false; // discard vertex at negative time
   }
   irMax += o2::InteractionRecord(1.e3 * (t + rangeT)); // RS TODO: make sure that irMax does not exceed TF edge
-  irMax++; // to account for rounding
+  irMax++;                                             // to account for rounding
   // restrict using bunch filling
   int bc = mClosestBunchAbove[irMin.bc];
   LOG(debug) << "irMin.bc = " << irMin.bc << " bcAbove = " << bc;

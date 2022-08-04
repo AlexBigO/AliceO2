@@ -66,7 +66,7 @@ class LaserTrackFilterDevice : public o2::framework::Task
     }
 
     if (track.getNClusters() < 80) {
-      //return false;
+      // return false;
     }
 
     if (track.hasBothSidesClusters()) {

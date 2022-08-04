@@ -164,7 +164,7 @@ Bool_t Detector::ProcessHits(FairVolume* vol)
   if (fMC->IsTrackExiting() || fMC->IsTrackStop() || fMC->IsTrackDisappeared()) {
     Int_t trackID = fMC->GetStack()->GetCurrentTrackNumber();
 
-    Float_t time = fMC->TrackTime() * 1.0e9; //time from seconds to ns
+    Float_t time = fMC->TrackTime() * 1.0e9; // time from seconds to ns
 
     addHit(trackID, ADsector, vPos, time, eloss_ad, nPhotons_ad);
     return kTRUE;
@@ -176,7 +176,7 @@ Bool_t Detector::ProcessHits(FairVolume* vol)
 //_____________________________________________________________________________
 Hit* Detector::addHit(int trackID, unsigned short detID, const TVector3& Pos, double Time, double eLoss, int nPhot)
 {
-  //LOG(info) << "FDD hit "<<trackID<<" "<<detID<<" "<<Time<<" "<<eLoss<<" "<<nPhot;
+  // LOG(info) << "FDD hit "<<trackID<<" "<<detID<<" "<<Time<<" "<<eLoss<<" "<<nPhot;
   mHits->emplace_back(trackID, detID, Pos, Time, eLoss, nPhot);
   auto stack = (o2::data::Stack*)fMC->GetStack();
   stack->addHit(GetDetId());

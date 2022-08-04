@@ -103,7 +103,7 @@ void writeDigits()
 
     fair::Logger::SetConsoleSeverity("info");
     dre.encodeDigits(digits, orbit, bc);
-    //dre.addHeartbeats(std::set<DsElecId> dsElecIds, uint32_t orbit);
+    // dre.addHeartbeats(std::set<DsElecId> dsElecIds, uint32_t orbit);
   }
   std::cout << fmt::format("END writeDigits({})\n", useDummyElecMap);
 }

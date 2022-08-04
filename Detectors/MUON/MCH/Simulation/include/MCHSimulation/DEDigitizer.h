@@ -37,7 +37,7 @@ class DEDigitizer
    *
    * All the digits created between a call to this one and clear()
    * will be associated to a MCH ROFRecord == collisionTime
-  */
+   */
   void startCollision(o2::InteractionRecord collisionTime);
 
   /** Add some noise to the current collision */

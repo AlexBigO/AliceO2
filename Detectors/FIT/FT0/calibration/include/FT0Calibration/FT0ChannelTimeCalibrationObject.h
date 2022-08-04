@@ -36,4 +36,4 @@ class FT0TimeChannelOffsetCalibrationObjectAlgorithm
 
 } // namespace o2::ft0
 
-#endif //O2_FT0CHANNELTIMECALIBRATIONOBJECT_H
+#endif // O2_FT0CHANNELTIMECALIBRATIONOBJECT_H

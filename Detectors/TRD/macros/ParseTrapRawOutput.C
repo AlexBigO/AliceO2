@@ -8,9 +8,9 @@
 #include <memory>
 #endif
 
-//Parse the trackletraw output of a trap simulation
-//Display on the screen and indent for half chamber, mcmheader and mcmtracklet.
-//Create a raw dump as well of the incoming data.
+// Parse the trackletraw output of a trap simulation
+// Display on the screen and indent for half chamber, mcmheader and mcmtracklet.
+// Create a raw dump as well of the incoming data.
 
 using namespace o2::trd;
 
@@ -34,23 +34,23 @@ void ParseTrapRawOutput(std::string path = "./", std::string inputTracklets = "t
   uint64_t mcmheadcount = 0;
   uint64_t halfchamberheadcount = 0;
   uint64_t traprawtrackletount = 0;
-  //at each linkrecord data we should have a halfchamberheader;
-  // with in the range specified by the linkrecord we have a structure of :
-  // mcmheader, traprawtracklet[1-3], mcmheader, traprawtracklet[1-3], etc. etc.
+  // at each linkrecord data we should have a halfchamberheader;
+  //  with in the range specified by the linkrecord we have a structure of :
+  //  mcmheader, traprawtracklet[1-3], mcmheader, traprawtracklet[1-3], etc. etc.
   for (auto& link : links) {
     o2::trd::TrackletHCHeader halfchamber;
     halfchamber.word = link.getLinkId();
     std::cout << "in link with HCID of " << halfchamber;
     for (int i = link.getFirstEntry(); i < link.getFirstEntry() + link.getNumberOfObjects(); i++) {
-      //read TrackletMCMHeader
-      //read 1 to 3 TrackletMCMDatas
+      // read TrackletMCMHeader
+      // read 1 to 3 TrackletMCMDatas
       if (((trapraw[i]) & 0x1) == 1 && (trapraw[i] & 0x80000000) != 0) {
         TrackletMCMHeader mcm;
         mcm.word = trapraw[i];
         std::cout << "\t\t" << mcm;
         mcmheadcount++;
       } else if (((trapraw[i]) & 0x1) == 0) {
-        //tracklet word
+        // tracklet word
         //
         TrackletMCMData tracklet;
         tracklet.word = trapraw[i];

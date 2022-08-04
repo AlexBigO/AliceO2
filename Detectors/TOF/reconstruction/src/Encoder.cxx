@@ -53,7 +53,7 @@ void Encoder::nextWord(int icrate)
     mUnion[icrate]->data = 0;
   }
   mUnion[icrate]++;
-  //nextWordNoEmpty(icrate);
+  // nextWordNoEmpty(icrate);
   mNextWordStatus[icrate] = !mNextWordStatus[icrate];
 }
 
@@ -105,7 +105,7 @@ bool Encoder::flush(int icrate)
   int nbyte = getSize(mStart[icrate], mUnion[icrate]);
   if (nbyte) {
     if (mCrateOn[icrate]) {
-      //printf("flush crate %d -- byte = %d -- orbit = %d, bc = %d\n",icrate, nbyte, mIR.orbit, mIR.bc);
+      // printf("flush crate %d -- byte = %d -- orbit = %d, bc = %d\n",icrate, nbyte, mIR.orbit, mIR.bc);
       mFileWriter.addData(Geo::getFEEid(icrate), Geo::getCRUid(icrate), Geo::getCRUlink(icrate), Geo::getCRUendpoint(icrate), mIR, gsl::span(mBuffer[icrate], nbyte));
     }
     mIntegratedAllBytes += nbyte;

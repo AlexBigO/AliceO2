@@ -300,7 +300,7 @@ struct AnalysisDataProcessorBuilder {
       static_assert(((soa::is_soa_iterator_t<std::decay_t<Associated>>::value == false) && ...),
                     "Associated arguments of process() should not be iterators");
       auto associatedTables = AnalysisDataProcessorBuilder::bindAssociatedTables(inputs, processingFunction, infos);
-      //pre-bind self indices
+      // pre-bind self indices
       std::apply(
         [&](auto&... t) {
           (homogeneous_apply_refs(
@@ -583,7 +583,7 @@ DataProcessorSpec adaptAnalysisTask(ConfigContext const& ctx, Args&&... args)
   },
                          *task.get());
 
-  //request base tables for indices to be built
+  // request base tables for indices to be built
   homogeneous_apply_refs([&inputs](auto& x) {
     return IndexManager<std::decay_t<decltype(x)>>::requestInputs(inputs, x);
   },

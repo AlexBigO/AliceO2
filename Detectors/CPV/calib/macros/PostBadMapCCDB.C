@@ -18,7 +18,7 @@
 void PostBadMapCCDB()
 {
 
-  //Post test bad map for CPV to test CCDB
+  // Post test bad map for CPV to test CCDB
 
   o2::ccdb::CcdbApi ccdb;
   std::map<std::string, std::string> metadata; // do we want to store any meta data?
@@ -29,7 +29,7 @@ void PostBadMapCCDB()
   int nBad = 50;
 
   for (int i = 0; i < nBad; i++) {
-    unsigned short channelID = gRandom->Uniform(56 * 64 * 3.5); //Random bad channels in 3.5 CPV modules
+    unsigned short channelID = gRandom->Uniform(56 * 64 * 3.5); // Random bad channels in 3.5 CPV modules
     o2cpvBM->addBadChannel(channelID);
   }
 

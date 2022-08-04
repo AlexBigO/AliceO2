@@ -313,7 +313,7 @@ void MatchTOF::addConstrainedSeed(o2::track::TrackParCov& trc, o2::dataformats::
   }
 
   mTracksSectIndexCache[trkType::CONSTR][sector].push_back(it);
-  //delete trc; // Check: is this needed?
+  // delete trc; // Check: is this needed?
 } //______________________________________________
 void MatchTOF::addTRDSeed(const o2::trd::TrackTRD& _tr, o2::dataformats::GlobalTrackID srcGID, float time0, float terr)
 {
@@ -360,7 +360,7 @@ void MatchTOF::addTPCSeed(const o2::tpc::TrackTPC& _tr, o2::dataformats::GlobalT
     return;
   }
 
-  o2::track::TrackLTIntegral intLT0; //mTPCTracksWork.back().getLTIntegralOut(); // we get the integrated length from TPC-ITC outward propagation
+  o2::track::TrackLTIntegral intLT0; // mTPCTracksWork.back().getLTIntegralOut(); // we get the integrated length from TPC-ITC outward propagation
   // compute track length up to now
   o2::base::Propagator::Instance()->estimateLTFast(intLT0, trc);
 
@@ -394,7 +394,7 @@ void MatchTOF::addTPCSeed(const o2::tpc::TrackTPC& _tr, o2::dataformats::GlobalT
   mLTinfos[trkType::UNCONS].emplace_back(intLT0);
 
   mTracksSectIndexCache[trkType::UNCONS][sector].push_back(it);
-  //delete trc; // Check: is this needed?
+  // delete trc; // Check: is this needed?
 }
 //______________________________________________
 bool MatchTOF::prepareTOFClusters()
@@ -497,7 +497,7 @@ void MatchTOF::doMatching(int sec)
     int istep = 1;                                                                                                      // number of steps
     float step = 1.0;                                                                                                   // step size in cm
 
-    //uncomment for local debug
+    // uncomment for local debug
     /*
     //trefTrk.getXYZGlo(posBeforeProp);
     //float posBeforeProp[3] = {trefTrk.getX(), trefTrk.getY(), trefTrk.getZ()}; // in local ref system
@@ -545,7 +545,7 @@ void MatchTOF::doMatching(int sec)
       }
 
       // uncomment below only for local debug; this will produce A LOT of output - one print per propagation step
-      //Printf("detIdTemp[0] = %d, detIdTemp[1] = %d, detIdTemp[2] = %d, detIdTemp[3] = %d, detIdTemp[4] = %d", detIdTemp[0], detIdTemp[1], detIdTemp[2], detIdTemp[3], detIdTemp[4]);
+      // Printf("detIdTemp[0] = %d, detIdTemp[1] = %d, detIdTemp[2] = %d, detIdTemp[3] = %d, detIdTemp[4] = %d", detIdTemp[0], detIdTemp[1], detIdTemp[2], detIdTemp[3], detIdTemp[4]);
       // if (nStripsCrossedInPropagation == 0) { // print in case you have a useful propagation
       //   LOG(debug) << "*********** We have crossed a strip during propagation!*********";
       //   LOG(debug) << "Global coordinates: pos[0] = " << pos[0] << ", pos[1] = " << pos[1] << ", pos[2] = " << pos[2];
@@ -803,7 +803,7 @@ void MatchTOF::doMatchingForTPC(int sec)
     int istep = 1;    // number of steps
     float step = 1.0; // step size in cm
 
-    //uncomment for local debug
+    // uncomment for local debug
     /*
     //trefTrk.getXYZGlo(posBeforeProp);
     //float posBeforeProp[3] = {trefTrk.getX(), trefTrk.getY(), trefTrk.getZ()}; // in local ref system
@@ -873,7 +873,7 @@ void MatchTOF::doMatchingForTPC(int sec)
           nStripsCrossedInPropagation[ibc]++;
         }
 
-        //Printf("nStepsInsideSameStrip[nStripsCrossedInPropagation-1] = %d", nStepsInsideSameStrip[nStripsCrossedInPropagation - 1]);
+        // Printf("nStepsInsideSameStrip[nStripsCrossedInPropagation-1] = %d", nStepsInsideSameStrip[nStripsCrossedInPropagation - 1]);
         if (nStepsInsideSameStrip[ibc][nStripsCrossedInPropagation[ibc] - 1] == 0) {
           detId[ibc][nStripsCrossedInPropagation[ibc] - 1][0] = detIdTemp[0];
           detId[ibc][nStripsCrossedInPropagation[ibc] - 1][1] = detIdTemp[1];
@@ -1074,8 +1074,8 @@ void MatchTOF::selectBestMatches()
     if (mMatchedClustersIndex[matchingPair.getTOFClIndex()] != -1) { // the cluster was already filled
       continue;
     }
-    mMatchedTracksIndex[trkType][itrk] = mMatchedTracks[trkType].size();                                              // index of the MatchInfoTOF correspoding to this track
-    mMatchedClustersIndex[matchingPair.getTOFClIndex()] = mMatchedTracksIndex[trkType][itrk];                         // index of the track that was matched to this cluster
+    mMatchedTracksIndex[trkType][itrk] = mMatchedTracks[trkType].size();                      // index of the MatchInfoTOF correspoding to this track
+    mMatchedClustersIndex[matchingPair.getTOFClIndex()] = mMatchedTracksIndex[trkType][itrk]; // index of the track that was matched to this cluster
 
     int trkTypeSplitted = trkType;
     auto sourceID = matchingPair.getTrackRef().getSource();

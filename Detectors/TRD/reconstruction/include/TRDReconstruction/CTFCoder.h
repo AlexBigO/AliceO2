@@ -197,8 +197,8 @@ o2::ctf::CTFIOSize CTFCoder::decode(const CTF::base& ec, VTRG& trigVec, VTRK& tr
 
   for (uint32_t itrig = 0; itrig < header.nTriggers; itrig++) {
     // restore TrigRecord
-    if (orbitInc[itrig]) {  // non-0 increment => new orbit
-      bc = bcInc[itrig];    // bcInc has absolute meaning
+    if (orbitInc[itrig]) { // non-0 increment => new orbit
+      bc = bcInc[itrig];   // bcInc has absolute meaning
       orbit += orbitInc[itrig];
     } else {
       bc += bcInc[itrig];

@@ -59,7 +59,7 @@ void DigitsPrinterSpec<InputType>::run(framework::ProcessingContext& pc)
       for (const auto& d : objectsTrigger) {
         std::cout << "[EMCALDigitsPrinter - process] Channel: " << d.getTower() << std::endl;
         std::cout << "[EMCALDigitsPrinter - process] Energy: " << d.getEnergy() << std::endl;
-        //std::cout << d << std::endl;
+        // std::cout << d << std::endl;
       }
     }
   }
@@ -83,5 +83,5 @@ o2::framework::DataProcessorSpec o2::emcal::reco_workflow::getEmcalDigitsPrinter
   throw std::runtime_error("Input type not supported");
 }
 
-//template class o2::emcal::reco_workflow::DigitsPrinterSpec<o2::emcal::Digit>;
-//template class o2::emcal::reco_workflow::DigitsPrinterSpec<o2::emcal::Cell>;
+// template class o2::emcal::reco_workflow::DigitsPrinterSpec<o2::emcal::Digit>;
+// template class o2::emcal::reco_workflow::DigitsPrinterSpec<o2::emcal::Cell>;

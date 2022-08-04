@@ -23,7 +23,7 @@
         "maxNumberCycles": "-1",
         "dataSource": {
           "type": "direct",
-          "query" : "pedestals:MCH/PEDESTALS"
+          "query": "pedestals:MCH/PEDESTALS"
         },
         "location": "remote"
       }

@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(TestBasicCCDBManager)
   BOOST_CHECK(objB && (*objB) == ccdbObjO); // make sure correct object is loaded
 
   // get object in TimeMachine mode in the past
-  cdb.setCreatedNotAfter(1);          // set upper object validity
+  cdb.setCreatedNotAfter(1); // set upper object validity
   cdb.setFatalWhenNull(false);
   objA = cdb.get<std::string>(pathA); // should not be loaded
   BOOST_CHECK(!objA);                 // make sure correct object is not loaded

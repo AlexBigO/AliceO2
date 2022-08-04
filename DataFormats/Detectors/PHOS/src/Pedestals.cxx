@@ -17,14 +17,14 @@ using namespace o2::phos;
 
 Pedestals::Pedestals(int /*dummy*/)
 {
-  //produce reasonable objest for test purposes
+  // produce reasonable objest for test purposes
   mHGPedestals.fill(40);
   mLGPedestals.fill(35);
 }
 
 bool Pedestals::setHGPedestals(TH1* h)
 {
-  //We assume that histogram if filled vs absId of channels
+  // We assume that histogram if filled vs absId of channels
   if (!h) {
     LOG(error) << "no input histogam";
     return false;
@@ -46,7 +46,7 @@ bool Pedestals::setHGPedestals(TH1* h)
 }
 bool Pedestals::setLGPedestals(TH1* h)
 {
-  //We assume that histogram if filled vs absId of channels
+  // We assume that histogram if filled vs absId of channels
   if (!h) {
     LOG(error) << "no input histogam";
     return false;

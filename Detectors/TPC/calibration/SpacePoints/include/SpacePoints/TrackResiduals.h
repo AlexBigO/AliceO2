@@ -566,8 +566,8 @@ class TrackResiduals
   std::vector<LocalResid> mLocalResidualsIn;            ///< binned local residuals from aggregator
   std::vector<VoxStats> mVoxStatsIn, *mVoxStatsInPtr{&mVoxStatsIn}; ///< the statistics information for each voxel from the aggregator
   // output data
-  std::unique_ptr<TFile> mFileOut; ///< output debug file
-  std::unique_ptr<TTree> mTreeOut; ///< tree holding debug output
+  std::unique_ptr<TFile> mFileOut;               ///< output debug file
+  std::unique_ptr<TTree> mTreeOut;               ///< tree holding debug output
   std::vector<UnbinnedResid> mUnbinnedResiduals; ///< large vector for the unbinned residual data which is sent to the aggregator
   std::vector<UnbinnedResid>* mUnbinnedResidualsPtr{&mUnbinnedResiduals};
   std::vector<TrackData> mTrackDataOut; // the same as mTrackDataPtr, but the rejected tracks are removed, to be sent to the aggregator

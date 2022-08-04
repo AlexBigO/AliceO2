@@ -313,7 +313,7 @@ GPUdi() int TPCFastSpaceChargeCorrection::getCorrectionOld(int slice, int row, f
 GPUdi() void TPCFastSpaceChargeCorrection::getCorrectionInvCorrectedX(
   int slice, int row, float cu, float cv, float& x) const
 {
-  //const RowInfo& rowInfo = getRowInfo(row);
+  // const RowInfo& rowInfo = getRowInfo(row);
   const SliceRowInfo& sliceRowInfo = getSliceRowInfo(slice, row);
   const Spline2D<float, 1>& spline = reinterpret_cast<const Spline2D<float, 1>&>(getSpline(slice, row));
   const float* splineData = getSplineData(slice, row, 1);
@@ -327,7 +327,7 @@ GPUdi() void TPCFastSpaceChargeCorrection::getCorrectionInvCorrectedX(
 GPUdi() void TPCFastSpaceChargeCorrection::getCorrectionInvUV(
   int slice, int row, float corrU, float corrV, float& nomU, float& nomV) const
 {
-  //const RowInfo& rowInfo = getRowInfo(row);
+  // const RowInfo& rowInfo = getRowInfo(row);
   const SliceRowInfo& sliceRowInfo = getSliceRowInfo(slice, row);
   const Spline2D<float, 2>& spline = reinterpret_cast<const Spline2D<float, 2>&>(getSpline(slice, row));
   const float* splineData = getSplineData(slice, row, 2);

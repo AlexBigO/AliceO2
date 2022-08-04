@@ -62,7 +62,7 @@ class FITCalibrationApi
 
 inline void FITCalibrationApi::init()
 {
-  //caching in basicCCDBManager enabled by default
+  // caching in basicCCDBManager enabled by default
   o2::ccdb::BasicCCDBManager::instance().setURL(DEFAULT_CCDB_URL);
 }
 
@@ -182,7 +182,6 @@ inline std::vector<FITCalibrationApi::CalibObjWithInfoType> FITCalibrationApi::p
   return result;
 }
 
-
 } // namespace o2::fit
 
-#endif //O2_FITCALIBRATIONAPI_H
+#endif // O2_FITCALIBRATIONAPI_H

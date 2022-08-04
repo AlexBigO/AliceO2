@@ -33,7 +33,7 @@ using TimeSlewing = o2::dataformats::CalibTimeSlewingParamTOF;
 using clbUtils = o2::calibration::Utils;
 using boost::histogram::indexed;
 using namespace o2::tof;
-//using boost::histogram::algorithm; // not sure why it does not work...
+// using boost::histogram::algorithm; // not sure why it does not work...
 
 //_____________________________________________
 void TOFChannelData::fill(const gsl::span<const o2::dataformats::CalibInfoTOF> data)
@@ -96,8 +96,8 @@ void TOFChannelData::fill(const gsl::span<const o2::dataformats::CalibInfoTOF> d
       int istripInSector = chInSect / 96;
       int halffea = (chInSect % 96) / 12;
       int choffset = (istrip - istripInSector) * 96;
-      //int minch = istripInSector * 96;
-      //int maxch = minch + 96;
+      // int minch = istripInSector * 96;
+      // int maxch = minch + 96;
       int minch = istripInSector * 96 + halffea * 12;
       int maxch = minch + 12;
       for (int ich = minch; ich < maxch; ich++) {
@@ -184,7 +184,7 @@ bool TOFChannelData::hasEnoughData(int minEntries) const
   // with at least one entry is greater than the cut at "minEntries"
   // Channels/pairs with zero entries are assumed to be off --> we do not consider them
 
-  //printEntries();
+  // printEntries();
   int nValid = 0;
   float mean = 0;
   int smallestElementIndex = -1;
@@ -323,24 +323,23 @@ float TOFChannelData::integral(int chmin, int chmax, float binmin, float binmax)
   int chinsectormax = chmax % mNElsPerSector;
 
   float res2 = 0;
-  //TStopwatch t3;
+  // TStopwatch t3;
   int ind = -1;
   int binxmin = findBin(binmin);
   int binxmax = findBin(binmax);
   LOG(debug) << "binxmin = " << binxmin << ", binxmax = " << binxmax;
-  //t3.Start();
+  // t3.Start();
   for (unsigned j = chinsectormin; j <= chinsectormax; ++j) {
     for (unsigned i = binxmin; i <= binxmax; ++i) {
       const auto& v = mHisto[sector].at(i, j);
       res2 += v;
     }
   }
-  //t3.Stop();
+  // t3.Stop();
   LOG(debug) << "Time for integral looping over axis (result = " << res2 << "):";
-  //t3.Print();
+  // t3.Print();
 
   return res2;
-
 }
 
 //_____________________________________________
@@ -372,19 +371,18 @@ float TOFChannelData::integral(int chmin, int chmax, int binxmin, int binxmax) c
   int chinsectormax = chmax % mNElsPerSector;
 
   float res2 = 0;
-  //TStopwatch t3;
-  //t3.Start();
+  // TStopwatch t3;
+  // t3.Start();
   for (unsigned j = chinsectormin; j <= chinsectormax; ++j) {
     for (unsigned i = binxmin; i <= binxmax; ++i) {
       const auto& v = mHisto[sector].at(i, j);
       res2 += v;
     }
   }
-  //t3.Stop();
+  // t3.Stop();
   LOG(debug) << "Time for integral looping over axis (result = " << res2 << "):";
-  //t3.Print();
+  // t3.Print();
   return res2;
-
 }
 
 //_____________________________________________
@@ -608,7 +606,7 @@ void TOFChannelCalibrator<T>::finalizeSlotWithCosmics(Slot& slot)
       //        continue;
       //      }
 
-      //update calibrations
+      // update calibrations
       for (int ichLocal = 0; ichLocal < Geo::NPADS; ichLocal++) {
         int ich = ichLocal + offsetstrip;
         ts.updateOffsetInfo(ich, localFitter.GetParameter(ichLocal));

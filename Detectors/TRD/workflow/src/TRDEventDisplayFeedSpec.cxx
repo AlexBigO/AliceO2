@@ -279,4 +279,4 @@ o2::framework::DataProcessorSpec getTRDEventDisplayFeedSpec(int nEventsMax)
 }
 
 } // namespace trd
-} //end namespace o2
+} // end namespace o2

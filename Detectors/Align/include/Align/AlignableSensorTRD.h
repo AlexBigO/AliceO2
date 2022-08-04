@@ -18,8 +18,8 @@
 #define ALIGNABLESENSORTRD_H
 
 #include "Align/AlignableSensor.h"
-//class AliTrackPointArray;
-//class AliESDtrack;
+// class AliTrackPointArray;
+// class AliESDtrack;
 class AlignmentPoint;
 class TObjArray;
 

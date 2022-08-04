@@ -71,24 +71,24 @@ Word 7  |              reserved 5                       |             link 14 da
 
   union {
     uint64_t word0 = 0x0;
-    //first word          *
-    //                6         5         4         3         2         1
-    //             3210987654321098765432109876543210987654321098765432109876543210
-    // uint64_t:   0000000000000000000000000000000000000000000000000000000000000000
-    //             |                               |   |   |   |           |-------- 0..7   TRD Header version
-    //             |                               |   |   |   |-------------------- 8..19  bunch crossing
-    //             |                               |   |   |------------------------ 20..23 stop bit
-    //             |                               |   |---------------------------- 24..27 end point
-    //             |                               |-------------------------------- 28..31 event type
-    //             |---------------------------------------------------------------- 32..63 reserved1
+    // first word          *
+    //                 6         5         4         3         2         1
+    //              3210987654321098765432109876543210987654321098765432109876543210
+    //  uint64_t:   0000000000000000000000000000000000000000000000000000000000000000
+    //              |                               |   |   |   |           |-------- 0..7   TRD Header version
+    //              |                               |   |   |   |-------------------- 8..19  bunch crossing
+    //              |                               |   |   |------------------------ 20..23 stop bit
+    //              |                               |   |---------------------------- 24..27 end point
+    //              |                               |-------------------------------- 28..31 event type
+    //              |---------------------------------------------------------------- 32..63 reserved1
     struct {
       uint64_t HeaderVersion : 8;  // TRD Header Version
       uint64_t BunchCrossing : 12; // bunch crossing of the physics trigger.
-      //NB  The BC in the RDH is the BC sent together with the heartbeat trigger, while the BC in the HalfCRUHeader is the BC of the physics trigger where the data that follows the HalfCRUHeader belongs to. However, it is not forbidden for CTP to send the heartbeat trigger together with a physics trigger, in this case the two would match (accidentally).
-      uint64_t StopBit : 4;        // 8 .. 11 stop bit  0x1 if TRD packet is last data packet of trigger, else 0x0
-      uint64_t EndPoint : 4;       // pci end point upper or lower 15 links of cru
-      uint64_t EventType : 4;      // bit 0..7 event type of the data. Trigger bits from TTC-PON message, distinguish physics from calibration events.
-      uint64_t reserveda : 32;     //
+      // NB  The BC in the RDH is the BC sent together with the heartbeat trigger, while the BC in the HalfCRUHeader is the BC of the physics trigger where the data that follows the HalfCRUHeader belongs to. However, it is not forbidden for CTP to send the heartbeat trigger together with a physics trigger, in this case the two would match (accidentally).
+      uint64_t StopBit : 4;    // 8 .. 11 stop bit  0x1 if TRD packet is last data packet of trigger, else 0x0
+      uint64_t EndPoint : 4;   // pci end point upper or lower 15 links of cru
+      uint64_t EventType : 4;  // bit 0..7 event type of the data. Trigger bits from TTC-PON message, distinguish physics from calibration events.
+      uint64_t reserveda : 32; //
     } __attribute__((__packed__));
   };
   union {
@@ -109,7 +109,7 @@ Word 7  |              reserved 5                       |             link 14 da
   };
   union {
     uint64_t word47[4];
-    //15 16 bit data sizes and 1 16 bit reserved word.
+    // 15 16 bit data sizes and 1 16 bit reserved word.
     struct {
       struct {
         uint64_t size : 16;
@@ -157,18 +157,18 @@ struct TrackletHCHeader {
 /// \brief Header for MCM tracklet data outuput
 //         This constitutes the "4x32" bits of information from a single MCM, TrackletMCMHeader and 1-3 TrackletMCMData.
 struct TrackletMCMHeader {
-  //first word          *
-  //             10987654321098765432109876543210
-  // uint32_t:   33222222222211111111110000000000
-  //             1zzzz  pppppppp        pppppppp1
-  //             ||   yy|       pppppppp |      |--- 0 1 check bits
-  //             ||   | |       |        ----------- 1-8   pid for tracklet 3 second part
-  //             ||   | |       -------------------- 9-16  pid for tracklet 2 second part
-  //             ||   | ---------------------------- 17-24 pid for tracklet 1 second part
-  //             ||   ------------------------------ 25-26 col
-  //             |---------------------------------- 27-30 padrow
-  //             ----------------------------------- 31 1
-  //TODO need to check endianness, I have a vague memory the trap chip has different endianness to x86.
+  // first word          *
+  //              10987654321098765432109876543210
+  //  uint32_t:   33222222222211111111110000000000
+  //              1zzzz  pppppppp        pppppppp1
+  //              ||   yy|       pppppppp |      |--- 0 1 check bits
+  //              ||   | |       |        ----------- 1-8   pid for tracklet 3 second part
+  //              ||   | |       -------------------- 9-16  pid for tracklet 2 second part
+  //              ||   | ---------------------------- 17-24 pid for tracklet 1 second part
+  //              ||   ------------------------------ 25-26 col
+  //              |---------------------------------- 27-30 padrow
+  //              ----------------------------------- 31 1
+  // TODO need to check endianness, I have a vague memory the trap chip has different endianness to x86.
   union {
     uint32_t word;
     struct {
@@ -245,13 +245,13 @@ struct DigitHCHeader {
     } __attribute__((__packed__));
   };
 };
-//The next hcheaders are all optional, there can be 8, we only have 3 for now.
-//They can all be distinguished by their res.
+// The next hcheaders are all optional, there can be 8, we only have 3 for now.
+// They can all be distinguished by their res.
 struct DigitHCHeader1 {
   //             10987654321098765432109876543210
   // uint32_t:   00000000000000000000000000000000
   //
-  union { //section 15.6.2 in tdp
+  union { // section 15.6.2 in tdp
     uint32_t word;
     struct {
       uint32_t res : 2;
@@ -265,7 +265,7 @@ struct DigitHCHeader1 {
 struct DigitHCHeader2 {
   //             10987654321098765432109876543210
   // uint32_t:   00000000000000000000000000000000
-  union { //section 15.6.3 in tdp
+  union { // section 15.6.3 in tdp
     uint32_t word;
     struct {
       uint32_t res : 6;
@@ -282,12 +282,12 @@ struct DigitHCHeader2 {
 struct DigitHCHeader3 {
   //             10987654321098765432109876543210
   // uint32_t:   00000000000000000000000000000000
-  union { //section 15.6.4 in tdp
+  union { // section 15.6.4 in tdp
     uint32_t word;
     struct {
       uint32_t res : 6;
-      uint32_t svnrver : 13; //readout program svn revision
-      uint32_t svnver : 13;  //assember programm svn revision
+      uint32_t svnrver : 13; // readout program svn revision
+      uint32_t svnver : 13;  // assember programm svn revision
     } __attribute__((__packed__));
   };
 };
@@ -296,7 +296,7 @@ struct DigitMCMHeader {
   //             10987654321098765432109876543210
   // uint32_t:   00000000000000000000000000000000
   union {
-    uint32_t word; //MCM header
+    uint32_t word; // MCM header
     struct {
       uint32_t res : 4; // reserve 1100
       uint32_t eventcount : 20;
@@ -312,7 +312,7 @@ struct DigitMCMADCMask {
   //             10987654321098765432109876543210
   // uint32_t:   00000000000000000000000000000000
   union {
-    uint32_t word; //MCM ADC MASK header
+    uint32_t word; // MCM ADC MASK header
     struct {
       uint32_t j : 4; // 0xc
       uint32_t adcmask : 21;
@@ -322,7 +322,7 @@ struct DigitMCMADCMask {
   };
 };
 
-//the odd numbering of 1 2 3 and 6 are taken from the TDP page 111 section 15.7.2, 15.7.3 15.7.4 15.7.5
+// the odd numbering of 1 2 3 and 6 are taken from the TDP page 111 section 15.7.2, 15.7.3 15.7.4 15.7.5
 struct trdTestPattern1 {
   //             10987654321098765432109876543210
   // uint32_t:   00000000000000000000000000000000
@@ -365,7 +365,7 @@ struct trdTestPattern3 {
   union {
     uint32_t word;
     struct {
-      uint32_t eventcount : 12; //lower 12 bits of ecounter
+      uint32_t eventcount : 12; // lower 12 bits of ecounter
       uint32_t stack : 5;
       uint32_t layer : 3;
       uint32_t roc : 3;
@@ -380,7 +380,7 @@ struct trdTestPattern6 {
   // uint32_t:   00000000000000000000000000000000
   //             1zzzz  pppppppp        pppppppp1
   union {
-    uint32_t word; //HC header0
+    uint32_t word; // HC header0
     struct {
       uint32_t eventcount; // lower 4 bits of e counter.
       uint32_t stack : 5;  // starting at 1
@@ -496,6 +496,6 @@ int getNextMCMADCfromBP(uint32_t& bp, int channel);
 
 inline bool isTrackletHCHeader(uint32_t& header) { return (((header >> 12) & 0x1) == 0x1); }
 inline bool isTrackletMCMHeader(uint32_t& header) { return ((header & 0x80000001) == 0x80000001); }
-}
-}
+} // namespace trd
+} // namespace o2
 #endif

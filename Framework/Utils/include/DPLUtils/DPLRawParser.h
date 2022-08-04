@@ -342,4 +342,4 @@ class DPLRawParser
 
 } // namespace o2::framework
 
-#endif //FRAMEWORK_UTILS_DPLRAWPARSER_H
+#endif // FRAMEWORK_UTILS_DPLRAWPARSER_H

@@ -21,7 +21,7 @@
 #include "TRDReconstruction/EventRecord.h"
 #include "fairlogger/Logger.h"
 
-//TODO come back and figure which of below headers I actually need.
+// TODO come back and figure which of below headers I actually need.
 #include <cstring> //memcpy
 #include <string>
 #include <vector>
@@ -103,14 +103,14 @@ void DigitsParser::OutputIncomingData()
 int DigitsParser::Parse(bool verbose)
 {
 
-  //we are handed the buffer payload of an rdh and need to parse its contents.
-  //producing a vector of digits.
+  // we are handed the buffer payload of an rdh and need to parse its contents.
+  // producing a vector of digits.
   mVerbose = verbose;
 
   mState = StateDigitMCMHeader;
   mDataWordsParsed = 0; // count of data wordsin data that have been parsed in current call to parse.
   mWordsDumped = 0;
-  mDigitsFound = 0;     // tracklets found in the data block, mostly used for debugging.
+  mDigitsFound = 0; // tracklets found in the data block, mostly used for debugging.
   mBufferLocation = 0;
   mPaddingWordsCounter = 0;
   int bitsinmask = 0;
@@ -123,13 +123,13 @@ int DigitsParser::Parse(bool verbose)
   }
   int mcmdatacount = 0;
   int digittimebinoffset = 0;
-  //mData holds a buffer containing digits parse placing the read digits where they need to be
-  // due to the nature of the incoming data, there will *never* straggling digits or for that matter trap outputs spanning a boundary.
-  // data starts with a DigitHCHeader, so pull that off first to simplify looping
+  // mData holds a buffer containing digits parse placing the read digits where they need to be
+  //  due to the nature of the incoming data, there will *never* straggling digits or for that matter trap outputs spanning a boundary.
+  //  data starts with a DigitHCHeader, so pull that off first to simplify looping
 
   for (auto word = mStartParse; word < mEndParse; ++word) { // loop over the entire data buffer (a complete link of digits)
-    //loop over all the words
-    //check for digit end marker
+    // loop over all the words
+    // check for digit end marker
     if (mByteOrderFix) {
       // byte swap if needed.
       swapByteOrder(*word);
@@ -140,14 +140,14 @@ int DigitsParser::Parse(bool verbose)
       if (mHeaderVerbose) {
         LOG(info) << "*** DigitEndMarker :0x" << std::hex << *word << "::0x" << *nextword << " at offset " << std::distance(mStartParse, word);
       }
-      //state *should* be StateDigitMCMData check that it is
+      // state *should* be StateDigitMCMData check that it is
       if (mState == StateDigitMCMData || mState == StateDigitEndMarker || mState == StateDigitHCHeader || mState == StateDigitMCMHeader) {
       } else {
         incParsingError(TRDParsingDigitEndMarkerWrongState);
       }
-      //only thing that can remain is the padding.
-      //now read padding words till end.
-      //no need to byteswap its uniform.
+      // only thing that can remain is the padding.
+      // now read padding words till end.
+      // no need to byteswap its uniform.
       mBufferLocation += 2; // 2 words forward.
       mDataWordsParsed += 2;
       mState = StateDigitEndMarker;
@@ -157,8 +157,8 @@ int DigitsParser::Parse(bool verbose)
       }
       word = mEndParse;
     } else {
-      if ((*word & 0xf) == 0xc && (mState == StateDigitMCMHeader || mState == StateDigitMCMData)) { //marker for DigitMCMHeader.
-        //read the header
+      if ((*word & 0xf) == 0xc && (mState == StateDigitMCMHeader || mState == StateDigitMCMData)) { // marker for DigitMCMHeader.
+        // read the header
         mcmdatacount = 0;
         mCurrentADCChannel = 0;
         mDigitMCMHeader = (DigitMCMHeader*)(word);
@@ -184,7 +184,7 @@ int DigitsParser::Parse(bool verbose)
             mWordsDumped += std::distance(word, mEndParse) - 1;
             word = mEndParse;
           }
-          //the case of rob not changing we ignore, error condition handled by mcm # increasing.
+          // the case of rob not changing we ignore, error condition handled by mcm # increasing.
         }
         if (mDigitMCMHeader->mcm < lastmcmread && mDigitMCMHeader->rob == lastrobread) {
           incParsingError(TRDParsingDigitMCMNotIncreasing);
@@ -193,8 +193,8 @@ int DigitsParser::Parse(bool verbose)
         lastrobread = mDigitMCMHeader->rob;
         lasteventcounterread = mDigitMCMHeader->eventcount;
         if (mDigitHCHeader.major & 0x20) {
-          //zero suppressed
-          //so we have an adcmask next
+          // zero suppressed
+          // so we have an adcmask next
           std::advance(word, 1);
           if (mByteOrderFix) {
             // byte swap if needed.
@@ -210,47 +210,47 @@ int DigitsParser::Parse(bool verbose)
           }
           std::bitset<21> adcmask(mADCMask);
           bitsinmask = adcmask.count();
-          //check ADCMask:
+          // check ADCMask:
           if (!sanityCheckDigitMCMADCMask(*mDigitMCMADCMask, bitsinmask)) {
             incParsingError(TRDParsingDigitADCMaskMismatch);
             mWordsDumped += std::distance(word, mEndParse) - 1;
             word = mEndParse;
           }
           overchannelcount = 0;
-          //output all the adc data for the described adc mask, i.e 10 32 bit words per bit in mask.
+          // output all the adc data for the described adc mask, i.e 10 32 bit words per bit in mask.
         }
         mBufferLocation++;
-        //new header so digit word count becomes zero
+        // new header so digit word count becomes zero
         mDigitWordCount = 0;
         mState = StateDigitMCMData;
         mMCM = mDigitMCMHeader->mcm;
         mROB = mDigitMCMHeader->rob;
-        //TOOD does it match the feeid which ncodes this information as well.
+        // TOOD does it match the feeid which ncodes this information as well.
         //
         mEventCounter = mDigitMCMHeader->eventcount;
         mDataWordsParsed++; // header
         if (mDigitHCHeader.major & 0x20) {
-          //zero suppressed digits
+          // zero suppressed digits
           mDataWordsParsed++; // adc mask
         }
         mCurrentADCChannel = 0;
         mADCValues.fill(0);
         digittimebinoffset = 0;
         if (!mReturnVector) {
-          //returning the raw "compressed" data stream.
-          //build the digit header and add to outgoing buffer;
+          // returning the raw "compressed" data stream.
+          // build the digit header and add to outgoing buffer;
           uint32_t* header = &(*mData)[mReturnVectorPos];
-          //build header.
+          // build header.
         }
         // we dont care about the year flag, we are >2007 already.
       } else {
-        if (mState == StateDigitMCMHeader) { //safety check for some weird data occurances
+        if (mState == StateDigitMCMHeader) { // safety check for some weird data occurances
           unsigned int lastbit = (*word) & 0xf;
           if (mHeaderVerbose) {
             LOG(info) << " we bypassed the mcmheader block but the state is MCMHeader ... 0x" << std::hex << *word << " " << lastbit << " should == 0xc";
           }
           incParsingError(TRDParsingDigitMCMHeaderBypassButStateMCMHeader);
-          //dump data
+          // dump data
           mBufferLocation++;
           mWordsDumped++;
           // carry on parsing we might find an mcm header again
@@ -258,13 +258,13 @@ int DigitsParser::Parse(bool verbose)
           if (mHeaderVerbose) {
             LOG(info) << "***CRUPADDING32 word : 0x" << std::hex << *word << "  state is:" << mState;
           }
-          //another pointer with padding.
+          // another pointer with padding.
           mBufferLocation++;
           mPaddingWordsCounter++;
           mState = StatePadding;
           // mDataWordsParsed++;
           mDataWordsParsed += std::distance(word, mEndParse);
-          //dump the rest of the received buffer its the rdh with e's
+          // dump the rest of the received buffer its the rdh with e's
           word = mEndParse;
           mcmdatacount = 0;
           // this is supposed to carry on till the end of the buffer, hence the term padding.
@@ -273,22 +273,22 @@ int DigitsParser::Parse(bool verbose)
 
             if (mHeaderVerbose) {
               LOG(info) << "***DigitEndMarker State : " << std::hex << *word << " at offset " << std::distance(mStartParse, word);
-              //we are at the end
-              // do nothing.
+              // we are at the end
+              //  do nothing.
             }
             incParsingError(TRDParsingDigitEndMarkerStateButReadingMCMADCData);
             mDataWordsParsed += std::distance(word, mEndParse) - 1;
             word = mEndParse;
           } else {
-            //for the case of on flp build a vector of tracklets, then pack them into a data stream with a header.
-            //for dpl build a vector and connect it with a triggerrecord.
+            // for the case of on flp build a vector of tracklets, then pack them into a data stream with a header.
+            // for dpl build a vector and connect it with a triggerrecord.
             if (mHeaderVerbose) {
               LOG(info) << "***DigitMCMWord : " << std::hex << *word << " channel:" << std::dec << mCurrentADCChannel << " wordcount:" << mDigitWordCount << " at offset " << std::hex << std::distance(mStartParse, word);
             }
             if (mDigitWordCount == 0 || mDigitWordCount == mTimeBins / 3) {
-              //new adc expected so set channel accord to bitpattern or sequential depending on zero suppressed or not.
+              // new adc expected so set channel accord to bitpattern or sequential depending on zero suppressed or not.
               if (mDigitHCHeader.major & 0x20) { // zero suppressed
-                //zero suppressed, so channel must be extracted from next available bit in adcmask
+                // zero suppressed, so channel must be extracted from next available bit in adcmask
                 mCurrentADCChannel = getNextMCMADCfromBP(mADCMask, mCurrentADCChannel);
 
                 if (mCurrentADCChannel == 21) {
@@ -304,8 +304,8 @@ int DigitsParser::Parse(bool verbose)
                   }
                 }
                 if (mADCMask == 0) {
-                  //no more adc for zero suppression.
-                  //now we should either have another MCMHeader, or End marker
+                  // no more adc for zero suppression.
+                  // now we should either have another MCMHeader, or End marker
                   if (*word != 0 && *(std::next(word)) != 0) { // end marker is a sequence of 32 bit 2 zeros.
                     mState = StateDigitMCMHeader;
                   } else {
@@ -335,7 +335,7 @@ int DigitsParser::Parse(bool verbose)
 
               if (digittimebinoffset > mTimeBins) {
                 incParsingError(TRDParsingDigitSanityCheck);
-                //bale out TODO
+                // bale out TODO
                 mWordsDumped += std::distance(word, mEndParse) - 1;
                 word = mEndParse;
               }
@@ -343,11 +343,11 @@ int DigitsParser::Parse(bool verbose)
                 LOG(info) << "digit word count is : " << mDigitWordCount << " digittimebinoffset = " << digittimebinoffset;
               }
               if (mDigitWordCount == mTimeBins / 3) {
-                //write out adc value to vector
-                //zero digittimebinoffset
+                // write out adc value to vector
+                // zero digittimebinoffset
                 mEventRecord->getDigits().emplace_back(mDetector, mROB, mMCM, mCurrentADCChannel, mADCValues); // outgoing parsed digits
                 mEventRecord->incDigitsFound(1);
-                //mEventRecords->incMCMDigitCount(mDetector, mROB, mMCM, 1);
+                // mEventRecords->incMCMDigitCount(mDetector, mROB, mMCM, 1);
                 if (mDataVerbose) {
                   LOG(info) << "DDD " << mDetector << ":" << mROB << ":" << mMCM << ":" << mCurrentADCChannel
                             << " supermodule:stack:layer:side : " << mDigitHCHeader.supermodule << ":" << mDigitHCHeader.stack << ":" << mDigitHCHeader.layer << ":" << mDigitHCHeader.side;
@@ -360,15 +360,15 @@ int DigitsParser::Parse(bool verbose)
                 }
               } // mDigitWordCount == timebins/3
             }
-          }   //else digitendmarker if statement
-        }     // else of if crupadding word
-      }       // else of if digitMCMheader
-    }         // else of if digitendmarker
-    //accounting
-    // mCurrentLinkDataPosition256++;
-    // mCurrentHalfCRUDataPosition256++;
-    // mTotalHalfCRUDataLength++;
-    //end of data so
+          } // else digitendmarker if statement
+        }   // else of if crupadding word
+      }     // else of if digitMCMheader
+    }       // else of if digitendmarker
+    // accounting
+    //  mCurrentLinkDataPosition256++;
+    //  mCurrentHalfCRUDataPosition256++;
+    //  mTotalHalfCRUDataLength++;
+    // end of data so
   } // for loop over word
   if (!(mState == StateDigitMCMHeader || mState == StatePadding || mState == StateDigitEndMarker)) {
     incParsingError(TRDParsingDigitParsingExitInWrongState);

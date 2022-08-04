@@ -50,5 +50,4 @@ std::string getTreeName(header::DataHeader dh)
   return treeName;
 }
 
-
 } // namespace o2::aod::datamodel

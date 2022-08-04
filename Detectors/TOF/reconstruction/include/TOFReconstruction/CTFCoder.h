@@ -68,17 +68,17 @@ o2::ctf::CTFIOSize CTFCoder::encode(VEC& buff, const gsl::span<const ReadoutWind
   using MD = o2::ctf::Metadata::OptStore;
   // what to do which each field: see o2::ctd::Metadata explanation
   constexpr MD optField[CTF::getNBlocks()] = {
-    MD::EENCODE, //BLCbcIncROF
-    MD::EENCODE, //BLCorbitIncROF
-    MD::EENCODE, //BLCndigROF
-    MD::EENCODE, //BLCndiaROF
-    MD::EENCODE, //BLCndiaCrate
-    MD::EENCODE, //BLCtimeFrameInc
-    MD::EENCODE, //BLCtimeTDCInc
-    MD::EENCODE, //BLCstripID
-    MD::EENCODE, //BLCchanInStrip
-    MD::EENCODE, //BLCtot
-    MD::EENCODE, //BLCpattMap
+    MD::EENCODE, // BLCbcIncROF
+    MD::EENCODE, // BLCorbitIncROF
+    MD::EENCODE, // BLCndigROF
+    MD::EENCODE, // BLCndiaROF
+    MD::EENCODE, // BLCndiaCrate
+    MD::EENCODE, // BLCtimeFrameInc
+    MD::EENCODE, // BLCtimeTDCInc
+    MD::EENCODE, // BLCstripID
+    MD::EENCODE, // BLCchanInStrip
+    MD::EENCODE, // BLCtot
+    MD::EENCODE, // BLCpattMap
   };
   CompressedInfos cc;
   compress(cc, rofRecVec, cdigVec, pattVec);
@@ -191,7 +191,7 @@ void CTFCoder::decompress(const CompressedInfos& cc, VROF& rofRecVec, VDIG& cdig
 
     digCopy.resize(cc.ndigROF[irof]);
     for (uint32_t idig = 0; idig < cc.ndigROF[irof]; idig++) {
-      auto& digit = digCopy[idig]; //cdigVec[digCount];
+      auto& digit = digCopy[idig]; // cdigVec[digCount];
       LOGF(debug, "%d) TF=%d, TDC=%d, STRIP=%d, CH=%d", idig, cc.timeFrameInc[digCount], cc.timeTDCInc[digCount], cc.stripID[digCount], cc.chanInStrip[digCount]);
       if (cc.timeFrameInc[digCount]) { // new time frame
         ctdc = cc.timeTDCInc[digCount];

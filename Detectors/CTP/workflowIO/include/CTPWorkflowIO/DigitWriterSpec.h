@@ -29,4 +29,4 @@ framework::DataProcessorSpec getDigitWriterSpec(bool raw = true);
 }
 } // namespace o2
 
-#endif //O2_CTPDIGITWRITERSPEC_H
+#endif // O2_CTPDIGITWRITERSPEC_H

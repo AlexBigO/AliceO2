@@ -36,7 +36,10 @@ binary_GPUReconstructionOCL2Code_amd_end - _binary_GPUReconstructionOCL2Code_amd
 QGET_LD_BINARY_SYMBOLS(GPUReconstructionOCL2Code_spirv);
 #endif
 
-GPUReconstruction* GPUReconstruction_Create_OCL2(const GPUSettingsDeviceBackend& cfg) { return new GPUReconstructionOCL2(cfg); }
+GPUReconstruction* GPUReconstruction_Create_OCL2(const GPUSettingsDeviceBackend& cfg)
+{
+  return new GPUReconstructionOCL2(cfg);
+}
 
 GPUReconstructionOCL2Backend::GPUReconstructionOCL2Backend(const GPUSettingsDeviceBackend& cfg) : GPUReconstructionOCL(cfg)
 {

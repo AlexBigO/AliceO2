@@ -21,8 +21,8 @@
 #include "SimConfig/G4Params.h"
 #include "Generators/DecayerPythia8.h"
 
-//using declarations here since SetCuts.C and g4Config.C are included within namespace
-// these are used in g4Config.C
+// using declarations here since SetCuts.C and g4Config.C are included within namespace
+//  these are used in g4Config.C
 using std::cout;
 using std::endl;
 // these are used in commonConfig.C

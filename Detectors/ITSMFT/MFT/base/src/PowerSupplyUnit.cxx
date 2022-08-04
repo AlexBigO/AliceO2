@@ -42,7 +42,7 @@ PowerSupplyUnit::PowerSupplyUnit()
 TGeoVolumeAssembly* PowerSupplyUnit::create()
 {
 
-  //TGeoManager *gManager = new TGeoManager();
+  // TGeoManager *gManager = new TGeoManager();
 
   TGeoMedium* kMedPeek = gGeoManager->GetMedium("MFT_PEEK$");
   TGeoMedium* kMed_Water = gGeoManager->GetMedium("MFT_Water$");
@@ -60,12 +60,12 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   Double_t block_angle_index[] = {126.08, 114.03, 101.91, 89.96, 77.88, 66.06, 54.16, 42.06, 30, 17.99, 6.07};
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //Middle Spacer
+  // Middle Spacer
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   std::string name_middle_spacer_main_cover = "";
 
-  //main
+  // main
   Double_t middle_spacer_main_thickness = 0.50;
   Double_t middle_spacer_main_min_radius1 = 17.0;
   Double_t middle_spacer_main_max_radius1 = 21.7;
@@ -99,7 +99,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
                                                                   " + middle_spacer_main_add_rectangle_side:trans_middle_spacer_main_add_rectangle_side_left + middle_spacer_main_add_rectangle_side:trans_middle_spacer_main_add_rectangle_side_right"
                                                                   " + middle_spacer_main_add_rectangle_side_small:trans_middle_spacer_main_add_rectangle_side_small_left + middle_spacer_main_add_rectangle_side_small:trans_middle_spacer_main_add_rectangle_side_small_right");
 
-  //Cover
+  // Cover
 
   Double_t middle_spacer_cover_thickness = 0.15;
   Double_t middle_spacer_cover_arc_max_radius = 19.5;
@@ -115,8 +115,8 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   trans_middle_spacer_cover_sub_rectangle_top->RegisterYourself();
 
   Double_t middle_spacer_cover_rectangle_side1_height = 1.9;
-  Double_t middle_spacer_cover_rectangle_side1_width_left = 4.2;  //rahgh
-  Double_t middle_spacer_cover_rectangle_side1_width_right = 8.8; //rahgh
+  Double_t middle_spacer_cover_rectangle_side1_width_left = 4.2;  // rahgh
+  Double_t middle_spacer_cover_rectangle_side1_width_right = 8.8; // rahgh
   TGeoBBox* middle_spacer_cover_rectangle_side1_left = new TGeoBBox("middle_spacer_cover_rectangle_side1_left", middle_spacer_cover_rectangle_side1_width_left / 2., middle_spacer_cover_rectangle_side1_height / 2., middle_spacer_cover_thickness / 2.);
   TGeoBBox* middle_spacer_cover_rectangle_side1_right = new TGeoBBox("middle_spacer_cover_rectangle_side1_right", middle_spacer_cover_rectangle_side1_width_right / 2., middle_spacer_cover_rectangle_side1_height / 2., middle_spacer_cover_thickness / 2.);
   TGeoTranslation* trans_middle_spacer_cover_rectangle_side1_left = new TGeoTranslation("trans_middle_spacer_cover_rectangle_side1_left", 28.4 / 2 + middle_spacer_cover_rectangle_side1_width_left / 2, -5 - 1.5 - 1.9 + middle_spacer_cover_rectangle_side1_height / 2, middle_spacer_main_thickness / 2 + middle_spacer_cover_thickness / 2);
@@ -125,7 +125,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   trans_middle_spacer_cover_rectangle_side1_right->RegisterYourself();
 
   Double_t middle_spacer_cover_rectangle_side2_height = 1.5;
-  Double_t middle_spacer_cover_rectangle_side2_width = 2.0; //rahgh
+  Double_t middle_spacer_cover_rectangle_side2_width = 2.0; // rahgh
   TGeoBBox* middle_spacer_cover_rectangle_side2 = new TGeoBBox("middle_spacer_cover_rectangle_side2", middle_spacer_cover_rectangle_side2_width / 2., middle_spacer_cover_rectangle_side2_height / 2., middle_spacer_cover_thickness / 2.);
   TGeoTranslation* trans_middle_spacer_cover_rectangle_side2_left = new TGeoTranslation("trans_middle_spacer_cover_rectangle_side2_left", 28.4 / 2 + middle_spacer_cover_rectangle_side2_width / 2, -5 - 1.5 - 2.787 + middle_spacer_cover_rectangle_side2_height / 2, middle_spacer_main_thickness / 2 + middle_spacer_cover_thickness / 2);
   TGeoTranslation* trans_middle_spacer_cover_rectangle_side2_right = new TGeoTranslation("trans_middle_spacer_cover_rectangle_side2_right", -(28.4 / 2 + middle_spacer_cover_rectangle_side2_width / 2), -5 - 1.5 - 2.787 + middle_spacer_cover_rectangle_side2_height / 2, middle_spacer_main_thickness / 2 + middle_spacer_cover_thickness / 2);
@@ -133,7 +133,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   trans_middle_spacer_cover_rectangle_side2_right->RegisterYourself();
 
   Double_t middle_spacer_cover_rectangle_side3_height = 1.9;
-  Double_t middle_spacer_cover_rectangle_side3_width = 2.1; //rahgh
+  Double_t middle_spacer_cover_rectangle_side3_width = 2.1; // rahgh
   TGeoBBox* middle_spacer_cover_rectangle_side3 = new TGeoBBox("middle_spacer_cover_rectangle_side3", middle_spacer_cover_rectangle_side3_width / 2., middle_spacer_cover_rectangle_side3_height / 2., middle_spacer_cover_thickness / 2.);
   TGeoTranslation* trans_middle_spacer_cover_rectangle_side3 = new TGeoTranslation("trans_middle_spacer_cover_rectangle_side3", 28.4 / 2 + 8.8 - middle_spacer_cover_rectangle_side3_width / 2, -5 - 1.5 - middle_spacer_cover_rectangle_side3_height / 2, middle_spacer_main_thickness / 2 + middle_spacer_cover_thickness / 2);
   trans_middle_spacer_cover_rectangle_side3->RegisterYourself();
@@ -188,7 +188,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
 
   TGeoCompositeShape* middle_spacer_cover_bothside = new TGeoCompositeShape("middle_spacer_cover_bothside", "middle_spacer_cover + middle_spacer_cover:rotate_middle_spacer_cover_back");
 
-  //Water pipe hole
+  // Water pipe hole
 
   Double_t water_pipe_inner_radius = 0.3 / 2.;
   Double_t water_pipe_outer_radius = 0.4 / 2.;
@@ -258,7 +258,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(middle_spacer, 0, nullptr);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //Electoric board
+  // Electoric board
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   Double_t electric_board_thickness = 0.171;
@@ -266,7 +266,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   Double_t electric_board_min_radius1 = 17.0;
   Double_t electric_board_sub_rectangle_middle_height = 5 + 4.347;
   Double_t electric_board_sub_rectangle_middle_width = electric_board_max_radius1 * 2;
-  Double_t electric_board_sub_rectangle_bottom_height = 10.00; //laugh
+  Double_t electric_board_sub_rectangle_bottom_height = 10.00; // laugh
   Double_t electric_board_sub_rectangle_bottom_width = 20.80;
   Double_t electric_board_position_z = middle_spacer_main_thickness / 2. + middle_spacer_cover_thickness + electric_board_thickness / 2;
 
@@ -291,7 +291,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   trans_electric_board_add_rectangle_side_left->RegisterYourself();
   trans_electric_board_add_rectangle_side_right->RegisterYourself();
 
-  Double_t electric_board_sub_rectangle_side_width = 10.; //raugh
+  Double_t electric_board_sub_rectangle_side_width = 10.; // raugh
   Double_t electric_board_sub_rectangle_side_height = 8.576;
 
   TGeoBBox* electric_board_sub_rectangle_side = new TGeoBBox("electric_board_sub_rectangle_side", electric_board_sub_rectangle_side_width / 2., electric_board_sub_rectangle_side_height / 2., electric_board_thickness / 2. + delta_thickness);
@@ -352,7 +352,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(electric_board, 0, trans_electric_board_back);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //Water pipe
+  // Water pipe
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   TGeoTorus* water_pipe_main_torus = new TGeoTorus("water_pipe_main_torus", water_pipe_main_position_radius, water_pipe_inner_radius, water_pipe_outer_radius, 180 + (180 - water_pipe_main_angle) / 2., water_pipe_main_angle);
@@ -449,7 +449,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(water_pipe, 1, nullptr);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //Water
+  // Water
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   TGeoTorus* water_main_torus = new TGeoTorus("water_main_torus", water_pipe_main_position_radius, 0, water_pipe_inner_radius, 180 + (180 - water_pipe_main_angle) / 2., water_pipe_main_angle);
@@ -513,10 +513,10 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(water, 1, nullptr);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //DCDC cobverter
+  // DCDC cobverter
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  //Sheet1
+  // Sheet1
 
   Double_t DCDC_sheet1_thickness = 0.040;
   Double_t DCDC_sheet1_height = 1.694;
@@ -524,7 +524,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   Double_t DCDC_sheet1_radius = (block_radius + DCDC_sheet1_width / 2. - 0.673 - 1.85 + 1.85 / 2.);
 
   Double_t DCDC_sheet1_position_z = middle_spacer_main_thickness / 2. + middle_spacer_cover_thickness + middle_spacer_cover_block_thickness + DCDC_sheet1_thickness / 2;
-  //Double_t DCDC_sheet1_position_z = electric_board_position_z + electric_board_thickness/2. + DCDC_sheet1_thickness/2.;
+  // Double_t DCDC_sheet1_position_z = electric_board_position_z + electric_board_thickness/2. + DCDC_sheet1_thickness/2.;
 
   TGeoBBox* DCDC_sheet1_box = new TGeoBBox("DCDC_sheet1_box", DCDC_sheet1_width / 2., DCDC_sheet1_height / 2., DCDC_sheet1_thickness / 2.);
 
@@ -579,7 +579,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(DCDC_sheet1, 0, trans_DCDC_sheet1_front);
   mHalfPSU->AddNode(DCDC_sheet1, 0, trans_DCDC_sheet1_back);
 
-  //Cover box
+  // Cover box
 
   Double_t DCDC_cover_thickness = 0.800;
   Double_t DCDC_cover_outer_height = 1.400;
@@ -653,7 +653,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(DCDC_cover, 0, trans_DCDC_cover_front);
   mHalfPSU->AddNode(DCDC_cover, 0, trans_DCDC_cover_back);
 
-  //DCDC converter connector
+  // DCDC converter connector
 
   Double_t DCDC_connector_thickness = 0.225;
   Double_t DCDC_connector_height = 1.44;
@@ -713,10 +713,10 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(DCDC_connector, 0, trans_DCDC_connector_back);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //Mezzanine
+  // Mezzanine
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  //prop
+  // prop
 
   Double_t mezzanine_prop_main_length = 1.615;
   Double_t mezzanine_prop_main_radius = 0.476 / 2.;
@@ -754,7 +754,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(mazzanine_prop, 0, trans_mazzanine_prop_front);
   mHalfPSU->AddNode(mazzanine_prop, 0, trans_mazzanine_prop_back);
 
-  //main
+  // main
 
   Double_t mezzanine_main_thickness = mezzanine_prop_small_length;
   Double_t mezzanine_main_width = 20.7;
@@ -784,7 +784,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(mezzanine, 0, trans_mezzanine_front);
   mHalfPSU->AddNode(mezzanine, 0, trans_mazzanine_back);
 
-  //connector
+  // connector
 
   Double_t mezzanine_connector_base_box_thickness = 1.186;
   Double_t mezzanine_connector_base_box_width = 6.778;
@@ -839,7 +839,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(mezzanine_connector_lid_top, 0, trans_mezzanine_connector_lid_top_front);
   mHalfPSU->AddNode(mezzanine_connector_lid_top, 0, trans_mezzanine_connector_lid_top_back);
 
-  //DCDC converter on mezzanine
+  // DCDC converter on mezzanine
 
   Double_t spacer_sheet1_mezzanine_box_thickness = 0.086;
   Double_t spacer_sheet1_mezzanine_box_width = 1.397;
@@ -973,7 +973,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(DCDC_cover_on_mezzanine_back, 0, trans_DCDC_cover_on_mezzanine_back[4]);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //Connector
+  // Connector
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   Double_t main_connector1_thickness = 0.752;
@@ -1144,7 +1144,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(coil, 0, trans_coil_front);
   mHalfPSU->AddNode(coil, 0, trans_coil_back);
 
-  //On Mazzenine
+  // On Mazzenine
 
   Double_t coil_on_mezzanine_position_z = middle_spacer_main_thickness / 2. + middle_spacer_cover_thickness + electric_board_thickness + mezzanine_prop_main_length - spacer_sheet1_mezzanine_box_thickness - DCDC_sheet1_thickness - coil_torus_outer_radius1;
 
@@ -1175,14 +1175,14 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(coil_on_mezzanine, 0, trans_coil_on_mezzanine_back[3]);
   mHalfPSU->AddNode(coil_on_mezzanine, 0, trans_coil_on_mezzanine_back[4]);
 
-  //small connector borrom
+  // small connector borrom
 
   Double_t main_connector_angle1 = 52 * TMath::Pi() / 180.;
   Double_t main_connector_angle2 = 45 * TMath::Pi() / 180.;
 
-  //front
+  // front
 
-  //left
+  // left
 
   TGeoRotation* rotate_main_connector_box_angle1_left = new TGeoRotation("rotate_main_connector_box_angle1_left", 0, 0, 90 - main_connector_angle1 * 180 / TMath::Pi());
   TGeoRotation* rotate_main_connector_box_angle2_left = new TGeoRotation("rotate_main_connector_box_angle2_left", 0, 0, 90 - main_connector_angle2 * 180 / TMath::Pi());
@@ -1225,7 +1225,7 @@ TGeoVolumeAssembly* PowerSupplyUnit::create()
   mHalfPSU->AddNode(connector, 0, trans_connector3_back);
   mHalfPSU->AddNode(connector, 0, trans_connector4_back);
 
-  //large connector bottom
+  // large connector bottom
 
   Double_t main_large_connector_bottom_angle1 = 36 * TMath::Pi() / 180.;
 

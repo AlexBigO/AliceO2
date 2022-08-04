@@ -13,7 +13,7 @@
 
 void customize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
 {
-  //probably some option will be added
+  // probably some option will be added
 }
 
 #include "Framework/runDataProcessing.h"
@@ -23,6 +23,6 @@ WorkflowSpec defineDataProcessing(ConfigContext const& config)
 {
   WorkflowSpec workflow;
   workflow.emplace_back(o2::ft0::getFT0SlewingCalibrationSpec());
-  //add calib spec here...
+  // add calib spec here...
   return workflow;
 }

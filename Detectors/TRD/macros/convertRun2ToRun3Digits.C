@@ -78,7 +78,7 @@ void convertRaw(TString rawDataInPath)
     AliRawReaderRoot* readerDate = new AliRawReaderRoot(rawDataInPath);
     readerDate->SelectEquipment(0, 1024, 1024);
     readerDate->Select("TRD");
-    //readerDate->SelectEvents(7);
+    // readerDate->SelectEvents(7);
     reader = (AliRawReader*)readerDate;
 
   } else if (rawDataInPath.Contains(":")) {
@@ -86,7 +86,7 @@ void convertRaw(TString rawDataInPath)
     AliRawReaderDateOnline* readerRoot = new AliRawReaderDateOnline(rawDataInPath);
     readerRoot->SelectEquipment(0, 1024, 1041);
     readerRoot->Select("TRD");
-    //readerRoot->SelectEvents(7);
+    // readerRoot->SelectEvents(7);
     reader = (AliRawReader*)readerRoot;
   }
 
@@ -108,7 +108,7 @@ void convertRaw(TString rawDataInPath)
       filename = "trddigits." + to_string(ievent / 100) + ".root";
     }
 
-    //digitMan->ResetArrays();
+    // digitMan->ResetArrays();
 
     if (ievent % 10 == 0) {
       cout << "Event " << ievent << endl;
@@ -116,7 +116,7 @@ void convertRaw(TString rawDataInPath)
 
     // hntrkl->Fill(trkl.GetEntries());
     while (rawStream->NextChamber(digitMan) >= 0) {
-      //hptphase->Fill(digMan->GetDigitsParam()->GetPretriggerPhase());
+      // hptphase->Fill(digMan->GetDigitsParam()->GetPretriggerPhase());
     }
 
     for (int det = 0; det < AliTRDCommonParam::kNdet; det++) {

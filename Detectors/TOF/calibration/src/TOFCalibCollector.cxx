@@ -92,8 +92,8 @@ void TOFCalibInfoSlot::fill(const gsl::span<const o2::tof::CalibInfoCluster> dat
     chPrev = ch;
 
     // TO be adjusted
-    //mTOFCollectedCalibInfoSlot.emplace(mTOFCollectedCalibInfoSlot.begin() + offset, data[ord[i]].getTimestamp(), data[ord[i]].getDeltaTimePi(), data[ord[i]].getTot(), data[ord[i]].getFlags());
-    //mEntriesSlot[ch]++;
+    // mTOFCollectedCalibInfoSlot.emplace(mTOFCollectedCalibInfoSlot.begin() + offset, data[ord[i]].getTimestamp(), data[ord[i]].getDeltaTimePi(), data[ord[i]].getTot(), data[ord[i]].getFlags());
+    // mEntriesSlot[ch]++;
   }
 }
 //_____________________________________________

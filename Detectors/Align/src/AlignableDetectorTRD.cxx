@@ -72,7 +72,7 @@ void AlignableDetectorTRD::defineVolumes()
     for (int ich = 0; ich < kNStacks * kNSect; ich++) { // chamber
       int isector = ich / AliTRDgeometry::Nstack();
       int istack = ich % AliTRDgeometry::Nstack();
-      //int lid       = AliTRDgeometry::GetDetector(ilr,istack,isector);
+      // int lid       = AliTRDgeometry::GetDetector(ilr,istack,isector);
       int iid = labDet + (1 + ilr) * 10000 + (1 + isector) * 100 + (1 + istack);
       const char* symname = Form("TRD/sm%02d/st%d/pl%d", isector, istack, ilr);
       if (!gGeoManager->GetAlignableEntry(symname))

@@ -124,7 +124,7 @@ void CompressedDecodingTask::postData(ProcessingContext& pc)
   o2::base::TFIDInfoHelper::fillTFIDInfo(pc, tfinfo);
   diagnosticFrequency.setTFIDInfo(tfinfo);
 
-  //diagnosticFrequency.print();
+  // diagnosticFrequency.print();
   pc.outputs().snapshot(Output{o2::header::gDataOriginTOF, "DIAFREQ", 0, Lifetime::Timeframe}, diagnosticFrequency);
 
   mDecoder.clear();
@@ -140,7 +140,7 @@ void CompressedDecodingTask::run(ProcessingContext& pc)
 
   mCreationTime = std::chrono::high_resolution_clock::now().time_since_epoch().count() / 1000000;
 
-  //RS set the 1st orbit of the TF from the O2 header, relying on rdhHandler is not good (in fact, the RDH might be eliminated in the derived data)
+  // RS set the 1st orbit of the TF from the O2 header, relying on rdhHandler is not good (in fact, the RDH might be eliminated in the derived data)
   mInitOrbit = pc.services().get<o2::framework::TimingInfo>().firstTForbit;
   if (!mConetMode) {
     mDecoder.setFirstIR({0, mInitOrbit});

@@ -44,8 +44,8 @@ void ReconstructionDPL::run(ProcessingContext& pc)
   auto digits = pc.inputs().get<gsl::span<o2::fv0::Digit>>("digits");
   auto digch = pc.inputs().get<gsl::span<o2::fv0::ChannelData>>("digch");
   // RS: if we need to process MC truth, uncomment lines below
-  //std::unique_ptr<const o2::dataformats::MCTruthContainer<o2::fv0::MCLabel>> labels;
-  //const o2::dataformats::MCTruthContainer<o2::fv0::MCLabel>* lblPtr = nullptr;
+  // std::unique_ptr<const o2::dataformats::MCTruthContainer<o2::fv0::MCLabel>> labels;
+  // const o2::dataformats::MCTruthContainer<o2::fv0::MCLabel>* lblPtr = nullptr;
   if (mUseMC) {
     LOG(info) << "Ignoring MC info";
   }

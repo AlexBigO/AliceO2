@@ -289,12 +289,12 @@ void Digitizer::addDigit(Int_t channel, UInt_t istrip, Double_t time, Float_t x,
   time += TMath::Sqrt(timewalkX * timewalkX + timewalkZ * timewalkZ) - mTimeDelayCorr - mTimeWalkeSlope * 2;
 
   // Decalibrate
-  time -= mCalibApi->getTimeDecalibration(channel, tot); //TODO:  to be checked that "-" is correct, and we did not need "+" instead :-)
+  time -= mCalibApi->getTimeDecalibration(channel, tot); // TODO:  to be checked that "-" is correct, and we did not need "+" instead :-)
 
   // let's move from time to bc, tdc
 
   uint64_t nbc = (uint64_t)(time * Geo::BC_TIME_INPS_INV); // time elapsed in number of bunch crossing
-  //Digit newdigit(time, channel, (time - Geo::BC_TIME_INPS * nbc) * Geo::NTDCBIN_PER_PS, tot * Geo::NTOTBIN_PER_NS, nbc);
+  // Digit newdigit(time, channel, (time - Geo::BC_TIME_INPS * nbc) * Geo::NTDCBIN_PER_PS, tot * Geo::NTOTBIN_PER_NS, nbc);
 
   int tdc = int((time - Geo::BC_TIME_INPS * nbc) * Geo::NTDCBIN_PER_PS);
 
@@ -357,7 +357,7 @@ void Digitizer::addDigit(Int_t channel, UInt_t istrip, Double_t time, Float_t x,
     }
   }
 
-  //printf("add TOF digit c=%i n=%i\n",iscurrent,isnext);
+  // printf("add TOF digit c=%i n=%i\n",iscurrent,isnext);
 
   std::vector<Strip>* strips;
   o2::dataformats::MCTruthContainer<o2::tof::MCLabel>* mcTruthContainer;
@@ -818,7 +818,7 @@ void Digitizer::fillOutputContainer(std::vector<Digit>& digits)
 
   if (mContinuous) {
     int first = mDigitsPerTimeFrame.size();
-    //printf("%i) # TOF digits = %lu (%p)\n", mIcurrentReadoutWindow, digits.size(), mStripsCurrent);
+    // printf("%i) # TOF digits = %lu (%p)\n", mIcurrentReadoutWindow, digits.size(), mStripsCurrent);
     ReadoutWindowData info(first, first);
     int orbit_shift = mReadoutWindowData.size() / 3;
     int bc_shift = (mReadoutWindowData.size() % 3) * Geo::BC_IN_WINDOW;

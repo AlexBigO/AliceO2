@@ -171,7 +171,7 @@ void MC2RawEncoder<Mapping>::fillGBTLinks(RUDecodeData& ru)
   gbtTrigger.bc = mCurrIR.bc;
   gbtTrigger.orbit = mCurrIR.orbit;
   gbtTrigger.internal = isContinuousReadout();
-  gbtTrigger.triggerType = 0; //TODO
+  gbtTrigger.triggerType = 0; // TODO
 
   for (int il = 0; il < RUDecodeData::MaxLinksPerRU; il++) {
     auto link = getGBTLink(ru.links[il]);

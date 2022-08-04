@@ -22,7 +22,7 @@ namespace po = boost::program_options;
 
 std::string asString(rapidjson::Value& tp)
 {
-  //got     =FEC  229CH 25X      19Y      20SX     2.5SY     0.5 (B)
+  // got     =FEC  229CH 25X      19Y      20SX     2.5SY     0.5 (B)
   return fmt::format("FEC {} CH {} padindex {} bending {} X {} Y {}",
                      tp["dsid"].GetInt(),
                      tp["dsch"].GetInt(),

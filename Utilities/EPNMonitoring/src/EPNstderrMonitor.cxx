@@ -111,7 +111,7 @@ EPNMonitor::~EPNMonitor()
 
 void EPNMonitor::check_add_file(const std::string& filename)
 {
-  //printf("Checking '%s'\n", filename.c_str());
+  // printf("Checking '%s'\n", filename.c_str());
   static const std::regex match_stderr("_err\\.log$");
   if (std::regex_search(filename, match_stderr)) {
     mFiles.try_emplace(filename, mPath, filename);

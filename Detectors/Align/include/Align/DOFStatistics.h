@@ -47,7 +47,6 @@ class DOFStatistics : public TNamed
   int64_t merge(TCollection* list);
 
  protected:
-
  protected:
   int mNMerges{1};        // number of merges
   std::vector<int> mStat; // statistics per DOF

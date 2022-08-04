@@ -66,7 +66,7 @@ WorkflowSpec defineDataProcessing(ConfigContext const& cfgc)
 
   //  auto config = cfgc.options().get<std::string>("trd-datareader-config");
   o2::conf::ConfigurableParam::updateFromString(cfgc.options().get<std::string>("configKeyValues"));
-  //auto outputspec = cfgc.options().get<std::string>("trd-datareader-outputspec");
+  // auto outputspec = cfgc.options().get<std::string>("trd-datareader-outputspec");
   auto verbose = cfgc.options().get<bool>("trd-datareader-verbose");
   auto byteswap = cfgc.options().get<bool>("trd-datareader-enablebyteswapdata");
   auto compresseddata = cfgc.options().get<bool>("trd-datareader-compresseddata");
@@ -85,7 +85,7 @@ WorkflowSpec defineDataProcessing(ConfigContext const& cfgc)
   outputs.emplace_back("TRD", "DIGITS", 0, Lifetime::Timeframe);
   outputs.emplace_back("TRD", "TRKTRGRD", 0, Lifetime::Timeframe);
   outputs.emplace_back("TRD", "RAWSTATS", 0, Lifetime::Timeframe);
-  //outputs.emplace_back("TRD", "FLPSTAT", 0, Lifetime::Timeframe);
+  // outputs.emplace_back("TRD", "FLPSTAT", 0, Lifetime::Timeframe);
   //
   std::bitset<16> binaryoptions;
   binaryoptions[o2::trd::TRDVerboseBit] = cfgc.options().get<bool>("trd-datareader-verbose");
@@ -100,8 +100,8 @@ WorkflowSpec defineDataProcessing(ConfigContext const& cfgc)
   binaryoptions[o2::trd::TRDEnableRootOutputBit] = cfgc.options().get<bool>("enable-root-output");
   binaryoptions[o2::trd::TRDByteSwapBit] = cfgc.options().get<bool>("trd-datareader-enablebyteswapdata");
   binaryoptions[o2::trd::TRDIgnore2StageTrigger] = cfgc.options().get<bool>("fixforoldtrigger");
-  //binaryoptions[o2::trd::TRDGenerateStats] = cfgc.options().get<bool>("generate-stats");
-  binaryoptions[o2::trd::TRDGenerateStats] = true; //cfgc.options().get<bool>("generate-stats");
+  // binaryoptions[o2::trd::TRDGenerateStats] = cfgc.options().get<bool>("generate-stats");
+  binaryoptions[o2::trd::TRDGenerateStats] = true; // cfgc.options().get<bool>("generate-stats");
   binaryoptions[o2::trd::TRDM1Debug] = cfgc.options().get<bool>("trd-debugm1");
   AlgorithmSpec algoSpec;
   algoSpec = AlgorithmSpec{adaptFromTask<o2::trd::DataReaderTask>(tracklethcheader, halfchamberwords, halfchambermajor, cfgc.options().get<std::string>("histogramsfile"), binaryoptions)};

@@ -202,8 +202,8 @@ void AnalyzeClusters(Int_t nev, const map<UInt_t, Cluster>& clusters, TH1F* freq
       //   std::cout << "]";
       // }
 
-      //if (i < 6) std::cout << ", ";
-      //else std::cout << std::endl;
+      // if (i < 6) std::cout << ", ";
+      // else std::cout << std::endl;
     }
   }
   std::cout << ">>>>>>>>>>>>>>>>>" << std::endl

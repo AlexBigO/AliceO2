@@ -38,7 +38,7 @@ namespace align
 using GIndex = o2::dataformats::VtxTrackIndex;
 class Controller;
 
-//TODO(milettri) : fix possibly incompatible Detector IDs of O2 and AliROOT
+// TODO(milettri) : fix possibly incompatible Detector IDs of O2 and AliROOT
 class AlignableDetector : public DOFSet
 {
  public:
@@ -61,7 +61,7 @@ class AlignableDetector : public DOFSet
   virtual void applyAlignmentFromMPSol();
   //
   int volID2SID(int vid) const;
-  int sID2VolID(int sid) const { return sid < getNSensors() ? mSID2VolID[sid] : -1; } //todo
+  int sID2VolID(int sid) const { return sid < getNSensors() ? mSID2VolID[sid] : -1; } // todo
   int getNSensors() const { return mSensors.GetEntriesFast(); }
   int getNVolumes() const { return mVolumes.GetEntriesFast(); }
   int getVolIDMin() const { return mVolIDMin; }
@@ -214,23 +214,23 @@ class AlignableDetector : public DOFSet
   //
   int mUseErrorParam = 0;   // signal that points need to be updated using track info, 0 - no
   double mAddError[2] = {}; // additional error increment for measurement
-  TObjArray mSensors;  // all sensors of the detector
-  TObjArray mVolumes;  // all volumes of the detector
+  TObjArray mSensors;       // all sensors of the detector
+  TObjArray mVolumes;       // all volumes of the detector
   //
   // this is transient info
-  int mNPoints = 0;         //! number of points from this detector
-  int mFirstPoint = 0;      //! entry of the 1st point
+  int mNPoints = 0;    //! number of points from this detector
+  int mFirstPoint = 0; //! entry of the 1st point
   //
   ClassDefOverride(AlignableDetector, 1); // base class for detector global alignment
 };
 
-//FIXME(milettri): needs AliESDtrack
+// FIXME(milettri): needs AliESDtrack
 ////_____________________________________________________
-//inline bool AlignableDetector::CheckFlags(const AliESDtrack* trc, int trtype) const
+// inline bool AlignableDetector::CheckFlags(const AliESDtrack* trc, int trtype) const
 //{
-//  // check if flags are ok
-//  return (trc->GetStatus() & mTrackFlagSel[trtype]) == mTrackFlagSel[trtype];
-//}
+//   // check if flags are ok
+//   return (trc->GetStatus() & mTrackFlagSel[trtype]) == mTrackFlagSel[trtype];
+// }
 } // namespace align
 } // namespace o2
 #endif

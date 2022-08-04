@@ -50,7 +50,7 @@ void CreateGRPMagFieldObject(current l3, current dipole, timePoint start, timePo
   api.init(ccdbPath);
   std::map<std::string, std::string> metadata;
   metadata["responsible"] = "DCS";
-  //long ts = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+  // long ts = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
   if (end < 0) {
     end = (start + 60 * 60 * 10) * 1000; // start + 10h, in ms
   }

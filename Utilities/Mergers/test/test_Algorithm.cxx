@@ -36,7 +36,7 @@
 #include <TGraph.h>
 #include <TProfile.h>
 
-//using namespace o2::framework;
+// using namespace o2::framework;
 using namespace o2::mergers;
 
 const size_t bins = 10;

@@ -65,8 +65,8 @@ void createPadBranches(TTree& tree, DePads& depads)
 /**
  * This small program creates a Root TTree with MCH mapping.
  *
- * There is one entry per MCH detection element, describing the 
- * basic features of all the pads of that detection element : 
+ * There is one entry per MCH detection element, describing the
+ * basic features of all the pads of that detection element :
  *
  * - electronic location : FEE board id (aka dual sampa id
  * and FEE channel id (aka dual sampa channel)

@@ -50,7 +50,7 @@ HalfDetector::HalfDetector(HalfSegmentation* seg) : TNamed(), mHalfVolume(nullpt
 
   mHalfVolume = new TGeoVolumeAssembly(GetName());
 
-  //mPSU = new PowerSupplyUnit();
+  // mPSU = new PowerSupplyUnit();
 
   createHalfDisks();
 }

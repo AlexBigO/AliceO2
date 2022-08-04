@@ -43,4 +43,4 @@ class CustomMergeableObject : public MergeInterface
 
 } // namespace o2::mergers
 
-#endif //ALICEO2_MERGEINTERFACEOVERRIDEEXAMPLE_H
+#endif // ALICEO2_MERGEINTERFACEOVERRIDEEXAMPLE_H

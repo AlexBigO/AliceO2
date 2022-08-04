@@ -524,12 +524,12 @@ void CheckRadialOffset()
     if (trackID < 0) {
       continue;
     }
-    //if (nMatching != 6) {
-    //  continue;
-    //}
-    //if ((*trackPhi)[0] < 0.15) {
-    //  continue;
-    //}
+    // if (nMatching != 6) {
+    //   continue;
+    // }
+    // if ((*trackPhi)[0] < 0.15) {
+    //   continue;
+    // }
     if (nTracklets < 1 || nTPCtracks > 300) {
       continue;
     }
@@ -818,14 +818,14 @@ void TwoTrackletEfficiency(Int_t nEntries = -1)
     }
     Double_t pt = trackPtTPC;
     hAll->Fill(pt);
-    //if (nTracklets >= 2) {
+    // if (nTracklets >= 2) {
     if (nMatching + nRelated >= 2) {
       h2Trklts->Fill(pt);
       if (nFake == 0) {
         h2TrkltsNoFakes->Fill(pt);
       }
     }
-    //if (nTrackletsOffline >= 2) {
+    // if (nTrackletsOffline >= 2) {
     if (nMatchingOffline + nRelatedOffline >= 2) {
       h2TrkltsRef->Fill(pt);
       if (nFakeOffline == 0) {
@@ -1025,10 +1025,10 @@ void PlotOnlineTrackletEfficiency(Int_t nEntries = -1)
   gStyle->SetErrorX(0);
   hEffPos->Divide(hFracPos, hAllPos, 1, 1, "B");
   hEffNeg->Divide(hFracNeg, hAllNeg, 1, 1, "B");
-  //TCanvas* c1 = new TCanvas("c1", "c1");
-  //c1->SetGridy();
-  //c1->SetGridx();
-  //c1->SetLogx();
+  // TCanvas* c1 = new TCanvas("c1", "c1");
+  // c1->SetGridy();
+  // c1->SetGridx();
+  // c1->SetLogx();
   hEffPos->SetLineWidth(2);
   hEffPos->SetLineColor(kRed);
   hEffPos->SetMarkerStyle(22);
@@ -1038,7 +1038,7 @@ void PlotOnlineTrackletEfficiency(Int_t nEntries = -1)
   hEffNeg->SetLineColor(kBlack);
   hEffNeg->SetMarkerStyle(22);
   hEffNeg->SetMarkerColor(kBlack);
-  //hEff->Draw("ep");
+  // hEff->Draw("ep");
   hEffPos->Write();
   delete hEffPos;
   hEffNeg->Write();

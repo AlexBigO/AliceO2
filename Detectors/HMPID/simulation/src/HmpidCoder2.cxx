@@ -47,7 +47,7 @@ HmpidCoder2::HmpidCoder2(int numOfEquipments)
   mPayloadBufferPtr = mUPayloadBufferPtr.get();
   mPadMap = mUPadMap.get();
   std::memset(mPadMap, 0, sizeof(uint32_t) * Geo::N_HMPIDTOTALPADS); // Zero the map for the first event
-  mBusyTime = 20000; // 1 milli sec
+  mBusyTime = 20000;                                                 // 1 milli sec
   mHmpidErrorFlag = 0;
   mHmpidFrwVersion = 9;
 }

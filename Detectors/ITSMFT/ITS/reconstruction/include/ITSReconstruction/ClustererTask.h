@@ -69,11 +69,11 @@ class ClustererTask
 
   Clusterer mClusterer;                                ///< Cluster finder
 
-  std::vector<CompClusterExt> mCompClus;               //!< vector of compact clusters
+  std::vector<CompClusterExt> mCompClus; //!< vector of compact clusters
 
-  std::vector<o2::itsmft::ROFRecord> mROFRecVec;               //!< vector of ROFRecord references
+  std::vector<o2::itsmft::ROFRecord> mROFRecVec; //!< vector of ROFRecord references
 
-  MCTruth mClsLabels;               //! MC labels
+  MCTruth mClsLabels; //! MC labels
 
   std::vector<unsigned char> mPatterns;
 

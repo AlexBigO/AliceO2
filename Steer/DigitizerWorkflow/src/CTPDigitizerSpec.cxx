@@ -44,9 +44,9 @@ class CTPDPLDigitizerTask : public o2::base::BaseDPLDigitizer
   void run(framework::ProcessingContext& pc)
   {
     // read collision context from input
-    //auto context = pc.inputs().get<o2::steer::DigitizationContext*>("collisioncontext");
-    //const bool withQED = context->isQEDProvided();
-    //auto& timesview = context->getEventRecords(withQED);
+    // auto context = pc.inputs().get<o2::steer::DigitizationContext*>("collisioncontext");
+    // const bool withQED = context->isQEDProvided();
+    // auto& timesview = context->getEventRecords(withQED);
     // read ctp inputs from input
     auto ft0inputs = pc.inputs().get<gsl::span<o2::ft0::DetTrigInput>>("ft0");
     auto fv0inputs = pc.inputs().get<gsl::span<o2::fv0::DetTrigInput>>("fv0");

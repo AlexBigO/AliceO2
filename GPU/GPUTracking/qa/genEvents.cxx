@@ -276,7 +276,8 @@ int genEvents::GenerateEvent(const GPUParam& param, char* filename)
       GenCluster c;
       float sigmaY = 0.3;
       float sigmaZ = 0.5;
-      const int rowType = iRow < 64 ? 0 : iRow < 128 ? 2 : 1;
+      const int rowType = iRow < 64 ? 0 : iRow < 128 ? 2
+                                                     : 1;
       t.UpdateValues();
       param.GetClusterErrors2(rowType, t.GetZ(), t.GetSinPhi(), t.GetDzDs(), sigmaY, sigmaZ);
       sigmaY = std::sqrt(sigmaY);

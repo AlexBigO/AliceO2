@@ -26,7 +26,7 @@ ClassImp(o2::hmpid::Geo);
 
 using namespace o2::hmpid;
 
-//constexpr Bool_t Geo::FEAWITHMASKS[NSECTORS];
+// constexpr Bool_t Geo::FEAWITHMASKS[NSECTORS];
 
 // ============= Geo Class implementation =======
 
@@ -35,4 +35,3 @@ void Geo::Init()
 {
   LOG(info) << "hmpid::Geo: Initialization of HMPID parameters";
 }
-

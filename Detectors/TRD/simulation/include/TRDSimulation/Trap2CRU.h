@@ -102,8 +102,8 @@ class Trap2CRU
   // helpers
   std::vector<uint32_t> mDigitsIndex; // input digits are sorted using this index array
   char* mRawDataPtr{nullptr};         // points to the current position in the raw data where we are writing
-  uint64_t mCurrentTracklet{0}; //the tracklet we are currently busy adding
-  uint64_t mCurrentDigit{0};    //the digit we are currently busy adding
+  uint64_t mCurrentTracklet{0};       // the tracklet we are currently busy adding
+  uint64_t mCurrentDigit{0};          // the digit we are currently busy adding
   uint64_t mTotalTrackletsWritten{0}; // count the total number of tracklets written to the raw data
   uint64_t mTotalDigitsWritten{0};    // count the total number of digits written to the raw data
 

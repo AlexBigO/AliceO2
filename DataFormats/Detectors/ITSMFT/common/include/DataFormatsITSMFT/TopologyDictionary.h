@@ -170,7 +170,7 @@ class TopologyDictionary
 
   template <typename T = float>
   math_utils::Point3D<T> getClusterCoordinates(const CompCluster& cl) const;
-  ///Returns the local position of a compact cluster
+  /// Returns the local position of a compact cluster
   template <typename T = float>
   static math_utils::Point3D<T> getClusterCoordinates(const CompCluster& cl, const ClusterPattern& patt, bool isGroup = true);
 

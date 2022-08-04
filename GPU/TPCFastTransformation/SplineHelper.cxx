@@ -64,8 +64,8 @@ int SplineHelper<DataT>::pointstoarray(const int indices[], const int numbers[],
 }
 
 ////////////////
-//arraytopoints
-// HILFSFUNKTION
+// arraytopoints
+//  HILFSFUNKTION
 template <typename DataT>
 int SplineHelper<DataT>::arraytopoints(int point, int result[], const int numbers[], int dim)
 {
@@ -131,10 +131,10 @@ void SplineHelper<DataT>::approximateFunction(
     }
 
   } // end for all DataPoints d
-  //END MY VERSION
+  // END MY VERSION
 
-  //std::vector<DataT> dataPointF(getNumberOfDataPoints() * mFdimensions);
-  //DUMYY VERSION Commented out
+  // std::vector<DataT> dataPointF(getNumberOfDataPoints() * mFdimensions);
+  // DUMYY VERSION Commented out
   /* for (int i = 0; i < getNumberOfDataPoints() * mFdimensions; i++) {
     dataPointF[i] = 1.;
   } */
@@ -219,7 +219,7 @@ void SplineHelper<DataT>::approximateFunction(
 {
   /// approximate a function given as an array of values at data points
 
-  int numberOfKnots[mXdimensions]; //getting number of Knots for all dimensions into one array
+  int numberOfKnots[mXdimensions]; // getting number of Knots for all dimensions into one array
   for (int i = 0; i < mXdimensions; i++) {
     numberOfKnots[i] = mHelpers[i].getSpline().getNumberOfKnots();
   }
@@ -245,16 +245,16 @@ void SplineHelper<DataT>::approximateFunction(
   // TO BE REMOVED TEST:
   // LOG(info) << "total number of DataPoints (including knots): " <<  numberOfAllDataPoints << ", ";
 
-  int numberOfParameterTypes = (int)(pow(2.0, mXdimensions)); //number of Parameters per Knot
+  int numberOfParameterTypes = (int)(pow(2.0, mXdimensions)); // number of Parameters per Knot
 
   // TO BE REMOVED TEST:
   // LOG(info) << "number of paramtertypes per knot : " <<  numberOfParameterTypes << ", ";
 
-  std::unique_ptr<double[]> allParameters[numberOfParameterTypes]; //Array for the different parametertypes s, s'u, s'v, s''uv,...
+  std::unique_ptr<double[]> allParameters[numberOfParameterTypes]; // Array for the different parametertypes s, s'u, s'v, s''uv,...
   for (int i = 0; i < numberOfParameterTypes; i++) {
-    allParameters[i] = std::unique_ptr<double[]>(new double[numberOfAllDataPoints * mFdimensions]); //To-Do:Fdim!!
+    allParameters[i] = std::unique_ptr<double[]>(new double[numberOfAllDataPoints * mFdimensions]); // To-Do:Fdim!!
   }
-  //filling allParameters[0] and FParameters with s:
+  // filling allParameters[0] and FParameters with s:
   for (int i = 0; i < numberOfAllDataPoints; i++) {
     for (int f = 0; f < mFdimensions; f++) {                                     // for all f-dimensions
       allParameters[0][i * mFdimensions + f] = DataPointF[i * mFdimensions + f]; // TO DO - Just get the pointer adress there PLEASE!
@@ -271,26 +271,26 @@ void SplineHelper<DataT>::approximateFunction(
     if (isKnot) {
       int knotindices[mXdimensions];
       for (int j = 0; j < mXdimensions; j++) { // calculate KNotindices for all dimensions
-        //WORKAROUND Getting Knotindices:
+        // WORKAROUND Getting Knotindices:
         knotindices[j] = p0indices[j] / ((numberOfDataPoints[j] - 1) / (numberOfKnots[j] - 1));
-        //knotindices[j] = mHelpers[j].getDataPoint(p0indices[j]).iKnot; //in der Annahme der wert ist ein Knotenindex und falls der datapoint ein knoten ist, gibt er seinen eigenen knotenindex zurück
+        // knotindices[j] = mHelpers[j].getDataPoint(p0indices[j]).iKnot; //in der Annahme der wert ist ein Knotenindex und falls der datapoint ein knoten ist, gibt er seinen eigenen knotenindex zurück
       }
       // get the knotindexvalue for FParameters:
       int knotind = pointstoarray(knotindices, numberOfKnots, mXdimensions);
 
       for (int f = 0; f < mFdimensions; f++) {                                                               // for all f-dimensions get function values into Fparameters
-        Fparameters[knotind * numberOfParameterTypes * mFdimensions + f] = DataPointF[i * mFdimensions + f]; ///write derivatives in FParameters
+        Fparameters[knotind * numberOfParameterTypes * mFdimensions + f] = DataPointF[i * mFdimensions + f]; /// write derivatives in FParameters
       }
     } // end if isKnot
-  }   //end i (filling DataPointF Values into allParameters[0] and FParameters)
-  //now: allParameters[0] = dataPointF;
+  }   // end i (filling DataPointF Values into allParameters[0] and FParameters)
+  // now: allParameters[0] = dataPointF;
 
-  //Array for input DataPointF-values for Spline1D::approximateFunctionGradually(...);
+  // Array for input DataPointF-values for Spline1D::approximateFunctionGradually(...);
   std::unique_ptr<double[]> dataPointF1D[mXdimensions];
   for (int i = 0; i < mXdimensions; i++) {
     dataPointF1D[i] = std::unique_ptr<double[]>(new double[numberOfDataPoints[i] * mFdimensions]); // To-Do:Fdim!! For s and derivetives at all knots.
   }
-  //Array to be filled by Spline1D::approximateFunctionGradually(...);
+  // Array to be filled by Spline1D::approximateFunctionGradually(...);
   std::unique_ptr<DataT[]> par[mXdimensions];
   std::unique_ptr<double[]> parD[mXdimensions];
 
@@ -301,7 +301,7 @@ void SplineHelper<DataT>::approximateFunction(
 
   // LOG(info) << "NumberOfParameters: " <<  mNumberOfParameters ;
 
-  //STARTING MAIN-LOOP, for all Parametertypes:
+  // STARTING MAIN-LOOP, for all Parametertypes:
   for (int p = 1; p < numberOfParameterTypes; p++) { // p = 1!! Wir kriegen s (p0) durch approximateFunction()oben
     int dimension = 0;                               // find the dimension for approximation
     for (int i = (int)(log2f((float)p)); i >= 0; i--) {
@@ -335,7 +335,7 @@ void SplineHelper<DataT>::approximateFunction(
     for (int s = 0; s < nrOf1DSplines; s++) {
       int indices[mXdimensions - 1];
       arraytopoints(s, indices, currentNumbers, mXdimensions - 1);
-      int startpoint[mXdimensions]; //startpoint for the current 1DSpline
+      int startpoint[mXdimensions]; // startpoint for the current 1DSpline
       for (int i = 0; i < dimension; i++) {
         startpoint[i] = indices[i];
       }
@@ -351,7 +351,7 @@ void SplineHelper<DataT>::approximateFunction(
       }
       distance *= mFdimensions;
 
-      for (int i = 0; i < numberOfDataPoints[dimension]; i++) { //Fill the dataPointF1D-Array
+      for (int i = 0; i < numberOfDataPoints[dimension]; i++) { // Fill the dataPointF1D-Array
         for (int f = 0; f < mFdimensions; f++) {
           dataPointF1D[dimension][i * mFdimensions + f] = allParameters[currentDataPointF][startdatapoint * mFdimensions + (i * distance + f)]; // uiuiui index kuddelmuddel???!!
         }
@@ -366,9 +366,9 @@ void SplineHelper<DataT>::approximateFunction(
       for (int i = 0; i < mXdimensions; i++) {
         redistributionindex[i] = startpoint[i];
       }
-      //redistributing the derivatives at dimension-Knots into array p
-      for (int i = 0; i < numberOfKnots[dimension]; i++) {                        //for all dimension-Knots
-        redistributionindex[dimension] = mHelpers[dimension].getKnotDataPoint(i); //find the indices
+      // redistributing the derivatives at dimension-Knots into array p
+      for (int i = 0; i < numberOfKnots[dimension]; i++) {                        // for all dimension-Knots
+        redistributionindex[dimension] = mHelpers[dimension].getKnotDataPoint(i); // find the indices
         int finalposition = pointstoarray(redistributionindex, numberOfDataPoints, mXdimensions);
 
         for (int f = 0; f < mFdimensions; f++) {
@@ -376,11 +376,11 @@ void SplineHelper<DataT>::approximateFunction(
         }
 
         bool isKnot = 1;
-        for (int j = 0; j < mXdimensions; j++) { //is dataPoint a knot?
+        for (int j = 0; j < mXdimensions; j++) { // is dataPoint a knot?
           if (!mHelpers[j].getDataPoint(redistributionindex[j]).isKnot) {
             isKnot = 0;
             break;
-          } //noch mal checken!! Das muss noch anders!!
+          } // noch mal checken!! Das muss noch anders!!
         }
 
         if (isKnot) { // for all knots
@@ -388,12 +388,12 @@ void SplineHelper<DataT>::approximateFunction(
 
           for (int j = 0; j < mXdimensions; j++) { // calculate Knotindices for all dimensions
             knotindices[j] = redistributionindex[j] / ((numberOfDataPoints[j] - 1) / (numberOfKnots[j] - 1));
-            //knotindices[j] = mHelpers[j].getDataPoint(redistributionindex[j]).iKnot; //in der Annahme der wert ist ein Knotenindex und falls der datapoint ein knoten ist, gibt er seinen eigenen knotenindex zurück
+            // knotindices[j] = mHelpers[j].getDataPoint(redistributionindex[j]).iKnot; //in der Annahme der wert ist ein Knotenindex und falls der datapoint ein knoten ist, gibt er seinen eigenen knotenindex zurück
           }
           // get the knotindexvalue for FParameters:
           int knotind = pointstoarray(knotindices, numberOfKnots, mXdimensions);
           for (int f = 0; f < mFdimensions; f++) {
-            Fparameters[knotind * numberOfParameterTypes * mFdimensions + p * mFdimensions + f] = par[dimension][2 * i * mFdimensions + mFdimensions + f]; ///write derivatives in FParameters
+            Fparameters[knotind * numberOfParameterTypes * mFdimensions + p * mFdimensions + f] = par[dimension][2 * i * mFdimensions + mFdimensions + f]; /// write derivatives in FParameters
           }
         }
       } // end for all fknots (for redistribution)
@@ -410,10 +410,10 @@ void SplineHelper<DataT>::approximateFunction(
         }
         double splineF[mFdimensions];
         double u = mHelpers[dimension].getDataPoint(i).u;
-        mHelpers[dimension].getSpline().interpolateU(mFdimensions, parD[dimension].get(), u, splineF); //recalculate at all datapoints of dimension
-        for (int dim = 0; dim < mFdimensions; dim++) {                                                 //writing it in allParameters
+        mHelpers[dimension].getSpline().interpolateU(mFdimensions, parD[dimension].get(), u, splineF); // recalculate at all datapoints of dimension
+        for (int dim = 0; dim < mFdimensions; dim++) {                                                 // writing it in allParameters
           // LOG(info)<<allParameters [p-(int)(pow(2.0, dimension))] [(int)(startdatapoint*mFdimensions + i*distance + dim)]<<", ";
-          allParameters[p - (int)(pow(2.0, dimension))][(int)(startdatapoint * mFdimensions + i * distance + dim)] = splineF[dim]; //write it in the array.
+          allParameters[p - (int)(pow(2.0, dimension))][(int)(startdatapoint * mFdimensions + i * distance + dim)] = splineF[dim]; // write it in the array.
           // LOG(info)<<allParameters [p-(int)(pow(2.0, dimension))] [(int)(startdatapoint*mFdimensions + i*distance + dim)]<<",   ";
         }
 
@@ -422,7 +422,7 @@ void SplineHelper<DataT>::approximateFunction(
 
           for (int j = 0; j < mXdimensions; j++) { // calculate KNotindices for all dimensions
             knotindices[j] = redistributionindex[j] / ((numberOfDataPoints[j] - 1) / (numberOfKnots[j] - 1));
-            //knotindices[j] = mHelpers[j].getDataPoint(redistributionindex[j]).iKnot; //in der Annahme der wert ist ein Knotenindex und falls der datapoint ein knoten ist, gibt er seinen eigenen knotenindex zurück
+            // knotindices[j] = mHelpers[j].getDataPoint(redistributionindex[j]).iKnot; //in der Annahme der wert ist ein Knotenindex und falls der datapoint ein knoten ist, gibt er seinen eigenen knotenindex zurück
           }
           int currentknotarrayindex = pointstoarray(knotindices, numberOfKnots, mXdimensions);
           // getting the recalculated value into FParameters:
@@ -431,9 +431,9 @@ void SplineHelper<DataT>::approximateFunction(
           }
         } // end if isKnot
       }   // end recalculation
-    }     //end of all1DSplines
-  }       //end of for parametertypes
-} //end of approxymateFunction MYVERSION!
+    }     // end of all1DSplines
+  }       // end of for parametertypes
+} // end of approxymateFunction MYVERSION!
 
 template <typename DataT>
 int SplineHelper<DataT>::test(const bool draw, const bool drawDataPoints)

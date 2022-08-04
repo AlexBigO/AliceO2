@@ -40,7 +40,7 @@ ClassImp(o2::mft::Support)
                        mRad_D2_h(.2 / 2.),
                        mHeight_D2_h(.4 / 2),
                        mTwoHoles(2),   // Number of D6.5 mm Holes in each halfDisk support
-                       mD65(.65 / 2.), //Radius
+                       mD65(.65 / 2.), // Radius
                        mD6(.6 / 2.),   // Radius
                        mD8(.8 / 2.),   // Radius
                        mD3(.3 / 2.),   // Radius
@@ -65,7 +65,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   TGeoTranslation* localTranslation;
   TGeoCompositeShape* localCS = nullptr;
 
-  //Info("Create",Form("Creating Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Creating Support_H%d_D%d", half,disk),0,0);
   mHalfDisk = new TGeoVolumeAssembly(Form("Support_H%d_D%d", half, disk));
   auto* base = new TGeoTubeSeg(Form("Base_H%d_D%d", half, disk), 0, mSupRad[disk], mSupThickness / 2., mPhi0, mPhi1);
 
@@ -73,19 +73,19 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   localCS = serialBoolOperation(base, TGeoBBox(), mDiskFixBoxes[disk], TGeoUnion());
 
   // Cutting boxes
-  //Info("Create",Form("Cutting Boxes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting Boxes Support_H%d_D%d", half,disk),0,0);
   // Using template function to remove boxes
   localCS = serialBoolOperation(localCS, TGeoBBox(), mDiskBoxCuts[disk], TGeoSubtraction());
 
   // Adding raisedBoxes
-  //Info("Create",Form("Adding raised boxes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Adding raised boxes Support_H%d_D%d", half,disk),0,0);
   localCS = serialBoolOperation(localCS, TGeoBBox(), mDiskRaisedBoxes[disk], TGeoUnion());
 
   // =================  Holes ==================
-  //TODO: Holes pointing the y axis
+  // TODO: Holes pointing the y axis
 
   // ======= Creating big holes =========
-  //Info("Create",Form("Cutting Voids Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting Voids Support_H%d_D%d", half,disk),0,0);
   for (auto iVoid = 0; iVoid < mNumberOfVoids[disk]; iVoid++) {
     TGeoArb8* localArb;
     localArb = new TGeoArb8(Form("sc_void_%d_H%d_D%d", iVoid, half, disk), mSupThickness + 10. * mT_delta);
@@ -94,13 +94,13 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
       double y;
       y = ((disk == 3) || (disk == 4)) ? mOuterCut[disk] - vertex[1] : vertex[1];
       localArb->SetVertex(iVertex, vertex[0], y);
-      localArb->SetVertex(iVertex + 4, vertex[0], y); //Vertexes 4..7 = 0..3
+      localArb->SetVertex(iVertex + 4, vertex[0], y); // Vertexes 4..7 = 0..3
     }
     localCS = new TGeoCompositeShape(nullptr, compositeOperation(localCS, localArb, nullptr, TGeoSubtraction()));
   }
 
   // ==== M2 6mm deep holes)
-  //Info("Create",Form("Cutting M2 6 mm deep holes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting M2 6 mm deep holes Support_H%d_D%d", half,disk),0,0);
   localTube = new TGeoTube(Form("sc_tube1_a_H%d_D%d", half, disk), 0, mRad_M2, mHeight_M2 + 6. * mT_delta);
   for (auto iHole = 0; iHole < mNumberOfM2Holes[disk]; iHole++) {
     localTranslation = new TGeoTranslation(-mM2Holes[disk][iHole][0],
@@ -108,7 +108,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
                                            mRaisedBoxHeight + mSupThickness / 2. - mHeight_M2);
     localCS = new TGeoCompositeShape(nullptr, compositeOperation(localCS, localTube, localTranslation, TGeoSubtraction()));
 
-    //For the backside
+    // For the backside
     localTranslation = new TGeoTranslation(mM2Holes[disk][iHole][0],
                                            mOuterCut[disk] - mM2Holes[disk][iHole][1],
                                            -(mRaisedBoxHeight + mSupThickness / 2. - mHeight_M2));
@@ -116,7 +116,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   }
 
   // ==== D2 H7 - 4 mm deep (on raisedBoxes)
-  //Info("Create",Form("Cutting D2 mm holes on raisedboxes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting D2 mm holes on raisedboxes Support_H%d_D%d", half,disk),0,0);
   localTube = new TGeoTube(Form("sc_tube1_a_H%d_D%d", half, disk), 0, mRad_D2_h, mHeight_D2_h + 6. * mT_delta);
 
   for (auto iHole = 0; iHole < mNumberOfD2_hHoles[disk]; iHole++) {
@@ -125,7 +125,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
                                            mRaisedBoxHeight + mSupThickness / 2. - mHeight_D2_h);
     localCS = new TGeoCompositeShape(nullptr, compositeOperation(localCS, localTube, localTranslation, TGeoSubtraction()));
 
-    //For the backside
+    // For the backside
     localTranslation = new TGeoTranslation(mD2_hHoles[disk][iHole][0],
                                            mOuterCut[disk] - mD2_hHoles[disk][iHole][1],
                                            -(mRaisedBoxHeight + mSupThickness / 2. - mHeight_D2_h));
@@ -133,7 +133,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   }
 
   // ==== D6.5 H7 (6.5 mm diameter holes)
-  //Info("Create",Form("Cutting 6.5 holes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting 6.5 holes Support_H%d_D%d", half,disk),0,0);
   localTube = new TGeoTube(Form("D65tube_H%d_D%d", half, disk), 0, mD65, mSupThickness / 2. + 20. * mT_delta);
   for (auto iHole = 0; iHole < mTwoHoles; iHole++) {
     localTranslation = new TGeoTranslation(-mD65Holes[disk][iHole][0],
@@ -143,7 +143,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   }
 
   // ==== D6 H7 (6 mm diameter holes)
-  //Info("Create",Form("Cutting 6 mm holes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting 6 mm holes Support_H%d_D%d", half,disk),0,0);
   localTube = new TGeoTube(Form("D6tube_H%d_D%d", half, disk), 0, mD6, mSupThickness / 2. + mT_delta);
   for (auto iHole = 0; iHole < mTwoHoles; iHole++) {
     localTranslation = new TGeoTranslation(-mD6Holes[disk][iHole][0],
@@ -153,7 +153,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   }
 
   // ==== D8 H7 (8 mm diameter holes)
-  //Info("Create",Form("Cutting 8 mm holes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting 8 mm holes Support_H%d_D%d", half,disk),0,0);
   localTube = new TGeoTube(Form("D8tube_H%d_D%d", half, disk), 0, mD8, mSupThickness / 2. + mRaisedBoxHeight + 20 * mT_delta);
   for (auto iHole = 0; iHole < mNumberOfD8_Holes[disk]; iHole++) {
     localTranslation = new TGeoTranslation(-mD8Holes[disk][iHole][0],
@@ -163,7 +163,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   }
 
   // ==== D3 H7 (3 mm diameter holes)
-  //Info("Create",Form("Cutting 3 mm holes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting 3 mm holes Support_H%d_D%d", half,disk),0,0);
   localTube = new TGeoTube(Form("D3tube_H%d_D%d", half, disk), 0, mD3, mSupThickness / 2. + mT_delta);
   for (auto iHole = 0; iHole < mTwoHoles; iHole++) {
     localTranslation = new TGeoTranslation(-mD3Holes[disk][iHole][0],
@@ -173,7 +173,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   }
 
   // ==== M3 H7 (?? mm diameter holes)
-  //Info("Create",Form("Cutting M3 H7 holes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting M3 H7 holes Support_H%d_D%d", half,disk),0,0);
   localTube = new TGeoTube(Form("M3tube_H%d_D%d", half, disk), 0, mM3, mSupThickness / 2. + mT_delta);
   for (auto iHole = 0; iHole < mNumberOfM3Holes[disk]; iHole++) {
     localTranslation = new TGeoTranslation(-mM3Holes[disk][iHole][0],
@@ -183,7 +183,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   }
 
   // ==== D4.5 H9
-  //Info("Create",Form("Cutting 4.5 mm holes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting 4.5 mm holes Support_H%d_D%d", half,disk),0,0);
   localTube = new TGeoTube(Form("D45tube_H%d_D%d", half, disk), 0, mD45, mSupThickness / 2. + mT_delta);
   for (auto iHole = 0; iHole < mTwoHoles; iHole++) {
     localTranslation = new TGeoTranslation(-mD45Holes[disk][iHole][0],
@@ -193,7 +193,7 @@ TGeoVolumeAssembly* Support::create(Int_t half, Int_t disk)
   }
 
   // ==== D2 H7 - 4 mm deep (on lower surface)
-  //Info("Create",Form("Cutting D2 holes Support_H%d_D%d", half,disk),0,0);
+  // Info("Create",Form("Cutting D2 holes Support_H%d_D%d", half,disk),0,0);
   localTube = new TGeoTube(Form("D2tube_H%d_D%d", half, disk), 0, mD2, .4 / 2. + 6 * mT_delta);
   for (auto iHole = 0; iHole < mTwoHoles; iHole++) {
     localTranslation = new TGeoTranslation(-mD2Holes[disk][iHole][0],
@@ -226,7 +226,7 @@ void Support::initParameters()
   mDiskBoxCuts[0] =
     {
       {mSupRad[0] + mT_delta, mDiskGap, th, 0., 0., 0},
-      {sqrt(pow(mSupRad[0], 2.) - pow(mOuterCut[0], 2.)), (mSupRad[0] - mOuterCut[0]) / 2., th, 0., (mSupRad[0] + mOuterCut[0]) / 2., 0}, //External cut width: 2*sqrt(R²-x²)
+      {sqrt(pow(mSupRad[0], 2.) - pow(mOuterCut[0], 2.)), (mSupRad[0] - mOuterCut[0]) / 2., th, 0., (mSupRad[0] + mOuterCut[0]) / 2., 0}, // External cut width: 2*sqrt(R²-x²)
       {12.4, 6.91, th, 0., 0., 0},
       {7.95, 9.4, th, 0., 0., 0},
       {2.9, 11.885, th, 0., 0., 0},
@@ -245,7 +245,7 @@ void Support::initParameters()
       {sqrt(pow(mSupRad[2], 2.) - pow(mOuterCut[2], 2.)),
        (mSupRad[2] - mOuterCut[2]) / 2., th,
        0.,
-       (mSupRad[2] + mOuterCut[2]) / 2., 0}, //External cut width: 2*sqrt(R²-x²)
+       (mSupRad[2] + mOuterCut[2]) / 2., 0}, // External cut width: 2*sqrt(R²-x²)
       {12.8, 6.91, th, 0., 0., 0},
       {9.7, 9.4, th, 0., 0., 0},
       {(6.3 - 2.2) / 2, 12.4, th, (6.3 + 2.2) / 2, 0, 0},
@@ -263,7 +263,7 @@ void Support::initParameters()
       {sqrt(pow(mSupRad[3], 2.) - pow(mOuterCut[3], 2.)),
        (mSupRad[3] - mOuterCut[3]) / 2., th,
        0.,
-       (mSupRad[3] + mOuterCut[3]) / 2., 0}, //External cut width: 2*sqrt(R²-x²)
+       (mSupRad[3] + mOuterCut[3]) / 2., 0}, // External cut width: 2*sqrt(R²-x²)
       {15.7, 9.4, th, 0., 0., 0},
       {9.7, 12.4, th, 0., 0., 0},
       {4.6, 14.73, th, 0., 0., 0},
@@ -278,7 +278,7 @@ void Support::initParameters()
       {sqrt(pow(mSupRad[4], 2.) - pow(mOuterCut[4], 2.)),
        (mSupRad[4] - mOuterCut[4]) / 2., th,
        0.,
-       (mSupRad[4] + mOuterCut[4]) / 2., 0}, //External cut width: 2*sqrt(R²-x²)
+       (mSupRad[4] + mOuterCut[4]) / 2., 0}, // External cut width: 2*sqrt(R²-x²)
       {16.2, 9.4, th, 0., 0., 0},
       {11.4, 12.4, th, 0., 0., 0},
       {8.0, 15.35, th, 0., 0., 0},
@@ -291,7 +291,7 @@ void Support::initParameters()
   // ### halfDisks 00
 
   auto rBT = mRaisedBoxHeight / 2.;                      // Raised boxes thickness
-  auto rBS = mRaisedBoxHeight / 2. + mSupThickness / 2.; //Raised boxes z shift
+  auto rBS = mRaisedBoxHeight / 2. + mSupThickness / 2.; // Raised boxes z shift
   // Raised Boxes {Width, Height, Thickness, x_center, y_center, z_center}
   mDiskRaisedBoxes[0] =
     {
@@ -300,7 +300,7 @@ void Support::initParameters()
       {(2.55 + 2.05) / 2., (13.92 - 11.885) / 2., rBT, (2.55 - 2.05) / 2., (13.92 + 11.885) / 2., rBS},
       {(7.15 - 2.9) / 2., (11.82 - 9.4) / 2., rBT, (-7.152 - 2.92) / 2., (11.82 + 9.4) / 2, rBS},
       {(10.55 - 7.95) / 2., (8.81 - 6.91) / 2., rBT, (-10.55 - 7.95) / 2., (8.81 + 6.91) / 2., rBS},
-      //Back side:
+      // Back side:
       {(9.35 - 7.95) / 2., (8.81 - 6.91) / 2., rBT, -(9.35 + 7.95) / 2., (8.81 + 6.91) / 2., -rBS},
       {(7.65 - 2.9) / 2., (11.82 - 9.4) / 2., rBT, -(7.65 + 2.9) / 2., (11.82 + 9.4) / 2., -rBS},
       {(2.55 + 2.05) / 2., (13.92 - 11.885) / 2., rBT, -(2.55 - 2.05) / 2., (13.92 + 11.885) / 2., -rBS},
@@ -320,7 +320,7 @@ void Support::initParameters()
       {(5.95 - 3.05) / 2., (14.83 - 12.4) / 2., rBT, -(5.95 + 3.05) / 2., (14.83 + 12.4) / 2., rBS},
       {(9.35 - 6.3) / 2., (11.82 - 9.4) / 2., rBT, -(9.35 + 6.3) / 2., (11.82 + 9.4) / 2, rBS},
       {(11.05 - 9.7) / 2., (8.81 - 6.91) / 2., rBT, -(11.05 + 9.7) / 2., (8.81 + 6.91) / 2., rBS},
-      //Back side:
+      // Back side:
       {(10.55 - 9.7) / 2., (8.81 - 6.91) / 2., rBT, -(10.55 + 9.7) / 2., (8.81 + 6.91) / 2., -rBS},
       {(8.85 - 6.3) / 2., (11.82 - 9.4) / 2., rBT, -(8.85 + 6.3) / 2., (11.82 + 9.4) / 2., -rBS},
       {(5.45 - 2.55) / 2., (14.83 - 12.4) / 2., rBT, -(5.45 + 2.55) / 2., (14.83 + 12.4) / 2., -rBS},
@@ -339,7 +339,7 @@ void Support::initParameters()
       {(3.75 - 2.9) / 2., (17.09 - 14.73) / 2., rBT, -(3.75 + 2.9) / 2., (17.09 + 14.73) / 2., rBS},
       {(8.85 - 4.6) / 2., (14.83 - 12.4) / 2., rBT, -(8.85 + 4.6) / 2., (14.83 + 12.4) / 2., rBS},
       {(13.95 - 9.7) / 2., (11.82 - 9.4) / 2., rBT, -(13.95 + 9.7) / 2., (11.82 + 9.4) / 2., rBS},
-      //for backside:
+      // for backside:
       {(12.75 - 9.7) / 2., (11.82 - 9.4) / 2., rBT, -(12.75 + 9.7) / 2., (11.82 + 9.4) / 2., -rBS},
       {(9.35 - 4.6) / 2., (14.83 - 12.4) / 2., rBT, -(9.35 + 4.6) / 2., (14.83 + 12.4) / 2., -rBS},
       {(4.25 - 2.9) / 2., (16.63 - 14.73) / 2., rBT, -(4.25 + 2.9) / 2., (16.63 + 14.73) / 2., -rBS},
@@ -359,7 +359,7 @@ void Support::initParameters()
       {-(-7.65 + 4.75) / 2., (17.85 - 15.35) / 2., rBT, -(-7.65 - 4.75) / 2., (17.85 + 15.35) / 2., rBS}, // RB5
       {-(-11.05 + 8.0) / 2., (14.83 - 12.4) / 2., rBT, -(-11.05 - 8.0) / 2., (14.83 + 12.4) / 2., rBS},   // RB6
       {-(-14.45 + 11.4) / 2., (11.82 - 9.4) / 2., rBT, -(-14.45 - 11.4) / 2., (11.82 + 9.4) / 2., rBS},   // RB7
-      //For backside:
+      // For backside:
       {(13.9 - 11.4) / 2., (11.82 - 9.4) / 2., rBT, (13.9 + 11.4) / 2., (11.82 + 9.4) / 2., -rBS},        // RB0
       {(10.55 - 8.0) / 2., (14.83 - 12.4) / 2., rBT, (10.55 + 8.0) / 2., (14.83 + 12.4) / 2., -rBS},      // RB1
       {(7.15 - 2.9) / 2., (17.84 - 15.35) / 2., rBT, (7.15 + 2.9) / 2., (17.84 + 15.35) / 2., -rBS},      // RB2
@@ -376,7 +376,7 @@ void Support::initParameters()
   // Fixation Boxes {Width, Height, Thickness, x_center, y_center, z_center = 0}
   mDiskFixBoxes[0] = {
     {(16.8 - 14.8) / 2., (6.5 - 4.6) / 2., mFixBoxHeight / 2., (16.8 + 14.8) / 2., (6.5 + 4.6) / 2., 0},
-    //Other side:
+    // Other side:
     {(16.8 - 14.8) / 2., (6.5 - 4.6) / 2., mFixBoxHeight / 2., -(16.8 + 14.8) / 2., (6.5 + 4.6) / 2., 0}};
 
   // ### halfDisks 01
@@ -386,7 +386,7 @@ void Support::initParameters()
   mDiskFixBoxes[2] = {
     {(16.8 - 14.8) / 2., (6.5 - 4.6) / 2., mFixBoxHeight / 2., (16.8 + 14.8) / 2., (6.5 + 4.6) / 2., 0},
     {(14.7 - 12.5) / 2., (8.8 - 5.4) / 2., mSupThickness / 2., (14.7 + 12.5) / 2., mOuterCut[2] - (5.4 + 8.8) / 2., 0},
-    //Other side:
+    // Other side:
     {(14.7 - 12.5) / 2., (8.8 - 5.4) / 2., mSupThickness / 2., -(14.7 + 12.5) / 2., mOuterCut[2] - (5.4 + 8.8) / 2., 0},
     {(16.8 - 14.8) / 2., (6.5 - 4.6) / 2., mFixBoxHeight / 2., -(16.8 + 14.8) / 2., (6.5 + 4.6) / 2., 0}};
 
@@ -395,7 +395,7 @@ void Support::initParameters()
     {(25.6 - 24.5) / 2., (6.5 - 5.2) / 2., mFixBoxHeight / 2., (25.6 + 24.5) / 2., (6.5 + 5.2) / 2., 0},
     {(24.5 - 23.6) / 2., (6.5 - 4.2) / 2., mFixBoxHeight / 2., (24.5 + 23.6) / 2., (6.5 + 4.2) / 2., 0},
     {(23.6 - 22.0) / 2., (6.5 - 4.2) / 2., mSupThickness / 2., (23.6 + 22.0) / 2., (6.5 + 4.2) / 2., 0},
-    //Other side:
+    // Other side:
     {(25.6 - 24.5) / 2., (6.5 - 5.2) / 2., mFixBoxHeight / 2., -(25.6 + 24.5) / 2., (6.5 + 5.2) / 2., 0},
     {(24.5 - 23.6) / 2., (6.5 - 4.2) / 2., mFixBoxHeight / 2., -(24.5 + 23.6) / 2., (6.5 + 4.2) / 2., 0},
     {(23.6 - 22.0) / 2., (6.5 - 4.2) / 2., mSupThickness / 2., -(23.6 + 22.0) / 2., (6.5 + 4.2) / 2., 0}};
@@ -405,7 +405,7 @@ void Support::initParameters()
     {(25.6 - 24.5) / 2., (6.5 - 5.2) / 2., mFixBoxHeight / 2., (25.6 + 24.5) / 2., (6.5 + 5.2) / 2., 0},
     {(24.5 - 23.6) / 2., (6.5 - 4.2) / 2., mFixBoxHeight / 2., (24.5 + 23.6) / 2., (6.5 + 4.2) / 2., 0},
     {(23.6 - 22.0) / 2., (6.5 - 4.2) / 2., mSupThickness / 2., (23.6 + 22.0) / 2., (6.5 + 4.2) / 2., 0},
-    //Other side:
+    // Other side:
     {(25.6 - 24.5) / 2., (6.5 - 5.2) / 2., mFixBoxHeight / 2., -(25.6 + 24.5) / 2., (6.5 + 5.2) / 2., 0},
     {(24.5 - 23.6) / 2., (6.5 - 4.2) / 2., mFixBoxHeight / 2., -(24.5 + 23.6) / 2., (6.5 + 4.2) / 2., 0},
     {(23.6 - 22.0) / 2., (6.5 - 4.2) / 2., mSupThickness / 2., -(23.6 + 22.0) / 2., (6.5 + 4.2) / 2., 0}};
@@ -418,7 +418,7 @@ void Support::initParameters()
   //   on TGeoArb8 shapes.
 
   // ### halfdisk 00
-  mNumberOfVoids[0] = 8; //Number of Voids (big holes) in each halfDisk support
+  mNumberOfVoids[0] = 8; // Number of Voids (big holes) in each halfDisk support
   mVoidVert[0] = new Double_t[mNumberOfVoids[0]][4][2]{
     {{-16., 1.8}, {-16., 4.5}, {-13.8, 4.5}, {-12.9, 1.8}},        // A,B,C,H
     {{-13.8, 4.5}, {-13.8, 8.7}, {-12.9, 7.6}, {-12.9, 1.8}},      // C,D,G,H
@@ -448,7 +448,7 @@ void Support::initParameters()
   };
 
   // ### halfdisk 03
-  mNumberOfVoids[3] = 6; //Number of Voids (big holes) in each halfDisk support
+  mNumberOfVoids[3] = 6; // Number of Voids (big holes) in each halfDisk support
   mVoidVert[3] = new Double_t[mNumberOfVoids[3]][4][2]{
     {{-21.377, 15.3}, {-20.075, 11.5}, {-17.0, 11.5}, {-17.0, 15.3}},       // a,b,c,d
     {{-19.053, 9.5}, {-13.964, 3.5}, {-14.0, 7.5}, {-14.0, 9.5}},           // e,f,i,j
@@ -459,7 +459,7 @@ void Support::initParameters()
   };
 
   // ### halfdisk 04
-  mNumberOfVoids[4] = 4; //Number of Voids (big holes) in each halfDisk support
+  mNumberOfVoids[4] = 4; // Number of Voids (big holes) in each halfDisk support
   mVoidVert[4] = new Double_t[mNumberOfVoids[4]][4][2]{
     {{-21.377, 16.7}, {-20.075, 12.9}, {-17.0, 12.9}, {-17.0, 16.7}}, // a,b,c,d
     {{-19.053, 10.9}, {-13.964, 4.9}, {-11.5, 4.9}, {-15.0, 10.9}},   // e,f,g,j // Simplified

@@ -509,7 +509,7 @@ void Pipe::ConstructGeometry()
   //==================================================
 
   // Wings
-  //TGeoVolumeAssembly* Wing = new TGeoVolumeAssembly("Wing"); not yet, be patient...
+  // TGeoVolumeAssembly* Wing = new TGeoVolumeAssembly("Wing"); not yet, be patient...
 
   barrel->AddNode(beamPipeSupport, 1, new TGeoTranslation(0., 30, kBeamPipesupportZpos + kFixationCarbonCollarDZ / 2.));
 

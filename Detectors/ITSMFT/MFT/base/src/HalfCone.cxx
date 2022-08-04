@@ -2145,7 +2145,7 @@ void HalfCone::makeReadoutCables(TGeoVolumeAssembly* HalfConeVolume, Int_t half,
 
   // Starting from the MFT backside: from the patch panel to MB2
   Double_t mRO1[3];
-  mRO1[0] = {14.0};                                                                 //width
+  mRO1[0] = {14.0};                                                                 // width
   mRO1[1] = (16 * section_ROcable_48pairs + 6 * section_ROcable_16pairs) / mRO1[0]; // thickness
   mRO1[2] = {6.5};                                                                  // length
   TGeoVolume* vRO1 = gGeoManager->MakeBox("vRO1", mCu, mRO1[0] / 2, mRO1[1] / 2, mRO1[2] / 2);

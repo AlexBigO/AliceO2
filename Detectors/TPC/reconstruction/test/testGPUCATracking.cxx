@@ -56,16 +56,16 @@ BOOST_AUTO_TEST_CASE(CATracking_test1)
   config.configDeviceBackend.deviceType = GPUDataTypes::DeviceType::CPU;
   config.configDeviceBackend.forceDeviceType = true;
 
-  config.configProcessing.ompThreads = 4;         //4 threads if we run on the CPU, 1 = default, 0 = auto-detect
-  config.configProcessing.runQA = false;          //Run QA after tracking
-  config.configProcessing.eventDisplay = nullptr; //Ptr to event display backend, for running standalone OpenGL event display
+  config.configProcessing.ompThreads = 4;         // 4 threads if we run on the CPU, 1 = default, 0 = auto-detect
+  config.configProcessing.runQA = false;          // Run QA after tracking
+  config.configProcessing.eventDisplay = nullptr; // Ptr to event display backend, for running standalone OpenGL event display
 
   config.configGRP.solenoidBz = solenoidBz;
-  config.configGRP.continuousMaxTimeBin = continuous ? GPUSettings::TPC_MAX_TF_TIME_BIN : 0; //Number of timebins in timeframe if continuous, 0 otherwise
+  config.configGRP.continuousMaxTimeBin = continuous ? GPUSettings::TPC_MAX_TF_TIME_BIN : 0; // Number of timebins in timeframe if continuous, 0 otherwise
 
-  config.configReconstruction.tpc.nWays = 3;               //Should always be 3!
-  config.configReconstruction.tpc.nWaysOuter = true;       //Will create outer param for TRD
-  config.configReconstruction.tpc.searchWindowDZDR = 2.5f; //Should always be 2.5 for looper-finding and/or continuous tracking
+  config.configReconstruction.tpc.nWays = 3;               // Should always be 3!
+  config.configReconstruction.tpc.nWaysOuter = true;       // Will create outer param for TRD
+  config.configReconstruction.tpc.searchWindowDZDR = 2.5f; // Should always be 2.5 for looper-finding and/or continuous tracking
   config.configReconstruction.tpc.trackReferenceX = refX;
 
   config.configWorkflow.steps.set(GPUDataTypes::RecoStep::TPCConversion, GPUDataTypes::RecoStep::TPCSliceTracking,

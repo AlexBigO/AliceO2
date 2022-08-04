@@ -110,8 +110,8 @@ void PrintCalDet(ofstream& out, const AliTRDCalDet* caldet)
 
 void PrintCalROC(ofstream& out, const AliTRDCalROC* calroc)
 {
-  //cout << calroc->fPla;
-  //cout << calroc->getChamber();
+  // cout << calroc->fPla;
+  // cout << calroc->getChamber();
   int rows = calroc->GetNrows();
   int cols = calroc->GetNcols();
   out << rows << endl;
@@ -130,8 +130,8 @@ void PrintCalPad(ofstream& out, const AliTRDCalPad* calpad)
 
 void PrintCalSingleChamberStatus(ofstream& out, AliTRDCalSingleChamberStatus* chamberstatus)
 {
-  //cout << calroc.fPla;
-  //cout << calroc.fCha;
+  // cout << calroc.fPla;
+  // cout << calroc.fCha;
   out << chamberstatus->GetNrows();
   out << chamberstatus->GetNcols();
 
@@ -226,7 +226,7 @@ void OCDB2CCDB(long timeStamp = -1, TString ccdbPath = "http://localhost:8080", 
   // if we don't use run number as time stamp set validity to 6 months, otherwise only for single run
   long timeStampEnd = (timeStamp != run) ? timeStamp + 1e3 * 60 * 60 * 24 * 180 : timeStamp + 1;
 
-  //std::string outFilename="CalibrationsForRun"+Run;
+  // std::string outFilename="CalibrationsForRun"+Run;
   TTimeStamp jobStartTime;
   // if the storage is on alien than we need to do some extra stuff
   TString storageString(storageURI);
@@ -252,10 +252,10 @@ void OCDB2CCDB(long timeStamp = -1, TString ccdbPath = "http://localhost:8080", 
   // get calibration information
   // process gains
   ///////////////////////////
-  //Connect to CCDB
+  // Connect to CCDB
   //
   o2::ccdb::CcdbApi ccdb;
-  map<string, string> metadata;               // do we want to store any meta data?
+  map<string, string> metadata; // do we want to store any meta data?
   ccdb.init(ccdbPath.Data());
 
   AliTRDCalChamberStatus* chamberStatus = 0;
@@ -273,14 +273,14 @@ void OCDB2CCDB(long timeStamp = -1, TString ccdbPath = "http://localhost:8080", 
       // store abitrary user object in strongly typed manner
       ccdb.storeAsTFileAny(o2chamberstatus, "TRD/Calib/ChamberStatus", metadata, timeStamp, timeStampEnd);
       // // read like this (you have to specify the type)
-      //auto o2chamberstatusback = ccdb.retrieveFromTFileAny<o2::trd::ChamberStatus>("TRD/Calib/ChamberStatus", metadata);
+      // auto o2chamberstatusback = ccdb.retrieveFromTFileAny<o2::trd::ChamberStatus>("TRD/Calib/ChamberStatus", metadata);
     } else
       cout << "attempt to get object chamber status from ocdb entry. Ergo not writing one to ccdb." << endl;
   } else
     cout << "failed to retrieve ocdb entry for Chamber Status" << endl;
 
-  //Now for ChamberCalibrations which holds 4 old values of ChamberVDrift, ChamberT0,
-  //ChamberGainFactor and ChamberExB
+  // Now for ChamberCalibrations which holds 4 old values of ChamberVDrift, ChamberT0,
+  // ChamberGainFactor and ChamberExB
   auto o2chambercalibrations = new o2::trd::ChamberCalibrations();
   if ((entry = GetCDBentry("TRD/Calib/ChamberVdrift", 0))) {
     if ((chamberVDrift = (AliTRDCalDet*)entry->GetObject())) {
@@ -319,7 +319,7 @@ void OCDB2CCDB(long timeStamp = -1, TString ccdbPath = "http://localhost:8080", 
     cout << "failed to retrieve ocdb entry for Chamber GainFactor" << endl;
 
   if (chamberGainFactor && chamberExB && chamberT0 && chamberVDrift) {
-    //if all 4 mmebers of calibrations is here then write to ccdb.
+    // if all 4 mmebers of calibrations is here then write to ccdb.
     ccdb.storeAsTFileAny(o2chambercalibrations, "TRD/Calib/ChamberCalibrations", metadata, timeStamp, timeStampEnd);
   } else
     cout << "something wrong with one of the members of ChamberCalibrations and not writing to ccdb, fix :: " << chamberGainFactor << "&&" << chamberExB << "&&" << chamberT0 << "&&" << chamberVDrift << endl;
@@ -435,31 +435,31 @@ void OCDB2CCDB(long timeStamp = -1, TString ccdbPath = "http://localhost:8080", 
   std::string tablekey = "Krypton_2011-01";
   UnpackGainTable(tablekey, o2gtbl);
   // Cant have empty upper vaild time, the system simply adds 1 year, so changed it to after run3. its indexed by the name in anycase.
-  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); //no uppper timestamp to leave it "always" valid.
+  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); // no uppper timestamp to leave it "always" valid.
   tablekey = "Krypton_2011-02";
   UnpackGainTable(tablekey, o2gtbl);
-  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); //no uppper timestamp to leave it "always" valid.
+  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); // no uppper timestamp to leave it "always" valid.
   tablekey = "Krypton_2011-03";
   UnpackGainTable(tablekey, o2gtbl);
-  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); //no uppper timestamp to leave it "always" valid.
+  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); // no uppper timestamp to leave it "always" valid.
   tablekey = "Krypton_2012-01";
   UnpackGainTable(tablekey, o2gtbl);
-  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); //no uppper timestamp to leave it "always" valid.
+  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); // no uppper timestamp to leave it "always" valid.
   tablekey = "Krypton_2015-01";
   UnpackGainTable(tablekey, o2gtbl);
-  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); //no uppper timestamp to leave it "always" valid.
+  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); // no uppper timestamp to leave it "always" valid.
   tablekey = "Krypton_2015-02";
   UnpackGainTable(tablekey, o2gtbl);
-  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); //no uppper timestamp to leave it "always" valid.
+  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); // no uppper timestamp to leave it "always" valid.
   tablekey = "Krypton_2018-01";
   UnpackGainTable(tablekey, o2gtbl);
-  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); //no uppper timestamp to leave it "always" valid.
+  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); // no uppper timestamp to leave it "always" valid.
   tablekey = "Gaintbl_Uniform_FGAN0_2011-01";
   UnpackGainTable(tablekey, o2gtbl);
-  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); //no uppper timestamp to leave it "always" valid.
+  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); // no uppper timestamp to leave it "always" valid.
   tablekey = "Gaintbl_Uniform_FGAN0_2012-01";
   UnpackGainTable(tablekey, o2gtbl);
-  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); //no uppper timestamp to leave it "always" valid.
+  ccdb.storeAsTFileAny(o2gtbl, Form("%s/OnlineGainTables/%s", TRDCalBase.c_str(), tablekey.c_str()), metadata, 1, 1670700184549); // no uppper timestamp to leave it "always" valid.
 
   /*
 THESE ARE THE ONES NOT CURRENTLY INCLUDED.

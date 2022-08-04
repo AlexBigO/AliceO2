@@ -129,7 +129,7 @@ void preparePedestalFiles(const std::string_view pedestalFile, const TString out
       continue;
     }
 
-    //loop over pads
+    // loop over pads
     for (size_t ipad = 0; ipad < rocPedestal.getData().size(); ++ipad) {
       const int globalPad = ipad + padOffset;
       const FECInfo& fecInfo = mapper.fecInfo(globalPad);
@@ -138,7 +138,7 @@ void preparePedestalFiles(const std::string_view pedestalFile, const TString out
       const int cruID = cru.number();
       const int sampa = fecInfo.getSampaChip();
       const int sampaChannel = fecInfo.getSampaChannel();
-      //int globalLinkID = fecInfo.getIndex();
+      // int globalLinkID = fecInfo.getIndex();
 
       const PartitionInfo& partInfo = mapper.getMapPartitionInfo()[cru.partition()];
       const int nFECs = partInfo.getNumberOfFECs();
@@ -182,7 +182,7 @@ void preparePedestalFiles(const std::string_view pedestalFile, const TString out
 
       const int hwChannel = getHWChannel(sampa, sampaChannel, region % 2);
       // for debugging
-      //printf("%4d %4d %4d %4d %4d: %u\n", cru.number(), globalLinkID, hwChannel, fecInfo.getSampaChip(), fecInfo.getSampaChannel(), getADCValue(pedestal));
+      // printf("%4d %4d %4d %4d %4d: %u\n", cru.number(), globalLinkID, hwChannel, fecInfo.getSampaChip(), fecInfo.getSampaChannel(), getADCValue(pedestal));
 
       // default thresholds
       const auto adcPedestal = floatToFixedSize(pedestal);
@@ -196,8 +196,8 @@ void preparePedestalFiles(const std::string_view pedestalFile, const TString out
       pedestalValuesPhysics[LinkInfo(cruID, globalLinkID)][hwChannel] = adcPedestalPhysics;
       thresholdlValuesPhysics[LinkInfo(cruID, globalLinkID)][hwChannel] = adcThresholdPhysics;
       // for debugging
-      //if(!(std::abs(pedestal - fixedSizeToFloat(adcPedestal)) <= 0.5 * 0.25)) {
-      //printf("%4d %4d %4d %4d %4d: %u %.2f %.4f %.4f\n", cru.number(), globalLinkID, hwChannel, sampa, sampaChannel, adcPedestal, fixedSizeToFloat(adcPedestal), pedestal, pedestal - fixedSizeToFloat(adcPedestal));
+      // if(!(std::abs(pedestal - fixedSizeToFloat(adcPedestal)) <= 0.5 * 0.25)) {
+      // printf("%4d %4d %4d %4d %4d: %u %.2f %.4f %.4f\n", cru.number(), globalLinkID, hwChannel, sampa, sampaChannel, adcPedestal, fixedSizeToFloat(adcPedestal), pedestal, pedestal - fixedSizeToFloat(adcPedestal));
       //}
     }
   }

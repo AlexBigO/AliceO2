@@ -30,7 +30,7 @@ class ApplyCCDBCalibDevice : public o2::framework::Task
  public:
   void init(InitContext& ic) final
   {
-    //const int minEnt = ic.options().get<int>("min-tfs");
+    // const int minEnt = ic.options().get<int>("min-tfs");
     mReferenceDriftV = o2::conf::ConfigurableParam::getValueAs<float>("TPCGasParam.DriftV");
     LOGP(info, "Setting reference drift velocity to {}", mReferenceDriftV);
   }

@@ -81,7 +81,7 @@ RP BaseRecoTask::process(o2::fv0::Digit const& bcd,
 void BaseRecoTask::FinishTask()
 {
   // finalize digitization, if needed, flash remaining digits
-  //if (!mContinuous)   return;
+  // if (!mContinuous)   return;
 }
 //______________________________________________________
 int BaseRecoTask::getChannelOffset(int channel)

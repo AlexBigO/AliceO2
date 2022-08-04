@@ -46,12 +46,12 @@ void TestDataGetter::run(ProcessingContext& pc)
   LOG(debug) << "New " << Run;
 
   /*
-			int ResetDecision = pc.inputs().get<int>("in");
-			LOG(debug) << "Reset Histogram Decision = " << ResetDecision;
-		
-			o2::itsmft::Digit digit = pc.inputs().get<o2::itsmft::Digit>("digits");
-			LOG(debug) << "Chip ID Getting " << digit.getChipIndex() << " Row = " << digit.getRow() << "   Column = " << digit.getColumn();
-			*/
+      int ResetDecision = pc.inputs().get<int>("in");
+      LOG(debug) << "Reset Histogram Decision = " << ResetDecision;
+
+      o2::itsmft::Digit digit = pc.inputs().get<o2::itsmft::Digit>("digits");
+      LOG(debug) << "Chip ID Getting " << digit.getChipIndex() << " Row = " << digit.getRow() << "   Column = " << digit.getColumn();
+      */
 
   //pc.services().get<ControlService>().readyToQuit(QuitRequest::All);
 }

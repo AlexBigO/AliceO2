@@ -69,7 +69,7 @@ void PoissonSolver<DataT>::poissonMultiGrid2D(DataContainer& matricesV, const Da
     ++nGridCol;
   }
 
-  //Check that number of mParamGrid.NRVertices and mParamGrid.NZVertices is suitable for multi grid
+  // Check that number of mParamGrid.NRVertices and mParamGrid.NZVertices is suitable for multi grid
   if (!isPowerOfTwo(mParamGrid.NRVertices - 1)) {
     LOGP(error, "PoissonMultiGrid2D: PoissonMultiGrid - Error in the number of mParamGrid.NRVertices. Must be 2**M + 1");
     return;
@@ -154,7 +154,7 @@ void PoissonSolver<DataT>::poissonMultiGrid2D(DataContainer& matricesV, const Da
       interp2D(tvArrayV[count], tvArrayV[count + 1], tnRRow, tnZColumn, iPhi);
 
       // Copy the relax charge to the tvCharge
-      tvCharge[count] = tvChargeFMG[count]; //copy
+      tvCharge[count] = tvChargeFMG[count]; // copy
 
       // Do V cycle
       for (int mgCycle = 0; mgCycle < MGParameters::nMGCycle; ++mgCycle) {
@@ -308,7 +308,7 @@ void PoissonSolver<DataT>::poissonMultiGrid3D2D(DataContainer& matricesV, const 
       interp3D(tvArrayV[count], tvArrayV[count + 1], tnRRow, tnZColumn, mParamGrid.NPhiVertices, mParamGrid.NPhiVertices);
 
       // 2) c) Copy the restricted charge to charge for calculation
-      tvCharge[count] = tvChargeFMG[count]; //copy
+      tvCharge[count] = tvChargeFMG[count]; // copy
 
       // 2) c) Do V cycle MGParameters::nMGCycle times at most
       for (int mgCycle = 0; mgCycle < MGParameters::nMGCycle; ++mgCycle) {
@@ -606,7 +606,7 @@ void PoissonSolver<DataT>::wCycle2D(const int gridFrom, const int gridTo, const 
     matricesCurrentCharge = tvCharge[count];
     matricesCurrentV = tvArrayV[count];
 
-    //3) Restriction
+    // 3) Restriction
     restrict2D(matricesCurrentCharge, residue, tnRRow, tnZColumn, 0);
   }
 
@@ -679,10 +679,10 @@ void PoissonSolver<DataT>::vCycle2D(const int gridFrom, const int gridTo, const 
     tnRRow = iOne == 1 ? mParamGrid.NRVertices : mParamGrid.NRVertices / iOne + 1;
     tnZColumn = jOne == 1 ? mParamGrid.NZVertices : mParamGrid.NZVertices / jOne + 1;
 
-    //3) Restriction
+    // 3) Restriction
     restrict2D(tvCharge[count], tvResidue[index], tnRRow, tnZColumn, 0);
 
-    //4) Zeroing coarser V
+    // 4) Zeroing coarser V
     std::fill(tvArrayV[count].begin(), tvArrayV[count].end(), 0); // is this necessary???
   }
 
@@ -745,8 +745,8 @@ void PoissonSolver<DataT>::vCycle3D2D(const int symmetry, const int gridFrom, co
       inverseCoefficient4[i] = 1 / coefficient4[i];
     }
 
-    //Info("VCycle3D2D","Before Pre-smoothing");
-    // 1) Pre-Smoothing: Gauss-Seidel Relaxation or Jacobi
+    // Info("VCycle3D2D","Before Pre-smoothing");
+    //  1) Pre-Smoothing: Gauss-Seidel Relaxation or Jacobi
     for (int jPre = 1; jPre <= nPre; ++jPre) {
       relax3D(tvArrayV[index], tvCharge[index], tnRRow, tnZColumn, mParamGrid.NPhiVertices, symmetry, h2, tempRatioZ, coefficient1, coefficient2, coefficient3, coefficient4);
     } // end pre smoothing
@@ -759,10 +759,10 @@ void PoissonSolver<DataT>::vCycle3D2D(const int symmetry, const int gridFrom, co
     tnRRow = iOne == 1 ? mParamGrid.NRVertices : mParamGrid.NRVertices / iOne + 1;
     tnZColumn = jOne == 1 ? mParamGrid.NZVertices : mParamGrid.NZVertices / jOne + 1;
 
-    //3) Restriction
+    // 3) Restriction
     restrict3D(tvCharge[count], tvResidue[index], tnRRow, tnZColumn, mParamGrid.NPhiVertices, mParamGrid.NPhiVertices);
 
-    //4) Zeroing coarser V
+    // 4) Zeroing coarser V
     std::fill(tvArrayV[count].begin(), tvArrayV[count].end(), 0);
   }
 
@@ -859,10 +859,10 @@ void PoissonSolver<DataT>::vCycle3D(const int symmetry, const int gridFrom, cons
     tPhiSlice = mParamGrid.NPhiVertices / kOne;
     tPhiSlice = tPhiSlice < nnPhi ? nnPhi : tPhiSlice;
 
-    //3) Restriction
+    // 3) Restriction
     restrict3D(tvCharge[count], tvResidue[index], tnRRow, tnZColumn, tPhiSlice, otPhiSlice);
 
-    //4) Zeroing coarser V
+    // 4) Zeroing coarser V
     std::fill(tvArrayV[count].begin(), tvArrayV[count].end(), 0);
   }
 
@@ -920,7 +920,7 @@ void PoissonSolver<DataT>::residue2D(Vector& residue, const Vector& matricesCurr
     } // end cols
   }   // end nRRow
 
-  //Boundary points.
+  // Boundary points.
   for (int i = 0; i < tnRRow; ++i) {
     residue(i, 0, iPhi) = residue(i, tnZColumn - 1, iPhi) = 0.0;
   }

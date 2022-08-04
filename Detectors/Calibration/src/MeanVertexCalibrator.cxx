@@ -189,7 +189,7 @@ void MeanVertexCalibrator::doSimpleMovingAverage(std::deque<float>& dq, float& s
 
   if (dq.size() <= mSMAslots) {
     sma = std::accumulate(dq.begin(), dq.end(), 0.0) / dq.size();
-    //avg = (avg * (vect.size() - 1) + vect.back()) / vect.size();
+    // avg = (avg * (vect.size() - 1) + vect.back()) / vect.size();
     return;
   }
 

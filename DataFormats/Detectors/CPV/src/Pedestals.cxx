@@ -18,9 +18,9 @@ using namespace o2::cpv;
 
 Pedestals::Pedestals(int /*dummy*/)
 {
-  //produce reasonable objest for test purposes
-  mPedestals.fill(200); //typical pedestal value
-  mPedSigmas.fill(1.5); //typical pedestal sigma
+  // produce reasonable objest for test purposes
+  mPedestals.fill(200); // typical pedestal value
+  mPedSigmas.fill(1.5); // typical pedestal sigma
 }
 //______________________________________________________________________________
 bool Pedestals::setPedestals(TH1* h)

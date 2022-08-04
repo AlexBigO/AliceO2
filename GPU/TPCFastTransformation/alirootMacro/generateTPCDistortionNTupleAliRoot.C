@@ -85,8 +85,8 @@ int generateTPCDistortionNTupleAliRoot()
   TFile* f = new TFile("tpcDistortionNTuple.root", "RECREATE");
   TNtuple* nt = new TNtuple("dist", "dist", "slice:row:su:sv:dx:du:dv");
 
-  int nSlices = 1; //fastTransform.getNumberOfSlices();
-  //for( int slice=0; slice<nSlices; slice++){
+  int nSlices = 1; // fastTransform.getNumberOfSlices();
+  // for( int slice=0; slice<nSlices; slice++){
   for (int slice = 0; slice < 1; slice++) {
     const TPCFastTransformGeo::SliceInfo& sliceInfo = geo.getSliceInfo(slice);
 
@@ -100,8 +100,8 @@ int generateTPCDistortionNTupleAliRoot()
         for (int knotV = 0; knotV < nKnots; knotV++) {
           float sv = knotV / (double)(nKnots - 1);
 
-          //for (float su = 0.; su <= 1.; su += 0.01) {
-          //for (float sv = 0.; sv <= 1.; sv += 0.01) {
+          // for (float su = 0.; su <= 1.; su += 0.01) {
+          // for (float sv = 0.; sv <= 1.; sv += 0.01) {
 
           float u, v, y = 0, z = 0;
           geo.convScaledUVtoUV(slice, row, su, sv, u, v);

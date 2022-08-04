@@ -64,7 +64,7 @@ std::vector<DataProcessorSpec> defineDataProcessing(ConfigContext const&)
          LOG(debug) << "instance " << parallelContext.index1D() << " of " << parallelContext.index1DSize() << ": "
                     << *input.spec << ": " << *((int*)input.payload);
          auto const* dataheader = DataRefUtils::getHeader<o2::header::DataHeader*>(input);
-         //auto& data = ctx.outputs().make<int>(OutputRef{"output", dataheader->subSpecification});
+         // auto& data = ctx.outputs().make<int>(OutputRef{"output", dataheader->subSpecification});
          auto& data = ctx.outputs().make<int>(Output{"TST", "PREPROC", dataheader->subSpecification, Lifetime::Timeframe});
          ASSERT_ERROR(ctx.inputs().get<int>(input.spec->binding.c_str()) == parallelContext.index1D());
          data = parallelContext.index1D();
@@ -88,7 +88,7 @@ std::vector<DataProcessorSpec> defineDataProcessing(ConfigContext const&)
          //auto& data = ctx.outputs().make<int>(OutputRef{"output", dataheader->subSpecification});
          auto& data = ctx.outputs().make<int>(Output{"TST", "DATA", dataheader->subSpecification, Lifetime::Timeframe});
          data = ctx.inputs().get<int>(input.spec->binding.c_str());
-         //auto& meta = ctx.outputs().make<int>(OutputRef{"metadt", dataheader->subSpecification});
+         // auto& meta = ctx.outputs().make<int>(OutputRef{"metadt", dataheader->subSpecification});
          auto& meta = ctx.outputs().make<int>(Output{"TST", "META", dataheader->subSpecification, Lifetime::Timeframe});
          meta = dataheader->subSpecification;
        }

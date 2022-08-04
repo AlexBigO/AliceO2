@@ -48,7 +48,7 @@ int main(int argc, char** argv)
 
   unsigned int nthreads; // number of threads used by openMP
 
-  unsigned long rangestart; //30/10/2021, 01:02:32 for run 505566 -> 1635548552000
+  unsigned long rangestart; // 30/10/2021, 01:02:32 for run 505566 -> 1635548552000
   unsigned long rangeend;   // 30/10/2021, 02:31:10 for run 505566 -> 1635553870000
 
   double timeRangeLow;

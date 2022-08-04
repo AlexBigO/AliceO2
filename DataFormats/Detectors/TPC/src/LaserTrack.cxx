@@ -47,7 +47,7 @@ void LaserTrackContainer::loadTracksFromFile()
     std::stringstream streamLine(line);
     streamLine >> id >> x >> alpha >> p0 >> p1 >> p2 >> p3 >> p4;
 
-    //printf("%3d: %f %f %f %f %f %f %f \n", id, x, alpha, p0, p1, p2, p3, p4);
+    // printf("%3d: %f %f %f %f %f %f %f \n", id, x, alpha, p0, p1, p2, p3, p4);
     mLaserTracks[id] = LaserTrack(id, x, alpha, {p0, p1, p2, p3, p4});
   }
 }

@@ -40,8 +40,8 @@ class Encoder
   __extension__ using uint128_t = unsigned __int128;
 
   // the Coder works either with a 64Bit state and 32 bit streaming or
-  //a 32 Bit state and 8 Bit streaming We need to make sure it gets initialized with
-  //the right template arguments at compile time.
+  // a 32 Bit state and 8 Bit streaming We need to make sure it gets initialized with
+  // the right template arguments at compile time.
   static_assert((sizeof(state_T) == sizeof(uint32_t) && sizeof(stream_T) == sizeof(uint8_t)) ||
                   (sizeof(state_T) == sizeof(uint64_t) && sizeof(stream_T) == sizeof(uint32_t)),
                 "Coder can either be 32Bit with 8 Bit stream type or 64 Bit Type with 32 Bit stream type");
@@ -140,7 +140,7 @@ inline std::tuple<state_T, stream_IT> Encoder<state_T, stream_T>::renorm(state_T
     } else {
       do {
         ++outputIter;
-        //stream out 8 Bits
+        // stream out 8 Bits
         *outputIter = static_cast<stream_T>(state & 0xff);
         state >>= STREAM_BITS;
       } while (state >= maxState);

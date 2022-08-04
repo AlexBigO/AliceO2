@@ -130,7 +130,7 @@ void AnalysisClusterSpec<InputType>::run(framework::ProcessingContext& ctx)
   mEventHandler->setClusterData(outputClusters, outputCellDigitIndices, outputTriggerRecord, outputTriggerRecordIndices);
   mEventHandler->setCellData(Inputs, InputTriggerRecord);
 
-  //for (const auto& inputEvent : mEventHandler) {
+  // for (const auto& inputEvent : mEventHandler) {
   for (int iev = 0; iev < mEventHandler->getNumberOfEvents(); iev++) {
     auto inputEvent = mEventHandler->buildEvent(iev);
 
@@ -139,7 +139,7 @@ void AnalysisClusterSpec<InputType>::run(framework::ProcessingContext& ctx)
     mClusterFactory->setCellsContainer(Inputs);
     mClusterFactory->setCellsIndicesContainer(inputEvent.mCellIndices);
 
-    //for (const auto& analysisCluster : mClusterFactory) {
+    // for (const auto& analysisCluster : mClusterFactory) {
     for (int icl = 0; icl < mClusterFactory->getNumberOfClusters(); icl++) {
       auto analysisCluster = mClusterFactory->buildCluster(icl);
       mOutputAnaClusters->push_back(analysisCluster);

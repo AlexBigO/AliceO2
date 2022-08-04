@@ -36,8 +36,8 @@ void Digitizer::init()
     LOG(info) << "[CPVDigitizer] No reading calibration from ccdb requested, set default";
   } else {
     auto& ccdbMgr = o2::ccdb::BasicCCDBManager::instance();
-    ccdbMgr.setCaching(true);                     //make local cache of remote objects
-    ccdbMgr.setLocalObjectValidityChecking(true); //query objects from remote site only when local one is not valid
+    ccdbMgr.setCaching(true);                     // make local cache of remote objects
+    ccdbMgr.setLocalObjectValidityChecking(true); // query objects from remote site only when local one is not valid
     // read calibration from ccdb (for now do it only at the beginning of dataprocessing)
     // TODO: setup timestam according to anchors
     // Do not set timestamp here: This should be set from the framework and is done via the digitizer workflow
@@ -67,8 +67,8 @@ void Digitizer::init()
     LOG(info) << "Task configuration is done.";
   }
 
-  //signal thresolds for digits
-  //note that digits are calibrated objects
+  // signal thresolds for digits
+  // note that digits are calibrated objects
   for (int i = 0; i < NCHANNELS; i++) {
     mDigitThresholds[i] = o2::cpv::CPVSimParams::Instance().mZSnSigmas *
                           mPedestals->getPedSigma(i) * mCalibParams->getGain(i);
@@ -96,26 +96,26 @@ void Digitizer::processHits(const std::vector<Hit>* hits, const std::vector<Digi
   if (digitsBg.size() == 0) { // no digits provided: try simulate pedestal noise (do it only once)
     for (int i = NCHANNELS; i--;) {
       float amplitude = simulatePedestalNoise(i);
-      if (amplitude > mDigitThresholds[i]) { //add noise digit if its signal > threshold
+      if (amplitude > mDigitThresholds[i]) { // add noise digit if its signal > threshold
         mArrayD[i].setAmplitude(simulatePedestalNoise(i));
         mArrayD[i].setAbsId(i);
         // mArrayD[i].setLabel(-1); // noise marking (not needed to set as all mArrayD[i] elements are just resetted)
       }
     }
-  } else {                       //if digits exist, noise is already added
-    for (auto& dBg : digitsBg) { //digits are sorted and unique
+  } else {                       // if digits exist, noise is already added
+    for (auto& dBg : digitsBg) { // digits are sorted and unique
       mArrayD[dBg.getAbsId()] = dBg;
     }
   }
 
-  //Second, add Hits
+  // Second, add Hits
   for (auto& h : *hits) {
     int i = h.GetDetectorID();
     if (mArrayD[i].getAmplitude() > 0) {
-      mArrayD[i].setAmplitude(mArrayD[i].getAmplitude() + h.GetEnergyLoss()); //if amplitude > 0 then pedestal noise is already added
+      mArrayD[i].setAmplitude(mArrayD[i].getAmplitude() + h.GetEnergyLoss()); // if amplitude > 0 then pedestal noise is already added
     } else {
       mArrayD[i].setAbsId(i);
-      mArrayD[i].setAmplitude(h.GetEnergyLoss() + simulatePedestalNoise(i)); //if not then add pedestal noise to signal
+      mArrayD[i].setAmplitude(h.GetEnergyLoss() + simulatePedestalNoise(i)); // if not then add pedestal noise to signal
     }
     if (mArrayD[i].getAmplitude() > mDigitThresholds[i]) {
       int labelIndex = mArrayD[i].getLabel();
@@ -124,7 +124,7 @@ void Digitizer::processHits(const std::vector<Hit>* hits, const std::vector<Digi
         o2::MCCompLabel label(true); // noise label
         labels.addElement(labelIndex, label);
         mArrayD[i].setLabel(labelIndex);
-      } else { //check if lable already exist
+      } else { // check if lable already exist
         gsl::span<MCCompLabel> sp = labels.getLabels(labelIndex);
         bool found = false;
         for (MCCompLabel& te : sp) {
@@ -135,17 +135,17 @@ void Digitizer::processHits(const std::vector<Hit>* hits, const std::vector<Digi
         }
         if (!found) {
           o2::MCCompLabel label(h.GetTrackID(), collId, source);
-          //Highly inefficient management of Labels: commenting  line below reeduces WHOLE digitization time by factor ~30
+          // Highly inefficient management of Labels: commenting  line below reeduces WHOLE digitization time by factor ~30
           labels.addElementRandomAccess(labelIndex, label);
         }
       }
     }
   }
 
-  //finalize output digits
+  // finalize output digits
   for (int i = 0; i < NCHANNELS; i++) {
     if (!mBadMap->isChannelGood(i)) {
-      continue; //bad channel -> skip this digit
+      continue; // bad channel -> skip this digit
     }
     if (mArrayD[i].getAmplitude() > mDigitThresholds[i]) {
       digitsOut.push_back(mArrayD[i]);
@@ -155,7 +155,7 @@ void Digitizer::processHits(const std::vector<Hit>* hits, const std::vector<Digi
 
 float Digitizer::simulatePedestalNoise(int absId)
 {
-  //this function is to simulate pedestal and its noise (ADC counts)
+  // this function is to simulate pedestal and its noise (ADC counts)
   if (absId < 0 || absId >= NCHANNELS) {
     return 0.;
   }

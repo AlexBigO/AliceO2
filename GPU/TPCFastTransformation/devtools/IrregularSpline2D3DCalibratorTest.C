@@ -181,7 +181,7 @@ int IrregularSpline2D3DCalibratorTest()
     int seed = sample;
     /*
       gRandom->SetSeed(0);
-      seed = gRandom->Integer(100);      
+      seed = gRandom->Integer(100);
     */
     gRandom->SetSeed(seed);
     if (kTestTPC) {
@@ -270,7 +270,7 @@ int IrregularSpline2D3DCalibratorTest()
         for (float v = 0; v <= 1; v += stepv) {
           float fx0, fy0, fz0;
           F(u, v, fx0, fy0, fz0);
-          //finder.getRaster().getSplineVec(finder.getRasterData(), u, v, fx0, fy0, fz0);
+          // finder.getRaster().getSplineVec(finder.getRasterData(), u, v, fx0, fy0, fz0);
           float fx1, fy1, fz1;
           finder.getSpline().getSplineVec(finder.getSplineData(), u, v, fx1, fy1, fz1);
           if (u >= 0 && v >= 0 && u <= 1 && v <= 1) {
@@ -299,7 +299,7 @@ int IrregularSpline2D3DCalibratorTest()
         canv->cd(3);
 
         gStyle->SetPalette(1);
-        //ntDiff->Draw("dfx:v:u","","surf");
+        // ntDiff->Draw("dfx:v:u","","surf");
         gfdiff->Draw("surf");
         gknotsDiff->Draw("P,same");
 

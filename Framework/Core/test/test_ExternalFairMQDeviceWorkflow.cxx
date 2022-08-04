@@ -176,7 +176,7 @@ std::vector<DataProcessorSpec> defineDataProcessing(ConfigContext const& config)
     // the compute callback of the producer
     auto producerCallback = [nRolls, channelName, proxyMode, counter = std::make_shared<size_t>()](DataAllocator& outputs, ControlService& control, RawDeviceService& rds) {
       int data = *counter;
-      //outputs.make<int>(OutputRef{"data", 0}) = data;
+      // outputs.make<int>(OutputRef{"data", 0}) = data;
 
       fair::mq::Device& device = *(rds.device());
       auto transport = device.GetChannel(*channelName, 0).Transport();
@@ -327,14 +327,14 @@ std::vector<DataProcessorSpec> defineDataProcessing(ConfigContext const& config)
   Inputs checkerInputs;
   if (proxyMode != ProxyMode::All) {
     checkerInputs.emplace_back(InputSpec{"datain", ConcreteDataTypeMatcher{"TST", "DATA"}, Lifetime::Timeframe});
-    //for (unsigned int i = 0; i < pState->nChannels; i++) {
-    //  checkerInputs.emplace_back(InputSpec{{"datain"}, "TST", "DATA", i, Lifetime::Timeframe});
-    //}
+    // for (unsigned int i = 0; i < pState->nChannels; i++) {
+    //   checkerInputs.emplace_back(InputSpec{{"datain"}, "TST", "DATA", i, Lifetime::Timeframe});
+    // }
   } else {
     checkerInputs.emplace_back(InputSpec{"datain", ConcreteDataTypeMatcher{"PRX", "DATA"}, Lifetime::Timeframe});
-    //for (unsigned int i = 0; i < pState->nChannels; i++) {
-    //  checkerInputs.emplace_back(InputSpec{{"datain"}, "PRX", "DATA", i, Lifetime::Timeframe});
-    //}
+    // for (unsigned int i = 0; i < pState->nChannels; i++) {
+    //   checkerInputs.emplace_back(InputSpec{{"datain"}, "PRX", "DATA", i, Lifetime::Timeframe});
+    // }
   }
   if (proxyMode != ProxyMode::OnlyOutput) {
     // the checker is not added if the input proxy is skipped

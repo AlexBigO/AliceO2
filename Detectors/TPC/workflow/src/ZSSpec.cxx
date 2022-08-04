@@ -192,7 +192,7 @@ DataProcessorSpec getZSEncoderSpec(std::vector<int> const& tpcSectors, bool outR
                            {createInputSpecs()},
                            {createOutputSpecs()},
                            AlgorithmSpec(initFunction)};
-} //spec end
+} // spec end
 
 DataProcessorSpec getZStoDigitsSpec(std::vector<int> const& tpcSectors)
 {

@@ -35,7 +35,7 @@ namespace trd
 /// check the bit manipulations
 BOOST_AUTO_TEST_CASE(TRDRawDataHeaderSizes)
 {
-  //check the sizes of header structs due to packing
+  // check the sizes of header structs due to packing
   BOOST_CHECK_EQUAL(sizeof(o2::trd::TrackletMCMData), 4);
   BOOST_CHECK_EQUAL(sizeof(o2::trd::TrackletHCHeader), 4);
   BOOST_CHECK_EQUAL(sizeof(o2::trd::TrackletMCMHeader), 4);
@@ -47,11 +47,11 @@ BOOST_AUTO_TEST_CASE(TRDRawDataHeaderInternals)
   o2::trd::TrackletMCMData tracklet;
   o2::trd::HalfCRUHeader halfcruheader;
   // changed as now nothing spans a 32 or 16 bit boundary
-  halfcruheader.word0 = 0x22200; //bc is at 0x0000000fff00
+  halfcruheader.word0 = 0x22200; // bc is at 0x0000000fff00
   BOOST_CHECK_EQUAL(halfcruheader.BunchCrossing, 0x222);
-  halfcruheader.word0 = 0x00000077; //headerversion is at 0x000000000
+  halfcruheader.word0 = 0x00000077; // headerversion is at 0x000000000
   BOOST_CHECK_EQUAL(halfcruheader.HeaderVersion, 119);
-  //error flags
+  // error flags
   halfcruheader.word12[0] = 0xa02;
   halfcruheader.word12[1] = 0xab0000;
   BOOST_CHECK_EQUAL(halfcruheader.errorflags[0].errorflag, 2);
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(TRDRawDataHeaderInternals)
   halfcruheader.word12[1] = 0x00ed000000000000; // should link 14 error flags.
   BOOST_CHECK_EQUAL(halfcruheader.errorflags[14].errorflag, 0xed);
   BOOST_CHECK_EQUAL(halfcruheader.errorflags[14].errorflag, o2::trd::getHalfCRULinkErrorFlag(halfcruheader, 14));
-  //datasizes
+  // datasizes
   halfcruheader.word47[0] = 0xbdbd;
   BOOST_CHECK_EQUAL(halfcruheader.datasizes[0].size, 0xbdbd);
   BOOST_CHECK_EQUAL(halfcruheader.datasizes[0].size, o2::trd::getHalfCRULinkDataSize(halfcruheader, 0));
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(TRDRawDataHeaderInternals)
   BOOST_CHECK_EQUAL(mcmrawdataheader.pid2, 0xff); // 8 bits
   mcmrawdataheader.word = 0x01fe;
   BOOST_CHECK_EQUAL(mcmrawdataheader.pid0, 0xff); // 8 bits
-  //check tracklet
+  // check tracklet
   tracklet.word = 0xffe00000;
   BOOST_CHECK_EQUAL((uint32_t)tracklet.pos, 0x7ff);
 }

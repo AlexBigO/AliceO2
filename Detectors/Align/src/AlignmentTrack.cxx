@@ -492,7 +492,7 @@ bool AlignmentTrack::calcResiduals(const double* extendedParams, bool invert, in
     if (pnt->containsMaterial()) {
       // material degrees of freedom do not contribute to NDF since they are constrained by 0 expectation
       int nCorrPar = pnt->getNMatPar();
-      float* corCov = pnt->getMatCorrCov();                                 // correction diagonalized covariance
+      float* corCov = pnt->getMatCorrCov(); // correction diagonalized covariance
       auto offs = pnt->getMaxLocVarID() - nCorrPar;
       for (int i = 0; i < nCorrPar; i++) {
         mChi2 += mLocPar[offs + i] * mLocPar[offs + i] / corCov[i];
@@ -625,10 +625,10 @@ bool AlignmentTrack::applyMatCorr(trackParam_t& trPar, const double* corrPar, co
   for (int i = kNKinParBON; i--;) {
     corr[i] += detELoss[i];
   }
-  //corr[kParQ2Pt] += detELoss[kParQ2Pt];
-  //  printf("apply corr UD %+.3e %+.3e %+.3e %+.3e %+.3e\n",corr[0],corr[1],corr[2],corr[3],corr[4]);
-  //  printf("      corr  D %+.3e %+.3e %+.3e %+.3e\n",corrDiag[0],corrDiag[1],corrDiag[2],corrDiag[3]);
-  //  printf("at point :"); pnt->print();
+  // corr[kParQ2Pt] += detELoss[kParQ2Pt];
+  //   printf("apply corr UD %+.3e %+.3e %+.3e %+.3e %+.3e\n",corr[0],corr[1],corr[2],corr[3],corr[4]);
+  //   printf("      corr  D %+.3e %+.3e %+.3e %+.3e\n",corrDiag[0],corrDiag[1],corrDiag[2],corrDiag[3]);
+  //   printf("at point :"); pnt->print();
   return applyMatCorr(trPar, corr);
   //
 }
@@ -810,7 +810,7 @@ void AlignmentTrack::Print(Option_t* opt) const
         printf("\n");
         printf("  Corr.Pull:  ");
         float* corCov = pnt->getMatCorrCov(); // correction covariance
-        //float *corExp = pnt->getMatCorrExp(); // correction expectation
+        // float *corExp = pnt->getMatCorrExp(); // correction expectation
         for (int i = 0; i < nCorrPar; i++) {
           printf("%+.3e ", (mLocPar[i + pnt->getMaxLocVarID() - nCorrPar] /* - corExp[i]*/) / Sqrt(corCov[i]));
         }
@@ -874,7 +874,7 @@ bool AlignmentTrack::iniFit()
   if (isCosmic()) {
     mChi2CosmDn = mChi2;
     trackParam_t trcU = trc;
-    if (!fitLeg(trcU, getNPoints() - 1, getInnerPointID() + 1, mNeedInv[1])) { //fit upper leg of cosmic track
+    if (!fitLeg(trcU, getNPoints() - 1, getInnerPointID() + 1, mNeedInv[1])) { // fit upper leg of cosmic track
 #if DEBUG > 3
       LOG(warn) << "Failed fitLeg 0";
       trc.print();
@@ -894,7 +894,7 @@ bool AlignmentTrack::iniFit()
     if (!combineTracks(trc, trcU)) {
       return false;
     }
-    //printf("Combined\n"); trc.print();
+    // printf("Combined\n"); trc.print();
   }
   copyFrom(&trc);
   //
@@ -1014,7 +1014,7 @@ bool AlignmentTrack::fitLeg(trackParam_t& trc, int pFrom, int pTo, bool& inv)
   }
   if (!propagateParamToPoint(trc, p0, cnf.maxStep)) {
     //  if (!propagateToPoint(trc,p0,5,30,true)) {
-    //trc.PropagateParamOnlyTo(p0->getXPoint()+kOverShootX,AliTrackerBase::GetBz())) {
+    // trc.PropagateParamOnlyTo(p0->getXPoint()+kOverShootX,AliTrackerBase::GetBz())) {
 #if DEBUG > 3
     AliWarningF("Failed on PropagateParamOnlyTo to %f", p0->getXPoint() + kOverShootX);
     trc.print();
@@ -1048,9 +1048,9 @@ bool AlignmentTrack::fitLeg(trackParam_t& trc, int pFrom, int pTo, bool& inv)
       const double* yz = pnt->getYZTracking();
       const double* errYZ = pnt->getYZErrTracking();
       double chi = trc.getPredictedChi2(yz, errYZ);
-      //printf("***>> fitleg-> Y: %+e %+e / Z: %+e %+e -> Chi2: %e | %+e %+e\n",yz[0],trc.GetY(),yz[1],trc.GetZ(),chi,
-      //  trc.Phi(),trc.GetAlpha());
-      //      printf("Before update at %e %e\n",yz[0],yz[1]); trc.print();
+      // printf("***>> fitleg-> Y: %+e %+e / Z: %+e %+e -> Chi2: %e | %+e %+e\n",yz[0],trc.GetY(),yz[1],trc.GetZ(),chi,
+      //   trc.Phi(),trc.GetAlpha());
+      //       printf("Before update at %e %e\n",yz[0],yz[1]); trc.print();
       if (!trc.update(yz, errYZ)) {
 #if DEBUG > 3
         AliWarningF("Failed on Update %f,%f {%f,%f,%f}", yz[0], yz[1], errYZ[0], errYZ[1], errYZ[2]);
@@ -1120,7 +1120,7 @@ bool AlignmentTrack::residKalman()
     return false;
   }
   if (!propagateParamToPoint(trc, pnt, cnf.maxStep)) {
-    //if (!trc.PropagateParamOnlyTo(pnt->getXPoint()+kOverShootX,AliTrackerBase::GetBz())) {
+    // if (!trc.PropagateParamOnlyTo(pnt->getXPoint()+kOverShootX,AliTrackerBase::GetBz())) {
 #if DEBUG > 3
     AliWarningF("Failed on PropagateParamOnlyTo to %f", pnt->getXPoint() + kOverShootX);
     trc.print();
@@ -1170,7 +1170,7 @@ bool AlignmentTrack::residKalman()
     }
     //    printf(">>Aft ");trc.print();
     chifwd += chi;
-    //printf("KLM After update: (%f) -> %f\n",chi,chifwd);   trc.print();
+    // printf("KLM After update: (%f) -> %f\n",chi,chifwd);   trc.print();
   }
   //
   // outward fit
@@ -1370,7 +1370,7 @@ bool AlignmentTrack::processMaterials(trackParam_t& trc, int pFrom, int pTo)
       dpar[l] = par1[l] - par0[l];
     } // eloss affects all parameters!
     pnt->setMatCorrExp(dpar);
-    //dpar[kParQ2Pt] = par1[kParQ2Pt] - par0[kParQ2Pt]; // only e-loss expectation is non-0
+    // dpar[kParQ2Pt] = par1[kParQ2Pt] - par0[kParQ2Pt]; // only e-loss expectation is non-0
     //
     if (pnt->containsMaterial()) {
       //

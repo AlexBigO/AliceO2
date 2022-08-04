@@ -196,7 +196,7 @@ void PrintTrapConfig(Int_t run, const Char_t* storageURI = "alien://folder=/alic
   // Main function to steer the extraction of TRD OCDB information
   //
 
-  //std::string outFilename="CalibrationsForRun"+Run;
+  // std::string outFilename="CalibrationsForRun"+Run;
   TTimeStamp jobStartTime;
   // if the storage is on alien than we need to do some extra stuff
   TString storageString(storageURI);
@@ -222,7 +222,7 @@ void PrintTrapConfig(Int_t run, const Char_t* storageURI = "alien://folder=/alic
   // get calibration information
   // process gains
   ///////////////////////////
-  //Connect to CCDB
+  // Connect to CCDB
   //
   o2::ccdb::CcdbApi ccdb;
   map<string, string> metadata;               // do we want to store any meta data?
@@ -305,22 +305,22 @@ its all going here unfortunately ....
         auto& ccdbmgr = o2::ccdb::BasicCCDBManager::instance();
         ccdbmgr.setTimestamp(297595);
         auto run3trapconfig = ccdbmgr.get<o2::trd::TrapConfig>("TRD/TrapConfig/cf_pg-fpnp32_zs-s16-deh_tb30_trkl-b5n-fs1e24-ht200-qs0e24s24e23-pidlinear-pt100_ptrg.r5549");
-        //auto run3trapconfig = ccdbmgr.get<o2::trd::TrapConfig>("TRD/Config/TrapConfig2020");
+        // auto run3trapconfig = ccdbmgr.get<o2::trd::TrapConfig>("TRD/Config/TrapConfig2020");
         if (run3trapconfig)
           PrintTrapConfigsAsStored3(run3trapconfig);
         //     ccdb.storeAsTFileAny(o2trapconfig, Form("%s/TrapConfig2020/%s", TRDCalBase.c_str(), run2trapconfigname.c_str()), metadata, 1, 1670700184549); //upper time chosen into the future else the server simply adds a year
         //     cout << "ccdb.storeAsTFileAny(o2trapconfig, Form(\"" << TRDCalBase.c_str() << "/TrapConfig/" << run2trapconfigname.c_str()<< endl; //upper time chosen into the future else the server simply adds a year
-        //AliTRDcalibDB *calibdb=AliTRDcalibDB::Instance();
+        // AliTRDcalibDB *calibdb=AliTRDcalibDB::Instance();
       }
     }
   }
 
-  //const AliTRDCalTrapConfig *caltrap = dynamic_cast<const AliTRDCalTrapConfig*> (calibdb->GetCachedCDBObject(12));
+  // const AliTRDCalTrapConfig *caltrap = dynamic_cast<const AliTRDCalTrapConfig*> (calibdb->GetCachedCDBObject(12));
 
-  //cout << "now to print the names of the cal traps" << endl;
-  //if(caltrap) caltrap->Print();
-  //else cout << "caltrap is null" << endl;
-  //RecoParam
+  // cout << "now to print the names of the cal traps" << endl;
+  // if(caltrap) caltrap->Print();
+  // else cout << "caltrap is null" << endl;
+  // RecoParam
 
   /*
 THESE ARE THE ONES NOT CURRENTLY INCLUDED.

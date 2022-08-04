@@ -17,7 +17,7 @@
 /// \date 17/11/2020
 
 /* ------ HISTORY ---------
-*/
+ */
 
 #include "FairLogger.h" // for LOG
 #include "Framework/Logger.h"
@@ -443,7 +443,7 @@ void HmpidDecoder::updateStatistics(HmpidEquipment* eq)
   eq->mTotalPads += eq->mSampleNumber;
   eq->mTotalErrors += eq->mErrorsCounter;
 
-  //std::cout << ">>>updateStatistics() >>> "<< eq->getEquipmentId() << "="<< eq->mNumberOfEvents<<" :" << eq->mEventSize <<","<< eq->mTotalPads << ", " << eq->mSampleNumber << std::endl;
+  // std::cout << ">>>updateStatistics() >>> "<< eq->getEquipmentId() << "="<< eq->mNumberOfEvents<<" :" << eq->mEventSize <<","<< eq->mTotalPads << ", " << eq->mSampleNumber << std::endl;
 
   return;
 }
@@ -454,7 +454,7 @@ void HmpidDecoder::updateStatistics(HmpidEquipment* eq)
 /// @returns the Pointer to the modified Equipment object
 HmpidEquipment* HmpidDecoder::evaluateHeaderContents(int EquipmentIndex)
 {
-  //std::cout << "Enter evaluateHeaderContents..";
+  // std::cout << "Enter evaluateHeaderContents..";
   HmpidEquipment* eq = mTheEquipments[EquipmentIndex];
   if (mHeEvent != eq->mEventNumber) {              // Is a new event
     if (eq->mEventNumber != OUTRANGEEVENTNUMBER) { // skip the first
@@ -511,7 +511,7 @@ void HmpidDecoder::decodePage(uint32_t** streamBuf)
   bool isIt;
 
   int payIndex = 0;
-  while (payIndex < mNumberWordToRead) { //start the payload loop word by word
+  while (payIndex < mNumberWordToRead) { // start the payload loop word by word
     if (newOne == true) {
       wpprev = wp;
       if (!getWordFromStream(&wp)) { // end the stream
@@ -807,7 +807,7 @@ void HmpidDecoder::decodePageFast(uint32_t** streamBuf)
   int Column, Dilogic, Channel, Charge;
   int pwer;
   int payIndex = 0;
-  while (payIndex < mNumberWordToRead) { //start the payload loop word by word
+  while (payIndex < mNumberWordToRead) { // start the payload loop word by word
     wpprev = wp;
     if (!getWordFromStream(&wp)) { // end the stream
       break;

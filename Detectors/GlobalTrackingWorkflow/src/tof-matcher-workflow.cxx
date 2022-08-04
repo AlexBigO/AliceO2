@@ -119,7 +119,7 @@ WorkflowSpec defineDataProcessing(ConfigContext const& configcontext)
   LOG(debug) << "TOF matching in strict mode = " << strict;
   LOG(debug) << "TOF extra time tolerance for TRD tracks = " << extratolerancetrd;
 
-  //GID::mask_t alowedSources = GID::getSourcesMask("TPC,ITS-TPC");
+  // GID::mask_t alowedSources = GID::getSourcesMask("TPC,ITS-TPC");
   GID::mask_t alowedSources = GID::getSourcesMask("TPC,ITS-TPC,TPC-TRD,ITS-TPC-TRD");
 
   GID::mask_t src = alowedSources & GID::getSourcesMask(configcontext.options().get<std::string>("track-sources"));

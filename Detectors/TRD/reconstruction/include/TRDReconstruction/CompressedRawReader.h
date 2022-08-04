@@ -121,7 +121,7 @@ class CompressedRawReader
   uint16_t mCRUID;
   uint16_t mHCID;
   uint16_t mFEEID; // current Fee ID working on
-  //pointers to the data as we read them in, again no point in copying.
+  // pointers to the data as we read them in, again no point in copying.
   /** checker private functions and data members **/
 
   bool checkerCheck();
@@ -142,9 +142,9 @@ class CompressedRawReader
   std::vector<CompressedDigit> mCompressedEventDigits;
   o2::InteractionRecord mIR;
   struct TRDDataCounters_t {
-    std::array<uint32_t, 1080> LinkWordCounts;    //units of 256bits "cru word"
+    std::array<uint32_t, 1080> LinkWordCounts;    // units of 256bits "cru word"
     std::array<uint32_t, 1080> LinkPadWordCounts; // units of 32 bits the data word size.
-    std::array<uint32_t, 1080> LinkFreq;          //units of 256bits "cru word"
+    std::array<uint32_t, 1080> LinkFreq;          // units of 256bits "cru word"
   } TRDStatCounters;
 
   /** summary data **/

@@ -197,10 +197,10 @@ class Detector : public o2::base::DetImpl<Detector>
   /// Container for hit data
   std::vector<o2::zdc::Hit>* mHits;
 
-  float mLumiLength = 0;         //TODO: make part of configurable params
-  float mTCLIAAPERTURE = 3.5;    //TODO: make part of configurable params
-  float mTCLIAAPERTURENEG = 3.5; //TODO: make part of configurable params
-  float mVCollSideCCentreY = 0.; //TODO: make part of configurable params
+  float mLumiLength = 0;         // TODO: make part of configurable params
+  float mTCLIAAPERTURE = 3.5;    // TODO: make part of configurable params
+  float mTCLIAAPERTURENEG = 3.5; // TODO: make part of configurable params
+  float mVCollSideCCentreY = 0.; // TODO: make part of configurable params
 
   int mZNENVVolID = -1; // the volume id for the neutron det envelope volume
   int mZPENVVolID = -1; // the volume id for the proton det envelope volume

@@ -98,7 +98,7 @@ uint32_t getHalfCRULinkErrorFlag(const HalfCRUHeader& cruhead, const uint32_t li
 {
   // link is the link you are requesting information on, 0-14
   uint32_t errorflag = 0;
-  //dealing with word0-2
+  // dealing with word0-2
   errorflag = cruhead.errorflags[link].errorflag;
   return errorflag;
 }
@@ -106,7 +106,7 @@ uint32_t getHalfCRULinkErrorFlag(const HalfCRUHeader& cruhead, const uint32_t li
 uint32_t getHalfCRULinkDataSize(const HalfCRUHeader& cruhead, const uint32_t link)
 {
   // link is the link you are requesting information on, 0-14
-  //return number 32 byte blocks for the link 3x64bit ints.
+  // return number 32 byte blocks for the link 3x64bit ints.
   return cruhead.datasizes[link].size;
 }
 
@@ -418,7 +418,7 @@ bool sanityCheckDigitMCMHeader(o2::trd::DigitMCMHeader* header)
   if (header->res != 0xc) {
     goodheader = false;
   }
-  if (header->yearflag == 0) { //we only have data after 2007 now in run3.
+  if (header->yearflag == 0) { // we only have data after 2007 now in run3.
     goodheader = false;
   }
   return goodheader;
@@ -430,7 +430,7 @@ bool sanityCheckDigitMCMADCMask(o2::trd::DigitMCMADCMask& mask, int numberofbits
   uint32_t count = (unsigned int)mask.c;
   count = (~count) & 0x1f;
   if (count != numberofbitsset) {
-    goodadcmask=false;
+    goodadcmask = false;
     LOG(info) << "***DigitMCMADCMask bad bit count maskcount:" << ((~mask.c) & 0x1f) << " bitscounting:" << numberofbitsset << " bp: 0x" << std::hex << mask.adcmask;
   }
   if (mask.n != 0x1) {
@@ -542,7 +542,7 @@ void printDigitHCHeader(o2::trd::DigitHCHeader& header, uint32_t headers[3])
   printDigitHCHeaders(header, headers, -1, 0, true);
   int countheaderwords = header.numberHCW;
   int index;
-  //for the currently 3 implemeented other header words, they can come in any order, and are identified by their reserved portion
+  // for the currently 3 implemeented other header words, they can come in any order, and are identified by their reserved portion
   for (int countheaderwords = 0; countheaderwords < header.numberHCW; ++countheaderwords) {
     switch (getDigitHCHeaderWordType(headers[countheaderwords])) {
       case 1:

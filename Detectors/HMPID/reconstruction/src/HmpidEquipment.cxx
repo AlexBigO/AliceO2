@@ -17,7 +17,7 @@
 /// \date 24 set 2020
 
 /* ------ HISTORY ---------
-*/
+ */
 
 #include "HMPIDReconstruction/HmpidEquipment.h"
 

@@ -26,7 +26,8 @@ GPUdii() void GPUTPCGMMergerTrackFit::Thread<0>(int nBlocks, int nThreads, int i
   const int iEnd = mode == -1 ? merger.Memory()->nRetryRefit : merger.NOutputTracks();
   GPUCA_OPENMP(parallel for if(!merger.GetRec().GetProcessingSettings().ompKernels) num_threads(merger.GetRec().GetProcessingSettings().ompThreads))
   for (int ii = get_global_id(0); ii < iEnd; ii += get_global_size(0)) {
-    const int i = mode == -1 ? merger.RetryRefitIds()[ii] : mode ? merger.TrackOrderProcess()[ii] : ii;
+    const int i = mode == -1 ? merger.RetryRefitIds()[ii] : mode ? merger.TrackOrderProcess()[ii]
+                                                                 : ii;
     GPUTPCGMTrackParam::RefitTrack(merger.OutputTracks()[i], i, &merger, mode == -1);
   }
 }

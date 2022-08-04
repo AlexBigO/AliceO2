@@ -30,8 +30,8 @@ using namespace std;
 void CheckLUtime(std::string clusfile = "o2clus_its.root", long timestamp = 0)
 {
   using o2::itsmft::ClusterPattern;
-  using o2::itsmft::CompClusterExt;
   using o2::itsmft::CompCluster;
+  using o2::itsmft::CompClusterExt;
   using o2::itsmft::LookUp;
   using ROFRec = o2::itsmft::ROFRecord;
 

@@ -149,7 +149,7 @@ void Digits2Raw::processDigits(const std::string& fileDigitsName)
     LOG(debug) << "TC buffer size:" << buffer.size() << ":";
     mWriter.addData(getFEEIDTC(), mCruID, GBTLinkIDClassRec, mEndPointID, intRec, buffer);
     //
-    //orbit0 = ctpdig.intRecord.orbit;
+    // orbit0 = ctpdig.intRecord.orbit;
     firstorbit = true;
     hbfIR.clear();
     hbfTC.clear();
@@ -198,9 +198,9 @@ std::vector<char> Digits2Raw::digits2HBTPayload(const gsl::span<gbtword80_t> dig
     }
   }
   // add what is left: maybe never left anything - tbc
-  //LOG(info) << size_gbt << " size valid " << valid;
-  //LOG(info) << "gbtword:" << gbtword;
-  //LOG(info) << "gbtsend:" << gbtsend;
+  // LOG(info) << size_gbt << " size valid " << valid;
+  // LOG(info) << "gbtword:" << gbtword;
+  // LOG(info) << "gbtsend:" << gbtsend;
   if (size_gbt > 0) {
     LOG(debug) << "Adding left over.";
     gbtword80_t gbtsend = gbtword;
@@ -226,23 +226,23 @@ std::vector<char> Digits2Raw::digits2HBTPayload(const gsl::span<gbtword80_t> dig
 bool Digits2Raw::makeGBTWord(const gbtword80_t& pld, gbtword80_t& gbtword, uint32_t& size_gbt, uint32_t Npld, gbtword80_t& gbtsend) const
 {
   bool valid = false;
-  //printBitset(gbtword,"GBTword");
+  // printBitset(gbtword,"GBTword");
   gbtword |= (pld << size_gbt);
   if ((size_gbt + Npld) < NGBT) {
     size_gbt += Npld;
   } else {
     // sendData
-    //printBitset(gbtword,"Sending");
+    // printBitset(gbtword,"Sending");
     gbtsend = gbtword;
     gbtword = pld >> (NGBT - size_gbt);
     size_gbt = size_gbt + Npld - NGBT;
     valid = true;
   }
-  //printDigit("pld:", pld);
-  //printDigit("gbtword:", gbtword);
-  //std::cout << valid << " ";
-  //printDigit("gbtsend:", gbtsend);
-  //std::cout << gbtsend << std::endl;
+  // printDigit("pld:", pld);
+  // printDigit("gbtword:", gbtword);
+  // std::cout << valid << " ";
+  // printDigit("gbtsend:", gbtsend);
+  // std::cout << gbtsend << std::endl;
   return valid;
 }
 int Digits2Raw::digit2GBTdigit(gbtword80_t& gbtdigitIR, gbtword80_t& gbtdigitTR, const CTPDigit& digit)
@@ -257,7 +257,7 @@ int Digits2Raw::digit2GBTdigit(gbtword80_t& gbtdigitIR, gbtword80_t& gbtdigitTR,
   // Trig Classes
   //
   gbtdigitTR = 0;
-  //gbtdigitTR = (digit.CTPClassMask).to_ullong() << 12;
+  // gbtdigitTR = (digit.CTPClassMask).to_ullong() << 12;
   gbtdigitTR |= digit.intRecord.bc;
   for (int i = 0; i < CTP_NCLASSES; i++) {
     gbtdigitTR[i + 12] = digit.CTPClassMask[i];

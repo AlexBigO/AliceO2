@@ -309,8 +309,8 @@ GPUd() void GPUTPCCFNoiseSuppression::findMinimaAndPeaks(
   uchar* bufp = (uchar*)buf;
 
   /**************************************
-     * Look for peaks
-     **************************************/
+   * Look for peaks
+   **************************************/
 
   CfUtils::blockLoad(
     peakMap,

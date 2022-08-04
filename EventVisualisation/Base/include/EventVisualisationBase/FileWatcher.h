@@ -32,8 +32,8 @@ class FileWatcher
   std::deque<std::string> mFiles; ///< sorted file list with guards at the beginning and end
   std::string nextItem(const std::string& item) const;
   std::string prevItem(const std::string& item) const;
-  std::string mDataFolder;  ///< folder being observed
-  std::string mCurrentFile; ///< "current" file name
+  std::string mDataFolder;       ///< folder being observed
+  std::string mCurrentFile;      ///< "current" file name
   std::vector<std::string> mExt; ///< extensions of files to be observed
   bool currentFileExist();
 
@@ -41,8 +41,8 @@ class FileWatcher
   FileWatcher(const std::string& path, std::vector<std::string> ext);
   void changeFolder(const std::string& path);                         ///< switch to observe other folder
   void saveCurrentFileToFolder(const std::string& destinationFolder); ///< copies
-  int getSize() const; ///< include guards (so >=2 )
-  int getPos() const;  ///< include guards -> 0 points to mLowGuard
+  int getSize() const;                                                ///< include guards (so >=2 )
+  int getPos() const;                                                 ///< include guards -> 0 points to mLowGuard
   void setFirst();
   void setLast();
   void setNext();
@@ -57,4 +57,4 @@ class FileWatcher
 } // namespace event_visualisation
 } // namespace o2
 
-#endif //WATCHER_FILEWATCHER_H
+#endif // WATCHER_FILEWATCHER_H

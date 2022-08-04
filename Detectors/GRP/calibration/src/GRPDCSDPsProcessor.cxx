@@ -96,7 +96,7 @@ int GRPDCSDPsProcessor::process(const gsl::span<const DPCOM> dps)
   }
   mMagFieldHelper.updated = false;
 
-  mUpdateLHCIFInfo = false;   // by default, we do not foresee a new entry in the CCDB for the LHCIF DPs
+  mUpdateLHCIFInfo = false; // by default, we do not foresee a new entry in the CCDB for the LHCIF DPs
 
   // now we process all DPs, one by one
   for (const auto& it : dps) {

@@ -32,14 +32,14 @@ int CalOnlineGainTables::getArrayOffset(int det, int row, int col) const
   FeeParam* mFeeParam = FeeParam::instance();
   int rob = mFeeParam->getROBfromPad(row, col);
   int mcm = mFeeParam->getMCMfromPad(row, col);
-  int detoffset = det * 128; //TODO find this constant from somewhere else max rob=8, max mcm=16, so 7x16+15=127
+  int detoffset = det * 128; // TODO find this constant from somewhere else max rob=8, max mcm=16, so 7x16+15=127
   int mcmoffset = rob * NMCMROB + mcm;
   return detoffset + mcmoffset;
 }
 
 int CalOnlineGainTables::getChannel(int col) const
 {
-  return 19 - (col % 18); //TODO find both of these constants from somewhere else.
+  return 19 - (col % 18); // TODO find both of these constants from somewhere else.
 }
 
 int CalOnlineGainTables::getArrayOffsetrm(int det, int rob, int mcm) const

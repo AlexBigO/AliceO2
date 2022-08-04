@@ -55,7 +55,7 @@ void TRDDPLTrapSimulatorTask::initTrapConfig(long timeStamp)
   }
 
   if (mTrapConfig->getConfigName() == "" && mTrapConfig->getConfigVersion() == "") {
-    //some trap configs dont have config name and version set, in those cases, just show the file name used.
+    // some trap configs dont have config name and version set, in those cases, just show the file name used.
     LOG(info) << "using TRAPconfig: " << mTrapConfigName;
   } else {
     LOG(info) << "using TRAPconfig :\"" << mTrapConfig->getConfigName().c_str() << "\".\"" << mTrapConfig->getConfigVersion().c_str() << "\"";
@@ -64,9 +64,9 @@ void TRDDPLTrapSimulatorTask::initTrapConfig(long timeStamp)
 
 void TRDDPLTrapSimulatorTask::setOnlineGainTables()
 {
-  //check FGBY from trapconfig.
-  //check the input parameter of trd-onlinegaincorrection.
-  //warn if you have chosen a trapconfig with gaincorrections but chosen not to use them.
+  // check FGBY from trapconfig.
+  // check the input parameter of trd-onlinegaincorrection.
+  // warn if you have chosen a trapconfig with gaincorrections but chosen not to use them.
   if (mEnableOnlineGainCorrection) {
     if (mTrapConfig->getTrapReg(TrapConfig::kFGBY) == 0) {
       LOG(warn) << "you have asked to do online gain calibrations but the selected trap config does not have FGBY enabled, so modifying trapconfig to conform to your command line request. OnlineGains will be 1, i.e. no effect.";
@@ -75,9 +75,9 @@ void TRDDPLTrapSimulatorTask::setOnlineGainTables()
       }
     }
     mCalib->setOnlineGainTables(mOnlineGainTableName);
-    //TODO add some error checking inhere.
-    // gain factors are per MCM
-    // allocate the registers accordingly
+    // TODO add some error checking inhere.
+    //  gain factors are per MCM
+    //  allocate the registers accordingly
     for (int ch = 0; ch < NADCMCM; ++ch) {
       TrapConfig::TrapReg_t regFGAN = (TrapConfig::TrapReg_t)(TrapConfig::kFGA0 + ch);
       TrapConfig::TrapReg_t regFGFN = (TrapConfig::TrapReg_t)(TrapConfig::kFGF0 + ch);
@@ -238,7 +238,7 @@ void TRDDPLTrapSimulatorTask::run(o2::framework::ProcessingContext& pc)
 #endif
   for (size_t iTrig = 0; iTrig < triggerRecords.size(); ++iTrig) {
     int currHCId = -1;
-    std::array<TrapSimulator, NMCMHCMAX> trapSimulators{}; //the up to 64 trap simulators for a single half chamber
+    std::array<TrapSimulator, NMCMHCMAX> trapSimulators{}; // the up to 64 trap simulators for a single half chamber
     for (int iDigit = triggerRecords[iTrig].getFirstDigit(); iDigit < (triggerRecords[iTrig].getFirstDigit() + triggerRecords[iTrig].getNumberOfDigits()); ++iDigit) {
       const auto& digit = &digits[digitIdxArray[iDigit]];
       if (currHCId < 0) {
@@ -369,5 +369,5 @@ o2::framework::DataProcessorSpec getTRDTrapSimulatorSpec(bool useMC, int digitDo
                              {"trd-runnum", VariantType::Int, -1, {"Run number to use to anchor simulation to (from Run 2 297595 was used)"}}}};
 };
 
-} //end namespace trd
-} //end namespace o2
+} // end namespace trd
+} // end namespace o2

@@ -46,9 +46,9 @@ class FDDDPLDigitizerTask : public o2::base::BaseDPLDigitizer
   {
     LOG(info) << "initializing FDD digitization";
 
-    //mDigitizer.setCCDBServer(dopt.ccdb);
+    // mDigitizer.setCCDBServer(dopt.ccdb);
     mDigitizer.init();
-    //mROMode = mDigitizer.isContinuous() ? o2::parameters::GRPObject::CONTINUOUS : o2::parameters::GRPObject::PRESENT;
+    // mROMode = mDigitizer.isContinuous() ? o2::parameters::GRPObject::CONTINUOUS : o2::parameters::GRPObject::PRESENT;
   }
   void run(framework::ProcessingContext& pc)
   {
@@ -58,7 +58,7 @@ class FDDDPLDigitizerTask : public o2::base::BaseDPLDigitizer
     LOG(info) << "Doing FDD digitization";
 
     // TODO: this should eventually come from the framework and depend on the TF timestamp
-    //mDigitizer.refreshCCDB();
+    // mDigitizer.refreshCCDB();
 
     // read collision context from input
     auto context = pc.inputs().get<o2::steer::DigitizationContext*>("collisioncontext");

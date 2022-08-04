@@ -14,14 +14,14 @@
 
 std::istream& o2::emcal::operator>>(std::istream& stream, o2::header::RAWDataHeaderV4& header)
 {
-  //std::cout << "called, 10 words" << std::endl;
+  // std::cout << "called, 10 words" << std::endl;
   using wordtype = uint64_t;
   constexpr int RAWHEADERWORDS = sizeof(header) / sizeof(wordtype);
   wordtype message[RAWHEADERWORDS];
   auto address = reinterpret_cast<char*>(message);
   for (int i = 0; i < RAWHEADERWORDS; i++) {
     stream.read(address + i * sizeof(wordtype) / sizeof(char), sizeof(message[i]));
-    //std::cout << "Word " << i << ":  " << std::hex << message[i] << std::dec << std::endl;
+    // std::cout << "Word " << i << ":  " << std::hex << message[i] << std::dec << std::endl;
   }
   header.word0 = message[0];
   header.word1 = message[1];
@@ -36,14 +36,14 @@ std::istream& o2::emcal::operator>>(std::istream& stream, o2::header::RAWDataHea
 
 std::istream& o2::emcal::operator>>(std::istream& stream, o2::header::RAWDataHeaderV5& header)
 {
-  //std::cout << "called, 10 words" << std::endl;
+  // std::cout << "called, 10 words" << std::endl;
   using wordtype = uint64_t;
   constexpr int RAWHEADERWORDS = sizeof(header) / sizeof(wordtype);
   wordtype message[RAWHEADERWORDS];
   auto address = reinterpret_cast<char*>(message);
   for (int i = 0; i < RAWHEADERWORDS; i++) {
     stream.read(address + i * sizeof(wordtype) / sizeof(char), sizeof(message[i]));
-    //std::cout << "Word " << i << ":  " << std::hex << message[i] << std::dec << std::endl;
+    // std::cout << "Word " << i << ":  " << std::hex << message[i] << std::dec << std::endl;
   }
   header.word0 = message[0];
   header.word1 = message[1];

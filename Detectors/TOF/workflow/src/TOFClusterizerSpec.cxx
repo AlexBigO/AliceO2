@@ -156,7 +156,7 @@ class TOFDPLClustererTask
     }
 
     for (unsigned int i = 0; i < row.size(); i++) {
-      //fill trm pattern but process them in clusterize since they are for readout windows
+      // fill trm pattern but process them in clusterize since they are for readout windows
       mCalibApi->resetTRMErrors();
 
       // loop over crates
@@ -183,7 +183,7 @@ class TOFDPLClustererTask
         }
       } // end crate loop
 
-      //printf("# TOF readout window for clusterization = %d/%lu (N digits = %d)\n", i, row.size(), row[i].size());
+      // printf("# TOF readout window for clusterization = %d/%lu (N digits = %d)\n", i, row.size(), row[i].size());
       auto digitsRO = row[i].getBunchChannelData(digits);
       mReader.setDigitArray(&digitsRO);
 

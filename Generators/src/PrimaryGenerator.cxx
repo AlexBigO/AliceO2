@@ -151,7 +151,7 @@ void PrimaryGenerator::AddTrack(Int_t pdgid, Double_t px, Double_t py, Double_t 
   Double_t polx = 0.;     // Polarisation
   Double_t poly = 0.;
   Double_t polz = 0.;
-  Int_t ntr = 0;    // Track number; to be filled by the stack
+  Int_t ntr = 0;                  // Track number; to be filled by the stack
   Int_t status = generatorStatus; // Generation status
 
   // correct for tracks which are in list before generator is called
@@ -169,7 +169,7 @@ void PrimaryGenerator::AddTrack(Int_t pdgid, Double_t px, Double_t py, Double_t 
   }
 
   /** if it is a K0/antiK0 to be tracked, convert it into K0s/K0L.
-      
+
       NOTE: we could think of pushing the K0/antiK0 without tracking first
       and then push she K0s/K0L for tracking.
       In this way we would properly keep track of this conversion,

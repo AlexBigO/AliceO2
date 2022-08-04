@@ -87,7 +87,7 @@ void CalibLaserTracks::processTrack(const TrackTPC& track)
   if (mTriggerPos < 0) {
     // use CE for time 0
     const float zOffset = (track.getTime0() + mTriggerPos) * mZbinWidth * mDriftV + 250;
-    //printf("time0: %.2f, trigger pos: %d, zTrack: %.2f, zOffset: %.2f\n", track.getTime0(), mTriggerPos, zTrack, zOffset);
+    // printf("time0: %.2f, trigger pos: %d, zTrack: %.2f, zOffset: %.2f\n", track.getTime0(), mTriggerPos, zTrack, zOffset);
     zTrack += zOffset;
     parOutAtLtr.setZ(zTrack);
   } else if (mTriggerPos > 0) {
@@ -285,9 +285,9 @@ void CalibLaserTracks::finalize()
 
   fillCalibData(mCalibData, mZmatchPairsA, mZmatchPairsC);
 
-  //auto& ltrIDs = mCalibData.matchedLtrIDs;
-  //std::sort(ltrIDs.begin(), ltrIDs.end());
-  //ltrIDs.erase(std::unique(ltrIDs.begin(), ltrIDs.end()), ltrIDs.end());
+  // auto& ltrIDs = mCalibData.matchedLtrIDs;
+  // std::sort(ltrIDs.begin(), ltrIDs.end());
+  // ltrIDs.erase(std::unique(ltrIDs.begin(), ltrIDs.end()), ltrIDs.end());
 
   if (mDebugStream) {
     (*mDebugStream) << "finalData"
@@ -345,7 +345,7 @@ TimePair CalibLaserTracks::fit(const std::vector<TimePair>& trackMatches) const
     return TimePair({0, 0, meanTime});
   }
 
-  //fit.EvalRobust(robustFraction);
+  // fit.EvalRobust(robustFraction);
   fit.Eval();
 
   TimePair retVal;

@@ -271,7 +271,7 @@ struct GroupSlicer {
             return typedTable;
           }
         } else {
-          //generic split
+          // generic split
           if constexpr (soa::is_soa_filtered_t<std::decay_t<A1>>::value) {
             // intersect selections
             o2::soa::SelectionVector s;

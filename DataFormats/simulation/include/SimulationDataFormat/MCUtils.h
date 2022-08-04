@@ -116,4 +116,4 @@ inline bool isStable(int pdg)
 } // namespace mcutils
 } // namespace o2
 
-#endif //O2_MCUTILS_H
+#endif // O2_MCUTILS_H

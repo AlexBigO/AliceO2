@@ -27,9 +27,9 @@ namespace conf
 // Global parameters for digitization
 struct DigiParams : public o2::conf::ConfigurableParamHelper<DigiParams> {
 
-  std::string digitizationgeometry_prefix = "";       // with which geometry prefix we digitized -> leave empty as this needs to be filled by the digitizer workflow
-  std::string grpfile = "";                           // which GRP file to use --> leave empty as this needs to be filled by the digitizer workflow
-  bool mctruth = true;                                // whether to create labels
+  std::string digitizationgeometry_prefix = ""; // with which geometry prefix we digitized -> leave empty as this needs to be filled by the digitizer workflow
+  std::string grpfile = "";                     // which GRP file to use --> leave empty as this needs to be filled by the digitizer workflow
+  bool mctruth = true;                          // whether to create labels
 
   O2ParamDef(DigiParams, "DigiParams");
 };

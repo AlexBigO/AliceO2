@@ -179,8 +179,8 @@ class TrackInterpolation
   const ClusterNativeAccess* mTPCClusterIdxStruct = nullptr; ///< struct holding the TPC cluster indices
 
   // output
-  std::vector<TrackData> mTrackData{};                  ///< this vector is used to store the track quality information on a per track basis
-  std::vector<TPCClusterResiduals> mClRes{};            ///< residuals for each available TPC cluster of all tracks
+  std::vector<TrackData> mTrackData{};       ///< this vector is used to store the track quality information on a per track basis
+  std::vector<TPCClusterResiduals> mClRes{}; ///< residuals for each available TPC cluster of all tracks
 
   // cache
   std::array<CacheStruct, constants::MAXGLOBALPADROW> mCache{{}}; ///< caching positions, covariances and angles for track extrapolations and interpolation

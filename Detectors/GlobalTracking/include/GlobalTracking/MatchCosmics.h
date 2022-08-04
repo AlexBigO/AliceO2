@@ -139,8 +139,8 @@ class MatchCosmics
   int mTFCount = 0;
   float mTPCVDriftRef = -1.; ///< TPC nominal drift speed in cm/microseconds
   float mTPCVDrift = -1.;    ///< TPC drift speed in cm/microseconds
-  float mTPCTBinMUS = 0.; ///< TPC time bin duration in microseconds
-  float mBz = 0;          ///< nominal Bz
+  float mTPCTBinMUS = 0.;    ///< TPC time bin duration in microseconds
+  float mBz = 0;             ///< nominal Bz
   bool mFieldON = true;
   bool mUseMC = true;
   float mITSROFrameLengthMUS = 0.;

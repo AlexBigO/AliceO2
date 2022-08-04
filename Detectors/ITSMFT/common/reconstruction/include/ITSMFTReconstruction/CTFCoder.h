@@ -89,16 +89,16 @@ o2::ctf::CTFIOSize CTFCoder::encode(VEC& buff, const gsl::span<const ROFRecord>&
   using MD = o2::ctf::Metadata::OptStore;
   // what to do which each field: see o2::ctd::Metadata explanation
   constexpr MD optField[CTF::getNBlocks()] = {
-    MD::EENCODE, //BLCfirstChipROF
-    MD::EENCODE, //BLCbcIncROF
-    MD::EENCODE, //BLCorbitIncROF
-    MD::EENCODE, //BLCnclusROF
-    MD::EENCODE, //BLCchipInc
-    MD::EENCODE, //BLCchipMul
-    MD::EENCODE, //BLCrow
-    MD::EENCODE, //BLCcolInc
-    MD::EENCODE, //BLCpattID
-    MD::EENCODE  //BLCpattMap
+    MD::EENCODE, // BLCfirstChipROF
+    MD::EENCODE, // BLCbcIncROF
+    MD::EENCODE, // BLCorbitIncROF
+    MD::EENCODE, // BLCnclusROF
+    MD::EENCODE, // BLCchipInc
+    MD::EENCODE, // BLCchipMul
+    MD::EENCODE, // BLCrow
+    MD::EENCODE, // BLCcolInc
+    MD::EENCODE, // BLCpattID
+    MD::EENCODE  // BLCpattMap
   };
   CompressedClusters compCl;
   compress(compCl, rofRecVec, cclusVec, pattVec);
@@ -129,7 +129,7 @@ o2::ctf::CTFIOSize CTFCoder::encode(VEC& buff, const gsl::span<const ROFRecord>&
   iosize += ENCODEITSMFT(compCl.pattID, CTF::BLCpattID, 0);
   iosize += ENCODEITSMFT(compCl.pattMap, CTF::BLCpattMap, 0);
   // clang-format on
-  //CTF::get(buff.data())->print(getPrefix());
+  // CTF::get(buff.data())->print(getPrefix());
   iosize.rawIn = rofRecVec.size() * sizeof(ROFRecord) + cclusVec.size() * sizeof(CompClusterExt) + pattVec.size() * sizeof(unsigned char);
   return iosize;
 }
@@ -248,10 +248,10 @@ void CTFCoder::decompress(const CompressedClusters& compCl, VROF& rofRecVec, VCL
       patt = clPattLookup.getPattern(clus.getPatternID());
     }
     int rowSpan = patt.getRowSpan(), colSpan = patt.getColumnSpan(), nMasked = 0;
-    if (rowSpan == 1 && colSpan == 1) {                                        // easy case: 1 pixel cluster
-      if (noiseMap->isNoisy(clus.getChipID(), rowRef, colRef)) {               // just kill the cluster
-        std::copy(pattItStored, pattItPrev, back_inserter(pattVec));           // save patterns from after last saved to the one before killing this
-        pattItStored = pattIt;                                                 // advance to the head of the pattern iterator
+    if (rowSpan == 1 && colSpan == 1) {                              // easy case: 1 pixel cluster
+      if (noiseMap->isNoisy(clus.getChipID(), rowRef, colRef)) {     // just kill the cluster
+        std::copy(pattItStored, pattItPrev, back_inserter(pattVec)); // save patterns from after last saved to the one before killing this
+        pattItStored = pattIt;                                       // advance to the head of the pattern iterator
         cclusVec.pop_back();
       }
       // otherwise do nothing: cluster was already added, eventual patterns will be copied in large block at next modified cluster writing

@@ -72,7 +72,7 @@ class FT0DataReaderDPLSpec : public Task
     DPLRawParser parser(pc.inputs(), filter);
     std::size_t count = 0;
     for (auto it = parser.begin(), end = parser.end(); it != end; ++it) {
-      //Proccessing each page
+      // Proccessing each page
       count++;
       auto rdhPtr = it.get_if<o2::header::RAWDataHeader>();
       gsl::span<const uint8_t> payload(it.data(), it.size());

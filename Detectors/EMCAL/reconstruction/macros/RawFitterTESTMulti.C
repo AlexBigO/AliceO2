@@ -38,7 +38,7 @@ void RawFitterTESTMulti(const char* configfile = "")
   reader.init();
 
   // define the standard raw fitter
-  //o2::emcal::CaloRawFitterStandard RawFitter;
+  // o2::emcal::CaloRawFitterStandard RawFitter;
   o2::emcal::CaloRawFitterGamma2 RawFitter;
   RawFitter.setAmpCut(NoiseThreshold);
   RawFitter.setL1Phase(0.);
@@ -63,11 +63,11 @@ void RawFitterTESTMulti(const char* configfile = "")
       o2::emcal::RawReaderMemory parser(dataBuffer);
       while (parser.hasNext()) {
         parser.next();
-        //std::cout << "next page \n";
+        // std::cout << "next page \n";
         if (o2::raw::RDHUtils::getFEEID(parser.getRawHeader()) >= 40)
           continue;
 
-        //std::cout<<rawreader.getRawHeader()<<std::endl;
+        // std::cout<<rawreader.getRawHeader()<<std::endl;
 
         // use the altro decoder to decode the raw data, and extract the RCU trailer
         o2::emcal::AltroDecoder decoder(parser);
@@ -75,20 +75,20 @@ void RawFitterTESTMulti(const char* configfile = "")
         decoder.decode();
         RawFitter.setIsZeroSuppressed(decoder.getRCUTrailer().hasZeroSuppression());
 
-        //std::cout << decoder.getRCUTrailer() << std::endl;
+        // std::cout << decoder.getRCUTrailer() << std::endl;
         std::cout << "Found number of channels: " << decoder.getChannels().size() << std::endl;
 
         // Loop over all the channels
         for (auto& chan : decoder.getChannels()) {
           std::cout << "processing next channel idx " << chan.getChannelIndex() << ", " << chan.getHardwareAddress() << std::endl;
           // define the conatiner for the fit results, and perform the raw fitting using the stadnard raw fitter
-          //continue;
+          // continue;
           std::cout << "Channel has " << chan.getBunches().size() << " bunches " << std::endl;
           try {
             o2::emcal::CaloFitResults fitResults = RawFitter.evaluate(chan.getBunches());
 
             // print the fit output
-            //std::cout << "The Time is : " << fitResults.getTime() << " And the Amplitude is : " << fitResults.getAmp() << std::endl;
+            // std::cout << "The Time is : " << fitResults.getTime() << " And the Amplitude is : " << fitResults.getAmp() << std::endl;
             std::cout << "Fit done" << std::endl;
           } catch (o2::emcal::CaloRawFitter::RawFitterError_t& fiterror) {
             std::cerr << "Error processing raw fit: " << o2::emcal::CaloRawFitter::createErrorMessage(fiterror) << std::endl;

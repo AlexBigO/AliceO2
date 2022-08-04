@@ -36,7 +36,7 @@
 #include <TFile.h>
 #include <TStopwatch.h>
 
-//TODO: MeanVertex and parameters input from CCDB
+// TODO: MeanVertex and parameters input from CCDB
 
 //#define _PV_DEBUG_TREE_ // if enabled, produce dbscan and vertex comparison dump
 
@@ -163,8 +163,8 @@ class PVertexer
   std::vector<TrackVF> mTracksPool;         ///< tracks in internal representation used for vertexing, sorted in time
   std::vector<TimeZCluster> mTimeZClusters; ///< set of time clusters
   float mITSROFrameLengthMUS = 0;           ///< ITS readout time span in \mus
-  float mBz = 0.;                          ///< mag.field at beam line
-  bool mValidateWithIR = false;            ///< require vertex validation with InteractionRecords (if available)
+  float mBz = 0.;                           ///< mag.field at beam line
+  bool mValidateWithIR = false;             ///< require vertex validation with InteractionRecords (if available)
 
   o2::InteractionRecord mStartIR{0, 0}; ///< IR corresponding to the start of the TF
 

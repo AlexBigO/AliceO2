@@ -437,4 +437,4 @@ void assertOutputDirectory(std::string_view outDirName);
 } // namespace raw
 } // namespace o2
 
-#endif //DETECTOR_BASE_RAWFILEWRITER_H
+#endif // DETECTOR_BASE_RAWFILEWRITER_H

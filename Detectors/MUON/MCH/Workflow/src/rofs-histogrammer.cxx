@@ -28,16 +28,16 @@
 #include <stdexcept>
 
 /**
-* `o2-mch-rofs-histogrammer` creates a 1D histogram of MCH ROF Records.
-*
-* The ROFs used are described using the `--rofs-name` option which shouldEnd
-* describe the expected DPL input message name (default is `MCH/DIGITROFS`)
-*
-* The produced 1D histogram is a sparse one (THnSparseL of dimension 1)
-* and is written in a Root file named with the `--outfile` option (default
-* is `rofs-times.root`).
-*
-*/
+ * `o2-mch-rofs-histogrammer` creates a 1D histogram of MCH ROF Records.
+ *
+ * The ROFs used are described using the `--rofs-name` option which shouldEnd
+ * describe the expected DPL input message name (default is `MCH/DIGITROFS`)
+ *
+ * The produced 1D histogram is a sparse one (THnSparseL of dimension 1)
+ * and is written in a Root file named with the `--outfile` option (default
+ * is `rofs-times.root`).
+ *
+ */
 
 using o2::framework::adaptFromTask;
 using o2::framework::AlgorithmSpec;

@@ -564,7 +564,7 @@ inline void FlatObject::setFutureBufferAddress(char* futureFlatBufferPtr)
   mFlatBufferContainer = nullptr;
 }
 
-#endif //GPUCA_GPUCODE_DEVICE
+#endif // GPUCA_GPUCODE_DEVICE
 
 } // namespace gpu
 } // namespace GPUCA_NAMESPACE

@@ -548,7 +548,7 @@ void TPCFastSpaceChargeCorrection::initInverse(bool prn)
 
       for (double u = u0; u < u1 + stepU; u += stepU) {
         chebFitterV.reset();
-        //double vvMax = 0;
+        // double vvMax = 0;
         for (double v = v0; v < v1 + stepV; v += stepV) {
           float dx, du, dv;
           getCorrectionOld(slice, row, u, v, dx, du, dv);
@@ -565,9 +565,9 @@ void TPCFastSpaceChargeCorrection::initInverse(bool prn)
           if (cu > area.cuMax) {
             area.cuMax = cu;
           }
-          //if (v > vvMax) {
-          //vvMax = v;
-          //}
+          // if (v > vvMax) {
+          // vvMax = v;
+          // }
           if (prn) {
             LOG(info) << "measurement cu " << cu << " cv " << cv << " dx " << dx << " du " << du << " dv " << dv;
           }
@@ -587,7 +587,7 @@ void TPCFastSpaceChargeCorrection::initInverse(bool prn)
             LOG(info) << i << " " << chebFitterV.getCoefficients()[i] << " ";
           }
           LOG(info);
-          //exit(0);
+          // exit(0);
         }
         // TODO: refit with extra measurements close to cv == data points cv
 
@@ -598,8 +598,8 @@ void TPCFastSpaceChargeCorrection::initInverse(bool prn)
           double dvCheb = chebFitterV.eval(cv);
           double v = cv - dvCheb;
           // weighted combination between cheb and nominal
-          //if (v < 0 || v > vvMax) {
-          //continue;
+          // if (v < 0 || v > vvMax) {
+          // continue;
           //}
 
           float dx, du, dv;
@@ -610,9 +610,9 @@ void TPCFastSpaceChargeCorrection::initInverse(bool prn)
           // double cx = x + dx;
           // double r2 = cx * cx + cu * cu;
 
-          //if (cv < 0 || cv > vLength || r2 < tpcR2min || r2 > tpcR2max) {
-          //continue;
-          //}
+          // if (cv < 0 || cv > vLength || r2 < tpcR2min || r2 > tpcR2max) {
+          // continue;
+          // }
           Entry e{cu, cv, dx, du, dv};
           dataRowsV[i].push_back(e);
         }

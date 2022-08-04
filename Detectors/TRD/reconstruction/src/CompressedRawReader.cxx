@@ -38,7 +38,7 @@ uint32_t CompressedRawReader::processHBFs()
   LOG(debug) << "PROCESS HBF starting at " << (void*)mDataPointer;
 
   mDataRDH = reinterpret_cast<const o2::header::RDHAny*>(mDataPointer);
-  //mEncoderRDH = reinterpret_cast<o2::header::RDHAny*>(mEncoderPointer);
+  // mEncoderRDH = reinterpret_cast<o2::header::RDHAny*>(mEncoderPointer);
   auto rdh = mDataRDH;
   /* loop until RDH stop header */
   while (!o2::raw::RDHUtils::getStop(rdh)) { // carry on till the end of the event.
@@ -46,7 +46,7 @@ uint32_t CompressedRawReader::processHBFs()
     auto memorySize = o2::raw::RDHUtils::getMemorySize(rdh);
     auto offsetToNext = o2::raw::RDHUtils::getOffsetToNext(rdh);
     auto dataPayload = memorySize - headerSize;
-    mFEEID = o2::raw::RDHUtils::getFEEID(rdh);            //TODO change this and just carry around the curreht RDH
+    mFEEID = o2::raw::RDHUtils::getFEEID(rdh);            // TODO change this and just carry around the curreht RDH
     mCRUEndpoint = o2::raw::RDHUtils::getEndPointID(rdh); // the upper or lower half of the currently parsed cru 0-14 or 15-29
     mCRUID = o2::raw::RDHUtils::getCRUID(rdh);
     int packetCount = o2::raw::RDHUtils::getPacketCounter(rdh);
@@ -72,8 +72,8 @@ uint32_t CompressedRawReader::processHBFs()
         }
         break; // end of CRU
       }
-      //buildCRUPayLoad(); // the rest of the hbf for the subsequent cruhalfchamber payload.
-      // TODO is this even possible if hbfs upto the stop  is for one event and each cru header is for 1 event?
+      // buildCRUPayLoad(); // the rest of the hbf for the subsequent cruhalfchamber payload.
+      //  TODO is this even possible if hbfs upto the stop  is for one event and each cru header is for 1 event?
     }
     /* move to next RDH */
     rdh = (o2::header::RDHAny*)((char*)(rdh) + offsetToNext);
@@ -117,31 +117,31 @@ bool CompressedRawReader::processBlock()
   if (mVerbose) {
     LOG(info) << "--- END PROCESS HalfCRU with state: " << mState;
   }
-  //this is essentially the inverse function of CruCompressorTask::buildOutput
-  //tracklet headers.
+  // this is essentially the inverse function of CruCompressorTask::buildOutput
+  // tracklet headers.
   CompressedRawHeader header;
   memcpy((char*)&header, &mDataBuffer, sizeof(CompressedRawHeader));
-  mDataPointer += sizeof(CompressedRawHeader); //bytes
+  mDataPointer += sizeof(CompressedRawHeader); // bytes
   mDataReadIn += sizeof(CompressedRawHeader);
-  //tracklets
+  // tracklets
   int numberoftracklets = header.size;
   o2::InteractionRecord ir(header.bc, header.orbit);
-  Tracklet64* trackletptr = (Tracklet64*)mDataPointer; //payload is supposed to be a block of tracklet64 objects.
+  Tracklet64* trackletptr = (Tracklet64*)mDataPointer; // payload is supposed to be a block of tracklet64 objects.
   std::copy(trackletptr, trackletptr + numberoftracklets, std::back_inserter(mEventTracklets));
-  mDataPointer += numberoftracklets * sizeof(Tracklet64); //bytes
+  mDataPointer += numberoftracklets * sizeof(Tracklet64); // bytes
   mDataReadIn += numberoftracklets * sizeof(Tracklet64);
 
-  //digits headers.
+  // digits headers.
   CompressedRawTrackletDigitSeperator tracklettrailer;
   memcpy((char*)&tracklettrailer, &mDataBuffer, sizeof(CompressedRawTrackletDigitSeperator));
   mDataBuffer += sizeof(CompressedRawTrackletDigitSeperator);
   mDataReadIn += sizeof(CompressedRawTrackletDigitSeperator);
 
-  //digits
+  // digits
   int numberofdigits = tracklettrailer.digitcount;
-  if (mHeaderVerbose || mVerbose) { //sanity check
+  if (mHeaderVerbose || mVerbose) { // sanity check
     bool badheader = false;
-    //check compressedrawtrackletdigitseperator for the pre and postfix 0xe's
+    // check compressedrawtrackletdigitseperator for the pre and postfix 0xe's
     if ((tracklettrailer.pad1 & 0xffffff) == 0xeeeeee) {
       badheader = true;
     }
@@ -160,10 +160,10 @@ bool CompressedRawReader::processBlock()
   std::copy(digitptr, digitptr + numberofdigits, std::back_inserter(mCompressedEventDigits));
   mDataPointer += numberofdigits + sizeof(CompressedDigit);
   mDataReadIn += numberofdigits + sizeof(CompressedDigit);
-  //convert compresed digits to proper digits TODO put this in a copy operator of Compressed Digit class.
+  // convert compresed digits to proper digits TODO put this in a copy operator of Compressed Digit class.
   for (int digitcounter = 0; digitcounter < numberofdigits; ++digitcounter) {
     ArrayADC timebins;
-    //TODO This already pre supposes o2::trd::constants::TIMEBINS is 30 from other places, figure something out.
+    // TODO This already pre supposes o2::trd::constants::TIMEBINS is 30 from other places, figure something out.
     for (int adc = 0; adc < o2::trd::constants::TIMEBINS; adc++) {
       timebins[adc] = mCompressedEventDigits[digitcounter][adc];
     }

@@ -94,7 +94,7 @@ void DigitReader::run(ProcessingContext& pc)
 
   if (mCurrentEntry >= treeDig->GetEntries()) {
     mState = 2;
-    //pc.services().get<ControlService>().readyToQuit(QuitRequest::Me);
+    // pc.services().get<ControlService>().readyToQuit(QuitRequest::Me);
     pc.services().get<ControlService>().endOfStream();
   }
 }

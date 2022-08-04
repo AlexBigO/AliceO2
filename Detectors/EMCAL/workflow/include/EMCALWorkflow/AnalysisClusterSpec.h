@@ -67,10 +67,10 @@ class AnalysisClusterSpec : public framework::Task
 
  private:
   void updateTimeDependentParams(framework::ProcessingContext& pc);
-  o2::emcal::Clusterizer<InputType> mClusterizer;                        ///< Clusterizer object
-  o2::emcal::Geometry* mGeometry = nullptr;                              ///< Pointer to geometry object
-  o2::emcal::EventHandler<InputType>* mEventHandler = nullptr;           ///< Pointer to the event builder
-  o2::emcal::ClusterFactory<InputType>* mClusterFactory = nullptr;       ///< Pointer to the cluster builder
+  o2::emcal::Clusterizer<InputType> mClusterizer;                  ///< Clusterizer object
+  o2::emcal::Geometry* mGeometry = nullptr;                        ///< Pointer to geometry object
+  o2::emcal::EventHandler<InputType>* mEventHandler = nullptr;     ///< Pointer to the event builder
+  o2::emcal::ClusterFactory<InputType>* mClusterFactory = nullptr; ///< Pointer to the cluster builder
   std::shared_ptr<o2::base::GRPGeomRequest> mGGCCDBRequest;
   std::vector<o2::emcal::AnalysisCluster>* mOutputAnaClusters = nullptr; ///< Container with output clusters (pointer)
 };

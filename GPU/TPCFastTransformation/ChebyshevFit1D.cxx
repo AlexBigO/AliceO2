@@ -71,7 +71,7 @@ void ChebyshevFit1D::fit()
       mA[i * mN + j] = mA[j * mN + i];
     }
   }
-  //print();
+  // print();
   {
     double* Ai = mA.data();
     for (int i = 0; i < mN; i++, Ai += mN) {
@@ -88,7 +88,7 @@ void ChebyshevFit1D::fit()
         }
         mB[j] -= c * mB[i];
       }
-      //print();
+      // print();
     }
   }
   {

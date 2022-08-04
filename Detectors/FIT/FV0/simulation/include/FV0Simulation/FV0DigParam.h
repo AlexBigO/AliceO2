@@ -22,9 +22,9 @@ namespace o2::fv0
 {
 // parameters of FV0 digitization / transport simulation
 struct FV0DigParam : o2::conf::ConfigurableParamHelper<FV0DigParam> {
-  float photoCathodeEfficiency = 0.23;                  // quantum efficiency = nOfPhotoE_emitted_by_photocathode / nIncidentPhotons
-  float lightYield = 0.01;                              // light collection efficiency to be tuned using collision data [1%]
-  float adcChannelsPerMip = 16;                         // Default: 16 for pp and 8 for PbPb
+  float photoCathodeEfficiency = 0.23;                                     // quantum efficiency = nOfPhotoE_emitted_by_photocathode / nIncidentPhotons
+  float lightYield = 0.01;                                                 // light collection efficiency to be tuned using collision data [1%]
+  float adcChannelsPerMip = 16;                                            // Default: 16 for pp and 8 for PbPb
   float getChannelsPerMilivolt() const { return adcChannelsPerMip / 7.5; } // Non-trivial conversion depending on the pulseshape: amplitude to charge
   float chargeThrForMeanTime = 5;                                          // Charge threshold, only above which the time is taken into account in calculating the mean time of all qualifying channels
 
@@ -60,12 +60,12 @@ struct FV0DigParam : o2::conf::ConfigurableParamHelper<FV0DigParam> {
   float mCFD_trsh = 3.;                                                          // [mV]
   float getCFDTrshInAdc() const { return mCFD_trsh * getChannelsPerMilivolt(); } // [ADC channels]
   /// Parameters for trigger simulation
-  bool useMaxChInAdc = true;         // default = true
-  int adcChargeCenThr = 3 * 498;     // threshold value of ADC charge for Central trigger
-  int adcChargeSCenThr = 1 * 498;    // threshold value of ADC charge for Semi-central trigger
-  int maxCountInAdc = 4095;          // to take care adc ADC overflow
-  short mTime_trg_gate = 153;        // #channels as in TCM as in Pilot beams ('OR gate' setting in TCM tab in ControlServer)
-  uint8_t defaultChainQtc = 0x48;    // only 2 flags are set by default in simulation: kIsCFDinADCgate and kIsEventInTVDC
+  bool useMaxChInAdc = true;      // default = true
+  int adcChargeCenThr = 3 * 498;  // threshold value of ADC charge for Central trigger
+  int adcChargeSCenThr = 1 * 498; // threshold value of ADC charge for Semi-central trigger
+  int maxCountInAdc = 4095;       // to take care adc ADC overflow
+  short mTime_trg_gate = 153;     // #channels as in TCM as in Pilot beams ('OR gate' setting in TCM tab in ControlServer)
+  uint8_t defaultChainQtc = 0x48; // only 2 flags are set by default in simulation: kIsCFDinADCgate and kIsEventInTVDC
 
   O2ParamDef(FV0DigParam, "FV0DigParam");
 };

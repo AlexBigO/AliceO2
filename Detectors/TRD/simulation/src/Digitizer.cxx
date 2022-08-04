@@ -39,7 +39,7 @@ using namespace o2::math_utils;
 void Digitizer::init()
 {
   mGeo = Geometry::instance();
-  mGeo->createClusterMatrixArray();          // Requiered for chamberInGeometry()
+  mGeo->createClusterMatrixArray(); // Requiered for chamberInGeometry()
 
   mSimParam.cacheMagField();
 

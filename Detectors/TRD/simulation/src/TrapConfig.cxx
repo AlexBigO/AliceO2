@@ -827,7 +827,7 @@ bool TrapConfig::TrapValue::allocatei(int alloc)
   // allocate memory for the specified granularity
   mAllocMode = (Alloc_t)alloc;
   int mSize = mgkSize[mAllocMode];
-  //cout << "in allocatei : with alloc = " << alloc << " and mSize is now :" << mSize << endl;
+  // cout << "in allocatei : with alloc = " << alloc << " and mSize is now :" << mSize << endl;
   if (mSize > 0) {
     mData.resize(mSize);
     mValid.resize(mSize);
@@ -1001,8 +1001,8 @@ void TrapConfig::TrapRegister::initfromrun2(const char* name, int addr, int nBit
   mAddr = addr;
   mNbits = nBits;
   mResetValue = resetValue;
-  //LOG(fatal) << "Re-initialising an existing TRAP register " << name << ":" << mName << " : " << addr << ":" << mAddr << " : " << nBits << ":" << mNbits <<  " : " << resetValue << ":" << mResetValue;
-  //LOG(fatal) << "Re-initialising an existing TRAP register";
+  // LOG(fatal) << "Re-initialising an existing TRAP register " << name << ":" << mName << " : " << addr << ":" << mAddr << " : " << nBits << ":" << mNbits <<  " : " << resetValue << ":" << mResetValue;
+  // LOG(fatal) << "Re-initialising an existing TRAP register";
 }
 
 void TrapConfig::PrintDmemValue3(TrapConfig::TrapDmemWord* trapval, std::ofstream& output)

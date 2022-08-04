@@ -126,7 +126,7 @@ void CTFCoder::compress(CompressedClusters& cc,
           LOG(warning) << "Negative Chip increment " << cl.getChipID() << " -> " << prevChip;
         }
 #endif
-        cc.chipMul.push_back(1);                         // this is the version with chipInc stored once per new chip
+        cc.chipMul.push_back(1); // this is the version with chipInc stored once per new chip
         prevCol = cc.colInc[icl] = cl.getCol();
         prevChip = cl.getChipID();
       }

@@ -53,8 +53,8 @@ void RawBuffer::readFromMemoryBuffer(const gsl::span<const char> rawmemory)
     // Termination word
     // should normally not be decoded in case the payload size
     // is determined correctly
-    //std::cout << "Found termination word" << std::endl;
-    //break;
+    // std::cout << "Found termination word" << std::endl;
+    // break;
     // }
     mDataWords[mNDataWords++] = address[iword];
   }

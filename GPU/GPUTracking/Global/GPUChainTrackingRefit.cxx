@@ -32,13 +32,13 @@ int GPUChainTracking::RunRefit()
   RefitShadow.SetPropagator(doGPU ? processorsShadow()->calibObjects.o2Propagator : GetO2Propagator());
   RefitShadow.mPTracks = (doGPU ? processorsShadow() : processors())->tpcMerger.OutputTracks();
   WriteToConstantMemory(RecoStep::Refit, (char*)&processors()->trackingRefit - (char*)processors(), &RefitShadow, sizeof(RefitShadow), 0);
-  //TransferMemoryResourcesToGPU(RecoStep::Refit, &Refit, 0);
+  // TransferMemoryResourcesToGPU(RecoStep::Refit, &Refit, 0);
   if (param().rec.trackingRefitGPUModel) {
     runKernel<GPUTrackingRefitKernel, GPUTrackingRefitKernel::mode0asGPU>(GetGrid(mIOPtrs.nMergedTracks, 0), krnlRunRangeNone);
   } else {
     runKernel<GPUTrackingRefitKernel, GPUTrackingRefitKernel::mode1asTrackParCov>(GetGrid(mIOPtrs.nMergedTracks, 0), krnlRunRangeNone);
   }
-  //TransferMemoryResourcesToHost(RecoStep::Refit, &Refit, 0);
+  // TransferMemoryResourcesToHost(RecoStep::Refit, &Refit, 0);
   SynchronizeStream(0);
 #endif
   return 0;

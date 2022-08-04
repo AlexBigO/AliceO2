@@ -17,7 +17,7 @@
 /// \date 24 set 2020
 
 /* ------ HISTORY ---------
-*/
+ */
 #include "FairLogger.h" // for LOG
 #include "Framework/Logger.h"
 
@@ -72,7 +72,7 @@ bool HmpidDecodeRawFile::setUpStream(void* FileName, long Size)
   }
 
   mActualStreamPtr = 0; // sets the pointer to the Buffer
-  mEndStreamPtr = 0;    //sets the End of buffer
+  mEndStreamPtr = 0;    // sets the End of buffer
   mStartStreamPtr = 0;
 
   return (true);

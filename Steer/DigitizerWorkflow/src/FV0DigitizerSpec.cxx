@@ -51,7 +51,7 @@ class FV0DPLDigitizerTask : public o2::base::BaseDPLDigitizer
   {
     LOG(debug) << "FV0DPLDigitizerTask:init";
     mDigitizer.init();
-    mDisableQED = ic.options().get<bool>("disable-qed"); //TODO: QED implementation to be tested
+    mDisableQED = ic.options().get<bool>("disable-qed"); // TODO: QED implementation to be tested
   }
 
   void run(framework::ProcessingContext& pc)
@@ -64,12 +64,12 @@ class FV0DPLDigitizerTask : public o2::base::BaseDPLDigitizer
     // read collision context from input
     auto context = pc.inputs().get<o2::steer::DigitizationContext*>("collisioncontext");
     context->initSimChains(o2::detectors::DetID::FV0, mSimChains);
-    const bool withQED = context->isQEDProvided() && !mDisableQED; //TODO: QED implementation to be tested
+    const bool withQED = context->isQEDProvided() && !mDisableQED; // TODO: QED implementation to be tested
 
     mDigitizer.setTimeStamp(context->getGRP().getTimeStart());
 
-    auto& irecords = context->getEventRecords(withQED); //TODO: QED implementation to be tested
-    auto& eventParts = context->getEventParts(withQED); //TODO: QED implementation to be tested
+    auto& irecords = context->getEventRecords(withQED); // TODO: QED implementation to be tested
+    auto& eventParts = context->getEventParts(withQED); // TODO: QED implementation to be tested
 
     // loop over all composite collisions given from context
     // (aka loop over all the interaction records)
@@ -155,7 +155,7 @@ o2::framework::DataProcessorSpec getFV0DigitizerSpec(int channel, bool mctruth)
     AlgorithmSpec{adaptFromTask<FV0DPLDigitizerTask>()},
     Options{{"pileup", VariantType::Int, 1, {"whether to run in continuous time mode"}},
             {"disable-qed", o2::framework::VariantType::Bool, false, {"disable QED handling"}}}};
-  //Options{{"pileup", VariantType::Int, 1, {"whether to run in continuous time mode"}}}};
+  // Options{{"pileup", VariantType::Int, 1, {"whether to run in continuous time mode"}}}};
 }
 
 } // end namespace fv0

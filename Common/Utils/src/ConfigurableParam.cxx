@@ -9,7 +9,7 @@
 // granted to it by virtue of its status as an Intergovernmental Organization
 // or submit itself to any jurisdiction.
 
-//first version 8/2018, Sandro Wenzel
+// first version 8/2018, Sandro Wenzel
 
 #include "CommonUtils/ConfigurableParam.h"
 #include "CommonUtils/StringUtils.h"
@@ -257,7 +257,7 @@ void ConfigurableParam::writeJSON(std::string const& filename, std::string const
     LOG(info) << "ignoring writing of json file " << filename;
     return;
   }
-  initPropertyTree();     // update the boost tree before writing
+  initPropertyTree(); // update the boost tree before writing
   auto outfilename = o2::utils::Str::concat_string(sOutputDir, filename);
   if (!keyOnly.empty()) { // write ini for selected key only
     try {

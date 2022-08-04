@@ -22,7 +22,7 @@ using namespace o2::phos;
 
 CalibParams::CalibParams(int /*dummy*/)
 {
-  //produce reasonable objest for test purposes
+  // produce reasonable objest for test purposes
   mGainCalib.fill(0.005);
   mHGLGRatio.fill(16.);
   mHGTimeCalib.fill(0.);
@@ -56,7 +56,7 @@ bool CalibParams::setGain(TH2* h, char module)
       relid[2] = iz;
 
       if (o2::phos::Geometry::relToAbsNumbering(relid, absId)) {
-        if (absId - OFFSET < 0) { //non-existing part of a module 1
+        if (absId - OFFSET < 0) { // non-existing part of a module 1
           continue;
         }
         mGainCalib[absId - OFFSET] = h->GetBinContent(ix, iz);
@@ -92,7 +92,7 @@ bool CalibParams::setHGLGRatio(TH2* h, char module)
       relid[2] = iz;
 
       if (o2::phos::Geometry::relToAbsNumbering(relid, absId)) {
-        if (absId - OFFSET < 0) { //non-existing part of a module 1
+        if (absId - OFFSET < 0) { // non-existing part of a module 1
           continue;
         }
         mHGLGRatio[absId - OFFSET] = h->GetBinContent(ix, iz);
@@ -128,7 +128,7 @@ bool CalibParams::setHGTimeCalib(TH2* h, char module)
       relid[2] = iz;
 
       if (o2::phos::Geometry::relToAbsNumbering(relid, absId)) {
-        if (absId - OFFSET < 0) { //non-existing part of a module 1
+        if (absId - OFFSET < 0) { // non-existing part of a module 1
           continue;
         }
         mHGTimeCalib[absId - OFFSET] = h->GetBinContent(ix, iz);
@@ -164,7 +164,7 @@ bool CalibParams::setLGTimeCalib(TH2* h, char module)
       relid[2] = iz;
 
       if (o2::phos::Geometry::relToAbsNumbering(relid, absId)) {
-        if (absId - OFFSET < 0) { //non-existing part of a module 1
+        if (absId - OFFSET < 0) { // non-existing part of a module 1
           continue;
         }
         mLGTimeCalib[absId - OFFSET] = h->GetBinContent(ix, iz);

@@ -37,11 +37,11 @@ void CPVBadMapCalibDevice::run(o2::framework::ProcessingContext& ctx)
 
   mBadMap.reset(new BadChannelMap());
 
-  //Probably can be configured from configKeyValues?
+  // Probably can be configured from configKeyValues?
   const float kMaxCut = 10.;
   const float kMinCut = 0.1;
 
-  if (mMethod % 2 == 0) { //Gains: dead channels (medhod= 0,2)
+  if (mMethod % 2 == 0) { // Gains: dead channels (medhod= 0,2)
 
     std::string filename = mPath + "CPVGains.root";
     TFile f(filename.data(), "READ");
@@ -63,7 +63,7 @@ void CPVBadMapCalibDevice::run(o2::framework::ProcessingContext& ctx)
       short ngood = 0;
       for (unsigned short i = spectra->GetNbinsX(); --i;) {
         float a = spectra->Integral(i + 1, i + 1, 1, 1024);
-        if (a > kMaxCut * meanOccupancy + 1 || a < kMinCut * meanOccupancy - 1 || a == 0) { //noisy or dead
+        if (a > kMaxCut * meanOccupancy + 1 || a < kMinCut * meanOccupancy - 1 || a == 0) { // noisy or dead
           if (mBadMap->isChannelGood(i)) {
             mBadMap->addBadChannel(i);
             nBadChannels++;
@@ -81,8 +81,8 @@ void CPVBadMapCalibDevice::run(o2::framework::ProcessingContext& ctx)
     f.Close();
   }
 
-  if (mMethod > 0) { //methods 1,2: use pedestals
-    //Read latest pedestal file
+  if (mMethod > 0) { // methods 1,2: use pedestals
+    // Read latest pedestal file
     std::string filename = mPath + "CPVPedestals.root";
     TFile f(filename.data(), "READ");
     TH2F* pedestals = nullptr;
@@ -112,7 +112,7 @@ void CPVBadMapCalibDevice::run(o2::framework::ProcessingContext& ctx)
         float prRMS = pr->GetRMS();
         pr->Delete();
         if (prMean > kMaxCut * meanPed || prMean < kMinCut * meanPed || prMean == 0 ||
-            prRMS > kMaxCut * rmsPed || prRMS < kMinCut * rmsPed) { //noisy or dead
+            prRMS > kMaxCut * rmsPed || prRMS < kMinCut * rmsPed) { // noisy or dead
           if (mBadMap->isChannelGood(i)) {
             mBadMap->addBadChannel(i);
             nBadChannels++;
@@ -143,7 +143,7 @@ void CPVBadMapCalibDevice::endOfStream(o2::framework::EndOfStreamContext& ec)
 {
 
   LOG(info) << "[CPVBadMapCalibDevice - endOfStream]";
-  //calculate stuff here
+  // calculate stuff here
 }
 
 void CPVBadMapCalibDevice::sendOutput(DataAllocator& output)
@@ -183,7 +183,7 @@ bool CPVBadMapCalibDevice::differFromCurrent()
   // Send difference to QC
   // Do not update existing object automatically if difference is too strong
 
-  if (!mUseCCDB) { //can not compare, just update
+  if (!mUseCCDB) { // can not compare, just update
     return false;
   }
   // read calibration objects from ccdb

@@ -355,8 +355,8 @@ string CcdbApi::getFullUrlForRetrieval(CURL* curl, const string& path, const map
 }
 
 /**
-  * Struct to store the data we will receive from the CCDB with CURL.
-  */
+ * Struct to store the data we will receive from the CCDB with CURL.
+ */
 struct MemoryStruct {
   char* memory;
   unsigned int size;

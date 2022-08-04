@@ -55,7 +55,7 @@ using CompClusCont = std::vector<CompClusterExt>;
 using PatternCont = std::vector<unsigned char>;
 using ROFRecCont = std::vector<itsmft::ROFRecord>;
 
-//template <class CompClusCont, class PatternCont, class ROFRecCont> // container types (PMR or std::vectors)
+// template <class CompClusCont, class PatternCont, class ROFRecCont> // container types (PMR or std::vectors)
 
 class Clusterer
 {

@@ -69,4 +69,4 @@ class IntegratingMerger : public framework::Task
 
 } // namespace o2::mergers
 
-#endif //ALICEO2_INTEGRATINGMERGER_H
+#endif // ALICEO2_INTEGRATINGMERGER_H

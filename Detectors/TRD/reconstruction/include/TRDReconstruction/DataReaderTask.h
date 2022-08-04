@@ -50,19 +50,19 @@ class DataReaderTask : public Task
  private:
   void updateTimeDependentParams(framework::ProcessingContext& pc);
   CruRawReader mReader;                  // this will do the parsing, of raw data passed directly through the flp(no compression)
-  CompressedRawReader mCompressedReader; //this will handle the incoming compressed data from the flp
-                                         // in both cases we pull the data from the vectors build message and pass on.
-                                         // they will internally produce a vector of digits and a vector tracklets and associated indexing.
-                                         // TODO templatise this and 2 versions of datareadertask, instantiated with the relevant parser.
+  CompressedRawReader mCompressedReader; // this will handle the incoming compressed data from the flp
+                                         //  in both cases we pull the data from the vectors build message and pass on.
+                                         //  they will internally produce a vector of digits and a vector tracklets and associated indexing.
+                                         //  TODO templatise this and 2 versions of datareadertask, instantiated with the relevant parser.
 
-  bool mVerbose{false};          // verbos output general debuggign and info output.
-  bool mDataVerbose{false};      // verbose output of data unpacking
-  bool mHeaderVerbose{false};    // verbose output of headers
-  bool mCompressedData{false};   // are we dealing with the compressed data from the flp (send via option)
-  bool mByteSwap{true};          // whether we are to byteswap the incoming data, mc is not byteswapped, raw data is (too be changed in cru at some point)
-  bool mEnableTimeInfo{false};   // enable the timing of timeframe,cru,digit,tracklet processing.
-  bool mEnableStats{false};      // enable the taking of stats in the rawdatastats class
-  bool mRootOutput{false};       // enable the writing of histos.root, a poor mans qc, mostly for debugging.
+  bool mVerbose{false};                // verbos output general debuggign and info output.
+  bool mDataVerbose{false};            // verbose output of data unpacking
+  bool mHeaderVerbose{false};          // verbose output of headers
+  bool mCompressedData{false};         // are we dealing with the compressed data from the flp (send via option)
+  bool mByteSwap{true};                // whether we are to byteswap the incoming data, mc is not byteswapped, raw data is (too be changed in cru at some point)
+  bool mEnableTimeInfo{false};         // enable the timing of timeframe,cru,digit,tracklet processing.
+  bool mEnableStats{false};            // enable the taking of stats in the rawdatastats class
+  bool mRootOutput{false};             // enable the writing of histos.root, a poor mans qc, mostly for debugging.
   bool mIgnoreDigitHCHeader{false};    // ignore this header for the purposes of data cross checking use the rdh/cru as authoritative
   bool mIgnoreTrackletHCHeader{false}; // ignore this header for data validity checks, this and the above are use to parse corrupted data.
   std::bitset<16> mOptions;            // stores the incoming of the above bools, useful to be able to send this on instead of the individual ones above
@@ -70,10 +70,10 @@ class DataReaderTask : public Task
 
   uint64_t mWordsRead = 0;
   uint64_t mWordsRejected = 0;
-  int mTrackletHCHeaderState{0}; // what to do about tracklethcheader, 0 never there, 2 always there, 1 there iff tracklet data, i.e. only there if next word is *not* endmarker 10001000.
-  int mHalfChamberWords{0};      // if the halfchamber header is effectively blanked major.minor = 0.0 and halfchamberwords=0 then this value is used as the number of additional words to try recover the data
-  int mHalfChamberMajor{0};      // if the halfchamber header is effectively blanked major.minor = 0.0 and halfchamberwords=0 then this value is used as the major version to try recover the data
-  std::string mHistogramsFilename; // filename to use for histograms.
+  int mTrackletHCHeaderState{0};                                                          // what to do about tracklethcheader, 0 never there, 2 always there, 1 there iff tracklet data, i.e. only there if next word is *not* endmarker 10001000.
+  int mHalfChamberWords{0};                                                               // if the halfchamber header is effectively blanked major.minor = 0.0 and halfchamberwords=0 then this value is used as the number of additional words to try recover the data
+  int mHalfChamberMajor{0};                                                               // if the halfchamber header is effectively blanked major.minor = 0.0 and halfchamberwords=0 then this value is used as the major version to try recover the data
+  std::string mHistogramsFilename;                                                        // filename to use for histograms.
   o2::header::DataDescription mUserDataDescription = o2::header::gDataDescriptionInvalid; // alternative user-provided description to pick
   bool mFixDigitEndCorruption{false};                                                     // fix the parsing of corrupt end of digit data. bounce over it.
   o2::trd::TRDDataCountersPerTimeFrame mTimeFrameStats;                                   // TODO for compressed data this is going to come in for each subtimeframe and we need to collate them.

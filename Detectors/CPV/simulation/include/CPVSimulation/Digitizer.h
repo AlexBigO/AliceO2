@@ -45,7 +45,7 @@ class Digitizer : public TObject
   float simulatePedestalNoise(int absId);
 
  private:
-  static constexpr short NCHANNELS = 23040;      //128*60*3:  toatl number of CPV channels
+  static constexpr short NCHANNELS = 23040;      // 128*60*3:  toatl number of CPV channels
   CalibParams* mCalibParams;                     /// Calibration coefficients
   Pedestals* mPedestals;                         /// Pedestals
   BadChannelMap* mBadMap;                        /// Bad channel map

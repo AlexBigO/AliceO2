@@ -50,7 +50,7 @@ void RawWriterSpec::run(framework::ProcessingContext& ctx)
   mRawWriter->digitsToRaw(digits, digitsTR);
   LOG(info) << "[PHOSRawWriter - run]  Finished ";
 
-  //flash and close output files
+  // flash and close output files
   mRawWriter->getWriter().close();
   ctx.services().get<o2::framework::ControlService>().readyToQuit(framework::QuitRequest::Me);
 }

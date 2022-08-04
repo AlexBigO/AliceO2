@@ -122,7 +122,7 @@ class SemiregularSpline2D3D : public FlatObject
   const RegularSpline1D& getGridV() const { return mGridV; }
 
   /// Get 1-D grid for V coordinate
-  //const RegularSpline1D& getGridV() const { return mGridV; }
+  // const RegularSpline1D& getGridV() const { return mGridV; }
   const RegularSpline1D& getGridU(const int i) const { return getSplineArray()[i]; }
 
   /// Get u,v of i-th knot
@@ -131,7 +131,7 @@ class SemiregularSpline2D3D : public FlatObject
   /// Get size of the mFlatBuffer data
   size_t getFlatBufferSize() const { return mFlatBufferSize; }
 
-  ///Gets the knot index which is the i-th knot in v-space and the j-th knot in u-space
+  /// Gets the knot index which is the i-th knot in v-space and the j-th knot in u-space
   int getDataIndex(int i, int j) const;
   int getDataIndex0(int i, int j) const;
 
@@ -210,16 +210,16 @@ inline void SemiregularSpline2D3D::getKnotUV(int iKnot, float& u, float& v) cons
     // the searched u-v-coordinates have to be in this spline.
     if (iKnot <= nk - 1) {
 
-      //in that case v is the current index
+      // in that case v is the current index
       v = mGridV.knotIndexToU(i);
 
-      //and u the coordinate of the given index
+      // and u the coordinate of the given index
       u = gridU.knotIndexToU(iKnot);
       break;
     }
 
-    //if iKnot is greater than number of knots the searched u-v cannot be in the current gridU
-    //so we search for nk less indizes and continue with the next v-coordinate
+    // if iKnot is greater than number of knots the searched u-v cannot be in the current gridU
+    // so we search for nk less indizes and continue with the next v-coordinate
     iKnot -= nk;
   }
 }
@@ -227,16 +227,16 @@ inline void SemiregularSpline2D3D::getKnotUV(int iKnot, float& u, float& v) cons
 template <typename T>
 inline void SemiregularSpline2D3D::correctEdges(T* data) const
 {
-  //Regular v-Grid (vertical)
+  // Regular v-Grid (vertical)
   const RegularSpline1D& gridV = getGridV();
 
   int nv = mNumberOfRows;
 
-  //EIGENTLICH V VOR U!!!
-  //Wegen Splines aber U vor V
+  // EIGENTLICH V VOR U!!!
+  // Wegen Splines aber U vor V
 
   { // ==== left edge of U ====
-    //loop through all gridUs
+    // loop through all gridUs
     for (int iv = 1; iv < mNumberOfRows - 1; iv++) {
       T* f0 = data + getDataIndex(0, iv);
       T* f1 = f0 + 3;
@@ -249,7 +249,7 @@ inline void SemiregularSpline2D3D::correctEdges(T* data) const
   }
 
   { // ==== right edge of U ====
-    //loop through all gridUs
+    // loop through all gridUs
     for (int iv = 1; iv < mNumberOfRows - 1; iv++) {
       const RegularSpline1D& gridU = getGridU(iv);
       int nu = gridU.getNumberOfKnots();
@@ -268,8 +268,8 @@ inline void SemiregularSpline2D3D::correctEdges(T* data) const
     int nu = gridU.getNumberOfKnots();
 
     for (int iu = 0; iu < nu; iu++) {
-      //f0 to f3 are the x,y,z values of 4 points in the grid along the v axis.
-      //Since there are no knots because of the irregularity you can get this by using the getSplineMethod.
+      // f0 to f3 are the x,y,z values of 4 points in the grid along the v axis.
+      // Since there are no knots because of the irregularity you can get this by using the getSplineMethod.
       T* f0 = data + getDataIndex(iu, 0);
       float u = gridU.knotIndexToU(iu);
 
@@ -367,7 +367,7 @@ inline void SemiregularSpline2D3D::getSpline(const T* correctedData, float u, fl
 
   // to save the index positions of u-coordinates we create an array
   T dataVx[12];
-  //int dataOffset0 = getDataIndex0(0, iknotv-1); //index of the very left point in the vi-1-th gridU
+  // int dataOffset0 = getDataIndex0(0, iknotv-1); //index of the very left point in the vi-1-th gridU
 
   // we loop through the 4 needed u-Splines
   int vxIndex = 0;
@@ -385,7 +385,7 @@ inline void SemiregularSpline2D3D::getSpline(const T* correctedData, float u, fl
     dataVx[vxIndex + 2] = gridU.getSpline(ui, correctedData[dataOffset + 2], correctedData[dataOffset + 5], correctedData[dataOffset + 8], correctedData[dataOffset + 11], u);
   }
 
-  //return results
+  // return results
   x = mGridV.getSpline(iknotv, dataVx[0], dataVx[3], dataVx[6], dataVx[9], v);
   y = mGridV.getSpline(iknotv, dataVx[1], dataVx[4], dataVx[7], dataVx[10], v);
   z = mGridV.getSpline(iknotv, dataVx[2], dataVx[5], dataVx[8], dataVx[11], v);
@@ -399,32 +399,32 @@ inline void SemiregularSpline2D3D::getSplineVec(const float* correctedData, floa
 #if !defined(__CINT__) && !defined(__ROOTCINT__) && !defined(__ROOTCLING__) && !defined(GPUCA_GPUCODE) && !defined(GPUCA_NO_VC)
   //&& !defined(__CLING__)
   /*
-	Idea: There are 16 knots important for (u, v).
-	a,b,c,d := Knots in first u-grid
-	e,f,g,h := Knots in second u-grid
-	i,j,k,l := Knots in third u-grid
-	m,n,o,p := Knots in fourth u-grid.
+  Idea: There are 16 knots important for (u, v).
+  a,b,c,d := Knots in first u-grid
+  e,f,g,h := Knots in second u-grid
+  i,j,k,l := Knots in third u-grid
+  m,n,o,p := Knots in fourth u-grid.
         It could be possible to calculate the spline in 3 dimentions for a,b,c,d at the same time as e,f,g,h etc.
-	3 of the 4 parallel threads of the vector would calculate x,y,z for one row and the last task already calculates x for the next one.
-	=> 4x faster
+  3 of the 4 parallel threads of the vector would calculate x,y,z for one row and the last task already calculates x for the next one.
+  => 4x faster
 
-	Problem:To do this, we need vectors where every i-th element is used for the calculation. So what we need is:
-	[a,e,i,m]
-	[b,f,j,n]
-	[c,g,k,o]
-	[d,h,l,p]
-	This is barely possible to do with a good performance because e.g. a,e,i,m do not lay beside each other in data.
-	
-	Work around 1:
-	Don't calculate knots parrallel but the dimensions. But you can only be 3x faster this way because the 4th thread would be the x-dimension of the next point.
+  Problem:To do this, we need vectors where every i-th element is used for the calculation. So what we need is:
+  [a,e,i,m]
+  [b,f,j,n]
+  [c,g,k,o]
+  [d,h,l,p]
+  This is barely possible to do with a good performance because e.g. a,e,i,m do not lay beside each other in data.
 
-	Work around 2:
-	Try to create a matrix as it was mentioned earlier ([a,e,i,m][b,f,..]...) by copying data.
-	This may be less efficient than Work around 1 but needs to be measured.
-	
+  Work around 1:
+  Don't calculate knots parrallel but the dimensions. But you can only be 3x faster this way because the 4th thread would be the x-dimension of the next point.
+
+  Work around 2:
+  Try to create a matrix as it was mentioned earlier ([a,e,i,m][b,f,..]...) by copying data.
+  This may be less efficient than Work around 1 but needs to be measured.
+
       */
 
-  //workaround 1:
+  // workaround 1:
   int vGridi = mGridV.getKnotIndex(v);
 
   float dataU[12];
@@ -462,7 +462,7 @@ inline void SemiregularSpline2D3D::getSplineVec(const float* correctedData, floa
   y = res[1];
   z = res[2];
 
-//getSpline( correctedData, u, v, x, y, z );
+// getSpline( correctedData, u, v, x, y, z );
 #else
   getSpline(correctedData, u, v, x, y, z);
 #endif

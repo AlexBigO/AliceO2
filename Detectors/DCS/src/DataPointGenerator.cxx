@@ -63,7 +63,7 @@ std::pair<uint32_t, uint16_t> getDate(const std::string& refDate)
 namespace o2::dcs
 {
 
-//std::enable_if_t<std::is_arithmetic<T>::value, bool> = true>
+// std::enable_if_t<std::is_arithmetic<T>::value, bool> = true>
 
 template <typename T>
 std::vector<o2::dcs::DataPointCompositeObject>
@@ -109,8 +109,8 @@ template std::vector<o2::dcs::DataPointCompositeObject> generateRandomDataPoints
 template std::vector<o2::dcs::DataPointCompositeObject> generateRandomDataPoints<char>(const std::vector<std::string>& aliases, char minValue, char maxValue, std::string);
 
 /** Need a specific specialization for bool as got into trouble compiling uniform_int_distribution<bool>
-  * on some platform (e.g. CC7).
-  */
+ * on some platform (e.g. CC7).
+ */
 template <>
 std::vector<o2::dcs::DataPointCompositeObject> generateRandomDataPoints<bool>(const std::vector<std::string>& aliases, bool minValue, bool maxValue, std::string refDate)
 {
@@ -127,9 +127,9 @@ std::vector<o2::dcs::DataPointCompositeObject> generateRandomDataPoints<bool>(co
 }
 
 /**
-  * Generate data points of type string, where each string is random, with
-  * a length between the length of the two input strings (minLength,maxLength)
-  */
+ * Generate data points of type string, where each string is random, with
+ * a length between the length of the two input strings (minLength,maxLength)
+ */
 template <>
 std::vector<o2::dcs::DataPointCompositeObject> generateRandomDataPoints<std::string>(const std::vector<std::string>& aliases, std::string minLength, std::string maxLength, std::string refDate)
 {

@@ -322,7 +322,7 @@ bool IrregularSpline2D3DCalibrator::doCalibrationStep()
 
   // second, try to remove a knot
 
-  //for (int axis = 0; axis < 2; axis++) {
+  // for (int axis = 0; axis < 2; axis++) {
   bestAction.action = Action::Move::No;
   bestAction.cost = mMaxDeviation + 1.e10;
 
@@ -428,7 +428,7 @@ double IrregularSpline2D3DCalibrator::getIntegralDeviationLine(const IrregularSp
     double d2 = dx * dx + dy * dy + dz * dz;
     sum += sqrt(d2 / 3.);
   }
-  //sum = sqrt(sum/3.);
+  // sum = sqrt(sum/3.);
   return sum;
 }
 

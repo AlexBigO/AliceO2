@@ -17,7 +17,7 @@
 /// \date 24 set 2020
 
 /* ------ HISTORY ---------
-*/
+ */
 #include "FairLogger.h" // for LOG
 #include "Framework/Logger.h"
 
@@ -80,7 +80,7 @@ bool HmpidDecodeRawMem::setUpStream(void* Buffer, long BufferLen)
   }
 
   mActualStreamPtr = (uint32_t*)Buffer;                 // sets the pointer to the Buffer
-  mEndStreamPtr = ((uint32_t*)Buffer) + wordsBufferLen; //sets the End of buffer
+  mEndStreamPtr = ((uint32_t*)Buffer) + wordsBufferLen; // sets the End of buffer
   mStartStreamPtr = ((uint32_t*)Buffer);
   //  std::cout << " setUpStrem : StPtr=" << mStartStreamPtr << " EndPtr=" << mEndStreamPtr << " Len=" << wordsBufferLen << std::endl;
   return (true);
@@ -179,6 +179,6 @@ void HmpidDecodeRawDigit::setPad(HmpidEquipment* eq, int col, int dil, int ch, u
 {
   eq->setPad(col, dil, ch, charge);
   mDigits.push_back(o2::hmpid::Digit(charge, eq->getEquipmentId(), col, dil, ch));
-  //std::cout << "DI " << mDigits.back() << " "<<col<<","<< dil<<","<< ch<<"="<< charge<<std::endl;
+  // std::cout << "DI " << mDigits.back() << " "<<col<<","<< dil<<","<< ch<<"="<< charge<<std::endl;
   return;
 }

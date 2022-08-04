@@ -608,14 +608,14 @@ class FileReaderTask
   }
 
  private:
-  std::ifstream mInputFile{}; ///< input file
-  int mFrameMax;              ///< number of frames to process
-  int mTimeFrameMax;          ///< number of frames to process
-  bool mFullHBF;              ///< send full HeartBeat frames
-  bool mFullTF;               ///< send full time frames
-  bool mSaveTF;               ///< save individual time frames to file
-  int mOverlap;               ///< overlap between contiguous TimeFrames
-  bool mPrint = false;        ///< print debug messages
+  std::ifstream mInputFile{};            ///< input file
+  int mFrameMax;                         ///< number of frames to process
+  int mTimeFrameMax;                     ///< number of frames to process
+  bool mFullHBF;                         ///< send full HeartBeat frames
+  bool mFullTF;                          ///< send full time frames
+  bool mSaveTF;                          ///< save individual time frames to file
+  int mOverlap;                          ///< overlap between contiguous TimeFrames
+  bool mPrint = false;                   ///< print debug messages
   o2::dataformats::TFIDInfo mTFIDInfo{}; // struct to modify output headers
 
   char* mTimeFrameBufs[NFEEID][NLINKS] = {nullptr};

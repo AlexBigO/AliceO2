@@ -108,8 +108,8 @@ void PrintCalDet(ofstream& out, const AliTRDCalDet* caldet)
 
 void PrintCalROC(ofstream& out, const AliTRDCalROC* calroc)
 {
-  //cout << calroc->fPla;
-  //cout << calroc->getChamber();
+  // cout << calroc->fPla;
+  // cout << calroc->getChamber();
   int rows = calroc->GetNrows();
   int cols = calroc->GetNcols();
   out << rows << endl;
@@ -128,8 +128,8 @@ void PrintCalPad(ofstream& out, const AliTRDCalPad* calpad)
 
 void PrintCalSingleChamberStatus(ofstream& out, AliTRDCalSingleChamberStatus* chamberstatus)
 {
-  //cout << calroc.fPla;
-  //cout << calroc.fCha;
+  // cout << calroc.fPla;
+  // cout << calroc.fCha;
   out << chamberstatus->GetNrows();
   out << chamberstatus->GetNcols();
 
@@ -213,7 +213,7 @@ void Readocdb(Int_t run, const Char_t* storageURI = "alien://folder=/alice/data/
   // Main function to steer the extraction of TRD OCDB information
   //
 
-  //std::string outFilename="CalibrationsForRun"+Run;
+  // std::string outFilename="CalibrationsForRun"+Run;
   TTimeStamp jobStartTime;
   // if the storage is on alien than we need to do some extra stuff
   TString storageString(storageURI);
@@ -237,7 +237,7 @@ void Readocdb(Int_t run, const Char_t* storageURI = "alien://folder=/alice/data/
   // get calibration information
   // process gains
   ///////////////////////////
-  //Connect to CCDB
+  // Connect to CCDB
   //
   o2::ccdb::CcdbApi ccdb;
   map<string, string> metadata;               // do we want to store any meta data?
@@ -261,7 +261,7 @@ void Readocdb(Int_t run, const Char_t* storageURI = "alien://folder=/alice/data/
       // store abitrary user object in strongly typed manner
       //      ccdb.storeAsTFileAny(o2chamberstatus, "TRD_test/ChamberStatus", metadata, Run, Run + 1);
       // // read like this (you have to specify the type)
-      //auto o2chamberstatusback = ccdb.retrieveFromTFileAny<o2::trd::ChamberStatus>("TRD_test/ChamberStatus", metadata);
+      // auto o2chamberstatusback = ccdb.retrieveFromTFileAny<o2::trd::ChamberStatus>("TRD_test/ChamberStatus", metadata);
     } else
       cout << "attempt to get object chamber status from ocdb entry. Ergo not writing one to ccdb." << endl;
   } else

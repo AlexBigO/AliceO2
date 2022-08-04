@@ -103,13 +103,13 @@ o2::emcal::AnalysisCluster ClusterFactory<InputType>::buildCluster(int clusterIn
   evalTime(inputsIndices, clusterAnalysis);
 
   // TODO to be added at a later stage
-  //evalPrimaries(inputsIndices, clusterAnalysis);
-  //evalParents(inputsIndices, clusterAnalysis);
+  // evalPrimaries(inputsIndices, clusterAnalysis);
+  // evalParents(inputsIndices, clusterAnalysis);
 
   // TODO to be added at a later stage
   // Called last because it sets the global position of the cluster?
   // Do not call it when recalculating clusters out of standard reconstruction
-  //if (!mJustCluster)
+  // if (!mJustCluster)
   //  evalLocal2TrackingCSTransform();
 
   return clusterAnalysis;
@@ -215,7 +215,7 @@ void ClusterFactory<InputType>::evalLocalPosition(gsl::span<const int> inputsInd
       continue;
     }
 
-    //Temporal patch, due to mapping problem, need to swap "y" in one of the 2 SM, although no effect in position calculation. GCB 05/2010
+    // Temporal patch, due to mapping problem, need to swap "y" in one of the 2 SM, although no effect in position calculation. GCB 05/2010
     if (mSharedCluster && mSuperModuleNumber != mGeomPtr->GetSuperModuleNumber(mInputsContainer[iInput].getTower())) {
       xyzi[1] *= -1;
     }
@@ -372,7 +372,7 @@ void ClusterFactory<InputType>::evalLocalPositionFit(double deff, double mLogWei
         clRmsXYZ[i] += (w * xyzi[i] * xyzi[i]);
       }
     }
-  } //loop
+  } // loop
 
   //  cout << " wtot " << wtot << endl;
 
@@ -407,7 +407,7 @@ void ClusterFactory<InputType>::evalLocalPositionFit(double deff, double mLogWei
     // May be put to global level or seperate method
     double ycorr = clXYZ[1] * (1. + phiSlope);
 
-    //printf(" y %f : ycorr %f : slope %f \n", clXYZ[1], ycorr, phiSlope);
+    // printf(" y %f : ycorr %f : slope %f \n", clXYZ[1], ycorr, phiSlope);
     clXYZ[1] = ycorr;
   }
 
@@ -533,7 +533,7 @@ void ClusterFactory<InputType>::evalElipsAxis(gsl::span<const int> inputsIndices
 
     lambda[1] = 0.5 * (dxx + dzz) - TMath::Sqrt(0.25 * (dxx - dzz) * (dxx - dzz) + dxz * dxz);
 
-    if (lambda[1] > 0) { //To avoid exception if numerical errors lead to negative lambda.
+    if (lambda[1] > 0) { // To avoid exception if numerical errors lead to negative lambda.
       lambda[1] = TMath::Sqrt(lambda[1]);
     } else {
       lambda[1] = 0.;

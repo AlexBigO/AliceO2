@@ -9,7 +9,7 @@
 // granted to it by virtue of its status as an Intergovernmental Organization
 // or submit itself to any jurisdiction.
 //
-//file RawReaderZDC.h class  for RAW data reading
+// file RawReaderZDC.h class  for RAW data reading
 
 #ifndef ALICEO2_RAWREADERZDC_H_
 #define ALICEO2_RAWREADERZDC_H_
@@ -62,8 +62,8 @@ class RawReaderZDC
 
   void clear();
 
-  //decoding binary data into data blocks
-  void processBinaryData(gsl::span<const uint8_t> payload, int linkID); //processing data blocks into digits
+  // decoding binary data into data blocks
+  void processBinaryData(gsl::span<const uint8_t> payload, int linkID); // processing data blocks into digits
   int processWord(const uint32_t* word);
   void process(const EventChData& ch);
 

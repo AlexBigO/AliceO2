@@ -75,8 +75,8 @@ void readFT0digits()
   TFile* Hfile = new TFile("digitsFT0.root", "RECREATE");
   printf("Writting histograms to root file \n");
   Hfile->cd();
-  //Create a canvas, set the view range, show histograms
-  //  TCanvas *c1 = new TCanvas("c1","Alice T0 Time ",400,10,600,600);
+  // Create a canvas, set the view range, show histograms
+  //   TCanvas *c1 = new TCanvas("c1","Alice T0 Time ",400,10,600,600);
   hTimeDig->Write();
   hTimeDigMultA->Write();
   hTimeDigMultC->Write();

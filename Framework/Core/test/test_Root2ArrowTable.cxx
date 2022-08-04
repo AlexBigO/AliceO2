@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(RootTree2Table)
   t1.Branch("ij", ij, "ij[2]/I");
   //fill the tree
   for (Int_t i = 0; i < 1000; i++) {
-    //gRandom->Rannor(xyz[0], xyz[1]);
+    // gRandom->Rannor(xyz[0], xyz[1]);
     xyz[0] = 1;
     xyz[1] = 2;
     xyz[2] = 3;
@@ -96,16 +96,16 @@ BOOST_AUTO_TEST_CASE(RootTree2Table)
     BOOST_REQUIRE_EQUAL(array->length(), 3000);
     const float* c = reinterpret_cast<float const*>(array->values()->data());
 
-    //auto array = std::static_pointer_cast<arrow::FixedSizeBinaryArray>(table->column(0)->chunk(0));
-    //BOOST_CHECK_EQUAL(array->byte_width(), sizeof(float[3]));
-    //const float* c = reinterpret_cast<float const*>(array->Value(0));
+    // auto array = std::static_pointer_cast<arrow::FixedSizeBinaryArray>(table->column(0)->chunk(0));
+    // BOOST_CHECK_EQUAL(array->byte_width(), sizeof(float[3]));
+    // const float* c = reinterpret_cast<float const*>(array->Value(0));
 
     BOOST_CHECK_EQUAL(c[0], 1);
     BOOST_CHECK_EQUAL(c[1], 2);
     BOOST_CHECK_EQUAL(c[2], 1);
   }
   {
-    //auto values = std::static_pointer_cast<arrow::FixedSizeBinaryArray>(table->column(1)->chunk(0));
+    // auto values = std::static_pointer_cast<arrow::FixedSizeBinaryArray>(table->column(1)->chunk(0));
     auto chunkToUse = table->column(1)->chunk(0);
     chunkToUse = std::dynamic_pointer_cast<arrow::FixedSizeListArray>(chunkToUse)->values();
     auto array = std::static_pointer_cast<arrow::Int32Array>(chunkToUse);
@@ -155,7 +155,7 @@ BOOST_AUTO_TEST_CASE(RootTree2TableViaASoA)
   t2.Branch("ev", &ev, "ev/I");
   t2.Branch("xyz", xyz, "xyz[3]/F");
   t2.Branch("ij", ij, "ij[2]/I");
-  //fill the tree
+  // fill the tree
   for (Int_t i = 0; i < 1000; i++) {
     gRandom->Rannor(xyz[0], xyz[1]);
     gRandom->Rannor(px, py);

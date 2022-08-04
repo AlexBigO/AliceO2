@@ -26,7 +26,7 @@
 #include <fstream>
 #include <bitset>
 
-//using namespace o2::framework;
+// using namespace o2::framework;
 
 namespace o2::trd
 {
@@ -86,8 +86,8 @@ class DigitsParser
   int mPaddingWordsCounter;
   bool mSanityCheck{true};
   bool mDumpUnknownData{false}; // if the various sanity checks fail, bail out and dump the rest of the data, keeps stats.
-  bool mByteOrderFix{false}; // simulated data is not byteswapped, real is, so deal with it accodringly.
-  bool mReturnVector{true};  // whether we are returing a vector or the raw data buffer.
+  bool mByteOrderFix{false};    // simulated data is not byteswapped, real is, so deal with it accodringly.
+  bool mReturnVector{true};     // whether we are returing a vector or the raw data buffer.
   // yes this is terrible design but it works,
   int mReturnVectorPos;
 
@@ -121,7 +121,7 @@ class DigitsParser
   uint16_t mLayer;
   uint16_t mSector;
   uint16_t mHalfChamberSide;
-  uint16_t mStackLayer; //store these values to prevent numerous recalculation;
+  uint16_t mStackLayer; // store these values to prevent numerous recalculation;
   uint16_t mTimeBins;   // timebins used defaults is constants::TIMEBINS
 
   uint16_t mEventCounter;

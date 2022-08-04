@@ -90,7 +90,7 @@ void AlignableDetectorITS::defineVolumes()
             sym2vol[volMod->getSymName()] = volMod;
             volMod->setParent(volHSt);
           } // module
-        }   //halfstave
+        }   // halfstave
       }     // stave
     }       // layer halfBarrel
   }         // layer
@@ -248,7 +248,7 @@ void AlignableDetectorITS::updatePointByTrackInfo(AlignmentPoint* pnt, const tra
 {
   // update point using specific error parameterization
   // the track must be in the detector tracking frame
-  //TODO RS
+  // TODO RS
   /*
   const AlignableSensor* sens = pnt->getSensor();
   int vid = sens->getVolID();

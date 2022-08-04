@@ -253,14 +253,14 @@ void TOFEventTimeChecker::processEvent(std::vector<MyTrack>& tracks)
       continue;
     }
 
-    //Beta
+    // Beta
     float beta = mL / (mTof - mT0) * cinv;
 
     float betaexpPi = mL / mExpPi * cinv;
     float betaexpKa = mL / mExpKa * cinv;
     float betaexpPr = mL / mExpPr * cinv;
 
-    //Mass
+    // Mass
     float mass = mP / beta * TMath::Sqrt(TMath::Abs(1 - beta * beta));
     float massexpPi = mP / betaexpPi * TMath::Sqrt(TMath::Abs(1 - betaexpPi * betaexpPi));
     float massexpKa = mP / betaexpKa * TMath::Sqrt(TMath::Abs(1 - betaexpKa * betaexpKa));
@@ -270,7 +270,7 @@ void TOFEventTimeChecker::processEvent(std::vector<MyTrack>& tracks)
       continue;
     }
 
-    //Fill histos
+    // Fill histos
     mHTimePi->Fill(mTof - mT0 - mExpPi);
     mHTimeKa->Fill(mTof - mT0 - mExpKa);
     mHTimePr->Fill(mTof - mT0 - mExpPr);
@@ -350,7 +350,7 @@ void TOFEventTimeChecker::fillMatching(GID gid, float time0, float time0res)
     trk.mDz = match.getDZatTOF();
   } else if (gid.getSource() == GID::ITSTPC) {
     const auto& array = mRecoData.getTPCITSTracks();
-    GID gTrackId = gid; //match.getTrackRef();
+    GID gTrackId = gid; // match.getTrackRef();
     const auto& srctrk = array[gTrackId.getIndex()];
     trk.mPt = srctrk.getPt();
     trk.mP = srctrk.getP();
@@ -413,7 +413,7 @@ void TOFEventTimeChecker::fillMatching(GID gid, float time0, float time0res)
 
     trk.mSignalDouble = tofsignal;
 
-    //trk.mSignal = match.getSignal();
+    // trk.mSignal = match.getSignal();
     trk.mTOFChi2 = match.getChi2();
     trk.mLength = info.getL();
     //  trk.mHypo = 0;

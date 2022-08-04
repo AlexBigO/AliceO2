@@ -264,7 +264,7 @@ void CookedTracker::makeSeeds(std::vector<TrackITSExt>& seeds, Int_t first, Int_
   for (Int_t n1 = first; n1 < last; n1++) {
     const Cluster* c1 = layer1.getCluster(n1);
     //
-    //auto lab = (mClsLabels->getLabels(c1 - &mClusterCache[0] + mFirstInFrame))[0];
+    // auto lab = (mClsLabels->getLabels(c1 - &mClusterCache[0] + mFirstInFrame))[0];
     //
     auto xyz1 = c1->getXYZGloRot(*mGeom);
     auto z1 = xyz1.Z();
@@ -283,7 +283,7 @@ void CookedTracker::makeSeeds(std::vector<TrackITSExt>& seeds, Int_t first, Int_
     for (auto n2 : selected2) {
       const Cluster* c2 = layer2.getCluster(n2);
       //
-      //if ((mClsLabels->getLabels(c2 - &mClusterCache[0] + mFirstInFrame))[0] != lab) continue;
+      // if ((mClsLabels->getLabels(c2 - &mClusterCache[0] + mFirstInFrame))[0] != lab) continue;
       //
       auto xyz2 = c2->getXYZGloRot(*mGeom);
       auto z2 = xyz2.Z();
@@ -297,12 +297,12 @@ void CookedTracker::makeSeeds(std::vector<TrackITSExt>& seeds, Int_t first, Int_
       auto dz3 = 0.5f * dz2;
 
       std::vector<Int_t> selected3;
-      float dy3 = 0.1 * kpWin * layer3.getR(); //Fixme
+      float dy3 = 0.1 * kpWin * layer3.getR(); // Fixme
       layer3.selectClusters(selected3, phir3, dy3, zr3, dz3);
       for (auto n3 : selected3) {
         const Cluster* c3 = layer3.getCluster(n3);
         //
-        //if ((mClsLabels->getLabels(c3 - &mClusterCache[0] + mFirstInFrame))[0] != lab) continue;
+        // if ((mClsLabels->getLabels(c3 - &mClusterCache[0] + mFirstInFrame))[0] != lab) continue;
         //
         auto xyz3 = c3->getXYZGloRot(*mGeom);
         auto z3 = xyz3.Z();
@@ -518,8 +518,8 @@ void CookedTracker::process(gsl::span<const o2::itsmft::CompClusterExt> const& c
     o2::math_utils::Point3D<float> locXYZ;
     float sigmaY2 = gSigma2, sigmaZ2 = gSigma2;
     if (pattID != itsmft::CompCluster::InvalidPatternID) {
-      sigmaY2 = gSigma2; //dict.getErr2X(pattID);
-      sigmaZ2 = gSigma2; //dict.getErr2Z(pattID);
+      sigmaY2 = gSigma2; // dict.getErr2X(pattID);
+      sigmaZ2 = gSigma2; // dict.getErr2Z(pattID);
       if (!dict->isGroup(pattID)) {
         locXYZ = dict->getClusterCoordinates(comp);
       } else {

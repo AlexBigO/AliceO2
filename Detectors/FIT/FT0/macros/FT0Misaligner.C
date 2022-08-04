@@ -31,11 +31,11 @@ void FT0Misaligner(const std::string& ccdbHost = "http://ccdb-test.cern.ch:8080"
   o2::detectors::DetID detFT0("FT0");
 
   // FT0 detector
-  //set A side
+  // set A side
   std::string symNameA = "FT0A";
   pars = generateMisalignment(xA, yA, zA, psiA, thetaA, phiA);
   params.emplace_back(symNameA.c_str(), -1, pars[0], pars[1], pars[2], pars[3], pars[4], pars[5], glo);
-  //set C side
+  // set C side
   std::string symNameC = "FT0C";
   pars = generateMisalignment(xC, yC, zC, psiC, thetaC, phiC);
   params.emplace_back(symNameC.c_str(), -1, pars[0], pars[1], pars[2], pars[3], pars[4], pars[5], glo);

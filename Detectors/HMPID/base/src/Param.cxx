@@ -90,7 +90,7 @@ Param::Param(bool noGeo) : mX(0), mY(0), mRefIdx(1.28947), mPhotEMean(6.675), mT
     }
   }
 */
-  mRefIdx = meanIdxRad(); //initialization of the running ref. index of freon
+  mRefIdx = meanIdxRad(); // initialization of the running ref. index of freon
 
   float dead = 2.6; // cm of the dead zones between PCs-> See 2CRC2099P1
 
@@ -494,7 +494,7 @@ void Param::lors2Pad(float x, float y, Int_t& pc, Int_t& px, Int_t& py)
   else if (x > fgkMinPcX[1] && x < fgkMaxPcX[1]) {
     pc = 1;
     px = Int_t((x - fgkMinPcX[1]) / sizePadX());
-  } //PC 1 or 3 or 5
+  } // PC 1 or 3 or 5
   else {
     return;
   }
@@ -508,7 +508,7 @@ void Param::lors2Pad(float x, float y, Int_t& pc, Int_t& px, Int_t& py)
   else if (y > fgkMinPcY[4] && y < fgkMaxPcY[4]) {
     pc += 4;
     py = Int_t((y - fgkMinPcY[4]) / sizePadY());
-  } //PC 4 or 5
+  } // PC 4 or 5
   else {
     return;
   }
@@ -535,7 +535,7 @@ Int_t Param::inHVSector(float y)
 double Param::findTemp(double tLow, double tHigh, double y)
 {
   //  Model for gradient in temperature
-  double yRad = hinRad(y); //height in a given radiator
+  double yRad = hinRad(y); // height in a given radiator
   if (tHigh < tLow) {
     tHigh = tLow; //if Tout < Tin consider just Tin as reference...
   }
@@ -543,7 +543,7 @@ double Param::findTemp(double tLow, double tHigh, double y)
     yRad = 0; //protection against fake y values
   }
   if (yRad > sizePcY()) {
-    yRad = sizePcY(); //protection against fake y values
+    yRad = sizePcY(); // protection against fake y values
   }
 
   double gradT = (tHigh - tLow) / sizePcY(); // linear gradient

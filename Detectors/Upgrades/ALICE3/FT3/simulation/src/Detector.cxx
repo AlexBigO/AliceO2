@@ -177,8 +177,8 @@ void Detector::buildBasicFT3(const FT3BaseParam& param)
 //_________________________________________________________________________________________________
 void Detector::buildFT3V1()
 {
-  //Build FT3 detector according to
-  //https://indico.cern.ch/event/992488/contributions/4174473/attachments/2168881/3661331/tracker_parameters_werner_jan_11_2021.pdf
+  // Build FT3 detector according to
+  // https://indico.cern.ch/event/992488/contributions/4174473/attachments/2168881/3661331/tracker_parameters_werner_jan_11_2021.pdf
 
   LOG(info) << "Building FT3 Detector: V1";
 

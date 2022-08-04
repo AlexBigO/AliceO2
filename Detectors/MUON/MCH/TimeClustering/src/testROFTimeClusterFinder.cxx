@@ -25,9 +25,9 @@ BOOST_AUTO_TEST_SUITE(timeclustering)
 using ROFRecord = o2::mch::ROFRecord;
 using ROFVector = std::vector<ROFRecord>;
 
-//static constexpr uint32_t sWinSize = 1000 / 25;    // number of BC in 1 us
-//static constexpr uint32_t sBinsInOneWindow = 5;     // number of bins in wich the 1 us window is divided for the peak search
-//static constexpr uint32_t sBinWidth = sWinSize / sBinsInOneWindow; // 5 bins in one 1 us window
+// static constexpr uint32_t sWinSize = 1000 / 25;    // number of BC in 1 us
+// static constexpr uint32_t sBinsInOneWindow = 5;     // number of bins in wich the 1 us window is divided for the peak search
+// static constexpr uint32_t sBinWidth = sWinSize / sBinsInOneWindow; // 5 bins in one 1 us window
 
 static ROFVector makeROFs(std::vector<int> binEntries, uint32_t winSize, uint32_t nBinsInOneWindow)
 {

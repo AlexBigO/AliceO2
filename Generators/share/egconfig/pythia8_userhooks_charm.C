@@ -15,7 +15,7 @@ R__ADD_INCLUDE_PATH($PYTHIA8/include)
 
 /** This is an example of Pythia8 UserHooks.
  ** The process is queried at the parton level
- ** and it is inhibited unless there is a 
+ ** and it is inhibited unless there is a
  ** charm (anti)quark produced at |y| < 1.5. **/
 
 class UserHooksCharm : public Pythia8::UserHooks

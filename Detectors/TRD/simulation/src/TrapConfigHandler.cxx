@@ -562,13 +562,13 @@ void TrapConfigHandler::configurePIDcorr(int det)
     MaxRows = NROWC1;
   }
   int MaxCols = NCOLUMN;
-  for (int row = 0; row < MaxRows; row++) { //TODO put this back to rob/mcm and not row/col as done in TrapSimulator
+  for (int row = 0; row < MaxRows; row++) { // TODO put this back to rob/mcm and not row/col as done in TrapSimulator
     for (int col = 0; col < MaxCols; col++) {
       readoutboard = feeparam->getROBfromPad(row, col);
       mcm = feeparam->getMCMfromPad(row, col);
       int dest = 1 << 10 | readoutboard << 7 | mcm;
-      //TODO impelment a method for determining if gaintables are valid, used to be if pointer was valid.
-      if (mGtbl.getMCMGain(det, row, col) != 0.0) { //TODO check this logic there might be problems here.
+      // TODO impelment a method for determining if gaintables are valid, used to be if pointer was valid.
+      if (mGtbl.getMCMGain(det, row, col) != 0.0) { // TODO check this logic there might be problems here.
         mFeeParam->getCorrectionFactors(det, readoutboard, mcm, 9, cor0, cor1, mGtbl.getMCMGain(det, row, col));
       } else {
         mFeeParam->getCorrectionFactors(det, readoutboard, mcm, 9, cor0, cor1);

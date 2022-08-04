@@ -149,7 +149,7 @@ void Clusterizer<InputType>::findClusters(const gsl::span<InputType const>& inpu
   // Calibrate cells/digits and fill the maps/arrays
   int nCells = 0;
   double ehs = 0.0;
-  //for (auto dig : inputArray) {
+  // for (auto dig : inputArray) {
   for (int iIndex = 0; iIndex < inputArray.size(); iIndex++) {
 
     auto& dig = inputArray[iIndex];

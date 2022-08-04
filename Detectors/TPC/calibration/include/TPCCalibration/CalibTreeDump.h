@@ -48,7 +48,7 @@ class CalArray;
 class CalibTreeDump
 {
  public:
-  using DataTypes = CalDet<float>; //boost::variant<CalDet<int>, CalDet<float>, CalDet<double>, CalDet<bool>, CalDet<unsigned int>>;
+  using DataTypes = CalDet<float>; // boost::variant<CalDet<int>, CalDet<float>, CalDet<double>, CalDet<bool>, CalDet<unsigned int>>;
 
   CalibTreeDump() = default;
   ~CalibTreeDump() = default;

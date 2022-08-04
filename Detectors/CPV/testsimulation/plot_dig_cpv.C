@@ -56,21 +56,21 @@ void plot_dig_cpv(int ievent = 0, std::string inputfile = "o2dig.root")
     short absId = (*it).getAbsId();
     float en = (*it).getAmplitude();
     int lab = (*it).getLabel(); //TODO
-    //std::cout << "label = " << lab << std::endl;
+    // std::cout << "label = " << lab << std::endl;
     o2::cpv::Geometry::absToRelNumbering(absId, relId);
     hDigitAmplitude[relId[0]]->Fill(en);
     // check, if this label already exist
     int j = 0;
     bool found = false;
-    //no labels for the time being
-    // while (primLabels[relId[0]][j] >= -2) {
-    //   if (primLabels[relId[0]][j] == lab) {
-    // 	found = true;
-    // 	break;
-    //   } else {
-    // 	j++;
-    //   }
-    // }
+    // no labels for the time being
+    //  while (primLabels[relId[0]][j] >= -2) {
+    //    if (primLabels[relId[0]][j] == lab) {
+    //  	found = true;
+    //  	break;
+    //    } else {
+    //  	j++;
+    //    }
+    //  }
     if (!found) {
       primLabels[relId[0]][j] = lab;
     }

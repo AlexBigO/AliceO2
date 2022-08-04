@@ -301,7 +301,7 @@ uint8_t GBTLink::checkErrorsHeaderWord(const GBTDataHeaderL* gbtH)
   }
   // RSTODO CHECK
   if (lanesActive == lanesStop) { // all lanes received their stop, new page 0 expected
-    //if (cnt) { // makes sens for old format only
+    // if (cnt) { // makes sens for old format only
     if (gbtH->packetIdx) {
       statistics.errorCounts[GBTLinkDecodingStat::ErrNonZeroPageAfterStop]++;
       gbtErrStatUpadated = true;

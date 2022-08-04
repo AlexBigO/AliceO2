@@ -61,7 +61,6 @@ o2::fv0::FV0ChannelTimeCalibrationObject FITCalibrationObjectProducer::generateC
   return o2::fv0::FV0TimeChannelOffsetCalibrationObjectAlgorithm::generateCalibrationObject(container);
 }
 
-
 } // namespace o2::fit
 
-#endif //O2_FITCALIBRATIONOBJECTPRODUCER_H
+#endif // O2_FITCALIBRATIONOBJECTPRODUCER_H

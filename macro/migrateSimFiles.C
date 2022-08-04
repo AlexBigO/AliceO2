@@ -27,7 +27,7 @@
 void copyBranch(const char* originfile, const char* targetfile, std::vector<std::string> const& branchnames)
 {
   const char* TREENAME = "o2sim";
-  //Get old file, old tree and set top branch address
+  // Get old file, old tree and set top branch address
   auto oldfile = TFile::Open(originfile);
   TTree* oldtree = nullptr;
   oldfile->GetObject(TREENAME, oldtree);
@@ -42,7 +42,7 @@ void copyBranch(const char* originfile, const char* targetfile, std::vector<std:
       oldtree->SetBranchStatus(regex.c_str(), 1);
     }
 
-    //Create a new file + a clone of old tree header.
+    // Create a new file + a clone of old tree header.
     auto newfile = TFile::Open(targetfile, "RECREATE");
     auto newtree = oldtree->CloneTree(0);
 

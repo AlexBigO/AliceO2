@@ -55,7 +55,7 @@ int main(int argc, char** argv)
   // create ROOT application environment
   TApplication* app = new TApplication("o2eve", &argc, argv);
   gApplication = app;
-  //app->Connect("TEveBrowser", "CloseWindow()", "TApplication", app, "Terminate()");
+  // app->Connect("TEveBrowser", "CloseWindow()", "TApplication", app, "Terminate()");
 
   LOG(info) << "Initializing TEveManager";
   if (!TEveManager::Create(kTRUE, "FI")) {
@@ -63,7 +63,7 @@ int main(int argc, char** argv)
     exit(0);
   }
 
-  //gEve->SpawnNewViewer("3D View", "");  exit(0);
+  // gEve->SpawnNewViewer("3D View", "");  exit(0);
 
   // Initialize o2 Event Visualisation
   Initializer::setup();

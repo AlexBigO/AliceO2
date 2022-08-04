@@ -11,7 +11,6 @@
 
 #include "TRDWorkflowIO/TRDDigitReaderSpec.h"
 
-
 #include "Framework/ConfigParamRegistry.h"
 #include "Framework/ControlService.h"
 #include "CommonUtils/StringUtils.h"
@@ -86,5 +85,5 @@ DataProcessorSpec getTRDDigitReaderSpec(bool useMC)
                              {"input-dir", VariantType::String, "none", {"Input directory"}}}};
 };
 
-} //end namespace trd
-} //end namespace o2
+} // end namespace trd
+} // end namespace o2

@@ -52,7 +52,7 @@ class TPCInterpolationDPL : public Task
   std::shared_ptr<o2::globaltracking::DataRequest> mDataRequest; ///< steers the input
   std::shared_ptr<o2::base::GRPGeomRequest> mGGCCDBRequest;
   o2::tpc::VDriftHelper mTPCVDriftHelper{};
-  bool mUseMC{false}; ///< MC flag
+  bool mUseMC{false};             ///< MC flag
   bool mProcessITSTPConly{false}; ///< should also tracks without outer point (ITS-TPC only) be processed?
   bool mWriteResiduals{false};    ///< whether or not the unbinned unfiltered residuals should be sent out
   bool mSendTrackData{false};     ///< if true, not only the clusters but also corresponding track data will be sent

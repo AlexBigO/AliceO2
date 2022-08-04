@@ -157,7 +157,7 @@ TGeoVolume* createSegment(int i)
       } // end of the layer loop
       break;
 
-    default: //box
+    default: // box
       // create and place the layers in the segment
 
       // start with gas

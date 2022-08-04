@@ -146,7 +146,8 @@ class PID
 #ifndef GPUCA_GPUCODE_DEVICE
   GPUdi() static constexpr ID nameToID(char const* name, ID id)
   {
-    return id > LastExt ? id : sameStr(name, pid_constants::sNames[id]) ? id : nameToID(name, id + 1);
+    return id > LastExt ? id : sameStr(name, pid_constants::sNames[id]) ? id
+                                                                        : nameToID(name, id + 1);
   }
 #endif
 

@@ -342,7 +342,7 @@ TEveElement* Data::getEveTracks()
     TEveRecTrackD t;
     t.fP = {p[0], p[1], p[2]};
     t.fV = {v[0], v[1], v[2]};
-    //t.fV = {v[0] - p[0] / p[1] * v[1], 0, v[2] - p[2] / p[1] * v[1]};
+    // t.fV = {v[0] - p[0] / p[1] * v[1], 0, v[2] - p[2] / p[1] * v[1]};
     t.fSign = (rec.getSign() < 0) ? -1 : 1;
     TEveTrack* track = new TEveTrack(&t, prop);
     track->SetLineColor(kMagenta);
@@ -516,7 +516,7 @@ void init(int tf, int trigger, int chip,
       file->Close();
       std::cout << "Running with MC digits...\n";
       evdata.setDigitPixelReader(digifile.data(), tf);
-      //evdata.setDigiTree((TTree*)gFile->Get("o2sim"));
+      // evdata.setDigiTree((TTree*)gFile->Get("o2sim"));
     } else
       std::cerr << "\nERROR: Cannot open file: " << digifile << "\n\n";
   }

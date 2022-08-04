@@ -135,7 +135,7 @@ class Digitizer
   double mOutputDigitTimeOffset = 0; ///< Time of the first IR sampled in the digitizer
   float mVDrift = 0;                 ///< VDrift for current timestamp
   bool mIsContinuous;                ///< Switch for continuous readout
-  bool mUseSCDistortions = false; ///< Flag to switch on the use of space-charge distortions
+  bool mUseSCDistortions = false;    ///< Flag to switch on the use of space-charge distortions
   ClassDefNV(Digitizer, 1);
 };
 } // namespace tpc

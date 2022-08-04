@@ -113,8 +113,8 @@ class ResidualAggregator final : public o2::calibration::TimeSlotCalibration<Tra
 
  private:
   o2::framework::DataTakingContext mDataTakingContext{};
-  TrackResiduals mTrackResiduals; ///< providing the functionality for voxel binning of the residuals
-  std::string mOutputDir{"./"};   ///< the directory where the output of residuals is stored
+  TrackResiduals mTrackResiduals;      ///< providing the functionality for voxel binning of the residuals
+  std::string mOutputDir{"./"};        ///< the directory where the output of residuals is stored
   std::string mMetaOutputDir{"none"};  ///< the directory where the meta data file is stored
   std::string mLHCPeriod{""};          ///< the LHC period to be put into the meta file
   bool mStoreMetaData{false};          ///< flag, whether meta file is supposed to be stored
@@ -123,7 +123,7 @@ class ResidualAggregator final : public o2::calibration::TimeSlotCalibration<Tra
   bool mWriteUnbinnedResiduals{false}; ///< flag, whether to write unbinned residuals to output file
   bool mWriteTrackData{false};         ///< flag, whether to write track data to output file
   int mAutosaveInterval{0};            ///< if >0 then the output is written to a file for every n-th TF
-  size_t mMinEntries;             ///< the minimum number of residuals required for the map creation (per voxel)
+  size_t mMinEntries;                  ///< the minimum number of residuals required for the map creation (per voxel)
 
   ClassDefOverride(ResidualAggregator, 3);
 };

@@ -20,8 +20,8 @@
 void PostCalibCCDB()
 {
 
-  //Post test calibration parameters for CPV to test CCDB
-  //Input are files which can be produced with macros PlotOCDB.C
+  // Post test calibration parameters for CPV to test CCDB
+  // Input are files which can be produced with macros PlotOCDB.C
 
   o2::ccdb::CcdbApi ccdb;
   std::map<std::string, std::string> metadata; // do we want to store any meta data?

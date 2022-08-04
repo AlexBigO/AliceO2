@@ -158,7 +158,7 @@ BOOST_AUTO_TEST_CASE(FastTransform_test_setSpaceChargeCorrection)
   double statDiffFile = 0., statNFile = 0.;
 
   for (int slice = 0; slice < geo.getNumberOfSlices(); slice += 1) {
-    //std::cout << "slice " << slice << " ... " << std::endl;
+    // std::cout << "slice " << slice << " ... " << std::endl;
 
     const TPCFastTransformGeo::SliceInfo& sliceInfo = geo.getSliceInfo(slice);
 
@@ -191,8 +191,8 @@ BOOST_AUTO_TEST_CASE(FastTransform_test_setSpaceChargeCorrection)
           correctionUV(slice, row, u0, v0, dx, du, dv);
           statDiff += fabs((x1 - x0) - dx) + fabs((u1 - u0) - du) + fabs((v1 - v0) - dv);
           statN += 3;
-          //std::cout << (x1 - x0) - dx << " " << (u1 - u0) - du << " " << (v1 - v0) - dv << std::endl; //": v0 " << v0 <<" z0 "<<z0<<" v1 "<< v1<<" z1 "<<z1 << std::endl;
-          //BOOST_CHECK_MESSAGE(0, "SG");
+          // std::cout << (x1 - x0) - dx << " " << (u1 - u0) - du << " " << (v1 - v0) - dv << std::endl; //": v0 " << v0 <<" z0 "<<z0<<" v1 "<< v1<<" z1 "<<z1 << std::endl;
+          // BOOST_CHECK_MESSAGE(0, "SG");
 
           float x1f, y1f, z1f;
           fromFile->Transform(slice, row, pad, time, x1f, y1f, z1f);

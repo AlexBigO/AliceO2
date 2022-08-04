@@ -171,5 +171,5 @@ o2::framework::DataProcessorSpec getTRDTrackletTransformerSpec(bool trigRecFilte
     Options{}};
 }
 
-} //end namespace trd
-} //end namespace o2
+} // end namespace trd
+} // end namespace o2

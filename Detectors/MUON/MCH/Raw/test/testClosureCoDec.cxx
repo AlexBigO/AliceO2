@@ -115,7 +115,7 @@ std::vector<SampaCluster> getSampaClusters(const std::string& d)
 {
   std::vector<SampaCluster> clusters;
 
-  //std::cout << "d: " << d << std::endl;
+  // std::cout << "d: " << d << std::endl;
 
   auto index = d.find("ts-");
   auto ts = std::stoi(d.substr(index + 3));

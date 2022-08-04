@@ -415,7 +415,7 @@ void StepTHn::Fill(int iStep, int nParams, double positionAndWeight[])
       mLastBins[i] = tmpBin;
       mLastVars[i] = positionAndWeight[i];
     }
-    //Printf("%d", tmpBin);
+    // Printf("%d", tmpBin);
 
     // under/overflow not supported
     if (tmpBin < 1 || tmpBin > mNbinsCache[i]) {

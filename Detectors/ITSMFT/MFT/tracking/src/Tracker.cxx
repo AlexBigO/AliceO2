@@ -287,7 +287,7 @@ void Tracker<T>::findTracksLTF(ROframe<T>& event)
 
             newPoint = kTRUE;
 
-            //check if road is a cylinder or a cone
+            // check if road is a cylinder or a cone
             dz = constants::mft::LayerZCoordinate()[layer2] - constants::mft::LayerZCoordinate()[layer1];
             dRCone = 1 + dz * constants::mft::InverseLayerZCoordinate()[layer1];
 
@@ -561,7 +561,7 @@ void Tracker<T>::findTracksCA(ROframe<T>& event)
 
             for (Int_t layer = (layer1 + 1); layer <= (layer2 - 1); ++layer) {
 
-              //check if road is a cylinder or a cone
+              // check if road is a cylinder or a cone
               dz = constants::mft::LayerZCoordinate()[layer2] - constants::mft::LayerZCoordinate()[layer1];
               dRCone = 1 + dz * constants::mft::InverseLayerZCoordinate()[layer1];
 

@@ -59,7 +59,7 @@ void CreateGRPECSObject(timePoint start, uint32_t nHBPerTF, DetID::mask_t detsRe
   std::map<std::string, std::string> metadata;
   metadata["responsible"] = "ECS";
   metadata[o2::base::NameConf::CCDBRunTag.data()] = std::to_string(run);
-  //long ts = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+  // long ts = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
   if (end < 0) {
     end = (start + 60 * 60 * 10 * 1000); // start + 10h, in ms
   } else {

@@ -209,7 +209,7 @@ void publishMergedTimeframes(std::vector<int> const& lanes, std::vector<int> con
     auto originfile = new TFile(filename.c_str(), "OPEN");
     assert(originfile);
 
-    //data definitions
+    // data definitions
     using DigitsType = std::vector<o2::tpc::Digit>;
     using LabelType = o2::dataformats::MCTruthContainer<o2::MCCompLabel>;
     mergeHelper<DigitsType>("TPCDigit_", tpcsectors, activeSectors, *originfile, pc);
@@ -258,7 +258,7 @@ class Task
 /// MC truth information is also aggregated and written out
 DataProcessorSpec getSpec(std::vector<int> const& laneConfiguration, std::vector<int> const& tpcsectors, bool mctruth, bool publish = true)
 {
-  //data definitions
+  // data definitions
   using DigitsOutputType = std::vector<o2::tpc::Digit>;
   using CommonModeOutputType = std::vector<o2::tpc::CommonMode>;
 

@@ -45,12 +45,12 @@ void SemiregularSpline2D3D::relocateBufferPointers(const char* oldBuffer, char* 
   /// relocate pointers from old to new buffer location
 
   /*char *bufferV = FlatObject::relocatePointer( oldBuffer, actualBuffer, mGridV.getFlatBufferPtr() );
-	mGridV.setActualBufferAddress( bufferV );*/
+  mGridV.setActualBufferAddress( bufferV );*/
 
   /*for( int i=0; i<mNumberOfRows; i++) {
-	char *bufferUi = FlatObject::relocatePointer(oldBuffer, actualBuffer, mSplineArray[i].getFlatBufferPtr() );
-	mSplineArray[i].setActualBufferAddress( bufferUi );
-	}*/
+  char *bufferUi = FlatObject::relocatePointer(oldBuffer, actualBuffer, mSplineArray[i].getFlatBufferPtr() );
+  mSplineArray[i].setActualBufferAddress( bufferUi );
+  }*/
 }
 
 void SemiregularSpline2D3D::cloneFromObject(const SemiregularSpline2D3D& obj, char* newFlatBufferPtr)
@@ -84,14 +84,14 @@ void SemiregularSpline2D3D::setFutureBufferAddress(char* futureFlatBufferPtr)
 {
   /// See FlatObject for description
   /*const char* oldFlatBufferPtr = mFlatBufferPtr;
- 
-	char *bufferV = relocatePointer( oldFlatBufferPtr, futureFlatBufferPtr, mGridV.getFlatBufferPtr() );
-	mGridV.setFutureBufferAddress( bufferV );*/
+
+  char *bufferV = relocatePointer( oldFlatBufferPtr, futureFlatBufferPtr, mGridV.getFlatBufferPtr() );
+  mGridV.setFutureBufferAddress( bufferV );*/
 
   /*for( int i=0; i<mNumberOfRows; i++ ) {
-	char *bufferUi = relocatePointer( oldFlatBufferPtr, futureFlatBufferPtr, mSplineArray[i].getFlatBufferPtr() );
-	mSplineArray[i].setFutureBufferAddress( bufferUi );
-	}*/
+  char *bufferUi = relocatePointer( oldFlatBufferPtr, futureFlatBufferPtr, mSplineArray[i].getFlatBufferPtr() );
+  mSplineArray[i].setFutureBufferAddress( bufferUi );
+  }*/
 
   FlatObject::setFutureBufferAddress(futureFlatBufferPtr);
 }
@@ -110,7 +110,7 @@ void SemiregularSpline2D3D::construct(const int numberOfRowsInput, const int num
 
   FlatObject::startConstruction();
 
-  //construct regular grid for v
+  // construct regular grid for v
   mGridV.construct(numberOfRows);
 
   // For each x element numbersOfKnots may be a single RegularSpline1D with x knots.
@@ -128,7 +128,7 @@ void SemiregularSpline2D3D::construct(const int numberOfRowsInput, const int num
   // this is the space which is taken just by the RegularSpline1D's
   mDataIndexMapOffset = numberOfRows * sizeof(RegularSpline1D);
 
-  //The buffer size is the size of the array
+  // The buffer size is the size of the array
   FlatObject::finishConstruction(mDataIndexMapOffset + numberOfRows * sizeof(int));
 
   // Array for the 1D-Splines inside the buffer
@@ -146,7 +146,7 @@ void SemiregularSpline2D3D::construct(const int numberOfRowsInput, const int num
     numberOfKnots += knotsU;
   }
 
-  //save the numberOfRows and numberOfKnots
+  // save the numberOfRows and numberOfKnots
   mNumberOfRows = numberOfRows;
   mNumberOfKnots = numberOfKnots;
 
@@ -156,7 +156,7 @@ void SemiregularSpline2D3D::construct(const int numberOfRowsInput, const int num
   // this will count the amount of u-knots "under" a v-coordinate
   int uSum = 0;
 
-  //count the amount of knots which are in gridU's lower than i
+  // count the amount of knots which are in gridU's lower than i
   for (int dv = 0; dv < mNumberOfRows; dv++) {
     dataIndexMap[dv] = uSum;
     uSum += numbersOfKnots[dv];

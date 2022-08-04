@@ -188,7 +188,7 @@ void poissonSolver3D()
   // set analytical potential
   setPotentialFromFormula<DataT>(analyticalFields, grid3D, potentialAnalytical);
 
-  //calculate numerical potential
+  // calculate numerical potential
   PoissonSolver<DataT> poissonSolver(grid3D);
   const int symmetry = 0;
   poissonSolver.poissonSolver3D(potentialNumerical, charge, symmetry);
@@ -216,7 +216,7 @@ void poissonSolver2D()
   // set analytical potential
   setPotentialFromFormula<DataT>(analyticalFields, grid3D, potentialAnalytical);
 
-  //calculate numerical potential
+  // calculate numerical potential
   PoissonSolver<DataT> poissonSolver(grid3D);
   poissonSolver.poissonSolver2D(potentialNumerical, charge);
 
@@ -226,7 +226,7 @@ void poissonSolver2D()
 
 BOOST_AUTO_TEST_CASE(PoissonSolver3D_test)
 {
-  o2::tpc::MGParameters::isFull3D = true; //3D
+  o2::tpc::MGParameters::isFull3D = true; // 3D
 
   o2::conf::ConfigurableParam::setValue<unsigned short>("TPCSpaceChargeParam", "NZVertices", NZ);
   o2::conf::ConfigurableParam::setValue<unsigned short>("TPCSpaceChargeParam", "NRVertices", NR);

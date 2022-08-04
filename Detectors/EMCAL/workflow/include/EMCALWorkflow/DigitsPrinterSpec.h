@@ -61,8 +61,8 @@ class DigitsPrinterSpec : public framework::Task
 /// specs
 o2::framework::DataProcessorSpec getEmcalDigitsPrinterSpec(std::string inputtype);
 
-//using DigitsPrinterSpecDigit = o2::emcal::reco_workflow::DigitsPrinterSpec<o2::emcal::Digit>;
-//using DigitsPrinterSpecCell = o2::emcal::reco_workflow::DigitsPrinterSpec<o2::emcal::Cell>;
+// using DigitsPrinterSpecDigit = o2::emcal::reco_workflow::DigitsPrinterSpec<o2::emcal::Digit>;
+// using DigitsPrinterSpecCell = o2::emcal::reco_workflow::DigitsPrinterSpec<o2::emcal::Cell>;
 } // namespace reco_workflow
 } // namespace emcal
 

@@ -384,8 +384,8 @@ std::unique_ptr<MessagesPerRoute> SubTimeFrameFileReader::read(fair::mq::Device*
       }
       lLeftToRead -= (lDataHeaderStackSize + lDataSize); // update the counter
       continue;
-      //mFileMap.close();
-      //return nullptr;
+      // mFileMap.close();
+      // return nullptr;
     }
     // read the data
 

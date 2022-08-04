@@ -122,7 +122,7 @@ void writeMatrix(const char* name, const TGeoHMatrix* matrix, WRITER& w)
 }
 
 /** convert geometry into a json document.
-  */
+ */
 void convertGeom(const TGeoManager& geom)
 {
   rapidjson::OStreamWrapper osw(std::cout);

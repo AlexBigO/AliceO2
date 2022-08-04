@@ -40,7 +40,7 @@ class LaserTrackGenerator : public FairGenerator
 
     // TODO: use something better instead. The particle should stop at the inner field cage of the TPC.
     //       perhaps use a custom particle with special treatment in Detector.cxx
-    //const int pdgCode = 2212;
+    // const int pdgCode = 2212;
     const int pdgCode = 11;
     std::array<float, 3> xyz;
     std::array<float, 3> pxyz;

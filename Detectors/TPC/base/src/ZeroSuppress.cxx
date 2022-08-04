@@ -79,11 +79,11 @@ void ZeroSuppress::DecodeZSPages(gsl::span<const ZeroSuppressedContainer8kb>* z0
       unsigned int rowUpperOffset = (tbHdr->rowMask & (1 << 15)) ? (mapper.getNumberOfRowsRegion(_CRUID % 10) / 2) : 0;
       unsigned int _timeBin = timeBin + tb;
 
-      //if rows in timebin
+      // if rows in timebin
       if ((numberRows != 0)) {
         startPtr += 2 * numberRows;
         for (unsigned int pos = 0; pos < 15; pos++) { // TODO: end iterations at max number of rows for that endpoint
-          if (tbHdr->rowMask & (1 << pos)) {          //row bit set decode row
+          if (tbHdr->rowMask & (1 << pos)) {          // row bit set decode row
             unsigned int _row = pos + rowUpperOffset;
             uint8_t numberSequences = *startPtr;
             uint8_t numberADCs = *(startPtr + (2 * numberSequences));

@@ -48,7 +48,7 @@ struct GEOMETRY {
 
 namespace
 {
-o2::math_utils::Point3D<float> entrancePoint1(-17.7993, 8.929883, -522.201); //x,y,z coordinates in cm
+o2::math_utils::Point3D<float> entrancePoint1(-17.7993, 8.929883, -522.201); // x,y,z coordinates in cm
 o2::math_utils::Point3D<float> exitPoint1(-17.8136, 8.93606, -522.62);
 o2::math_utils::Point3D<float> entrancePoint2(-49.2793, 28.8673, -1441.25);
 o2::math_utils::Point3D<float> exitPoint2(-49.2965, 28.8806, -1441.75);

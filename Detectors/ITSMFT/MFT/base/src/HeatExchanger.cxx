@@ -613,33 +613,33 @@ void HeatExchanger::createManifold(Int_t disk)
   // Manifold3
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  Double_t innerRadiusPlug1 = 0.4 / 2.; //fm 0.600 / 2; //0.5
-  Double_t outerRadiusPlug1 = 0.6 / 2.; //fm 0.99 / 2;  //0.8
+  Double_t innerRadiusPlug1 = 0.4 / 2.; // fm 0.600 / 2; //0.5
+  Double_t outerRadiusPlug1 = 0.6 / 2.; // fm 0.99 / 2;  //0.8
   Double_t thicknessPlug1 = 0.105;
 
   auto* plug1 = new TGeoTube(Form("plug1MF%d", disk), innerRadiusPlug1, outerRadiusPlug1, thicknessPlug1 / 2);
 
   Double_t innerRadiusPlug2 = innerRadiusPlug1;
-  Double_t outerMinRadiusPlug2 = 0.6 / 2.; //fm 0.94 / 2; // 0.85
+  Double_t outerMinRadiusPlug2 = 0.6 / 2.; // fm 0.94 / 2; // 0.85
   Double_t outerMaxRadiusPlug2 = outerRadiusPlug1;
   Double_t thicknessPlug2 = 0.025;
 
   auto* plug2 = new TGeoCone(Form("plug2MF%d", disk), thicknessPlug2 / 2, innerRadiusPlug2, outerMaxRadiusPlug2, innerRadiusPlug2, outerMinRadiusPlug2);
 
   Double_t innerRadiusPlug3 = innerRadiusPlug1;
-  Double_t outerRadiusPlug3 = 0.5 / 2; //fm 0.720 / 2;
+  Double_t outerRadiusPlug3 = 0.5 / 2; // fm 0.720 / 2;
   Double_t thicknessPlug3 = 0.086;
 
   auto* plug3 = new TGeoTube(Form("plug3MF%d", disk), innerRadiusPlug3, outerRadiusPlug3, thicknessPlug3 / 2);
 
   Double_t innerRadiusPlug4 = innerRadiusPlug1;
-  Double_t outerRadiusPlug4 = 0.7 / 2.; //fm 1.100 / 2; // 0.7
-  Double_t thicknessPlug4 = 0.1;        //fm 0.534;  // 0.05
+  Double_t outerRadiusPlug4 = 0.7 / 2.; // fm 1.100 / 2; // 0.7
+  Double_t thicknessPlug4 = 0.1;        // fm 0.534;  // 0.05
 
   auto* plug4 = new TGeoTube(Form("plug4MF%d", disk), innerRadiusPlug4, outerRadiusPlug4, thicknessPlug4 / 2);
 
   Double_t innerRadiusPlug5 = innerRadiusPlug1;
-  Double_t outerRadiusPlug5 = 0.9 / 2.; //fm 1.270 / 2; // 0.9
+  Double_t outerRadiusPlug5 = 0.9 / 2.; // fm 1.270 / 2; // 0.9
   Double_t thicknessPlug5 = 0.700;
 
   auto* plug5main = new TGeoTube(Form("plug5mainMF%d", disk), innerRadiusPlug5, outerRadiusPlug5, thicknessPlug5 / 2);

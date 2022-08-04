@@ -95,7 +95,7 @@ int MFTDCSProcessor::process(const gsl::span<const DPCOM> dps)
     mPids[it.id] = true;
   }
 
-  //updateCurrentAnalogCCDB();
+  // updateCurrentAnalogCCDB();
   updateDPsCCDB();
 
   return 0;

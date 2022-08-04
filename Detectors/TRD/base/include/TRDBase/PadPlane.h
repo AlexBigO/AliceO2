@@ -12,7 +12,7 @@
 #ifndef O2_TRD_PADPLANE_H
 #define O2_TRD_PADPLANE_H
 
-//Forwards to standard header with protection for GPU compilation
+// Forwards to standard header with protection for GPU compilation
 #include "GPUCommonRtypes.h" // for ClassDef
 #include "GPUCommonDef.h"
 

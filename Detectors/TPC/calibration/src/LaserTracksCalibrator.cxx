@@ -37,7 +37,7 @@ LaserTracksCalibrator::Slot& LaserTracksCalibrator::emplaceNewSlot(bool front, T
   auto& slot = front ? cont.emplace_front(tstart, tend) : cont.emplace_back(tstart, tend);
   slot.setContainer(std::make_unique<CalibLaserTracks>());
   auto& calibLaser = *slot.getContainer();
-  //calibLaser.setTFtimes(tstart, tend);
+  // calibLaser.setTFtimes(tstart, tend);
 
   if (mWriteDebug) {
     calibLaser.setWriteDebugTree(mWriteDebug);

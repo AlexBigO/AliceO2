@@ -54,11 +54,11 @@ void Clusterer::calibrateStrip()
     //    LOG(info) << "channel = " << dig->getChannel();
     dig->setBC(dig->getBC() - mBCOffset); // RS Don't use raw BC, always start from the beginning of the TF
     double calib = mCalibApi->getTimeCalibration(dig->getChannel(), dig->getTOT() * Geo::TOTBIN_NS);
-    //printf("channel %d) isProblematic = %d, fractionUnderPeak = %f\n",dig->getChannel(),mCalibApi->isProblematic(dig->getChannel()),mCalibApi->getFractionUnderPeak(dig->getChannel())); // toberem
+    // printf("channel %d) isProblematic = %d, fractionUnderPeak = %f\n",dig->getChannel(),mCalibApi->isProblematic(dig->getChannel()),mCalibApi->getFractionUnderPeak(dig->getChannel())); // toberem
     bool isProbOrError = mAreCalibStored ? mCalibApi->isChannelError(dig->getChannel()) || mCalibApi->isNoisy(dig->getChannel()) : mCalibApi->isChannelError(dig->getChannel()) || mCalibApi->isNoisy(dig->getChannel()) || mCalibApi->isProblematic(dig->getChannel());
     dig->setIsProblematic(isProbOrError);
-    dig->setCalibratedTime(dig->getTDC() * Geo::TDCBIN + dig->getBC() * o2::constants::lhc::LHCBunchSpacingNS * 1E3 - Geo::LATENCYWINDOW * 1E3 - calib); //TODO:  to be checked that "-" is correct, and we did not need "+" instead :-)
-    //printf("calibration correction = %f\n",calib); // toberem
+    dig->setCalibratedTime(dig->getTDC() * Geo::TDCBIN + dig->getBC() * o2::constants::lhc::LHCBunchSpacingNS * 1E3 - Geo::LATENCYWINDOW * 1E3 - calib); // TODO:  to be checked that "-" is correct, and we did not need "+" instead :-)
+    // printf("calibration correction = %f\n",calib); // toberem
   }
 }
 
@@ -76,7 +76,7 @@ void Clusterer::processStrip(std::vector<Cluster>& clusters, MCLabelContainer co
   for (int idig = 0; idig < mStripData.digits.size(); idig++) {
     //    LOG(debug) << "Checking digit " << idig;
     Digit* dig = &mStripData.digits[idig];
-    //printf("checking digit %d - alreadyUsed=%d   -  problematic=%d\n",idig,dig->isUsedInCluster(),dig->isProblematic()); // toberem
+    // printf("checking digit %d - alreadyUsed=%d   -  problematic=%d\n",idig,dig->isUsedInCluster(),dig->isProblematic()); // toberem
     if (dig->isUsedInCluster() || dig->isProblematic()) {
       continue; // the digit was already used to build a cluster, or it was declared problematic
     }
@@ -120,7 +120,7 @@ void Clusterer::processStrip(std::vector<Cluster>& clusters, MCLabelContainer co
 
     } // loop on the second digit
 
-    //printf("build cluster\n");
+    // printf("build cluster\n");
     buildCluster(c, digitMCTruth); // toberem
 
   } // loop on the first digit
@@ -176,7 +176,7 @@ void Clusterer::buildCluster(Cluster& c, MCLabelContainer const* digitMCTruth)
   c.setTime(mContributingDigit[0]->getCalibratedTime());                                                                                      // time in ps (for now we assume it calibrated)
   c.setTimeRaw(mContributingDigit[0]->getTDC() * Geo::TDCBIN + mContributingDigit[0]->getBC() * o2::constants::lhc::LHCBunchSpacingNS * 1E3); // time in ps (for now we assume it calibrated)
 
-  //printf("timeraw= %lf - time real = %lf (%d, %lu) \n",c.getTimeRaw(),mContributingDigit[0]->getTDC() * Geo::TDCBIN + mContributingDigit[0]->getBC() * o2::constants::lhc::LHCBunchSpacingNS * 1E3,mContributingDigit[0]->getTDC(),mContributingDigit[0]->getBC());
+  // printf("timeraw= %lf - time real = %lf (%d, %lu) \n",c.getTimeRaw(),mContributingDigit[0]->getTDC() * Geo::TDCBIN + mContributingDigit[0]->getBC() * o2::constants::lhc::LHCBunchSpacingNS * 1E3,mContributingDigit[0]->getTDC(),mContributingDigit[0]->getBC());
 
   c.setTot(mContributingDigit[0]->getTOT() * Geo::TOTBIN_NS); // TOT in ns (for now we assume it calibrated)
   //setL0L1Latency(); // to be filled (maybe)
@@ -248,19 +248,19 @@ void Clusterer::buildCluster(Cluster& c, MCLabelContainer const* digitMCTruth)
   // filling the MC labels of this cluster; the first will be those of the main digit; then the others
   if (digitMCTruth != nullptr) {
     int lbl = mClsLabels->getIndexedSize(); // this should correspond to the number of digits also;
-    //printf("lbl = %d\n", lbl);
+    // printf("lbl = %d\n", lbl);
     for (int i = 0; i < mNumberOfContributingDigits; i++) {
       if (!mContributingDigit[i]->isUsedInCluster()) {
         continue;
       }
-      //printf("contributing digit = %d\n", i);
+      // printf("contributing digit = %d\n", i);
       int digitLabel = mContributingDigit[i]->getLabel();
-      //printf("digitLabel = %d\n", digitLabel);
+      // printf("digitLabel = %d\n", digitLabel);
       gsl::span<const o2::MCCompLabel> mcArray = digitMCTruth->getLabels(digitLabel);
       for (int j = 0; j < static_cast<int>(mcArray.size()); j++) {
-        //printf("checking element %d in the array of labels\n", j);
+        // printf("checking element %d in the array of labels\n", j);
         auto label = digitMCTruth->getElement(digitMCTruth->getMCTruthHeader(digitLabel).index + j);
-        //printf("EventID = %d\n", label.getEventID());
+        // printf("EventID = %d\n", label.getEventID());
         mClsLabels->addElement(lbl, label);
       }
     }

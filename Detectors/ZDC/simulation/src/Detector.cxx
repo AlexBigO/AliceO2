@@ -131,7 +131,7 @@ int loadLightTable(T& table, int beta, int NRADBINS, std::string filename)
   // Retrieve the light yield table
   std::string data;
   std::ifstream input(filename);
-  //std::cout << " *********  Reading data from light table " << filename << std::endl;
+  // std::cout << " *********  Reading data from light table " << filename << std::endl;
   int radiusbin = 0;
   int anglebin = 0;
   int counter = 0;
@@ -140,12 +140,12 @@ int loadLightTable(T& table, int beta, int NRADBINS, std::string filename)
     while (input >> value) {
       counter++;
       table[beta][anglebin][radiusbin] = value;
-      //printf(" %f ", value);
+      // printf(" %f ", value);
       radiusbin++;
       if (radiusbin % NRADBINS == 0) {
         radiusbin = 0;
         anglebin++;
-        //printf("\n");
+        // printf("\n");
       }
     }
     LOG(debug) << "Read " << counter << " values from ZDC data file " << filename;
@@ -381,16 +381,16 @@ Bool_t Detector::ProcessHits(FairVolume* v)
   // find out if we are entering into the detector NEU or PRO for the first time
   int volID, copy;
   volID = fMC->CurrentVolID(copy);
-  //printf("\t ---> track %d in vol. %d %d (volID %d) mother %d \n",
-  //trackn, detector, sector, volID, stack->GetCurrentTrack()->GetMother(0));
+  // printf("\t ---> track %d in vol. %d %d (volID %d) mother %d \n",
+  // trackn, detector, sector, volID, stack->GetCurrentTrack()->GetMother(0));
 
   // If the particle is in a ZN or ZP fiber connected to the common PMT
   // then the assigned sector is 0 (PMC) NB-> does not work for ZEM
   if ((fMC->CurrentMedium() == mMediumPMCid) && (detector != ZEM)) {
     sector = 0;
   }
-  //printf("ProcessHits:  x=(%f, %f, %f)  \n",x[0], x[1], x[2]);
-  //printf("\tDET %d  SEC %d  -> XImpact=(%f, %f, %f)\n",detector,sector, xImp.X(), xImp.Y(), xImp.Z());
+  // printf("ProcessHits:  x=(%f, %f, %f)  \n",x[0], x[1], x[2]);
+  // printf("\tDET %d  SEC %d  -> XImpact=(%f, %f, %f)\n",detector,sector, xImp.X(), xImp.Y(), xImp.Z());
 
   if ((volID == mZNENVVolID || volID == mZPENVVolID || volID == mZEMVolID)) {
     // there is nothing more to do here as we are not
@@ -419,27 +419,27 @@ Bool_t Detector::ProcessHits(FairVolume* v)
           charge = TMath::Abs(pdgCode / 10000 - 100000);
         }
 
-        //look into the light tables if the particle is charged
+        // look into the light tables if the particle is charged
         if (TMath::Abs(charge) > 0) {
           if (detector == 1 || detector == 4) {
             iradius = std::min((int)Geometry::ZNFIBREDIAMETER, iradius);
             lightoutput = charge * charge * mLightTableZN[ibeta][iangle][iradius];
-            //printf("  \t ZNtableEntry[%d %d %d] = %1.5f -> lightoutput %f\n", ibeta, iangle, iradius, mLightTableZN[ibeta][iangle][iradius], lightoutput);
+            // printf("  \t ZNtableEntry[%d %d %d] = %1.5f -> lightoutput %f\n", ibeta, iangle, iradius, mLightTableZN[ibeta][iangle][iradius], lightoutput);
           } else {
             iradius = std::min((int)Geometry::ZPFIBREDIAMETER, iradius);
             lightoutput = charge * charge * mLightTableZP[ibeta][iangle][iradius];
-            //printf("  \t ZPtableEntry[%d %d %d] = %1.5f -> lightoutput %f\n", ibeta, iangle, iradius, mLightTableZP[ibeta][iangle][iradius], lightoutput);
+            // printf("  \t ZPtableEntry[%d %d %d] = %1.5f -> lightoutput %f\n", ibeta, iangle, iradius, mLightTableZP[ibeta][iangle][iradius], lightoutput);
           }
           if (lightoutput > 0) {
             nphe = gRandom->Poisson(lightoutput);
-            //printf("  \t\t-> nphe %d  \n", nphe);
+            // printf("  \t\t-> nphe %d  \n", nphe);
           }
         }
       }
     }
   }
 
-  auto tof = 1.e09 * fMC->TrackTime(); //TOF in ns
+  auto tof = 1.e09 * fMC->TrackTime(); // TOF in ns
 
   if (o2::zdc::ZDCSimParam::Instance().recordSpatialResponse) {
     // some diagnostic; trying to really get the pixel fired
@@ -460,7 +460,7 @@ Bool_t Detector::ProcessHits(FairVolume* v)
   // A new hit is created when there is nothing yet for this det + sector
   if (mCurrentHitsIndices[detector - 1][sector] == -1) {
     bool issecondary = trackn != stack->getCurrentPrimaryIndex();
-    //if(!issecondary) printf("     !!! primary track (index %d)\n",stack->getCurrentPrimaryIndex());
+    // if(!issecondary) printf("     !!! primary track (index %d)\n",stack->getCurrentPrimaryIndex());
 
     mTotLightPMC = mTotLightPMQ = 0;
     if (currentMediumid == mMediumPMCid) {
@@ -477,8 +477,8 @@ Bool_t Detector::ProcessHits(FairVolume* v)
     mCurrentHitsIndices[detector - 1][sector] = mHits->size() - 1;
 
     mXImpact = xImp;
-    //printf("### NEW HIT CREATED in vol %d %d for track %d (mother: %d) \t light %1.0f %1.0f\n",
-    //detector, sector, trackn, stack->GetCurrentTrack()->GetFirstMother(), mTotLightPMC, mTotLightPMQ);
+    // printf("### NEW HIT CREATED in vol %d %d for track %d (mother: %d) \t light %1.0f %1.0f\n",
+    // detector, sector, trackn, stack->GetCurrentTrack()->GetFirstMother(), mTotLightPMC, mTotLightPMQ);
     return true;
 
   } else {
@@ -498,8 +498,8 @@ Bool_t Detector::ProcessHits(FairVolume* v)
       curHit.SetEnergyLoss(incenloss);
       curHit.setPMCLightYield(curHit.getPMCLightYield() + nPMC);
       curHit.setPMQLightYield(curHit.getPMQLightYield() + nPMQ);
-      //printf("  >>> Hit updated in vol %d %d  for track %d (mother: %d) \t light %1.0f %1.0f \n",
-      //detector, sector, trackn, stack->GetCurrentTrack()->GetFirstMother(), curHit.getPMCLightYield(), curHit.getPMQLightYield());
+      // printf("  >>> Hit updated in vol %d %d  for track %d (mother: %d) \t light %1.0f %1.0f \n",
+      // detector, sector, trackn, stack->GetCurrentTrack()->GetFirstMother(), curHit.getPMCLightYield(), curHit.getPMQLightYield());
     }
     return true;
   }
@@ -668,7 +668,7 @@ void Detector::createMaterials()
 
   // field integration 0 no field -1 user in guswim 1 Runge Kutta 2 helix 3 const field along z
   int32_t inofld = 0; // Max. field value (no field)
-  int32_t ifld = 2;   //TODO: ????CHECK!!!! secondo me va -1!!!!!
+  int32_t ifld = 2;   // TODO: ????CHECK!!!! secondo me va -1!!!!!
   float nofieldm = 0.;
 
   float maxnofld = 0.; // max field value (no field)
@@ -1347,7 +1347,7 @@ void Detector::createAsideBeamLine()
   TVirtualMC::GetMC()->Gsvolu("QA29", "TUBE", getMediumID(kFe), tubpar, 3);
   TVirtualMC::GetMC()->Gspos("QA29", 1, "ZDCA", -16.5 / 2., 0., tubpar[2] + zA, 0, "ONLY");
   TVirtualMC::GetMC()->Gspos("QA29", 2, "ZDCA", 16.5 / 2., 0., tubpar[2] + zA, 0, "ONLY");
-  //printf("QA29 TUBE from z = %1.2f to z= %1.2f (separate pipes)\n",zA,2*tubpar[2]+zA);
+  // printf("QA29 TUBE from z = %1.2f to z= %1.2f (separate pipes)\n",zA,2*tubpar[2]+zA);
 
   zA += 2. * tubpar[2];
 
@@ -1787,7 +1787,7 @@ void Detector::createMagnets()
   double zD2Field = 12167.8;
 
   // ***************************************************************
-  //SIDE C
+  // SIDE C
   // ***************************************************************
   // --  COMPENSATOR DIPOLE (MBXW)
   // --  GAP (VACUUM WITH MAGNETIC FIELD)
@@ -1889,7 +1889,7 @@ void Detector::createMagnets()
   TVirtualMC::GetMC()->Gspos("MD2 ", 2, "YD2 ", 9.4, 0., 0., 0, "ONLY");
 
   // ***************************************************************
-  //SIDE A
+  // SIDE A
   // ***************************************************************
 
   // COMPENSATOR DIPOLE (MCBWA) (2nd compensator)
@@ -2320,7 +2320,7 @@ void Detector::createDetectors()
   TVirtualMC::GetMC()->Gspos("ZEMF", 1, "ZES1", 0., 0., 0., irotzem2, "ONLY");
 
   // --- Positioning the vacuum slice into the tranche
-  //float displFib = fDimZEM[1]/fDivZEM[0];
+  // float displFib = fDimZEM[1]/fDivZEM[0];
   TVirtualMC::GetMC()->Gspos("ZEV0", 1, "ZETR", -zemVoidLayer[0], 0., 0., 0, "ONLY");
   TVirtualMC::GetMC()->Gspos("ZEV1", 1, "ZETR", -zemVoidLayer[0] + zemPbSlice[0], 0., 0., 0, "ONLY");
 
@@ -2341,7 +2341,7 @@ void Detector::createDetectors()
 
   // Platform and supports
   float ybox = Geometry::ZEMPOSITION[1] - Geometry::ZEMDIMENSION[1] - 2. * 2. * zemSupportBox[3 + 1] + zemSupportBox[1];
-  float zSupport = Geometry::ZEMPOSITION[2] - 3.5; //to take into account the titlted front face
+  float zSupport = Geometry::ZEMPOSITION[2] - 3.5; // to take into account the titlted front face
   float zbox = zSupport + zemSupportBox[2];
 
   // Bridge
@@ -2448,7 +2448,7 @@ Bool_t Detector::calculateTableIndexes(int& ibeta, int& iangle, int& iradius)
     radius = TMath::Abs(udet[0]);
   }
   iradius = int(radius * 1000. + 1.);
-  //printf("\t beta %f  angle %f  radius %f\n",beta, angleDeg, radius);
+  // printf("\t beta %f  angle %f  radius %f\n",beta, angleDeg, radius);
   return kTRUE;
 }
 

@@ -32,16 +32,16 @@ struct ChannelData {
   uint8_t mPMNumber = -1;     // PhotoMultiplier number (0 to 16)
   int16_t mTime = -1024;      // Time of Flight
   int16_t mChargeADC = -1024; // ADC sample
-  uint8_t mFEEBits = 0;       //Bit information from FEE
-                              /*  enum Flags { Integrator = 0x1 << 0,
-               DoubleEvent = 0x1 << 1,
-               Event1TimeLost = 0x1 << 2,
-               Event2TimeLost = 0x1 << 3,
-               AdcInGate = 0x1 << 4,
-               TimeTooLate = 0x1 << 5,
-               AmpTooHigh = 0x1 << 6,
-               EventInTrigger = 0x1 << 7,
-               TimeLost = 0x1 << 8 };*/
+  uint8_t mFEEBits = 0;       // Bit information from FEE
+  /*  enum Flags { Integrator = 0x1 << 0,
+DoubleEvent = 0x1 << 1,
+Event1TimeLost = 0x1 << 2,
+Event2TimeLost = 0x1 << 3,
+AdcInGate = 0x1 << 4,
+TimeTooLate = 0x1 << 5,
+AmpTooHigh = 0x1 << 6,
+EventInTrigger = 0x1 << 7,
+TimeLost = 0x1 << 8 };*/
   enum EEventDataBit { kNumberADC,
                        kIsDoubleEvent,
                        kIsTimeInfoNOTvalid,

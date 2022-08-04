@@ -100,21 +100,21 @@ void AlignableDetector::acknowledgeNewRun(int run)
 void AlignableDetector::updateL2GRecoMatrices()
 {
   LOG(fatal) << __PRETTY_FUNCTION__ << " is disabled";
-  //FIXME(milettri): needs OCDB
-  //  // Update L2G matrices used for data reconstruction
-  //  //
-  //  AliCDBManager* man = AliCDBManager::Instance();
-  //  AliCDBEntry* ent = man->Get(Form("%s/Align/Data", mDetID.getName()));
-  //  const TClonesArray* algArr = (const TClonesArray*)ent->GetObject();
-  //  //
-  //  int nvol = getNVolumes();
-  //  for (int iv = 0; iv < nvol; iv++) {
-  //    AlignableVolume* vol = getVolume(iv);
-  //    // call init for root level volumes, they will take care of their children
-  //    if (!vol->getParent()){
-  //      vol->updateL2GRecoMatrices(algArr, 0);}
-  //  }
-  //  //
+  // FIXME(milettri): needs OCDB
+  //   // Update L2G matrices used for data reconstruction
+  //   //
+  //   AliCDBManager* man = AliCDBManager::Instance();
+  //   AliCDBEntry* ent = man->Get(Form("%s/Align/Data", mDetID.getName()));
+  //   const TClonesArray* algArr = (const TClonesArray*)ent->GetObject();
+  //   //
+  //   int nvol = getNVolumes();
+  //   for (int iv = 0; iv < nvol; iv++) {
+  //     AlignableVolume* vol = getVolume(iv);
+  //     // call init for root level volumes, they will take care of their children
+  //     if (!vol->getParent()){
+  //       vol->updateL2GRecoMatrices(algArr, 0);}
+  //   }
+  //   //
 }
 
 //_________________________________________________________
@@ -427,27 +427,27 @@ void AlignableDetector::writeCalibrationResults() const
 void AlignableDetector::writeAlignmentResults() const
 {
   LOG(fatal) << __PRETTY_FUNCTION__ << " is disabled";
-  //FIXME(lettrich): needs OCDB
-  //  // store updated alignment
-  //  TClonesArray* arr = new TClonesArray("AliAlignObjParams", 10);
-  //  //
-  //  int nvol = getNVolumes();
-  //  for (int iv = 0; iv < nvol; iv++) {
-  //    AlignableVolume* vol = getVolume(iv);
-  //    // call only for top level objects, they will take care of children
-  //    if (!vol->getParent()){
-  //      vol->createAlignmentObjects(arr);}
-  //  }
-  //  //
-  //  AliCDBManager* man = AliCDBManager::Instance();
-  //  AliCDBMetaData* md = new AliCDBMetaData();
-  //  md->SetResponsible(mController->getOutCDBResponsible());
-  //  md->SetComment(mController->getOutCDBResponsible());
-  //  //
-  //  AliCDBId id(Form("%s/Align/Data", mDetID.getName()), mController->getOutCDBRunMin(), mController->getOutCDBRunMax());
-  //  man->Put(arr, id, md);
-  //  //
-  //  delete arr;
+  // FIXME(lettrich): needs OCDB
+  //   // store updated alignment
+  //   TClonesArray* arr = new TClonesArray("AliAlignObjParams", 10);
+  //   //
+  //   int nvol = getNVolumes();
+  //   for (int iv = 0; iv < nvol; iv++) {
+  //     AlignableVolume* vol = getVolume(iv);
+  //     // call only for top level objects, they will take care of children
+  //     if (!vol->getParent()){
+  //       vol->createAlignmentObjects(arr);}
+  //   }
+  //   //
+  //   AliCDBManager* man = AliCDBManager::Instance();
+  //   AliCDBMetaData* md = new AliCDBMetaData();
+  //   md->SetResponsible(mController->getOutCDBResponsible());
+  //   md->SetComment(mController->getOutCDBResponsible());
+  //   //
+  //   AliCDBId id(Form("%s/Align/Data", mDetID.getName()), mController->getOutCDBRunMin(), mController->getOutCDBRunMax());
+  //   man->Put(arr, id, md);
+  //   //
+  //   delete arr;
 }
 
 //______________________________________________________
@@ -546,7 +546,7 @@ int AlignableDetector::selectVolumes(TObjArray* arr, int lev, const char* match)
     } // wrong level
     if (!mts.IsNull() && !(syms = vol->getSymName()).Contains(mts)) {
       continue;
-    } //wrong name
+    } // wrong name
     arr->AddLast(vol);
     nadd++;
   }
@@ -568,7 +568,7 @@ void AlignableDetector::setFreeDOFPattern(uint32_t pat, int lev, const char* mat
     } // wrong level
     if (!mts.IsNull() && !(syms = vol->getSymName()).Contains(mts)) {
       continue;
-    } //wrong name
+    } // wrong name
     vol->setFreeDOFPattern(pat);
   }
   //
@@ -588,7 +588,7 @@ void AlignableDetector::setDOFCondition(int dof, float condErr, int lev, const c
     } // wrong level
     if (!mts.IsNull() && !(syms = vol->getSymName()).Contains(mts)) {
       continue;
-    } //wrong name
+    } // wrong name
     if (dof >= vol->getNDOFs()) {
       continue;
     }
@@ -596,7 +596,7 @@ void AlignableDetector::setDOFCondition(int dof, float condErr, int lev, const c
     if (condErr >= 0 && !vol->isFreeDOF(dof)) {
       vol->setFreeDOF(dof);
     }
-    //if (condErr<0  && vol->isFreeDOF(dof)) vol->fixDOF(dof);
+    // if (condErr<0  && vol->isFreeDOF(dof)) vol->fixDOF(dof);
   }
   //
 }
@@ -626,7 +626,7 @@ void AlignableDetector::constrainOrphans(const double* sigma, const char* match)
     } // wrong level
     if (!mts.IsNull() && !(syms = vol->getSymName()).Contains(mts)) {
       continue;
-    } //wrong name
+    } // wrong name
     constr->addChild(vol);
   }
   //

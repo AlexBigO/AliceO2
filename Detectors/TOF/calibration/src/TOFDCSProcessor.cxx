@@ -234,7 +234,8 @@ int TOFDCSProcessor::processDP(const DPCOM& dpcom)
         }
         mUpdateHVStatus = true;
         int det[5] = {isect, iplat, -1, -1, -1};
-        auto nStrips = (iplat == 2 ? Geo::NSTRIPA : (iplat == 0 || iplat == 4) ? Geo::NSTRIPC : Geo::NSTRIPB);
+        auto nStrips = (iplat == 2 ? Geo::NSTRIPA : (iplat == 0 || iplat == 4) ? Geo::NSTRIPC
+                                                                               : Geo::NSTRIPB);
         for (auto istrip = 0; istrip < nStrips; ++istrip) {
           auto singlestripHV = hvstatus[istrip];
           for (int ipadz = 0; ipadz < Geo::NPADZ; ++ipadz) {
@@ -253,7 +254,7 @@ int TOFDCSProcessor::processDP(const DPCOM& dpcom)
           LOG(info) << "Updating previous HV status for Sector: " << isect << ", plate = " << iplat;
         }
         mPrevHVstatus[iplat][isect] = hvstatus;
-      } //end processing current DP, when it is of type HVSTATUS
+      } // end processing current DP, when it is of type HVSTATUS
     }
   }
   return 0;

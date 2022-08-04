@@ -52,7 +52,7 @@ void CalibTOFapi::loadActiveMap(TOFFEElightInfo* fee)
   if (fee) {
     LOG(info) << "read Active map (TOFFEELIGHT) for TOF ";
     for (int ich = 0; ich < TOFFEElightInfo::NCHANNELS; ich++) {
-      //printf("%d) Enabled= %d\n",ich,fee->mChannelEnabled[ich]);
+      // printf("%d) Enabled= %d\n",ich,fee->mChannelEnabled[ich]);
       if (!fee->getChannelEnabled(ich)) {
         mIsOffCh[ich] = true;
       }
@@ -264,9 +264,9 @@ float CalibTOFapi::getTimeCalibration(int ich, float tot) const
   // LHCphase
   corr += mLHCphase->getLHCphase(mTimeStamp); // timestamp that we use in LHCPhase is in seconds
   // time slewing + channel offset
-  //printf("eval time sleweing calibration: ch=%d   tot=%f (lhc phase = %f)\n",ich,tot,corr);
+  // printf("eval time sleweing calibration: ch=%d   tot=%f (lhc phase = %f)\n",ich,tot,corr);
   corr += mSlewParam->evalTimeSlewing(ich, tot);
-  //printf("corr = %f\n",corr);
+  // printf("corr = %f\n",corr);
   return corr;
 }
 

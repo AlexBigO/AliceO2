@@ -39,15 +39,15 @@ void FV0ChannelTimeTimeSlotContainer::fill(const gsl::span<const FV0CalibrationI
     const auto chID = entry.getChannelIndex();
     const auto chTime = entry.getTime();
 
-    //i dont really know when should it be marked as invalid
+    // i dont really know when should it be marked as invalid
     if (chID < Constants::nFv0Channels) {
       mHistogram(chTime, chID);
       ++mEntriesPerChannel[chID];
       LOG(debug) << "FV0ChannelTimeTimeSlotContainer::fill entries " << mEntriesPerChannel[chID] << " chID " << int(chID) << " time " << chTime << " tiestamp " << uint64_t(entry.getTimeStamp());
     }
-    //else {
-    //  LOG(fatal) << "Invalid channel data";
-    //}
+    // else {
+    //   LOG(fatal) << "Invalid channel data";
+    // }
   }
 }
 
@@ -98,7 +98,7 @@ int16_t FV0ChannelTimeTimeSlotContainer::getMeanGaussianFitValue(std::size_t cha
   if (returnCode < 0) {
     LOG(error) << "Gaussian fit error!";
     return static_cast<int16_t>(std::round(MaxValOfHistogram));
-    //return 0;
+    // return 0;
   }
 
   return static_cast<int16_t>(std::round(outputGaussianFitValues[MEAN_VALUE_INDEX_IN_OUTPUT_VECTOR]));
@@ -106,5 +106,5 @@ int16_t FV0ChannelTimeTimeSlotContainer::getMeanGaussianFitValue(std::size_t cha
 
 void FV0ChannelTimeTimeSlotContainer::print() const
 {
-  //QC will do that part
+  // QC will do that part
 }

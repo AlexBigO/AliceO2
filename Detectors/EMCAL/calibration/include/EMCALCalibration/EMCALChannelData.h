@@ -53,7 +53,7 @@ struct ChannelCalibInitParams {
 
 class EMCALChannelData
 {
-  //using Slot = o2::calibration::TimeSlot<o2::emcal::EMCALChannelData>;
+  // using Slot = o2::calibration::TimeSlot<o2::emcal::EMCALChannelData>;
   using Cells = o2::emcal::Cell;
   using boostHisto = boost::histogram::histogram<std::tuple<boost::histogram::axis::regular<double, boost::use_default, boost::use_default, boost::use_default>, boost::histogram::axis::integer<>>, boost::histogram::unlimited_storage<std::allocator<char>>>;
   using BadChannelMap = o2::emcal::BadChannelMap;

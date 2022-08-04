@@ -34,8 +34,8 @@ using namespace o2::trd;
 void Calibrations::getCCDBObjects(long timestamp)
 {
   auto& ccdbmgr = o2::ccdb::BasicCCDBManager::instance();
-  //ccdbmgr.clearCache();
-  //ccdbmgr.setURL("http://localhost:8080");
+  // ccdbmgr.clearCache();
+  // ccdbmgr.setURL("http://localhost:8080");
   mTimeStamp = timestamp;
   ccdbmgr.setTimestamp(timestamp); // set which time stamp of data we want this is called per timeframe, and removes the need to call it when querying a value.
 

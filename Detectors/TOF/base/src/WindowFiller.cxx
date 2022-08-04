@@ -196,7 +196,7 @@ void WindowFiller::fillOutputContainer(std::vector<Digit>& digits)
     // check if patterns are in the current row
     unsigned int initrow = mFirstIR.orbit * Geo::NWINDOW_IN_ORBIT;
     for (std::vector<PatternData>::reverse_iterator it = mCratePatterns.rbegin(); it != mCratePatterns.rend(); ++it) {
-      //printf("pattern row=%ld current=%ld\n",it->row - initrow,mReadoutWindowCurrent);
+      // printf("pattern row=%ld current=%ld\n",it->row - initrow,mReadoutWindowCurrent);
 
       if (it->row - initrow > mReadoutWindowCurrent) {
         break;
@@ -502,7 +502,7 @@ void WindowFiller::fillDiagnosticFrequency()
         }
       }
 
-      //Fill noisy in diagnostic
+      // Fill noisy in diagnostic
       mDiagnosticFrequency.fillNoisy(i + additionalMask, mReadoutWindowData.size());
     }
   }

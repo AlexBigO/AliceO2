@@ -132,7 +132,6 @@ class GPUTRDTracker_t : public GPUProcessor
   GPUd() bool IsGeoFindable(const TRDTRK* t, const int layer, const float alpha, const float zShiftTrk) const;
   GPUd() void InsertHypothesis(Hypothesis hypo, int& nCurrHypothesis, int idxOffset);
 
-
   // settings
   GPUd() void SetGenerateSpacePoints(bool flag) { mGenerateSpacePoints = flag; }
   GPUd() bool GenerateSpacepoints() const { return mGenerateSpacePoints; }
@@ -194,13 +193,13 @@ class GPUTRDTracker_t : public GPUProcessor
   float mAngleToDyB; // parameterization for conversion track angle -> tracklet deflection
   float mAngleToDyC; // parameterization for conversion track angle -> tracklet deflection
   /// ---- end error parametrization ----
-  bool mDebugOutput;                  // store debug output
+  bool mDebugOutput;                                              // store debug output
   static CONSTEXPR float sRadialOffset GPUCA_CPP11_INIT(= -0.1f); // due to (possible) mis-calibration of t0 -> will become obsolete when tracklet conversion is done outside of the tracker
   float mMaxEta;                                                  // TPC tracks with higher eta are ignored
-  float mRoadZ;                       // in z, a constant search road is used
-  float mZCorrCoefNRC;                // tracklet z-position depends linearly on track dip angle
-  float mTPCVdrift;                   // TPC drift velocity used for shifting TPC tracks along Z
-  GPUTRDTrackerDebug<TRDTRK>* mDebug; // debug output
+  float mRoadZ;                                                   // in z, a constant search road is used
+  float mZCorrCoefNRC;                                            // tracklet z-position depends linearly on track dip angle
+  float mTPCVdrift;                                               // TPC drift velocity used for shifting TPC tracks along Z
+  GPUTRDTrackerDebug<TRDTRK>* mDebug;                             // debug output
 };
 } // namespace gpu
 } // namespace GPUCA_NAMESPACE

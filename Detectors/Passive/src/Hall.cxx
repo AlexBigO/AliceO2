@@ -108,7 +108,6 @@ void Hall::createMaterials()
   matmgr.Medium("HALL", kFE_C2, "FE_C2", kFE_C2, 0, isxfld, sxmgmx, tmaxfd, stemax, deemax, epsil, stmin);
 }
 
-
 void Hall::ConstructGeometry()
 {
   createMaterials();

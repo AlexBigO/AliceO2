@@ -30,7 +30,6 @@
 
 using namespace GPUCA_NAMESPACE::gpu;
 
-
 void run_trd_tracker(std::string path = "./",
                      std::string inputTracks = "o2match_itstpc.root",
                      std::string inputTracklets = "trdtracklets.root")
@@ -50,8 +49,8 @@ void run_trd_tracker(std::string path = "./",
 
   //-------- init GPU reconstruction --------//
   // different settings are defined in GPUSettingsList.h
-  GPUSettingsGRP cfgGRP;                     // defaults should be ok
-  GPUSettingsRec cfgRec;                     // settings concerning reconstruction
+  GPUSettingsGRP cfgGRP; // defaults should be ok
+  GPUSettingsRec cfgRec; // settings concerning reconstruction
   cfgRec.trd.minTrackPt = .5f;
   cfgRec.trd.maxChi2 = 15.f;
   cfgRec.trd.penaltyChi2 = 12.f;
@@ -85,8 +84,8 @@ void run_trd_tracker(std::string path = "./",
   tracker->SetTPCVdrift(tpcVdrift);
 
   // configure the tracker
-  //tracker->EnableDebugOutput();
-  //tracker->StartDebugging();
+  // tracker->EnableDebugOutput();
+  // tracker->StartDebugging();
   tracker->PrintSettings();
 
   // load input tracks

@@ -26,21 +26,21 @@
 
 int main(int argc, char** argv)
 {
-  //Read Sourcecode from file
+  // Read Sourcecode from file
   unsigned int filesize;
   FILE* pFile;
-  //Open file
+  // Open file
   if ((pFile = fopen("source.cu", "rb")) == NULL)
     exit(1);
-  //Optain File Size
+  // Optain File Size
   fseek(pFile, 0, SEEK_END);
   filesize = ftell(pFile);
   rewind(pFile);
-  //Read file
+  // Read file
   char* sourceCode = new char[filesize + 1];
   if (fread(sourceCode, 1, filesize, pFile) != filesize)
     exit(1);
-  //Make sourceCode 0-terminated
+  // Make sourceCode 0-terminated
   sourceCode[filesize] = 0;
   fclose(pFile);
 
@@ -52,7 +52,7 @@ int main(int argc, char** argv)
                                      NULL,       // headers
                                      NULL));     // includeNames
   delete[] sourceCode;
-  //const char *opts[] = {"-default-device -std=c++17  --extended-lambda -Xptxas -O4 -Xcompiler -O4 -use_fast_math --ftz=true"};
+  // const char *opts[] = {"-default-device -std=c++17  --extended-lambda -Xptxas -O4 -Xcompiler -O4 -use_fast_math --ftz=true"};
   const char* opts[] = {"-default-device", "--std=c++17", "-use_fast_math", "-ftz=true"};
   nvrtcResult compileResult = nvrtcCompileProgram(prog,                           // prog
                                                   sizeof(opts) / sizeof(opts[0]), // numOptions

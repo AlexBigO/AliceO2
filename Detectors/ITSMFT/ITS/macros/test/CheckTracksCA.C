@@ -59,7 +59,7 @@ void CheckTracksCA(bool doFakeClStud = false, std::string tracfile = "o2trac_its
   // MC tracks
   TFile* file0 = TFile::Open(kinefile.data());
   TTree* mcTree = (TTree*)gFile->Get("o2sim");
-  mcTree->SetBranchStatus("*", 0); //disable all branches
+  mcTree->SetBranchStatus("*", 0); // disable all branches
   mcTree->SetBranchStatus("MCTrack*", 1);
 
   std::vector<o2::MCTrack>* mcArr = nullptr;

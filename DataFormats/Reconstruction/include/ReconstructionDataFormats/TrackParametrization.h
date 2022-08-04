@@ -41,7 +41,7 @@
 #include <type_traits>
 #endif
 
-#ifndef GPUCA_ALIGPUCODE //Used only by functions that are hidden on the GPU
+#ifndef GPUCA_ALIGPUCODE // Used only by functions that are hidden on the GPU
 #include "ReconstructionDataFormats/BaseCluster.h"
 #include <string>
 #endif

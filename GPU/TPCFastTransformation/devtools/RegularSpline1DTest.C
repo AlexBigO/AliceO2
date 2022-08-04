@@ -108,7 +108,7 @@ int RegularSpline1DTest()
 
   for (int i = 0; i < spline.getNumberOfKnots(); i++) {
     data0[i] = F(spline.knotIndexToU(i));
-    //SG random
+    // SG random
     data0[i] = gRandom->Uniform(-1., 1.);
     data[i] = data0[i];
   }

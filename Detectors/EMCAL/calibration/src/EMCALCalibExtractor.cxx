@@ -65,7 +65,7 @@ boostHisto EMCALCalibExtractor::buildHitAndEnergyMeanScaled(double emin, double 
   auto hEnergyScaled = boost::histogram::make_histogram(boost::histogram::axis::regular<>(100, 0, 100, "t-texp"), boost::histogram::axis::integer<>(0, mNcells, "CELL ID"));
 
   //...........................................
-  //start iterative process of scaling of cells
+  // start iterative process of scaling of cells
   //...........................................
   for (int iter = 1; iter < 5; iter++) {
     // array of vectors for calculating the mean hits per col/row
@@ -126,7 +126,7 @@ boostHisto EMCALCalibExtractor::buildHitAndEnergyMeanScaled(double emin, double 
     auto colResult = o2::utils::fitBoostHistoWithGaus<double>(hEnergyCol);
     double meanValCol = colResult.at(1);
 
-    //Scale each cell by the deviation of the mean of the column and the global mean
+    // Scale each cell by the deviation of the mean of the column and the global mean
     for (int iCell = 0; iCell < mNcells; iCell++) {
       auto geo = Geometry::GetInstance();
       // (0 - row, 1 - column)
@@ -140,7 +140,7 @@ boostHisto EMCALCalibExtractor::buildHitAndEnergyMeanScaled(double emin, double 
       }
     }
 
-    //Scale each cell by the deviation of the mean of the row and the global mean
+    // Scale each cell by the deviation of the mean of the row and the global mean
     for (int iCell = 0; iCell < mNcells; iCell++) {
       auto geo = Geometry::GetInstance();
       // (0 - row, 1 - column)
@@ -187,4 +187,4 @@ boostHisto EMCALCalibExtractor::buildHitAndEnergyMeanScaled(double emin, double 
 //____________________________________________
 
 } // end namespace emcal
-} //end namespace o2
+} // end namespace o2

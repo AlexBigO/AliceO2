@@ -172,10 +172,10 @@ class ConcreteRawParser
   void parse(Processor&& processor)
   {
     reset();
-    //auto deleter = [](buffer_type*) {};
+    // auto deleter = [](buffer_type*) {};
     do {
       processor(data(), size());
-      //processor(std::unique_ptr<buffer_type, decltype(deleter)>(data(), deleter), size());
+      // processor(std::unique_ptr<buffer_type, decltype(deleter)>(data(), deleter), size());
     } while (next());
   }
 
@@ -246,7 +246,7 @@ using V5 = header::RAWDataHeaderV5;
 using V4 = header::RAWDataHeaderV4;
 // FIXME v3 and v4 are basically the same with v4 defining a few more fields in the otherwise reserved parts
 // needs to be defined in the header, have to check if we need to support this
-//using V3 = header::RAWDataHeaderV3;
+// using V3 = header::RAWDataHeaderV3;
 
 template <size_t N>
 using V6Parser = ConcreteRawParser<header::RAWDataHeaderV6, N>;
@@ -254,8 +254,8 @@ template <size_t N>
 using V5Parser = ConcreteRawParser<header::RAWDataHeaderV5, N>;
 template <size_t N>
 using V4Parser = ConcreteRawParser<header::RAWDataHeaderV4, N>;
-//template <size_t N>
-//using V3Parser = ConcreteRawParser<header::RAWDataHeaderV3, N>;
+// template <size_t N>
+// using V3Parser = ConcreteRawParser<header::RAWDataHeaderV3, N>;
 
 /// Parser instance type for the raw parser main class, all supported versions of
 /// RAWDataHeader are handled in a variant
@@ -375,7 +375,7 @@ class RawParser
     static_assert(NofAlternatives == 3);
     raw_parser::walk_parse<NofAlternatives>(mParser, processor, mParser.index());
     // it turned out that using a iterative function is faster than using std::visit
-    //std::visit([&processor](auto& parser) { return parser.parse(processor); }, mParser);
+    // std::visit([&processor](auto& parser) { return parser.parse(processor); }, mParser);
   }
 
   /// Reset parser and set position to beginning of buffer
@@ -514,7 +514,7 @@ class RawParser
     // for the moment its problematic, because the parser has only one variable determining the position and all
     // iterators work with the same instance which is asking for conflicts
     // this needs to be changed in order to have fully independent iterators over the same constant buffer
-    //for (auto it = parser.begin(), end = parser.end(); it != end; ++it) {
+    // for (auto it = parser.begin(), end = parser.end(); it != end; ++it) {
     //  os << "\n" << it;
     //}
     return os;

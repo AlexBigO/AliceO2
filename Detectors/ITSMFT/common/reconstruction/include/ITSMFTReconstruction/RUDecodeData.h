@@ -34,19 +34,19 @@ struct RUDecodeData {
   static constexpr int MaxChipsPerRU = 196; // max number of chips the RU can readout
   static constexpr int MaxLinksPerRU = 3;   // max number of GBT links per RU
 
-  std::array<PayLoadCont, MaxCablesPerRU> cableData;       // cable data in compressed ALPIDE format
-  std::vector<o2::itsmft::ChipPixelData> chipsData;        // fully decoded data in 1st nChipsFired chips
-  std::array<int, MaxLinksPerRU> links;                    // link entry RSTODO: consider removing this and using pointer
-  std::array<uint8_t, MaxCablesPerRU> cableHWID;           // HW ID of cable whose data is in the corresponding slot of cableData
-  std::array<uint8_t, MaxCablesPerRU> cableLinkID;         // ID of the GBT link transmitting this cable data
-  std::array<GBTLink*, MaxCablesPerRU> cableLinkPtr;       // Ptr of the GBT link transmitting this cable data
-  std::unordered_map<uint64_t, uint32_t> linkHBFToDump;    // FEEID<<32+hbfEntry to dump in case of error
-  int ruSWID = -1;         // SW (stave) ID
-  int nCables = 0;         // total number of cables decoded for single trigger
-  int nChipsFired = 0;     // number of chips with data or with errors
-  int lastChipChecked = 0; // last chips checked among nChipsFired
-  int verbosity = 0;       // verbosity level, for -1,0 print only summary data, for 1: print once every error
-  GBTCalibData calibData{}; // calibration info from GBT calibration word
+  std::array<PayLoadCont, MaxCablesPerRU> cableData;                        // cable data in compressed ALPIDE format
+  std::vector<o2::itsmft::ChipPixelData> chipsData;                         // fully decoded data in 1st nChipsFired chips
+  std::array<int, MaxLinksPerRU> links;                                     // link entry RSTODO: consider removing this and using pointer
+  std::array<uint8_t, MaxCablesPerRU> cableHWID;                            // HW ID of cable whose data is in the corresponding slot of cableData
+  std::array<uint8_t, MaxCablesPerRU> cableLinkID;                          // ID of the GBT link transmitting this cable data
+  std::array<GBTLink*, MaxCablesPerRU> cableLinkPtr;                        // Ptr of the GBT link transmitting this cable data
+  std::unordered_map<uint64_t, uint32_t> linkHBFToDump;                     // FEEID<<32+hbfEntry to dump in case of error
+  int ruSWID = -1;                                                          // SW (stave) ID
+  int nCables = 0;                                                          // total number of cables decoded for single trigger
+  int nChipsFired = 0;                                                      // number of chips with data or with errors
+  int lastChipChecked = 0;                                                  // last chips checked among nChipsFired
+  int verbosity = 0;                                                        // verbosity level, for -1,0 print only summary data, for 1: print once every error
+  GBTCalibData calibData{};                                                 // calibration info from GBT calibration word
   std::unordered_map<uint32_t, std::pair<uint32_t, uint32_t>> chipErrorsTF; // vector of chip decoding errors seen in the given TF
   const RUInfo* ruInfo = nullptr;
 
@@ -81,7 +81,7 @@ int RUDecodeData::decodeROF(const Mapping& mp)
     }
     auto cabHW = cableHWID[icab];
     auto chIdGetter = [this, &mp, cabHW](int cid) {
-      //return mp.getGlobalChipID(cid, cabHW, *this->ruInfo);
+      // return mp.getGlobalChipID(cid, cabHW, *this->ruInfo);
       auto chip = mp.getGlobalChipID(cid, cabHW, *this->ruInfo);
       return chip;
     };

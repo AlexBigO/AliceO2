@@ -64,4 +64,4 @@ class GlobalOffsetsContainer final
 
 } // namespace o2::ft0
 
-#endif //O2_GLOBALOFFSETCONTAINER_H
+#endif // O2_GLOBALOFFSETCONTAINER_H

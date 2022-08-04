@@ -103,7 +103,7 @@ int main(int argc, char** argv)
 
 void digi2raw(const std::string& inpName, const std::string& outDir, int verbosity, const std::string& fileFor, uint32_t rdhV, const std::string& ccdbHost, int superPageSizeInB)
 {
-  //std::string ccdbHost = "http://ccdb-test.cern.ch:8080";
+  // std::string ccdbHost = "http://ccdb-test.cern.ch:8080";
   auto& mgr = o2::ccdb::BasicCCDBManager::instance();
   mgr.setURL(ccdbHost);
   /*long timeStamp = 0; // TIMESTAMP SHOULD NOT BE 0!

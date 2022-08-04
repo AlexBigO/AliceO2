@@ -11,12 +11,12 @@
 
 #include <string>
 
-//root includes
+// root includes
 #include "TH1.h"
 #include "TH2.h"
 #include "TFile.h"
 
-//o2 includes
+// o2 includes
 #include "TPCQC/Clusters.h"
 #include "TPCBase/Painter.h"
 #include "TPCBase/ROC.h"

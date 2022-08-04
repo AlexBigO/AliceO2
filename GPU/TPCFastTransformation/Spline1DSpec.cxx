@@ -147,7 +147,7 @@ void Spline1DContainer<DataT>::recreate(int nYdim, int numberOfKnots, const int 
   }
 }
 
-#endif //GPUCA_GPUCODE
+#endif // GPUCA_GPUCODE
 
 template <class DataT>
 void Spline1DContainer<DataT>::print() const

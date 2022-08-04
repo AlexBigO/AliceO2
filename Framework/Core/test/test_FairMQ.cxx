@@ -54,7 +54,7 @@ bool addDataBlock(fair::mq::Parts& parts, o2::header::Stack&& inputStack, Contai
 {
   using std::move;
 
-  //make sure the payload size in DataHeader corresponds to message size
+  // make sure the payload size in DataHeader corresponds to message size
   using o2::header::DataHeader;
   DataHeader* dataHeader = const_cast<DataHeader*>(o2::header::get<DataHeader*>(inputStack.data()));
   dataHeader->payloadSize = dataMessage->GetSize();
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE(getMessage_Stack)
   auto allocSHM = getTransportAllocator(factorySHM.get());
   BOOST_REQUIRE(allocSHM != nullptr);
   {
-    //check that a message is constructed properly with the default new_delete_resource
+    // check that a message is constructed properly with the default new_delete_resource
     Stack s1{DataHeader{gDataDescriptionInvalid, gDataOriginInvalid, DataHeader::SubSpecificationType{0}},
              NameHeader<9>{"somename"}};
 
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE(getMessage_Stack)
     BOOST_CHECK(message->GetType() == fair::mq::Transport::ZMQ);
   }
   {
-    //check that a message is constructed properly, cross resource
+    // check that a message is constructed properly, cross resource
     Stack s1{allocZMQ, DataHeader{gDataDescriptionInvalid, gDataOriginInvalid, DataHeader::SubSpecificationType{0}},
              NameHeader<9>{"somename"}};
     BOOST_TEST(allocZMQ->getNumberOfMessages() == 1);
@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(addDataBlockForEach_test)
   BOOST_REQUIRE(allocZMQ);
 
   {
-    //simple addition of a data block from an exisiting message
+    // simple addition of a data block from an exisiting message
     fair::mq::Parts message;
     auto simpleMessage = factoryZMQ->CreateMessage(10);
     addDataBlock(message,
@@ -197,9 +197,9 @@ BOOST_AUTO_TEST_CASE(addDataBlockForEach_test)
     BOOST_CHECK(message.Size() == 2);
     BOOST_CHECK(vec.size() == 0);
     BOOST_CHECK(message[0].GetSize() == sizeofDataHeader);
-    BOOST_CHECK(message[1].GetSize() == 2 * sizeof(elem)); //check the size of the buffer is set correctly
+    BOOST_CHECK(message[1].GetSize() == 2 * sizeof(elem)); // check the size of the buffer is set correctly
 
-    //check contents
+    // check contents
     int sum{0};
     forEach(message, [&](auto header, auto data) {
       const int* numbers = reinterpret_cast<const int*>(data.data());
@@ -207,7 +207,7 @@ BOOST_AUTO_TEST_CASE(addDataBlockForEach_test)
     });
     BOOST_CHECK(sum == 10);
 
-    //add one more data block and check total size using forEach;
+    // add one more data block and check total size using forEach;
     addDataBlock(message,
                  Stack{allocZMQ, DataHeader{gDataDescriptionInvalid, gDataOriginInvalid, DataHeader::SubSpecificationType{0}}},
                  factoryZMQ->CreateMessage(10));
@@ -215,7 +215,7 @@ BOOST_AUTO_TEST_CASE(addDataBlockForEach_test)
     forEach(message, [&](auto header, auto data) { size += header.size() + data.size(); });
     BOOST_CHECK(size == sizeofDataHeader + 2 * sizeof(elem) + sizeofDataHeader + 10);
 
-    //check contents (headers)
+    // check contents (headers)
     int checkOK{0};
     forEach(message, [&](auto header, auto data) {
       auto dh = get<DataHeader*>(header.data());

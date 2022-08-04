@@ -32,12 +32,12 @@ o2::framework::WorkflowSpec defineDataProcessing(o2::framework::ConfigContext co
   dphints.emplace_back(o2::dcs::test::DataPointHint<int32_t>{"TOF_FEACSTATUS_[00..01]", 0, 255});
   dphints.emplace_back(o2::dcs::test::DataPointHint<int32_t>{"TOF_HVSTATUS_SM[00..01]MOD[0..1]", 0, 524287});
   // for TOF, official list
-  //mTOFDataPointHints.emplace_back(DataPointHint<double>{"tof_hv_vp_[00..89]", 0, 50.});
-  //mTOFDataPointHints.emplace_back(DataPointHint<double>{"tof_hv_vn_[00..89]", 0, 50.});
-  //mTOFDataPointHints.emplace_back(DataPointHint<double>{"tof_hv_ip_[00..89]", 0, 50.});
-  //mTOFDataPointHints.emplace_back(DataPointHint<double>{"tof_hv_in_[00..89]", 0, 50.});
-  //mTOFDataPointHints.emplace_back(DataPointHint<int32_t>{"TOF_FEACSTATUS_[00..71]", 0, 255});
-  //mTOFDataPointHints.emplace_back(DataPointHint<int32_t>{"TOF_HVSTATUS_SM[00..17]MOD[0..4]", 0, 524287});
+  // mTOFDataPointHints.emplace_back(DataPointHint<double>{"tof_hv_vp_[00..89]", 0, 50.});
+  // mTOFDataPointHints.emplace_back(DataPointHint<double>{"tof_hv_vn_[00..89]", 0, 50.});
+  // mTOFDataPointHints.emplace_back(DataPointHint<double>{"tof_hv_ip_[00..89]", 0, 50.});
+  // mTOFDataPointHints.emplace_back(DataPointHint<double>{"tof_hv_in_[00..89]", 0, 50.});
+  // mTOFDataPointHints.emplace_back(DataPointHint<int32_t>{"TOF_FEACSTATUS_[00..71]", 0, 255});
+  // mTOFDataPointHints.emplace_back(DataPointHint<int32_t>{"TOF_HVSTATUS_SM[00..17]MOD[0..4]", 0, 524287});
   o2::framework::WorkflowSpec specs;
   specs.emplace_back(o2::dcs::test::getDCSRandomDataGeneratorSpec(dphints, "TOF"));
   return specs;

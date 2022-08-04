@@ -188,7 +188,7 @@ void CTFReaderSpec::run(ProcessingContext& pc)
   }
 
   while (mRunning) {
-    if (mCTFTree) { // there is a tree open with multiple CTF
+    if (mCTFTree) {                                                             // there is a tree open with multiple CTF
       if (mInput.ctfIDs.empty() || mInput.ctfIDs[mSelIDEntry] == mCTFCounter) { // no selection requested or matching CTF ID is found
         LOG(debug) << "TF " << mCTFCounter << " of " << mInput.maxTFs << " loop " << mFileFetcher->getNLoops();
         mSelIDEntry++;

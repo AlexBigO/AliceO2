@@ -19,21 +19,21 @@
 using namespace o2::framework;
 
 //// customize the completion policy
-//void customize(std::vector<o2::framework::CompletionPolicy>& policies)
+// void customize(std::vector<o2::framework::CompletionPolicy>& policies)
 //{
-//using o2::framework::CompletionPolicy;
-//policies.push_back(CompletionPolicyHelpers::defineByName("tpc-apply-ccdb-calib", CompletionPolicy::CompletionOp::Consume));
-//}
+// using o2::framework::CompletionPolicy;
+// policies.push_back(CompletionPolicyHelpers::defineByName("tpc-apply-ccdb-calib", CompletionPolicy::CompletionOp::Consume));
+// }
 
 //// we need to add workflow options before including Framework/runDataProcessing
-//void customize(std::vector<ConfigParamSpec>& workflowOptions)
+// void customize(std::vector<ConfigParamSpec>& workflowOptions)
 //{
-//std::vector<ConfigParamSpec> options{
+// std::vector<ConfigParamSpec> options{
 ////{"enable-writer", VariantType::Bool, false, {"selection string input specs"}},
 //};
 
-//std::swap(workflowOptions, options);
-//}
+// std::swap(workflowOptions, options);
+// }
 #include "Framework/runDataProcessing.h"
 
 WorkflowSpec defineDataProcessing(ConfigContext const& config)

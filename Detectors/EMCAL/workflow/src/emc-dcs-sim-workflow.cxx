@@ -25,18 +25,18 @@ o2::framework::WorkflowSpec defineDataProcessing(o2::framework::ConfigContext co
   std::vector<o2::dcs::test::HintType> dphints;
   // EMC aliases and values for sim
 
-  //DOUBLE type
+  // DOUBLE type
   dphints.emplace_back(o2::dcs::test::DataPointHint<double>{"EMC_PT_[00..83]/Temperature", 0, 50.});
   dphints.emplace_back(o2::dcs::test::DataPointHint<double>{"EMC_PT_[88..91]/Temperature", 100, 150.});
   dphints.emplace_back(o2::dcs::test::DataPointHint<double>{"EMC_PT_[96..159]/Temperature", 200, 250.});
 
   // UINT type
-  //FEE CFG aliases
+  // FEE CFG aliases
   dphints.emplace_back(o2::dcs::test::DataPointHint<uint32_t>{"EMC_DDL_LIST0", 0x55555555, 0x55555555});
   dphints.emplace_back(o2::dcs::test::DataPointHint<uint32_t>{"EMC_DDL_LIST1", 0x2AAA, 0x2AAA});
   dphints.emplace_back(o2::dcs::test::DataPointHint<uint32_t>{"EMC_SRU[00..09]_CFG", 1, 1});
   dphints.emplace_back(o2::dcs::test::DataPointHint<uint32_t>{"EMC_SRU[10..19]_CFG", 2, 2});
-  //TRU aliases
+  // TRU aliases
   dphints.emplace_back(o2::dcs::test::DataPointHint<uint32_t>{"EMC_SRU[00..19]_FMVER", 0xF0F0F0F0, 0xF0F0F0F0});
   dphints.emplace_back(o2::dcs::test::DataPointHint<uint32_t>{"EMC_TRU[00..45]_PEAKFINDER", 4, 4});
   dphints.emplace_back(o2::dcs::test::DataPointHint<uint32_t>{"EMC_TRU[00..45]_L0ALGSEL", 5, 5});
@@ -51,8 +51,8 @@ o2::framework::WorkflowSpec defineDataProcessing(o2::framework::ConfigContext co
   dphints.emplace_back(o2::dcs::test::DataPointHint<uint32_t>{"EMC_STU_ERROR_COUNT_TRU[0..67]", 1000, 1000}); // not implemented in EMC DCS processor yet
   dphints.emplace_back(o2::dcs::test::DataPointHint<uint32_t>{"DMC_STU_ERROR_COUNT_TRU[0..55]", 2000, 2000}); // not implemented in EMC DCS processor yet
 
-  //INT type
-  // EMCAL STU aliases
+  // INT type
+  //  EMCAL STU aliases
   dphints.emplace_back(o2::dcs::test::DataPointHint<int32_t>{"EMC_STU_PATCHSIZE", 101, 101});
   dphints.emplace_back(o2::dcs::test::DataPointHint<int32_t>{"EMC_STU_GETRAW", 102, 102});
   dphints.emplace_back(o2::dcs::test::DataPointHint<int32_t>{"EMC_STU_REGION", 0x103, 0x103});

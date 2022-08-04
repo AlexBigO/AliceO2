@@ -53,9 +53,9 @@ bool operator!=(const DigitFileFormat& dff1, const DigitFileFormat& dff2)
 }
 
 /* Read the file format from the stream.
-*
-* Every digit file should start with 8 bytes of format identifier.
-*/
+ *
+ * Every digit file should start with 8 bytes of format identifier.
+ */
 DigitFileFormat readDigitFileFormat(std::istream& in)
 {
   uint64_t fileFormat{0};

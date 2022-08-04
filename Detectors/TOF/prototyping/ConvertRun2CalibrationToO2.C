@@ -89,7 +89,7 @@ void ConvertRun2CalibrationToO2(int channelToCheck = 0)
     sizeRecalc += n;
     //    Printf("channel %d has %d entries", i, n);
     AliTOFChannelOffline* parOffline = (AliTOFChannelOffline*)foff->At(i);
-    //Printf("channel %d has offset = %f", parOffline->GetSlewPar(0));
+    // Printf("channel %d has offset = %f", parOffline->GetSlewPar(0));
     float corr0 = 0;
     for (Int_t islew = 0; islew < 6; islew++)
       corr0 += parOffline->GetSlewPar(islew) * TMath::Power(AliTOFGeometry::SlewTOTMin(), islew) * 1.e3;
@@ -115,7 +115,7 @@ void ConvertRun2CalibrationToO2(int channelToCheck = 0)
     }
     if (n == 0) {
       // force to have at least one entry
-      //Printf("channel %d: Forcing to add tot = 0 with corr0 = %f", i, corr0);
+      // Printf("channel %d: Forcing to add tot = 0 with corr0 = %f", i, corr0);
       mTimeSlewingObj->addTimeSlewingInfo(i, 0, corr0);
       forced++;
       n++;

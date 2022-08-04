@@ -29,7 +29,7 @@ namespace o2::fv0
 class FV0ChannelTimeTimeSlotContainer final
 {
 
-  //ranges to be discussed
+  // ranges to be discussed
   static constexpr int HISTOGRAM_RANGE = 2000;
   static constexpr unsigned int NUMBER_OF_HISTOGRAM_BINS = 2 * HISTOGRAM_RANGE;
 
@@ -71,4 +71,4 @@ class FV0ChannelTimeTimeSlotContainer final
 
 } // namespace o2::fv0
 
-#endif //O2_FV0CHANNELTIMETIMESLOTCONTAINER_H
+#endif // O2_FV0CHANNELTIMETIMESLOTCONTAINER_H

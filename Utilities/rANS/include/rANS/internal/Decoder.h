@@ -39,8 +39,8 @@ template <typename state_T, typename stream_T>
 class Decoder
 {
   // the Coder works either with a 64Bit state and 32 bit streaming or
-  //a 32 Bit state and 8 Bit streaming We need to make sure it gets initialized with
-  //the right template arguments at compile time.
+  // a 32 Bit state and 8 Bit streaming We need to make sure it gets initialized with
+  // the right template arguments at compile time.
   static_assert((sizeof(state_T) == sizeof(uint32_t) && sizeof(stream_T) == sizeof(uint8_t)) ||
                   (sizeof(state_T) == sizeof(uint64_t) && sizeof(stream_T) == sizeof(uint32_t)),
                 "Coder can either be 32Bit with 8 Bit stream type or 64 Bit Type with 32 Bit stream type");

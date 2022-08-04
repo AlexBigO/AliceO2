@@ -22,8 +22,8 @@ using namespace o2::emcal;
 //_______________________________________________________________________
 void AnalysisCluster::clear()
 {
-  //if(mTracksMatched) delete mTracksMatched;
-  //mTracksMatched = 0;
+  // if(mTracksMatched) delete mTracksMatched;
+  // mTracksMatched = 0;
   mCellsAmpFraction.clear();
   mCellsIndices.clear();
 }

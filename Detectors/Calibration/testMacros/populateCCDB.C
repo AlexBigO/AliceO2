@@ -54,7 +54,7 @@ void populateCCDB(const std::string& fname = "cdbSizeV0.txt", const std::string&
         auto uploadStart = std::chrono::high_resolution_clock::now();
         std::thread th(pushObject, std::ref(api), std::cref(o));
         th.detach();
-        //pushObject(api, o);
+        // pushObject(api, o);
         auto uploadEnd = std::chrono::high_resolution_clock::now();
         DurSec uploadTime = uploadEnd - uploadStart;
         LOG(info) << "Took " << uploadTime.count() << " to load " << o.sz << " bytes object";

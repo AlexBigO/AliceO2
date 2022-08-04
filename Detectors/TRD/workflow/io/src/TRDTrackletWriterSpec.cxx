@@ -44,7 +44,7 @@ o2::framework::DataProcessorSpec getTRDTrackletWriterSpec(bool useMC)
       ofstream output("E15.0.1.json");
       output << " 10 " << endl;
   }*/
-  //LOG(info) << "before writing out the tracklet size is " << Tracklet->size();
+  // LOG(info) << "before writing out the tracklet size is " << Tracklet->size();
   return MakeRootTreeWriterSpec("TRD-tracklet-writer",
                                 "trdtracklets.root",
                                 "o2sim",

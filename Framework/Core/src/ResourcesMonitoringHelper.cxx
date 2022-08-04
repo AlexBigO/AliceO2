@@ -76,7 +76,7 @@ bool ResourcesMonitoringHelper::dumpMetricsToJSON(const std::vector<DeviceMetric
         std::regex r{matcher};
         return std::regex_match(metricLabel, r);
       };
-      //check if we are interested
+      // check if we are interested
       if (std::find_if(std::begin(performanceMetrics), std::end(performanceMetrics), same) == performanceMetrics.end()) {
         continue;
       }
@@ -85,7 +85,7 @@ bool ResourcesMonitoringHelper::dumpMetricsToJSON(const std::vector<DeviceMetric
       if (deviceMetrics.metrics[mi].filledMetrics == 0) {
         continue;
       }
-      //if so
+      // if so
 
       boost::property_tree::ptree metricNode;
 
@@ -123,7 +123,7 @@ bool ResourcesMonitoringHelper::dumpMetricsToJSON(const std::vector<DeviceMetric
       return std::regex_match(metricLabel, r);
     };
 
-    //check if we are interested
+    // check if we are interested
     if (std::find_if(std::begin(performanceMetrics), std::end(performanceMetrics), same) == performanceMetrics.end()) {
       continue;
     }
@@ -134,7 +134,7 @@ bool ResourcesMonitoringHelper::dumpMetricsToJSON(const std::vector<DeviceMetric
       continue;
     }
 
-    //if so
+    // if so
     boost::property_tree::ptree metricNode;
 
     switch (driverMetrics.metrics[mi].type) {

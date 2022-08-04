@@ -21,7 +21,7 @@
 #include "FairLogger.h"
 
 namespace bpo = boost::program_options;
-//using namespace o2::emcal;
+// using namespace o2::emcal;
 
 int main(int argc, char** argv)
 {

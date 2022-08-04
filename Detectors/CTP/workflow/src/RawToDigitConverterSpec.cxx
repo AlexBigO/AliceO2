@@ -35,10 +35,10 @@ void RawToDigitConverterSpec::run(framework::ProcessingContext& ctx)
   using InputSpec = o2::framework::InputSpec;
   using ConcreteDataTypeMatcher = o2::framework::ConcreteDataTypeMatcher;
   using Lifetime = o2::framework::Lifetime;
-  //mOutputHWErrors.clear();
+  // mOutputHWErrors.clear();
   std::vector<InputSpec> filter{InputSpec{"filter", ConcreteDataTypeMatcher{"CTP", "RAWDATA"}, Lifetime::Timeframe}};
   o2::framework::DPLRawParser parser(ctx.inputs(), filter);
-  //setUpDummyLink
+  // setUpDummyLink
   auto& inputs = ctx.inputs();
   // if we see requested data type input with 0xDEADBEEF subspec and 0 payload this means that the "delayed message"
   // mechanism created it in absence of real data from upstream. Processor should send empty output to not block the workflow
@@ -88,8 +88,8 @@ void RawToDigitConverterSpec::run(framework::ProcessingContext& ctx)
     for (uint32_t i = 0; i < payloadCTP; i++) {
       pldmask[12 + i] = 1;
     }
-    //LOG(info) << "pldmask:" << pldmask;
-    // TF in 128 bits words
+    // LOG(info) << "pldmask:" << pldmask;
+    //  TF in 128 bits words
     gsl::span<const uint8_t> payload(it.data(), it.size());
     gbtword80_t gbtWord = 0;
     int wordCount = 0;
@@ -100,7 +100,7 @@ void RawToDigitConverterSpec::run(framework::ProcessingContext& ctx)
       orbit0 = triggerOrbit;
     }
     for (auto payloadWord : payload) {
-      //LOG(info) << wordCount << " payload:" <<  int(payloadWord);
+      // LOG(info) << wordCount << " payload:" <<  int(payloadWord);
       if (wordCount == 15) {
         wordCount = 0;
       } else if (wordCount > 9) {
@@ -111,17 +111,17 @@ void RawToDigitConverterSpec::run(framework::ProcessingContext& ctx)
         }
         wordCount++;
         diglets.clear();
-        //LOG(info) << " gbtword:" << gbtWord;
+        // LOG(info) << " gbtword:" << gbtWord;
         makeGBTWordInverse(diglets, gbtWord, remnant, size_gbt, payloadCTP);
         // save digit in buffer recs
         for (auto diglet : diglets) {
-          //LOG(info) << " diglet:" << diglet;
-          //LOG(info) << " pldmas:" << pldmask;
+          // LOG(info) << " diglet:" << diglet;
+          // LOG(info) << " pldmas:" << pldmask;
           gbtword80_t pld = (diglet & pldmask);
           if (pld.count() == 0) {
             continue;
           }
-          //LOG(info) << "    pld:" << pld;
+          // LOG(info) << "    pld:" << pld;
           pld >>= 12;
           CTPDigit digit;
           uint32_t bcid = (diglet & bcidmask).to_ulong();
@@ -165,10 +165,10 @@ void RawToDigitConverterSpec::run(framework::ProcessingContext& ctx)
         }
         gbtWord = 0;
       } else {
-        //std::cout << "wordCount:" << wordCount << std::endl;
+        // std::cout << "wordCount:" << wordCount << std::endl;
         for (int i = 0; i < 8; i++) {
           gbtWord[wordCount * 8 + i] = bool(int(payloadWord) & (1 << i));
-          //gbtWord[(9-wordCount) * 8 + i] = bool(int(payloadWord) & (1 << i));
+          // gbtWord[(9-wordCount) * 8 + i] = bool(int(payloadWord) & (1 << i));
         }
         wordCount++;
       }
@@ -180,7 +180,7 @@ void RawToDigitConverterSpec::run(framework::ProcessingContext& ctx)
 
   LOG(info) << "[CTPRawToDigitConverter - run] Writing " << mOutputDigits.size() << " digits ...";
   ctx.outputs().snapshot(o2::framework::Output{"CTP", "DIGITS", 0, o2::framework::Lifetime::Timeframe}, mOutputDigits);
-  //ctx.outputs().snapshot(o2::framework::Output{"CPV", "RAWHWERRORS", 0, o2::framework::Lifetime::Timeframe}, mOutputHWErrors);
+  // ctx.outputs().snapshot(o2::framework::Output{"CPV", "RAWHWERRORS", 0, o2::framework::Lifetime::Timeframe}, mOutputHWErrors);
 }
 // Inverse of Digits2Raw::makeGBTWord
 void RawToDigitConverterSpec::makeGBTWordInverse(std::vector<gbtword80_t>& diglets, gbtword80_t& GBTWord, gbtword80_t& remnant, uint32_t& size_gbt, uint32_t Npld) const

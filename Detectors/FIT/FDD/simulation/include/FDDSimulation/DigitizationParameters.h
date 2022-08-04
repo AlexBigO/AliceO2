@@ -20,7 +20,7 @@ struct DigitizationParameters {
   static constexpr float ShapeAlpha = -0.445;
   static constexpr float ShapeN = 2.65;
   static constexpr float ShapeSigma = 3.25;
-  //static constexpr float Pedestal = 0;
+  // static constexpr float Pedestal = 0;
   static constexpr float TimeShiftCFD = 1.42;
   static constexpr float TimeDelayFDA = 30.0;
   static constexpr float TimeDelayFDC = 30.0;

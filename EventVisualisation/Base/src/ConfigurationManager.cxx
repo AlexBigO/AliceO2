@@ -18,7 +18,6 @@
 #include "FairLogger.h"
 #include <TSystem.h>
 
-
 using namespace std;
 
 namespace o2

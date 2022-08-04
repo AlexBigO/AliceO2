@@ -82,7 +82,7 @@ template <typename T>
 std::set<DsDetId> getDualSampasPerFeeId(uint16_t feeId);
 
 /**@name Actual mapper types.
-    */
+ */
 ///@{
 
 struct ElectronicMapperDummy {
@@ -96,7 +96,7 @@ struct ElectronicMapperString {
 ///@}
 
 /** Return the full set of Dual Sampa Electronic Id of MCH,
-  * for a given electronic mapping */
+ * for a given electronic mapping */
 template <typename T>
 std::set<DsElecId> getAllDs();
 

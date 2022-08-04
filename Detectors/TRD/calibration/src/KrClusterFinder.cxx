@@ -404,7 +404,7 @@ void KrClusterFinder::findClusters()
             mKrClusters.push_back(cluster);
             ++nClsTotal;
           } else {
-            //mFitResult->Print(std::cout);
+            // mFitResult->Print(std::cout);
             ++nClsDropped;
             LOG(debug) << "Kr cluster cannot be added because values are out of range";
             LOGF(debug, "sumOfAllTimeBins(%i), sumAdcA(%f), sumAdcB(%f), clSizeRow(%i), clSizeCol(%i), clSizeTime(%i), maxTbA(%i), maxTbB(%i)", sumOfAllTimeBins, sumAdcA, sumAdcB, clSizeRow, clSizeCol, clSizeTime, maxTbA, maxTbB);

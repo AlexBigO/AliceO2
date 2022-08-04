@@ -30,14 +30,14 @@ const char* FileWatcher::mEndGuard = "~0"; /// stop guard
 
 FileWatcher::FileWatcher(const string& path, std::vector<std::string> ext)
 {
-  //LOG(info) << "FileWatcher::FileWatcher(" << path << ")";
+  // LOG(info) << "FileWatcher::FileWatcher(" << path << ")";
   this->mDataFolder = path;
   this->mCurrentFile = mEndGuard;
   this->mFiles.clear();
   this->mFiles.push_front(mLowGuard);
   this->mFiles.push_back(mEndGuard);
   this->mExt = ext;
-  //LOG(info) << "FileWatcher" << this->getSize();
+  // LOG(info) << "FileWatcher" << this->getSize();
 }
 
 void FileWatcher::changeFolder(const string& path)
@@ -51,7 +51,7 @@ void FileWatcher::changeFolder(const string& path)
   this->mFiles.push_front(mLowGuard);
   this->mFiles.push_back(mEndGuard);
   this->refresh();
-  //LOG(info) << "FileWatcher" << this->getSize();
+  // LOG(info) << "FileWatcher" << this->getSize();
 }
 
 string FileWatcher::nextItem(const string& item) const
@@ -145,9 +145,9 @@ bool FileWatcher::refresh()
       }
     }
   }
-  //for (auto it = this->mFiles.begin(); it != this->mFiles.end(); ++it) {
-  //  LOG(info) << *it;
-  //}
+  // for (auto it = this->mFiles.begin(); it != this->mFiles.end(); ++it) {
+  //   LOG(info) << *it;
+  // }
   this->mFiles.push_front(mLowGuard);
   this->mFiles.push_back(mEndGuard);
 

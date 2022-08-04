@@ -30,7 +30,7 @@ void runPulser(std::vector<std::string_view> fileInfos, TString outputFileName =
   calib.setADCRange(adcMin, adcMax);
   calib.setTimeBinRange(firstTimeBin, lastTimeBin);
   calib.setDebugLevel();
-  //calib.setQtotBinning(140, 22, 302);
+  // calib.setQtotBinning(140, 22, 302);
   calib.setQtotBinning(500, 10, 1010);
   if (type == 0) {
     calib.setWidthBinning(100, 0.1, 2.1);
@@ -40,7 +40,7 @@ void runPulser(std::vector<std::string_view> fileInfos, TString outputFileName =
     calib.setMinQmax(6);
     calib.setMaxTimeBinRange(6);
   }
-  //calib.setDebugLevel(debugLevel);
+  // calib.setDebugLevel(debugLevel);
 
   // ===| load pedestal if requested |==========================================
   if (!pedestalAndNoiseFile.IsNull()) {

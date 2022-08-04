@@ -27,18 +27,18 @@
 #include <string>
 
 /** Program to convert MCH digits to MCH Raw data.
-*
-* Typical usage :
-*
-* o2-mch-digits-to-raw --input-file mchdigits.root --file-for link
-*
-* Note: the dummy-elecmap adds some complexity here,
-* but is used as a mean to get the electronic mapping for the whole detector
-* (as opposed to just the parts that are currently installed at Pt2).
-* It will be removed when the actual electronic mapping
-* (ElectronicMapperGenerated) is completed.
-*
-*/
+ *
+ * Typical usage :
+ *
+ * o2-mch-digits-to-raw --input-file mchdigits.root --file-for link
+ *
+ * Note: the dummy-elecmap adds some complexity here,
+ * but is used as a mean to get the electronic mapping for the whole detector
+ * (as opposed to just the parts that are currently installed at Pt2).
+ * It will be removed when the actual electronic mapping
+ * (ElectronicMapperGenerated) is completed.
+ *
+ */
 
 namespace po = boost::program_options;
 using namespace o2::mch::raw;

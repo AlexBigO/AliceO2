@@ -95,7 +95,7 @@ enum ParsingErrors { TRDParsingNoError,
 
 extern std::vector<std::string> ParsingErrorsString;
 
-//enumerations for the options, saves on having a long parameter list.
+// enumerations for the options, saves on having a long parameter list.
 enum OptionBits {
   TRDByteSwapBit,
   TRDVerboseBit,
@@ -120,7 +120,7 @@ enum OptionBits {
 class TRDDataCountersPerEvent
 {
  public:
-  //TODO this should go into a dpl message for catching by qc ?? I think.
+  // TODO this should go into a dpl message for catching by qc ?? I think.
   double mTimeTaken;             // time take to process an event (summed trackletparsing and digitparsing) parts not accounted for.
   double mTimeTakenForDigits;    // time take to process tracklet data blocks [us].
   double mTimeTakenForTracklets; // time take to process digit data blocks [us].
@@ -135,21 +135,21 @@ class TRDDataCountersPerEvent
 class TRDDataCountersPerTimeFrame
 {
  public:
-  std::array<uint8_t, o2::trd::constants::NSECTOR * 60> mLinkErrorFlag{};                              // status of the error flags for this timeframe, 8bit values from cru halfchamber header.
-  std::array<uint16_t, o2::trd::constants::NSECTOR * 60> mLinkNoData;                                  // Link had no data or was not present.
-  std::array<uint16_t, o2::trd::constants::NSECTOR * 60> mLinkWords{};                                 // units of 256bits, read from the cru half chamber header
-  std::array<uint16_t, o2::trd::constants::NSECTOR * 60> mLinkWordsRead{};                             // units of 32 bits the data words read before dumping or finishing
-  std::array<uint16_t, o2::trd::constants::NSECTOR * 60> mLinkWordsRejected{};                         // units of 32 bits the data dumped due to some or other error
-  std::array<uint16_t, TRDLastParsingError> mParsingErrors{};                                          // errors in parsing, indexed by enum above of ParsingErrors
+  std::array<uint8_t, o2::trd::constants::NSECTOR * 60> mLinkErrorFlag{};                                                    // status of the error flags for this timeframe, 8bit values from cru halfchamber header.
+  std::array<uint16_t, o2::trd::constants::NSECTOR * 60> mLinkNoData;                                                        // Link had no data or was not present.
+  std::array<uint16_t, o2::trd::constants::NSECTOR * 60> mLinkWords{};                                                       // units of 256bits, read from the cru half chamber header
+  std::array<uint16_t, o2::trd::constants::NSECTOR * 60> mLinkWordsRead{};                                                   // units of 32 bits the data words read before dumping or finishing
+  std::array<uint16_t, o2::trd::constants::NSECTOR * 60> mLinkWordsRejected{};                                               // units of 32 bits the data dumped due to some or other error
+  std::array<uint16_t, TRDLastParsingError> mParsingErrors{};                                                                // errors in parsing, indexed by enum above of ParsingErrors
   std::array<uint32_t, o2::trd::constants::NSECTOR * 60 * TRDLastParsingError + TRDLastParsingError> mParsingErrorsByLink{}; // errors in parsing, indexed by enum above of ParsingErrors
   uint16_t mDigitsPerEvent;                                                                                                  // average digits found per event in this timeframe, ignoring the no digit events where there is no calibration trigger.
   uint16_t mTrackletsPerEvent;                                                                                               // average tracklets found per event in this timeframe
-  double mTimeTaken;                                                                                   // time taken to process the entire timeframe [ms].
-  double mTimeTakenForDigits;                                                                          // time take to process tracklet data blocks [ms].
-  double mTimeTakenForTracklets;                                                                       // time take to process digit data blocks [ms].
-  uint32_t mDigitsFound;                                                                               // digits found in the time frame.
-  uint32_t mTrackletsFound;                                                                            // tracklets found in the time frame.
-  std::array<uint64_t, 256> mDataFormatRead{};                                                         // We just keep the major version number
+  double mTimeTaken;                                                                                                         // time taken to process the entire timeframe [ms].
+  double mTimeTakenForDigits;                                                                                                // time take to process tracklet data blocks [ms].
+  double mTimeTakenForTracklets;                                                                                             // time take to process digit data blocks [ms].
+  uint32_t mDigitsFound;                                                                                                     // digits found in the time frame.
+  uint32_t mTrackletsFound;                                                                                                  // tracklets found in the time frame.
+  std::array<uint64_t, 256> mDataFormatRead{};                                                                               // We just keep the major version number
   void clear()
   {
     mLinkNoData.fill(0);
@@ -164,16 +164,16 @@ class TRDDataCountersPerTimeFrame
     mTimeTakenForDigits = 0;
     mTimeTakenForTracklets = 0;
     mDigitsFound = 0;
-    mTrackletsFound = 0; //tracklets found in timeframe.
+    mTrackletsFound = 0; // tracklets found in timeframe.
     mDataFormatRead.fill(0);
   };
   ClassDefNV(TRDDataCountersPerTimeFrame, 1); // primarily for serialisation so we can send this as a message in o2
 };
 
-//TODO not sure this class is needed
+// TODO not sure this class is needed
 class TRDDataCountersRunning
-{                                                //those counters that keep counting
-  std::array<uint32_t, 1080> mLinkFreq{};        //units of 256bits "cru word"
+{                                                // those counters that keep counting
+  std::array<uint32_t, 1080> mLinkFreq{};        // units of 256bits "cru word"
   std::array<bool, 1080> mLinkEmpty{};           // Link only has padding words only, probably not serious.
   std::array<uint64_t, 65535> mDataFormatRead{}; // 7bits.7bits major.minor version read from HCHeader.
 };

@@ -24,7 +24,7 @@
 
 #include <TFile.h>
 
-//ClassImp(o2::emcal::ClusterizerTask);
+// ClassImp(o2::emcal::ClusterizerTask);
 
 using namespace o2::emcal;
 

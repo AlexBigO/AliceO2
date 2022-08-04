@@ -460,7 +460,7 @@ void GeometryMisAligner::MisAlign(Bool_t verbose, const std::string& ccdbHost, l
         nLadders += mGeometryTGeo->getNumberOfLaddersPerDisk(hf, dk, sensor);
       }
 
-      for (Int_t lr = 0; lr < nLadders; lr++) { //nLadders
+      for (Int_t lr = 0; lr < nLadders; lr++) { // nLadders
         localDeltaTransform = MisAlignLadder();
         sname = mGeometryTGeo->composeSymNameLadder(hf, dk, lr);
         Int_t nSensorsPerLadder = mGeometryTGeo->getNumberOfSensorsPerLadder(hf, dk, lr);
@@ -500,7 +500,7 @@ void GeometryMisAligner::MisAlign(Bool_t verbose, const std::string& ccdbHost, l
     o2::ccdb::CcdbApi api;
     std::map<std::string, std::string> metadata; // can be empty
     metadata["test"] = fmt::format("Misalignment objects for DetID:{}", o2::detectors::DetID::MFT);
-    api.init(ccdbHost.c_str());                  // or http://localhost:8080 for a local installation
+    api.init(ccdbHost.c_str()); // or http://localhost:8080 for a local installation
     // store abitrary user object in strongly typed manner
     api.storeAsTFileAny(&lAPvec, path, metadata, tmin, tmax);
   }

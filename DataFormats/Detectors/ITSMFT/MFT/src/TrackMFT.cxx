@@ -24,7 +24,6 @@ namespace o2
 namespace mft
 {
 
-
 //__________________________________________________________________________
 void TrackMFT::print() const
 {
@@ -37,7 +36,6 @@ void TrackMFT::print() const
             << " charge = " << std::setw(5) << std::setprecision(3) << getCharge()
             << " chi2 = " << std::setw(5) << std::setprecision(3) << getTrackChi2() << std::endl;
 }
-
 
 } // namespace mft
 } // namespace o2

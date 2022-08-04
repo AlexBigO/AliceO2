@@ -43,7 +43,7 @@ namespace
 {
 volatile sig_atomic_t gStopping = 0;
 volatile sig_atomic_t gResetContent = 0;
-}
+} // namespace
 
 void signalHandler(int /* signal */)
 {

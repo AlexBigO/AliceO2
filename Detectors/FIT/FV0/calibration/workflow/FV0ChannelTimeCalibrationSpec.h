@@ -53,4 +53,4 @@ o2::framework::DataProcessorSpec getFV0ChannelTimeCalibrationSpec()
 }
 } // namespace o2::fv0
 
-#endif //O2_FV0CHANNELTIMECALIBRATIONSPEC_H
+#endif // O2_FV0CHANNELTIMECALIBRATIONSPEC_H

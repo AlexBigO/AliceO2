@@ -1144,7 +1144,7 @@ void Detector::ConstructTPCGeometry()
   //  Outer field cage guard rings. Inner placed in the drift gas, outer placed in the outer insulator (CO2)
   //
   auto* ogri = new TGeoTube(257.985, 258., 0.6);      // placed in the drift volume
-  auto* ogro = new TGeoTube(260.0676, 260.0826, 0.6); //placed in the outer insulator
+  auto* ogro = new TGeoTube(260.0676, 260.0826, 0.6); // placed in the outer insulator
   //
   auto* ogriv = new TGeoVolume("TPC_OGRI", ogri, m3);
   auto* ogrov = new TGeoVolume("TPC_OGRO", ogro, m3);
@@ -1400,8 +1400,8 @@ void Detector::ConstructTPCGeometry()
   // guard rings for IFC - outer placed in inner insulator, inner placed in the drift gas (3 different radii)
   // AL, 1.2 cm wide, 0.015 cm thick, volumes TPC_IGR1 - outer, TPC_IGR2-4 - inner
   //
-  auto* igro = new TGeoTube(76.6624, 76.6774, 0.6); //inner part, ends at inner radius of the IFC
-  auto* igrio = new TGeoTube(78.845, 78.86, 0.6);   //outer part
+  auto* igro = new TGeoTube(76.6624, 76.6774, 0.6); // inner part, ends at inner radius of the IFC
+  auto* igrio = new TGeoTube(78.845, 78.86, 0.6);   // outer part
   auto* igrim = new TGeoTube(78.795, 78.81, 0.6);
   auto* igric = new TGeoTube(78.785, 78.8, 0.6);
   //
@@ -1453,7 +1453,7 @@ void Detector::ConstructTPCGeometry()
   auto* cd2 = new TGeoTubeSeg(60.6262, 61.1862, 69.8, 0.05, 119.95);
   auto* cd3 = new TGeoTubeSeg(60.6462, 61.1662, 69.8, 0.05, 119.95);
   auto* cd4 = new TGeoTubeSeg(60.6562, 61.1562, 69.8, 0.05, 119.95);
-  auto* tepox4 = new TGeoTubeSeg(60.6224, 61.19, 69.8, 359.95, 0.05); //epoxy glue 0.01 deg
+  auto* tepox4 = new TGeoTubeSeg(60.6224, 61.19, 69.8, 359.95, 0.05); // epoxy glue 0.01 deg
   //
   TGeoMedium* sm6 = gGeoManager->GetMedium("TPC_Prepreg1");
   TGeoMedium* sm8 = gGeoManager->GetMedium("TPC_Epoxyfm");
@@ -1465,8 +1465,8 @@ void Detector::ConstructTPCGeometry()
   //
   // joints between sections 1 deg prepreg1 placed in nomex at lower and upper radius + 0.1 deg of glue (epoxy)
   //
-  auto* cdjl = new TGeoTubeSeg(60.6562, 60.6762, 69.8, 0., 1.0); //lower, to be rotated when positioned
-  auto* cdju = new TGeoTubeSeg(61.1362, 61.1562, 69.8, 0., 1.0); //upper, to be rotated when positioned
+  auto* cdjl = new TGeoTubeSeg(60.6562, 60.6762, 69.8, 0., 1.0); // lower, to be rotated when positioned
+  auto* cdju = new TGeoTubeSeg(61.1362, 61.1562, 69.8, 0., 1.0); // upper, to be rotated when positioned
   //
   auto* cdjlv = new TGeoVolume("TPC_CDJL", cdjl, sm6);
   auto* cdjuv = new TGeoVolume("TPC_CDJU", cdju, sm6);

@@ -90,7 +90,7 @@ int SemiregularSpline2D3DTest()
     numbersOfKnots[i] = 5 + gRandom->Integer(5);
   }
 
-  int knotAmountExp = 0; //Expected amount of knots in total
+  int knotAmountExp = 0; // Expected amount of knots in total
   for (int i = 0; i < numberOfRows; i++) {
     knotAmountExp += numbersOfKnots[i];
   }
@@ -108,29 +108,29 @@ int SemiregularSpline2D3DTest()
   float* data0 = new float[6 * nKnotsTot];
   float* data = new float[6 * nKnotsTot];
 
-  int nv = gridV.getNumberOfKnots(); //4
+  int nv = gridV.getNumberOfKnots(); // 4
 
   checker.push_back(equalityCheck("Number of Knots in gridV", numberOfRows, nv));
 
-  //loop through all rows (v-coordinate)
+  // loop through all rows (v-coordinate)
   for (int i = 0; i < nv; i++) {
 
-    //get each v coordinate
+    // get each v coordinate
     double v = gridV.knotIndexToU(i);
 
-    //get Spline for u-coordinate at that point
+    // get Spline for u-coordinate at that point
     const RegularSpline1D& gridU = spline.getGridU(i);
 
-    //loop through all u-indexes
+    // loop through all u-indexes
     for (int j = 0; j < gridU.getNumberOfKnots(); j++) {
-      //get the u coodrinate
+      // get the u coodrinate
       double u = gridU.knotIndexToU(j);
       int ind = spline.getDataIndex(j, i);
       data0[ind + 0] = Fx(u, v);
       data0[ind + 1] = Fy(u, v);
       data0[ind + 2] = Fz(u, v);
       // just some random values
-      //data0[ind + 0] = gRandom->Uniform(-1, 1); //Gaus();
+      // data0[ind + 0] = gRandom->Uniform(-1, 1); //Gaus();
     }
   }
 
@@ -144,8 +144,8 @@ int SemiregularSpline2D3DTest()
 
   TCanvas* canv = new TCanvas("cQA", "2D splines  QA", 1500, 1500);
   canv->Draw();
-  //canv->Divide(3,1);
-  //canv->Update();
+  // canv->Divide(3,1);
+  // canv->Update();
 
   TGraph2D* gknots = new TGraph2D();
   gknots->SetName("gknots");
@@ -220,13 +220,13 @@ int SemiregularSpline2D3DTest()
 
   gStyle->SetPalette(1);
 
-  //gknots->Draw("P");
+  // gknots->Draw("P");
   gfs->Draw("surf");
   gf0->Draw("surf,same");
   gknots->Draw("P,same");
   canv->Update();
 
-  //Check if everything went good
+  // Check if everything went good
   bool success = true;
   for (unsigned int i = 0; i < checker.size(); i++) {
     success = success && checker[i];

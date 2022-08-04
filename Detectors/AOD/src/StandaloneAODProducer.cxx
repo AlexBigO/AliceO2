@@ -81,10 +81,10 @@ void fillMCollisionTable(o2::steer::MCKinematicsReader const& mcreader)
     auto sourceID = colparts[0].sourceID;
 
     auto& header = mcreader.getMCEventHeader(eventID, sourceID);
-    //DECLARE_SOA_TABLE(McCollisions, "AOD", "MCCOLLISION", o2::soa::Index<>, mccollision::BCId,
-    //                  mccollision::GeneratorsID,
-    //                  mccollision::PosX, mccollision::PosY, mccollision::PosZ, mccollision::T, mccollision::Weight,
-    //                 mccollision::ImpactParameter);
+    // DECLARE_SOA_TABLE(McCollisions, "AOD", "MCCOLLISION", o2::soa::Index<>, mccollision::BCId,
+    //                   mccollision::GeneratorsID,
+    //                   mccollision::PosX, mccollision::PosY, mccollision::PosZ, mccollision::T, mccollision::Weight,
+    //                  mccollision::ImpactParameter);
 
     mcCollCursor(0, 0 /*bcID*/, 0 /*genID*/, header.GetX(), header.GetY(), header.GetZ(), time, 1. /*weight*/, header.GetB());
 
@@ -142,10 +142,10 @@ void fillCollisionAndTrackTable()
 
       int index = 0;
       for (auto& v : *vertices) {
-        //DECLARE_SOA_TABLE(Collisions, "AOD", "COLLISION", o2::soa::Index<>,
-        // collision::BCId, collision::PosX, collision::PosY, collision::PosZ,
-        // collision::CovXX, collision::CovXY, collision::CovXZ, collision::CovYY, collision::CovYZ, collision::CovZZ,
-        // collision::Chi2, collision::NumContrib, collision::CollisionTime, collision::CollisionTimeRes, collision::CollisionTimeMask);
+        // DECLARE_SOA_TABLE(Collisions, "AOD", "COLLISION", o2::soa::Index<>,
+        //  collision::BCId, collision::PosX, collision::PosY, collision::PosZ,
+        //  collision::CovXX, collision::CovXY, collision::CovXZ, collision::CovYY, collision::CovYZ, collision::CovZZ,
+        //  collision::Chi2, collision::NumContrib, collision::CollisionTime, collision::CollisionTimeRes, collision::CollisionTimeMask);
         int BCid = 0;
         auto& cov = v.getCov();
         auto& ts = v.getTimeStamp();
@@ -176,16 +176,16 @@ void fillCollisionAndTrackTable()
             LOG(warning) << "Unsupported track source";
           }
 
-          //DECLARE_SOA_TABLE_FULL(StoredTracks, "Tracks", "AOD", "TRACK:PAR",
-          //                       o2::soa::Index<>, track::CollisionId, track::TrackType,
-          //                       track::X, track::Alpha,
-          //                       track::Y, track::Z, track::Snp, track::Tgl,
-          //                       track::Signed1Pt,
-          //                       track::NormalizedPhi<track::RawPhi>,
-          //                       track::Px<track::Signed1Pt, track::Snp, track::Alpha>,
-          //                       track::Py<track::Signed1Pt, track::Snp, track::Alpha>,
-          //                       track::Pz<track::Signed1Pt, track::Tgl>,
-          //                      track::Charge<track::Signed1Pt>);
+          // DECLARE_SOA_TABLE_FULL(StoredTracks, "Tracks", "AOD", "TRACK:PAR",
+          //                        o2::soa::Index<>, track::CollisionId, track::TrackType,
+          //                        track::X, track::Alpha,
+          //                        track::Y, track::Z, track::Snp, track::Tgl,
+          //                        track::Signed1Pt,
+          //                        track::NormalizedPhi<track::RawPhi>,
+          //                        track::Px<track::Signed1Pt, track::Snp, track::Alpha>,
+          //                        track::Py<track::Signed1Pt, track::Snp, track::Alpha>,
+          //                        track::Pz<track::Signed1Pt, track::Tgl>,
+          //                       track::Charge<track::Signed1Pt>);
 
           std::array<float, 3> pxpypz;
           track->getPxPyPzGlo(pxpypz);

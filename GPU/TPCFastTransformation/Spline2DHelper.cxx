@@ -524,7 +524,7 @@ int Spline2DHelper<DataT>::test(const bool draw, const bool drawDataPoints)
     auto stopTime = std::chrono::high_resolution_clock::now();
     statTime += std::chrono::duration_cast<std::chrono::nanoseconds>(stopTime - startTime);
 
-    //if (itry == 0)
+    // if (itry == 0)
     if (0) {
       TFile outf("testSpline2D.root", "recreate");
       if (outf.IsZombie()) {

@@ -30,7 +30,7 @@ CaloRawFitter::CaloRawFitter()
 CaloRawFitter::FitStatus CaloRawFitter::evaluate(gsl::span<short unsigned int> signal)
 {
 
-  //Pedestal analysis mode
+  // Pedestal analysis mode
   if (mPedestalRun) {
     int nPed = signal.size();
     float mean = 0.;
@@ -57,7 +57,7 @@ CaloRawFitter::FitStatus CaloRawFitter::evaluate(gsl::span<short unsigned int> s
   return evalKLevel(signal);
 }
 
-CaloRawFitter::FitStatus CaloRawFitter::evalKLevel(gsl::span<short unsigned int> signal) //const ushort *signal, int sigStart, int sigLength)
+CaloRawFitter::FitStatus CaloRawFitter::evalKLevel(gsl::span<short unsigned int> signal) // const ushort *signal, int sigStart, int sigLength)
 {
   // Calculate signal parameters (energy, time, quality) from array of samples
   // Energy is a maximum sample minus pedestal 9
@@ -72,15 +72,15 @@ CaloRawFitter::FitStatus CaloRawFitter::evalKLevel(gsl::span<short unsigned int>
   float pedMean = 0;
   int nPed = 0;
   mMaxSample = 0;
-  int nMax = 0; //number of consequitive maximal samples
+  int nMax = 0; // number of consequitive maximal samples
   bool spike = false;
   mOverflow = false;
 
-  int ap = -1, app = -1; //remember previous values to evaluate spikes
+  int ap = -1, app = -1; // remember previous values to evaluate spikes
   for (auto it = signal.rbegin(); it != signal.rend(); ++it) {
     uint16_t a = *it;
     if (mPedSubtract) {
-      if (nPed < mPreSamples) { //inverse signal time order
+      if (nPed < mPreSamples) { // inverse signal time order
         nPed++;
         pedMean += a;
       }
@@ -92,7 +92,7 @@ CaloRawFitter::FitStatus CaloRawFitter::evalKLevel(gsl::span<short unsigned int>
     if (a == mMaxSample) {
       nMax++;
     }
-    //check if there is a spike
+    // check if there is a spike
     if (app >= 0 && ap >= 0) {
       spike |= (2 * ap - (a + app) > 2 * mSpikeThreshold);
     }
@@ -130,18 +130,18 @@ CaloRawFitter::FitStatus CaloRawFitter::evalKLevel(gsl::span<short unsigned int>
     mAmp = 0;
   }
 
-  //Evaluate time
+  // Evaluate time
   mTime = -2;
-  const int nLine = 6;       //Parameters of fitting
-  const float eMinTOF = 10.; //Choosed from beam-test and cosmic analyis
-  const float kAmp = 0.35;   //Result slightly depends on them, so no getters
+  const int nLine = 6;       // Parameters of fitting
+  const float eMinTOF = 10.; // Choosed from beam-test and cosmic analyis
+  const float kAmp = 0.35;   // Result slightly depends on them, so no getters
   // Avoid too low peak:
   if (mAmp < eMinTOF) {
-    return kOK; //use estimated time
+    return kOK; // use estimated time
   }
 
   // Find index posK (kLevel is a level of "timestamp" point Tk):
-  int posK = sigLength - 1; //last point before crossing k-level
+  int posK = sigLength - 1; // last point before crossing k-level
   float levelK = pedestal + kAmp * mAmp;
   while (posK >= 0 && signal[posK] <= levelK) {
     posK--;
@@ -160,7 +160,7 @@ CaloRawFitter::FitStatus CaloRawFitter::evalKLevel(gsl::span<short unsigned int>
   double x, y;
 
   while (np < nLine) {
-    //point above crossing point
+    // point above crossing point
     if (iup >= 0) {
       x = sigLength - iup - 1;
       y = signal[iup];
@@ -171,10 +171,10 @@ CaloRawFitter::FitStatus CaloRawFitter::evalKLevel(gsl::span<short unsigned int>
       np++;
       iup--;
     }
-    //Point below crossing point
+    // Point below crossing point
     if (idn < sigLength) {
       if (signal[idn] < pedestal) {
-        idn = sigLength - 1; //do not scan further
+        idn = sigLength - 1; // do not scan further
         idn++;
         continue;
       }
@@ -188,7 +188,7 @@ CaloRawFitter::FitStatus CaloRawFitter::evalKLevel(gsl::span<short unsigned int>
       idn++;
     }
     if (idn >= sigLength && iup < 0) {
-      break; //can not fit futher
+      break; // can not fit futher
     }
   }
 
@@ -199,14 +199,14 @@ CaloRawFitter::FitStatus CaloRawFitter::evalKLevel(gsl::span<short unsigned int>
   if (np == 0) {
     return kEmptyBunch;
   }
-  double c1 = (np * sxy - sx * sy) / det; //slope
-  double c0 = (sy - c1 * sx) / np;        //offset
+  double c1 = (np * sxy - sx * sy) / det; // slope
+  double c0 = (sy - c1 * sx) / np;        // offset
   if (c1 == 0) {
     return kNoTime;
   }
 
   // Find where the line cross kLevel:
-  mTime += (levelK - c0) / c1 - 5.; //5: mean offset between k-Level and start times
+  mTime += (levelK - c0) / c1 - 5.; // 5: mean offset between k-Level and start times
 
   if (mOverflow) {
     return kOverflow;

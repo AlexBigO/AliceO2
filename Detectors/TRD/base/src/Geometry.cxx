@@ -2752,7 +2752,7 @@ bool Geometry::createClusterMatrixArray()
     return true; // already initialized
   }
 
-  setSize(NCHAMBER, MAXCHAMBER); //Only NCHAMBER=521 of MAXCHAMBER matrices are filled
+  setSize(NCHAMBER, MAXCHAMBER); // Only NCHAMBER=521 of MAXCHAMBER matrices are filled
   fillMatrixCache(o2::math_utils::bit2Mask(o2::math_utils::TransformType::T2L) | o2::math_utils::bit2Mask(o2::math_utils::TransformType::L2G) |
                   o2::math_utils::bit2Mask(o2::math_utils::TransformType::T2G) | o2::math_utils::bit2Mask(o2::math_utils::TransformType::T2GRot));
   return true;

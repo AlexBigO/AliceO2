@@ -10,7 +10,7 @@
 // or submit itself to any jurisdiction.
 
 /** Convert Digit's padID from Run2 to Run3.
-*/
+ */
 
 #include "Framework/CallbackService.h"
 #include "Framework/ConfigParamRegistry.h"

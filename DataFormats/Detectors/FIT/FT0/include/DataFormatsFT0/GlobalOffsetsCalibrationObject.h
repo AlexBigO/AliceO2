@@ -35,4 +35,4 @@ class GlobalOffsetsCalibrationObjectAlgorithm
 
 } // namespace o2::ft0
 
-#endif //O2_GLOBALOFFSETSCALIBRATIONOBJECT_H
+#endif // O2_GLOBALOFFSETSCALIBRATIONOBJECT_H

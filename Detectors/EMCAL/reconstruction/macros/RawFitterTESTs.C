@@ -54,7 +54,7 @@ void RawFitterTESTs(const char* filename = "")
   reader.init();
 
   // define the standard raw fitter
-  //o2::emcal::CaloRawFitterStandard RawFitter;
+  // o2::emcal::CaloRawFitterStandard RawFitter;
   o2::emcal::CaloRawFitterGamma2 RawFitter;
   RawFitter.setAmpCut(NoiseThreshold);
   RawFitter.setL1Phase(0.);
@@ -83,7 +83,7 @@ void RawFitterTESTs(const char* filename = "")
         if (o2::raw::RDHUtils::getFEEID(parser.getRawHeader()) >= 40)
           continue;
 
-        //std::cout<<rawreader.getRawHeader()<<std::endl;
+        // std::cout<<rawreader.getRawHeader()<<std::endl;
 
         // use the altro decoder to decode the raw data, and extract the RCU trailer
         o2::emcal::AltroDecoder decoder(parser);

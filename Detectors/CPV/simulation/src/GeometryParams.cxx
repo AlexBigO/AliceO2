@@ -40,7 +40,7 @@ GeometryParams::GeometryParams(const std::string_view name)
   // center of module in x,z on the upper surface of support beam
 
   // Distance from IP to front surface of CPV
-  mIPtoCPVSurface = 449.310 - 5.2 - 2.61; //Distance to PHOS fron sutface - CPV size
+  mIPtoCPVSurface = 449.310 - 5.2 - 2.61; // Distance to PHOS fron sutface - CPV size
 
   // Calculate distance from IP to upper cover
   // mIPtoOuterCoverDistance = mIPtoCrystalSurface - mAirGapLed - mInnerThermoWidthY - mAirGapWidthY - mCoolerWidthY -
@@ -72,16 +72,16 @@ GeometryParams::GeometryParams(const std::string_view name)
 
   double r = mIPtoCPVSurface + mCPVBoxSize[1];
   for (Int_t iModule = 2; iModule < mNModules; iModule++) {
-    double angle = moduleAngle * (iModule - 2); //Module 2 just below IP
+    double angle = moduleAngle * (iModule - 2); // Module 2 just below IP
     mCPVAngle[iModule] = angle;
     mModuleCenter[iModule][0] = r * TMath::Sin(angle / kRADDEG);
     mModuleCenter[iModule][1] = -r * TMath::Cos(angle / kRADDEG);
     mModuleCenter[iModule][2] = 0.;
 
     mModuleAngle[iModule][0][0] = 90;         //thetaX polar angle for axis X
-    mModuleAngle[iModule][0][1] = angle;      //phiX azimuthal angle for axis X
+    mModuleAngle[iModule][0][1] = angle;      // phiX azimuthal angle for axis X
     mModuleAngle[iModule][1][0] = 90;         //thetaY polar angle for axis Y
-    mModuleAngle[iModule][1][1] = 90 + angle; //phiY azimuthal angle for axis Y
+    mModuleAngle[iModule][1][1] = 90 + angle; // phiY azimuthal angle for axis Y
     mModuleAngle[iModule][2][0] = 0;          //thetaZ polar angle for axis Z
     mModuleAngle[iModule][2][1] = 0;          //phiZ azimuthal angle for axis Z
   }

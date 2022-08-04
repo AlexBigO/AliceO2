@@ -65,7 +65,7 @@ o2::ft0::RecPoints CollisionTimeRecoTask::process(o2::ft0::Digit const& bcd,
   std::array<short, 4> mCollisionTime = {sDummyCollissionTime, sDummyCollissionTime, sDummyCollissionTime, sDummyCollissionTime};
   // !!!! tobe done::should be fix with ITS vertex
   mCollisionTime[TimeA] = (ndigitsA > 0) ? sideAtime / ndigitsA : sDummyCollissionTime; // 2 * o2::InteractionRecord::DummyTime;
-  mCollisionTime[TimeC] = (ndigitsC > 0) ? sideCtime / ndigitsC : sDummyCollissionTime; //2 * o2::InteractionRecord::DummyTime;
+  mCollisionTime[TimeC] = (ndigitsC > 0) ? sideCtime / ndigitsC : sDummyCollissionTime; // 2 * o2::InteractionRecord::DummyTime;
 
   if (ndigitsA > 0 && ndigitsC > 0) {
     mCollisionTime[Vertex] = (mCollisionTime[TimeA] - mCollisionTime[TimeC]) / 2.;

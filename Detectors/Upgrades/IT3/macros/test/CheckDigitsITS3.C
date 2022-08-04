@@ -173,8 +173,8 @@ void CheckDigitsITS3(std::string digifile = "it3digits.root", std::string hitfil
         if (chipID < 4) {
           //
           // invert
-          //xyzLocS = {SegmentationSuperAlpide::Radii[detID] * startPhi, 0.f, startPos.Z()};
-          //xyzLocE = {SegmentationSuperAlpide::Radii[detID] * endPhi, 0.f, endPos.Z()};
+          // xyzLocS = {SegmentationSuperAlpide::Radii[detID] * startPhi, 0.f, startPos.Z()};
+          // xyzLocE = {SegmentationSuperAlpide::Radii[detID] * endPhi, 0.f, endPos.Z()};
           //
           double radius = SegmentationSuperAlpide::Radii[chipID];
           double phi = locD.X() / radius;

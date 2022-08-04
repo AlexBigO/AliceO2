@@ -327,7 +327,7 @@ DataProcessorSpec getSinkSpec()
 
     LOG(info) << "extracting POD vector";
     // TODO: use the ReturnType helper once implemented
-    //InputRecord::ReturnType<std::vector<int>> podvector;
+    // InputRecord::ReturnType<std::vector<int>> podvector;
     decltype(std::declval<InputRecord>().get<std::vector<int>>(DataRef{nullptr, nullptr, nullptr})) podvector;
     podvector = pc.inputs().get<std::vector<int>>("inputPODvector");
     ASSERT_ERROR(podvector.size() == 3);

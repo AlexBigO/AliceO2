@@ -149,7 +149,7 @@ static char DataTypeToChar(EDataType datatype)
     case kCharStar:
       return 'C';
     case kBits:
-      return 0; //unsupported
+      return 0; // unsupported
 
     case kOther_t:
     case kNoType_t:
@@ -174,14 +174,14 @@ void merge(Options const& options)
 
     // P. Canal suggests that this can be done in the following way to fix the branch names
     // in the merged file and to keep only the final file:
-    //auto mainfile = TFile::Open(firsttreefilename, "UPDATE");
-    //auto friendfile = TFile::Open(secondtreefilename, "READ");
-    //auto friendtree = ffriendfile>Get<Tree>(secondtreename);
-    //mainfile->cd();
-    //auto friendcopy = friendtree->CloneTree(-1, "fast");
-    //auto maintree = mainfile->Get<TTree>(firsttreename);
-    //maintree->AddFriend(friendcopy);
-    //mainfile->Write();
+    // auto mainfile = TFile::Open(firsttreefilename, "UPDATE");
+    // auto friendfile = TFile::Open(secondtreefilename, "READ");
+    // auto friendtree = ffriendfile>Get<Tree>(secondtreename);
+    // mainfile->cd();
+    // auto friendcopy = friendtree->CloneTree(-1, "fast");
+    // auto maintree = mainfile->Get<TTree>(firsttreename);
+    // maintree->AddFriend(friendcopy);
+    // mainfile->Write();
   } else {
     // a deep copy solution
 

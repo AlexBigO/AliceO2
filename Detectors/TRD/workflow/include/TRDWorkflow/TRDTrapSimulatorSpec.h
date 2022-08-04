@@ -39,7 +39,6 @@ class TRDDPLTrapSimulatorTask : public o2::framework::Task
   void init(o2::framework::InitContext& ic) override;
   void run(o2::framework::ProcessingContext& pc) override;
 
-
  private:
   TrapConfig* mTrapConfig{nullptr};
   int mRunNumber{297595};       // run number to anchor simulation to.
@@ -65,4 +64,4 @@ o2::framework::DataProcessorSpec getTRDTrapSimulatorSpec(bool useMC, int digitDo
 } // end namespace trd
 } // end namespace o2
 
-#endif //O2_TRD_TRAPSIMULATORWORKFLOW_SRC_TRDTRAPSIMULATORSPEC_H_
+#endif // O2_TRD_TRAPSIMULATORWORKFLOW_SRC_TRDTRAPSIMULATORSPEC_H_

@@ -252,13 +252,13 @@ void GeometricalConstraint::checkConstraint() const
       // SetMatrix does setTranslation and setRotation afterwars;
       tmpPar.setTranslation(tau);
       tmpPar.setRotation(tau);
-      //tmpPar.GetTranslation(&parsPEx[0]);
-      // get Translation gets x,y,z;
+      // tmpPar.GetTranslation(&parsPEx[0]);
+      //  get Translation gets x,y,z;
       parsPEx[0] = tmpPar.getX();
       parsPEx[1] = tmpPar.getY();
       parsPEx[2] = tmpPar.getZ();
-      //tmpPar.GetAngles(&parsPEx[3]); // explicitly calculated child params in parent frame
-      // gets angles
+      // tmpPar.GetAngles(&parsPEx[3]); // explicitly calculated child params in parent frame
+      //  gets angles
       parsPEx[3] = tmpPar.getPsi();
       parsPEx[4] = tmpPar.getTheta();
       parsPEx[5] = tmpPar.getPhi();
